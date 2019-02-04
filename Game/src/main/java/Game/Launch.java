@@ -1,14 +1,11 @@
 package Game;
 
-import java.awt.Frame;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-public class Launch {
-	enum Choices{Button1,Button2,Button3,Button4,Button5}
+class Launch {
 	
-	public static void Launch()
+	public Launch()
 	{
 		
 	JFrame frame= new JFrame("RISKGAME-STARTSCREEN");
@@ -38,10 +35,8 @@ public class Launch {
 	        frame.setLayout(null); 
 	        // makes the frame visible 
 	        frame.setVisible(true);
-	        Launch Buttons=new Launch();
+	       
 	        Button5.addActionListener(e-> System.exit(0));        
 	
 	}
-	
-
 }
