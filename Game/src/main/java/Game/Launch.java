@@ -18,7 +18,7 @@ class Launch {
 		 Button2.setBounds(201, 200, 150, 50); 
 		 Button3.setBounds(202, 250, 150, 50); 
 		 Button4.setBounds(203, 300, 150, 50); 
-		 //Button5.setBounds(204, 350, 150, 50); 
+		 Button5.setBounds(204, 350, 150, 50); 
          
 	        // setting close operation 
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
