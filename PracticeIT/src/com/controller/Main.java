@@ -41,7 +41,7 @@ public class Main extends Application {
 			BorderPane bp = new BorderPane();
 			bp.setBottom(vbox);
 			bp.prefWidthProperty().bind(scene.widthProperty());
-			bp.setCenter(loadImage(scene, classLoader));
+			bp.setCenter(LoadImage(scene, classLoader));
 
 			base.getChildren().addAll(bp );
 
@@ -54,7 +54,7 @@ public class Main extends Application {
 	}
 
 	
-	public static ImageView loadImage(Scene scene, ClassLoader classLoader) {
+	public static ImageView LoadImage(Scene scene, ClassLoader classLoader) {
 		final ImageView imageView = new ImageView();
 
 		InputStream inputStream = null;
@@ -86,7 +86,7 @@ public class Main extends Application {
 	
 	public static Button mapModification(Scene scene) {
 		Button mapMOdifyButton = new Button("Map Editor");
-//		mapMOdifyButton.setOnAction(new MapOption());
+	mapMOdifyButton.setOnAction(new MapFStep());
 		mapMOdifyButton.setMaxWidth(scene.getWidth());
 
 		return mapMOdifyButton;
