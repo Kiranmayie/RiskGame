@@ -27,7 +27,8 @@ public class Main extends Application {
 		primaryStage.setTitle("Risk Map ");
 		ClassLoader classLoader = getClass().getClassLoader();
 		try {
-
+			
+			//group class object created
 			Group base = new Group();
 			
 			Scene scene = new Scene(base, 300, 240);
