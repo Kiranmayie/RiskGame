@@ -1,36 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<GridPane fx:controller="com.controller.MapBuildController" 
-    xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-<padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
-
-  <Text text="Welcome" 
-        GridPane.columnIndex="0" GridPane.rowIndex="0"
-        GridPane.columnSpan="2"/>
- 
-    <Label text="User Name:"
-        GridPane.columnIndex="0" GridPane.rowIndex="1"/>
- 
-    <TextField 
-        GridPane.columnIndex="1" GridPane.rowIndex="1"/>
- 
-    <Label text="Password:"
-        GridPane.columnIndex="0" GridPane.rowIndex="2"/>
- 
-    <PasswordField fx:id="passwordField" 
-        GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-        
-        <HBox spacing="10" alignment="bottom_right" 
-        GridPane.columnIndex="1" GridPane.rowIndex="4">
-        <Button text="Sign In"     
-        
-</HBox>
-
-
-</GridPane>
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+    <TitledPane animated="false" layoutX="-359.0" layoutY="-550.0" text="Add New Continent">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="239.0">
+               <opaqueInsets>
+                  <Insets top="10.0" />
+               </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+               <children>
+                  <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name " />
+                  <TextField layoutX="54.0" layoutY="10.0" prefHeight="25.0" prefWidth="134.0" />
+                  <Text layoutX="16.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Value" />
+                  <TextField layoutX="54.0" layoutY="44.0" prefHeight="15.0" prefWidth="77.0" />
+                  <Button layoutX="20.0" layoutY="129.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="39.0" text="Add" />
+                  <Button layoutX="76.0" layoutY="129.0" mnemonicParsing="false" text="Update" />
+                  <Button layoutX="151.0" layoutY="129.0" mnemonicParsing="false" text="Delete" />
+               </children>
+            </AnchorPane>
+      </content>
+    </TitledPane>
+    <TitledPane animated="false" layoutX="-359.0" layoutY="-290.0" prefHeight="216.0" prefWidth="241.0" text="Add New Territory">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="239.0">
+               <children>
+                  <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Continent:" />
+                  <Text layoutX="81.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Label" />
+                  <Text layoutX="14.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+                  <Text layoutX="14.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X-axis" />
+                  <Text layoutX="14.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y-axis" />
+                  <TextField layoutX="69.0" layoutY="38.0" />
+                  <TextField layoutX="69.0" layoutY="74.0" />
+                  <TextField layoutX="69.0" layoutY="113.0" />
+               </children>
+            </AnchorPane>
+      </content>
+    </TitledPane>
+      <Text layoutX="-369.0" layoutY="-573.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Continents" wrappingWidth="157.13671875">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="-369.0" layoutY="-308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Territory" wrappingWidth="210.13671875">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="206.0" fitWidth="200.0" layoutX="-100.0" layoutY="-550.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="216.0" fitWidth="200.0" layoutX="-100.0" layoutY="-290.0" pickOnBounds="true" preserveRatio="true" />
+      <Text layoutX="-542.0" layoutY="-531.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Author :" />
+      <TextField layoutX="-490.0" layoutY="-548.0" prefHeight="25.0" prefWidth="106.0" />
+      <Text layoutX="-542.0" layoutY="-488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Warn :" />
+      <TextField layoutX="-490.0" layoutY="-505.0" prefHeight="25.0" prefWidth="106.0" />
+      <Text layoutX="-544.0" layoutY="-449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image :" />
+      <TextField layoutX="-490.0" layoutY="-466.0" prefHeight="25.0" prefWidth="106.0" />
+      <Text layoutX="-542.0" layoutY="-406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wrap :" />
+      <Text layoutX="-542.0" layoutY="-362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scroll :" />
+      <TextField layoutX="-490.0" layoutY="-423.0" prefHeight="25.0" prefWidth="106.0" />
+      <TextField layoutX="-490.0" layoutY="-379.0" prefHeight="25.0" prefWidth="106.0" />
+      <ImageView fitHeight="338.0" fitWidth="186.0" layoutX="-555.0" layoutY="-275.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Desktop/Risk%20Pic.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="216.0" fitWidth="241.0" layoutX="136.0" layoutY="-290.0" pickOnBounds="true" preserveRatio="true">
+         <effect>
+            <MotionBlur />
+         </effect>
+      </ImageView>
+      <Button layoutX="377.0" layoutY="-223.0" mnemonicParsing="false" text="Delete" />
+      <Text layoutX="136.0" layoutY="-305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adjacent Territory" />
+   </children>
+</AnchorPane>

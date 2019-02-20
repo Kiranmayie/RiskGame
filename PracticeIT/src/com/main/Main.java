@@ -28,7 +28,7 @@ public class Main extends Application {
 		ClassLoader classLoader = getClass().getClassLoader();
 		try {
 			
-			//group class object created
+			
 			Group base = new Group();
 			
 			Scene scene = new Scene(base, 300, 240);

@@ -75,7 +75,7 @@ public class MapFStep implements EventHandler<ActionEvent>{
 
 		return mapMOdifyButton;
 	}
-
+	
 	
 	public static Button startPlayingGame(Scene scene) {
 		Button gameButton = new Button("Load and Edit Map");

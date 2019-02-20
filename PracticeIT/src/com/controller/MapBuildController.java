@@ -27,13 +27,14 @@ public class MapBuildController implements EventHandler<ActionEvent>{
 			e.printStackTrace();
 		}
 	    
-        Scene scene = new Scene(root, 300, 275);
+        Scene scene = new Scene(root);
     
         stage.setTitle("FXML Welcome");
         stage.setScene(scene);
+        stage.setResizable(true);
         stage.show();
-	}
-
+	
+       ]
 	
 	public void handleButtonClick() {
 		
