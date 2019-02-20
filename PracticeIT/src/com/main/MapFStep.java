@@ -1,30 +1,34 @@
-package com.controller;
-//package com.risk.main;
+package com.main;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import javafx.application.Application;
+import com.controller.MapBuildController;
+
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+public class MapFStep implements EventHandler<ActionEvent>{
 
-public class Main extends Application {
-
-	
 	@Override
-	public void start(Stage primaryStage) {
-		primaryStage.setTitle("Risk Map ");
+	public void handle(ActionEvent arg0) {
+		Stage stg = new Stage();
+		stg.setTitle("Map Selector");;
 		ClassLoader classLoader = getClass().getClassLoader();
 		try {
 			
@@ -41,41 +45,21 @@ public class Main extends Application {
 			BorderPane bp = new BorderPane();
 			bp.setBottom(vbox);
 			bp.prefWidthProperty().bind(scene.widthProperty());
-			bp.setCenter(LoadImage(scene, classLoader));
+			bp.setCenter(Main.LoadImage(scene, classLoader));
 
 			base.getChildren().addAll(bp );
 
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			stg.setScene(scene);
+			stg.show();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	
-	public static ImageView LoadImage(Scene scene, ClassLoader classLoader) {
-		final ImageView imageView = new ImageView();
-
-		InputStream inputStream = null;
-		try {
-			inputStream = new FileInputStream(new File(classLoader.getResource("pic.jpg").getFile()));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Image image = new Image(inputStream);
-		imageView.setImage(image);
-		
-
-		imageView.fitWidthProperty().bind(scene.widthProperty());
-		imageView.fitHeightProperty().bind(scene.heightProperty());
-		imageView.setPreserveRatio(true);
-
-		return imageView;
-	}
-
-
+				
+			
+	       
 	public static Button exit(Scene scene) {
 		Button extButton = new Button("Exit");
 		extButton.setOnAction(e -> Platform.exit());
@@ -85,8 +69,8 @@ public class Main extends Application {
 
 	
 	public static Button mapModification(Scene scene) {
-		Button mapMOdifyButton = new Button("Map Editor");
-	mapMOdifyButton.setOnAction(new MapFStep());
+		Button mapMOdifyButton = new Button("New Map");
+	    mapMOdifyButton.setOnAction(new MapBuildController());
 		mapMOdifyButton.setMaxWidth(scene.getWidth());
 
 		return mapMOdifyButton;
@@ -94,14 +78,12 @@ public class Main extends Application {
 
 	
 	public static Button startPlayingGame(Scene scene) {
-		Button gameButton = new Button("Start New Game");
+		Button gameButton = new Button("Load and Edit Map");
 		//gameButton.setOnAction(new GamePlay());
 		gameButton.setMaxWidth(scene.getWidth());
 		return gameButton;
 	}
-	
-	
-	public static void main(String[] args) {
-		launch(args);
 	}
-}
+
+	
+

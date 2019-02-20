@@ -1,4 +1,4 @@
-package com.controller;
+package com.main;
 //package com.risk.entity;
 
 import java.io.Serializable;
