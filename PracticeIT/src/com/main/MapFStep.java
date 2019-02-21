@@ -78,7 +78,7 @@ public class MapFStep implements EventHandler<ActionEvent>{
 	
 	public static Button startPlayingGame(Scene scene) {
 		Button gameButton = new Button("Load and Edit Map");
-		//gameButton.setOnAction(new GamePlay());
+		gameButton.setOnAction(new MapBuildController());
 		gameButton.setMaxWidth(scene.getWidth());
 		return gameButton;
 	}

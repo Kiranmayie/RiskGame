@@ -21,7 +21,7 @@ public class MapBuildController implements EventHandler<ActionEvent>{
 		// TODO Auto-generated method stub
 		//Parent root ;
 		try {
-			   root = FXMLLoader.load(getClass().getResource("MapLayout.fxml"));
+			   root = FXMLLoader.load(getClass().getResource("MapEditorNew.fxml"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
