@@ -24,7 +24,7 @@ public class Continents implements Serializable {
 		trrtrsMp = new HashMap<>();
 		trrtrs = new ArrayList<>();
 	}
-
+   
 	/**
 	 * Get Territory Map
 	 * 
