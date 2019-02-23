@@ -32,7 +32,7 @@ public class MapBuildController implements EventHandler<ActionEvent>{
         stage.setTitle("FXML Welcome");
         stage.setScene(scene);
         stage.setResizable(true);
-        stage.show();
+        stage.show(); 
 	
 	}
 	

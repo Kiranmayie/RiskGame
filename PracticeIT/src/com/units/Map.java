@@ -33,7 +33,7 @@ public class Map implements Serializable {
 	}
 
 	
-	public HashMap<String, String> getMapData() {
+	public HashMap<String, String> getMapData() { 
 		return data;
 	}
 
