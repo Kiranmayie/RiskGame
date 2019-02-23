@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
+/*
+ * Map files to initiALIZE CONTINENTS
+ */
 
 public class Map implements Serializable {
 	
 	private HashMap<String, String> data;
-	
+	 
 	
 	private List<Continents> cntnts;
 	
