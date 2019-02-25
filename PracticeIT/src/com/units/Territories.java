@@ -34,6 +34,13 @@ public class Territories implements Serializable {
 	 * The @adjacentTerritories
 	 */
 	private List<Territories> touchingTrrtrsExpand;
+
+	private int army;
+	
+	
+	public int Army() {
+		return army;
+	}
 	
 	public Territories() {
 		touchingTrrtrs = new ArrayList<>();
