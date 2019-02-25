@@ -21,7 +21,7 @@ public class StartGame implements EventHandler<ActionEvent> {
 			MapFileLoader fileLoaderAndParser = new MapFileLoader();
 			Map map = null;
 			try {
-				map = fileLoaderAndParser.parseAndReadMapFile(file);
+				map = fileLoaderAndParser.ReadMapFile(file);
 			} catch (Exception ex) {
 				System.out.print("Error Invalid Map");
 				return;
