@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.MapBuildController.java">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.MapBuildController">
    <children>
       <Accordion layoutX="104.0" layoutY="86.0" />
       <Accordion layoutX="156.0" layoutY="59.0" prefHeight="182.0" prefWidth="241.0" />
