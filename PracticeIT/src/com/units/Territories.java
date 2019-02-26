@@ -86,7 +86,7 @@ public class Territories implements Serializable {
 		return lyingInCntnt;
 	}
 
-	
+	//
 	public void setLyingInCntnt(Continents lyingInCntnt) {
 		this.lyingInCntnt = lyingInCntnt;
 	}
