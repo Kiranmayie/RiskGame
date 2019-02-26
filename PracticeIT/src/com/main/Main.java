@@ -95,7 +95,7 @@ public class Main extends Application {
 	
 	public static Button startPlayingGame(Scene scene) {
 		Button gameButton = new Button("Start New Game");
-		//gameButton.setOnAction(new GamePlay());
+		gameButton.setOnAction(new StartGame());
 		gameButton.setMaxWidth(scene.getWidth());
 		return gameButton;
 	}

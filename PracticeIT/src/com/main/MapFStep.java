@@ -58,7 +58,7 @@ public class MapFStep implements EventHandler<ActionEvent>{
 	}
 
 				
-			//
+		
 	       
 	public static Button exit(Scene scene) {
 		Button extButton = new Button("Exit");

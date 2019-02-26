@@ -35,12 +35,7 @@ public class Territories implements Serializable {
 	 */
 	private List<Territories> touchingTrrtrsExpand;
 
-	private int army;
-	
-	
-	public int Army() {
-		return army;
-	}
+
 	
 	private boolean isConnected;
 	
