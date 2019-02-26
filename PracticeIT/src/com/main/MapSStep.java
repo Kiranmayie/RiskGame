@@ -12,7 +12,10 @@ import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
 import javafx.stage.FileChooser;
+import com.model.AuthenticatingEnhanedmap;
  
+
+
 public class MapSStep {
 	
 	Map enhancedMap;
@@ -30,6 +33,7 @@ public class MapSStep {
 		
 		this.enhancedMap=conversionOne(mapReturnedFile);
 		System.out.println(enhancedMap.toString());
+		AuthenticatingEnhanedmap.AuthFStep(enhancedMap);
 		return enhancedMap;
 	}
 	

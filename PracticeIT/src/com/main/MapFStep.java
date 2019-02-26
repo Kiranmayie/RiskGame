@@ -1,5 +1,4 @@
 package com.main;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -83,6 +82,3 @@ public class MapFStep implements EventHandler<ActionEvent>{
 		return gameButton;
 	}
 	}
-
-	
-

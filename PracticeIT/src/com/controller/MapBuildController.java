@@ -12,8 +12,7 @@ import com.model.MapMiniature;
 import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
-
-
+import com.model.AuthenticatingEnhanedmap;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -79,6 +78,7 @@ public class MapBuildController implements Initializable,EventHandler{
 	@FXML
 	private TextField tYaxis;
 	
+
 	@FXML
 	private Button addTerritory;
 	
@@ -110,6 +110,7 @@ public class MapBuildController implements Initializable,EventHandler{
 	private Button exitButton;
 	
 	Stage stage = new Stage();
+
 	public Button button;
 	
 	@Override
@@ -123,6 +124,11 @@ public class MapBuildController implements Initializable,EventHandler{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		 if(AuthenticatingEnhanedmap.x>0) {
+			 
+			 System.out.println("Sorry Something went wrong. We are investigating the issue.");;
+		 }
+		 else {
         stage.setTitle("FXML Welcome");
         try {
 			stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("MapEditorNew.fxml"))));
@@ -131,6 +137,7 @@ public class MapBuildController implements Initializable,EventHandler{
 			e.printStackTrace();
 		}
         stage.setResizable(true);
+
         stage.show();
         }
 	
@@ -267,7 +274,9 @@ public class MapBuildController implements Initializable,EventHandler{
 		map.getMapData().put("Image", getEmptyBlank(Image.getText()));
 		return map;
 	}
-	
+        stage.show(); 
+		 }
+	}
 	private String getEmptyBlank(String value) {
 		return value;
 	}
@@ -304,7 +313,5 @@ public class MapBuildController implements Initializable,EventHandler{
 	
        
     
-	
-	 
 	}
 
