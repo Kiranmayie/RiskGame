@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import com.main.MapSStep;
+import com.model.AuthenticatingEnhanedmap;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,6 +32,11 @@ public class MapBuildController implements EventHandler<ActionEvent>{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		 if(AuthenticatingEnhanedmap.x>0) {
+			 
+			 System.out.println("Sorry Something went wrong. We are investigating the issue.");;
+		 }
+		 else {
         stage.setTitle("FXML Welcome");
         try {
 			stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("MapEditorNew.fxml"))));
@@ -40,7 +46,7 @@ public class MapBuildController implements EventHandler<ActionEvent>{
 		}
         stage.setResizable(true);
         stage.show(); 
-	
+		 }
 	}
 	
 	public void handleButtonClick() {
