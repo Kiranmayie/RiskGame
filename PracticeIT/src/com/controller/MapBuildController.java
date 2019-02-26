@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 public class MapBuildController implements EventHandler<ActionEvent>{
 	
-	
+	//
 	 Stage stage = new Stage();
 	public Button button;
 	@Override
