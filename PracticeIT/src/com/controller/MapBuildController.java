@@ -47,7 +47,7 @@ public class MapBuildController implements EventHandler<ActionEvent>{
         stage.setResizable(true);
         stage.show(); 
 		 }
-	}//
+	}
 	
 	public void handleButtonClick() {
 		
