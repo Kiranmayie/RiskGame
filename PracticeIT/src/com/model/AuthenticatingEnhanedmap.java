@@ -10,7 +10,7 @@ import com.units.Continents;
 
 public class AuthenticatingEnhanedmap {
 //
-	
+	public static int x;
 	public static void AuthFStep(Map enhancedMap) {
 		if (enhancedMap != null) {
 			if (enhancedMap.getContinents().size() > 0) {
@@ -20,22 +20,27 @@ public class AuthenticatingEnhanedmap {
 					}
 				}
 			} else {
+				
 				System.out.println("Map should contain atleast one continent.");
+				x=x+1;
 			}
 			isTerritoryUniquelyAssociated(enhancedMap);
-		} else {
+		} else  {
 			System.out.println("Empty file no Map exist.");
+			x=x+1;
 		}
 	}
 
 
-public static void authCntnt(Continents cntnt, Map enhancedMap) {
+public static void authCntnt(Continents cntnt, Map enhancedMap)  {
 	if (cntnt.getTrrtrs().size() < 1) {
 		System.out.println("Continent: " + cntnt.getAssignName() + " should contain atleast one territory");
+		x=x+1;
 	}
 	if (!cntntConnectedToAnotherCntnt(cntnt, enhancedMap)) {
 		System.out.println("Continent: " + cntnt.getAssignName().toUpperCase()
 				+ " is not a subgraph. The continent should be connected to another continent via territory.");
+		x=x+1;
 	}
 	for (Territories trrtr : cntnt.getTrrtrs()) {
 		if (trrtr != null) {
@@ -70,12 +75,11 @@ public static void authTrrtr(Territories trrtr, Map enhancedMap) {
 
 	if (partnerTrrtrList != null && partnerTrrtrList.size() < 1) {
 		System.out.println("Territory: " + trrtr.getAssignName() + " should be mapped with atleas one adjacent territory.");
+		x=x+1;
 	} else if (!isTrrtrInterConnected(trrtr)) {
 		System.out.println("Territory: " + trrtr.getAssignName() + " is not forming a connected sub graph.");
-	} else {
-		System.out.println("Nothing to Show, check the code");
-
-	}
+		x=x+1;
+	} 
 }
 
 public static boolean isTrrtrInterConnected(Territories trrtr) {
@@ -127,8 +131,9 @@ public static void isTerritoryUniquelyAssociated(Map enhancedMap)  {
 	for (Entry<Territories, Integer> s : trrtrConnection.entrySet()) {
 		if (s.getValue() > 1) {
 			System.out.println("Territory: " + s.getKey().getAssignName() + " belongs to multiple continent.");
+			x=x+1;
 		}
 	}
 }
-
+//
 }

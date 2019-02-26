@@ -1,5 +1,8 @@
 package com.main;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -14,9 +17,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class newMapCreation implements EventHandler<ActionEvent> {
 
 	@Override
+
+	public void handle(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
 	public void handle(ActionEvent event) {
 		
 			final Stage newMapStage = new Stage();
@@ -26,7 +37,7 @@ public class newMapCreation implements EventHandler<ActionEvent> {
 			
 			
 
-			FXMLLoader loadMap = new FXMLLoader(getClass().getClassLoader().getResource("MapLayout.fxml"));
+			FXMLLoader loadMap = new FXMLLoader(getClass().getClassLoader().getResource("MapEditorNew.fxml"));
 			loadMap.setController(controller);
 
 			Parent root = null;
@@ -42,4 +53,5 @@ public class newMapCreation implements EventHandler<ActionEvent> {
 			newMapStage.show();
 		}
 	}
+
 
