@@ -23,7 +23,7 @@ public class MapFileLoader {
 		 * @return map object of type {@link Map
 		 */
 			this.map = MapFileToMapObject(file);
-			MapValidate.validateMap(map);
+			//MapValidate.validateMap(map);
 			return map;
 	}
 	private Map MapFileToMapObject(File file) {
@@ -35,7 +35,7 @@ public class MapFileLoader {
 			while (mapFileScanner.hasNextLine()) {
 				String data = mapFileScanner.nextLine();
 				if (!data.isEmpty()) {
-					stringBuilder.append(data + "|");
+					stringBuilder.append(data + "//");
 				} else {
 					stringBuilder.append("\n");
 				}
@@ -54,7 +54,7 @@ public class MapFileLoader {
 
 		HashMap<String, String> mapAttributes = new HashMap<>();
 
-		StringTokenizer token = new StringTokenizer(scan.nextLine(), "|");
+		StringTokenizer token = new StringTokenizer(scan.nextLine(), "//");
 		while (token.hasMoreTokens()) {
 			String element = token.nextToken();
 			if (element.equalsIgnoreCase("[Map]")) {
@@ -78,9 +78,9 @@ public class MapFileLoader {
 	}
 	private List<Continents> scanContinent(Scanner scan)  {
 		List<Continents> continents = new ArrayList<>();
-		StringTokenizer token = new StringTokenizer(scan.nextLine(), "|");
-		while (token.hasMoreTokens()) {
-			String element = token.nextToken();
+		StringTokenizer creator = new StringTokenizer(scan.nextLine(), "//");
+		while (creator.hasMoreTokens()) {
+			String element = creator.nextToken();
 			if (element.equalsIgnoreCase("[Continents]")) {
 				continue;
 			} else {

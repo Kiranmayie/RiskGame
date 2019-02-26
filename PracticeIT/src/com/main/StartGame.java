@@ -20,7 +20,7 @@ public class StartGame implements EventHandler<ActionEvent> {
 
 			MapFileLoader fileLoaderAndParser = new MapFileLoader();
 			Map map = null;
-			try {
+			try {//
 				map = fileLoaderAndParser.ReadMapFile(file);
 			} catch (Exception ex) {
 				System.out.print("Error Invalid Map");
