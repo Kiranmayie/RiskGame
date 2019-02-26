@@ -35,6 +35,8 @@ public class Territories implements Serializable {
 	 */
 	private List<Territories> touchingTrrtrsExpand;
 	
+	private boolean isConnected;
+	
 	public Territories() {
 		touchingTrrtrs = new ArrayList<>();
 		touchingTrrtrsExpand = new ArrayList<>();
@@ -101,5 +103,13 @@ public class Territories implements Serializable {
 
 		Territories territory = (Territories) obj;
 		return territory.getAssignName().equalsIgnoreCase(assignName);
+	}
+	
+	public void setConnected(boolean isConnected) {
+		this.isConnected = isConnected;
+	}
+	
+	public boolean isConnected() {
+		return isConnected;
 	}
 }
