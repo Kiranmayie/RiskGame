@@ -1,5 +1,4 @@
 package com.main;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -58,7 +57,7 @@ public class MapFStep implements EventHandler<ActionEvent>{
 	}
 
 				
-		
+			
 	       
 	public static Button exit(Scene scene) {
 		Button extButton = new Button("Exit");
@@ -70,7 +69,7 @@ public class MapFStep implements EventHandler<ActionEvent>{
 	
 	public static Button mapModification(Scene scene) {
 		Button mapMOdifyButton = new Button("New Map");
-		mapMOdifyButton.setOnAction(new newMapCreation());
+	   // mapMOdifyButton.setOnAction(new MapBuildController());
 		mapMOdifyButton.setMaxWidth(scene.getWidth());
 
 		return mapMOdifyButton;
@@ -83,6 +82,3 @@ public class MapFStep implements EventHandler<ActionEvent>{
 		return gameButton;
 	}
 	}
-
-	
-
