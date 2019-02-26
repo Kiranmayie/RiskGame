@@ -70,7 +70,7 @@ public class MapFStep implements EventHandler<ActionEvent>{
 	
 	public static Button mapModification(Scene scene) {
 		Button mapMOdifyButton = new Button("New Map");
-	    mapMOdifyButton.setOnAction(new MapBuildController());
+	    mapMOdifyButton.setOnAction(new newMapCreation());
 		mapMOdifyButton.setMaxWidth(scene.getWidth());
 
 		return mapMOdifyButton;
