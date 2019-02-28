@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import com.controller.MapBuildController;
+import com.controller.MapCreateController;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -68,17 +69,17 @@ public class MapFStep implements EventHandler<ActionEvent>{
 
 	
 	public static Button mapModification(Scene scene) {
-		Button mapMOdifyButton = new Button("New Map");
-	   // mapMOdifyButton.setOnAction(new MapBuildController());
-		mapMOdifyButton.setMaxWidth(scene.getWidth());
+		Button newMapButton = new Button("New Map");
+	    newMapButton.setOnAction(new MapCreateController());
+		newMapButton.setMaxWidth(scene.getWidth());
 
-		return mapMOdifyButton;
+		return newMapButton;
 	}
 	
 	public static Button startPlayingGame(Scene scene) {
-		Button gameButton = new Button("Load and Edit Map");
-		gameButton.setOnAction(new MapBuildController());
-		gameButton.setMaxWidth(scene.getWidth());
-		return gameButton;
+		Button loadEditButton = new Button("Load and Edit Map");
+		loadEditButton.setOnAction(new MapBuildController());
+		loadEditButton.setMaxWidth(scene.getWidth());
+		return loadEditButton;
 	}
 	}

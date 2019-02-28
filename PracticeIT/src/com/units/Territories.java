@@ -1,3 +1,4 @@
+
 package com.units;
 
 import java.io.Serializable;
@@ -67,12 +68,12 @@ public class Territories implements Serializable {
 	public void setPointX(int pointX) {
 		this.pointX = pointX;
 	}
-	 
+	
 	public int getPointY() {
 		return pointY;
 	}
 	
-	public 	void setPointY(int pointY) {
+	public void setPointY(int pointY) {
 		this.pointY = pointY;
 	}
 	
@@ -116,6 +117,9 @@ public class Territories implements Serializable {
 	}
 	
 	public String toString() {
+
 		return ""+assignName.toString();
+
+
 	}
 }

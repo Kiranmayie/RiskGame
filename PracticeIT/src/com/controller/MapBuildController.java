@@ -142,8 +142,12 @@ public class MapBuildController implements Initializable,EventHandler{
 		 System.out.println("Alert: Something is Wrong");;
 		 }
 		 else {
+
         stage.setTitle("FXML Welcome");
         Parent root = null;
+        System.out.println(map.toString());
+			 stage.setTitle("FXML Welcome");
+
         try {
         	FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("MapEditorNew.fxml"));
         	loader.setController(mvc);
@@ -158,6 +162,10 @@ public class MapBuildController implements Initializable,EventHandler{
         stage.show();
 		 }
         }
+
+        
+        
+
 	
 	public static void enable(Control... controls) {
 		for (Control control : controls) {
@@ -294,8 +302,6 @@ public class MapBuildController implements Initializable,EventHandler{
 		map.getMapData().put("Wrap", Wrap.getText());
 		map.getMapData().put("Image", Image.getText());
 		return map;
-        }
-    
 	@FXML
 	private void SavingMap(ActionEvent event) {
 		System.out.println("Map Read");
@@ -455,6 +461,8 @@ private void displayCorrespondingTrrtrs(Territories territory) {
 			Scroll.setText(map.getMapData().get("Image"));
 			Warn.setText(map.getMapData().get("Warn"));
 			Wrap.setText(map.getMapData().get("Wrap"));
+
+			// Load adjacent erritory
 			loadAdjTerritoryList();
 			for (Continents continent : map.getContinents()) {
 				cntntList.getItems().add(continent);
