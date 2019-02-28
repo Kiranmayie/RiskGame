@@ -32,7 +32,7 @@ public class MapSStep {
 	public Map readingMapFile(File mapReturnedFile) throws FileNotFoundException {
 		
 		this.enhancedMap=conversionOne(mapReturnedFile);
-		System.out.println(enhancedMap.toString());
+		//System.out.println(enhancedMap.toString());
 		AuthenticatingEnhanedmap.AuthFStep(enhancedMap);
 		return enhancedMap;
 	}
@@ -50,7 +50,7 @@ public class MapSStep {
 				sb.append(mapData + "//");
 			}
 		}
-		System.out.println(sb);
+		//System.out.println(sb);
 		Scanner scNew=new Scanner(sb.toString());
 		sc.close();
 		Map enhancedMap=conversionTwo(scNew);

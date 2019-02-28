@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
-import com.Functionalities.MapFunctionalities;
 import com.main.MapSStep;
 import com.model.MapMiniature;
 import com.units.Continents;
@@ -119,7 +118,7 @@ public class MapBuildController implements Initializable,EventHandler{
 		File mapReturnedFile = MapSStep.mapFileValidator();
 		 MapSStep mapsstep=new MapSStep();
 		 try {
-			mapsstep.readingMapFile(mapReturnedFile);
+			map=mapsstep.readingMapFile(mapReturnedFile);
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -129,7 +128,8 @@ public class MapBuildController implements Initializable,EventHandler{
 			 System.out.println("Sorry Something went wrong. We are investigating the issue.");;
 		 }
 		 else {
-        stage.setTitle("FXML Welcome");
+        System.out.println(map.toString());
+			 /*stage.setTitle("FXML Welcome");
         try {
 			stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("MapEditorNew.fxml"))));
 		} catch (IOException e) {
@@ -138,8 +138,8 @@ public class MapBuildController implements Initializable,EventHandler{
 		}
         stage.setResizable(true);
 
-        stage.show();
-        }
+        stage.show();}*/
+        }}
 	
     @FXML
     private void addingNewContinent(ActionEvent event) {
@@ -274,9 +274,9 @@ public class MapBuildController implements Initializable,EventHandler{
 		map.getMapData().put("Image", getEmptyBlank(Image.getText()));
 		return map;
 	}
-        stage.show(); 
-		 }
-	}
+        //stage.show(); 
+		 //}
+	//}
 	private String getEmptyBlank(String value) {
 		return value;
 	}
@@ -285,7 +285,7 @@ public class MapBuildController implements Initializable,EventHandler{
 	private void SavingMap(ActionEvent event) {
 		map = s_uMap(map);
 		try {
-			MapFunctionalities.saveMap(this.file, map);
+		//	MapFunctionalities.saveMap(this.file, map);
 		} catch (Exception ex) {
 			//MapUtil.infoBox(ex.getMessage(), "Error", "InvalidMap");
 			return;
