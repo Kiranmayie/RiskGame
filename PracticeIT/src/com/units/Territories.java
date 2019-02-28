@@ -1,3 +1,4 @@
+
 package com.units;
 
 import java.io.Serializable;
@@ -119,7 +120,6 @@ public class Territories implements Serializable {
 
 		return ""+assignName.toString();
 
-		//return "" + assignName ;
 
 	}
 }
