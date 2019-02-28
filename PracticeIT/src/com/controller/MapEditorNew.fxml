@@ -17,22 +17,22 @@
       <Text layoutX="652.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scroll :" />
       <Text layoutX="497.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wrap :" wrappingWidth="42.48046875" />
       <Text layoutX="339.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image :" />
-      <TextField layoutX="61.0" layoutY="31.0" prefHeight="25.0" prefWidth="98.0" />
-      <TextField layoutX="221.0" layoutY="31.0" prefHeight="25.0" prefWidth="98.0" />
-      <TextField layoutX="384.0" layoutY="31.0" prefHeight="25.0" prefWidth="98.0" />
-      <TextField layoutX="539.0" layoutY="31.0" prefHeight="25.0" prefWidth="98.0" />
-      <TextField layoutX="697.0" layoutY="31.0" prefHeight="25.0" prefWidth="98.0" />
+      <TextField fx:id="Author" layoutX="61.0" layoutY="31.0" prefHeight="25.0" prefWidth="98.0" />
+      <TextField fx:id="Warn" layoutX="221.0" layoutY="31.0" prefHeight="25.0" prefWidth="98.0" />
+      <TextField fx:id="Scroll" layoutX="384.0" layoutY="31.0" prefHeight="25.0" prefWidth="98.0" />
+      <TextField fx:id="Wrap" layoutX="539.0" layoutY="31.0" prefHeight="25.0" prefWidth="98.0" />
+      <TextField fx:id="Image" layoutX="697.0" layoutY="31.0" prefHeight="25.0" prefWidth="98.0" />
       <TitledPane animated="false" layoutX="14.0" layoutY="102.0" prefHeight="223.0" prefWidth="258.0" text="Add New Continent">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="197.0" prefWidth="256.0">
                <children>
                   <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name " />
-                  <TextField layoutX="54.0" layoutY="10.0" prefHeight="25.0" prefWidth="134.0" />
+                  <TextField fx:id="newContName" layoutX="54.0" layoutY="10.0" prefHeight="25.0" prefWidth="134.0" />
                   <Text layoutX="16.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Value" />
-                  <TextField layoutX="54.0" layoutY="44.0" prefHeight="15.0" prefWidth="77.0" />
-                  <Button layoutX="20.0" layoutY="129.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="39.0" text="Add" />
-                  <Button layoutX="76.0" layoutY="129.0" mnemonicParsing="false" text="Update" />
-                  <Button layoutX="151.0" layoutY="129.0" mnemonicParsing="false" text="Delete" />
+                  <TextField fx:id="newContValue" layoutX="54.0" layoutY="44.0" prefHeight="15.0" prefWidth="77.0" />
+                  <Button fx:id="addingContinent" layoutX="20.0" layoutY="129.0" mnemonicParsing="false" onAction="#addingNewContinent" prefHeight="25.0" prefWidth="39.0" text="Add" />
+                  <Button fx:id="updatingContinent" layoutX="76.0" layoutY="129.0" mnemonicParsing="false" onAction="#updatingNewContinent" text="Update" />
+                  <Button fx:id="deletingContinent" layoutX="151.0" layoutY="129.0" mnemonicParsing="false" onAction="#deleteContinent" text="Delete" />
                </children>
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
@@ -51,14 +51,15 @@
                   <Text layoutX="14.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
                   <Text layoutX="14.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X-axis" />
                   <Text layoutX="14.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y-axis" />
-                  <TextField layoutX="70.0" layoutY="46.0" />
-                  <TextField layoutX="70.0" layoutY="81.0" />
-                  <TextField layoutX="69.0" layoutY="113.0" />
-                  <Button layoutX="45.0" layoutY="216.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="39.0" text="Add" />
-                  <TextField layoutX="70.0" layoutY="10.0" prefHeight="8.0" prefWidth="149.0" />
-                  <Button layoutX="119.0" layoutY="216.0" mnemonicParsing="false" text="Update" />
-                  <Button layoutX="208.0" layoutY="216.0" mnemonicParsing="false" text="Delete" />
-                  <ComboBox layoutX="28.0" layoutY="163.0" prefHeight="25.0" prefWidth="237.0" promptText="Adjacent Territory" />
+                  <Button fx:id="addTerritory" layoutX="45.0" layoutY="216.0" mnemonicParsing="false" onAction="#addingNewTerritory" prefHeight="25.0" prefWidth="39.0" text="Add" />
+                  <Button fx:id="updateTerr" layoutX="119.0" layoutY="216.0" mnemonicParsing="false" onAction="#updateTerritories" text="Update" />
+                  <Button fx:id="delTerr" layoutX="208.0" layoutY="216.0" mnemonicParsing="false" onAction="#deleteTerritories" text="Delete" />
+                  <ComboBox fx:id="joiningAdjTerritories" layoutX="28.0" layoutY="163.0" prefHeight="25.0" prefWidth="237.0" promptText="Adjacent Territory" />
+                  <TextField fx:id="newTName" layoutX="65.0" layoutY="38.0" prefHeight="25.0" prefWidth="134.0" />
+                  <TextField fx:id="tXaxis" layoutX="65.0" layoutY="74.0" prefHeight="25.0" prefWidth="134.0" />
+                  <TextField fx:id="tYaxis" layoutX="65.0" layoutY="113.0" prefHeight="25.0" prefWidth="134.0" />
+                  <Label fx:id="sameContinentName" layoutX="118.0" layoutY="14.0" text="Label" />
+                                  
                </children>
             </AnchorPane>
          </content>
@@ -73,25 +74,24 @@
             <Font size="25.0" />
          </font>
       </Text>
-      <ListView layoutX="319.0" layoutY="102.0" prefHeight="223.0" prefWidth="200.0" />
-      <ListView layoutX="319.0" layoutY="361.0" prefHeight="281.0" prefWidth="200.0" />
-      <ListView layoutX="539.0" layoutY="361.0" prefHeight="281.0" prefWidth="200.0" />
+      <ListView fx:id="cntntList" layoutX="319.0" layoutY="102.0" prefHeight="223.0" prefWidth="200.0" />
+      <ListView fx:id="trrtrsList" layoutX="319.0" layoutY="361.0" prefHeight="281.0" prefWidth="200.0" />
+      <ListView fx:id="adjTrrtrsList" layoutX="539.0" layoutY="361.0" prefHeight="281.0" prefWidth="200.0" />
       <Text fill="#141414" layoutX="539.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adjacent Territory">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Button layoutX="746.0" layoutY="371.0" mnemonicParsing="false" text="Delete" />
-      <Button layoutX="360.0" layoutY="670.0" mnemonicParsing="false" text="Save Map">
+      <Button fx:id="removingAdjTrrtrs" layoutX="746.0" layoutY="371.0" mnemonicParsing="false" onAction="#removingAdjacentTrrtrs" text="Delete" />
+      <Button fx:id="saveMap" layoutX="360.0" layoutY="670.0" mnemonicParsing="false" onAction="#SavingMap" text="Save Map">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button layoutX="494.0" layoutY="670.0" mnemonicParsing="false" text="Exit">
+      <Button fx:id="exitButton" layoutX="494.0" layoutY="670.0" mnemonicParsing="false" onAction="#mapEditExit" text="Exit">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

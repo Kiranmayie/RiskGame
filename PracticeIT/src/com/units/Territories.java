@@ -114,4 +114,12 @@ public class Territories implements Serializable {
 	public boolean isConnected() {
 		return isConnected;
 	}
+	
+	public String toString() {
+
+		return ""+assignName.toString();
+
+		return "" + assignName ;
+
+	}
 }
