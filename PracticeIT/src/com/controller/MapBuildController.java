@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import com.main.MapSStep;
 import com.model.MapMiniature;
+import com.model.MapSaver;
 import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
@@ -26,11 +27,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 //import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -118,26 +121,25 @@ public class MapBuildController implements Initializable,EventHandler{
 	Stage stage = new Stage();
 
 	public Button button;
+
+	public MapBuildController() {
+		this.mapMini = new MapMiniature();
+	} 
 	
 	@Override
-	public void handle(Event arg0) {
+	public void handle(Event RG) {
 		
 		File mapReturnedFile = MapSStep.mapFileValidator();
 		 MapSStep mapsstep=new MapSStep();
-		// Map map = null;
 		 try {
 			map=mapsstep.readingMapFile(mapReturnedFile);
 			System.out.println(map.toString());
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		 
 		 MapBuildController mvc= new MapBuildController(map, file);
-		 
 		 if(AuthenticatingEnhanedmap.x>0) {
-			 
-			 System.out.println("Sorry Something went wrong. We are investigating the issue.");;
+		 System.out.println("Alert: Something is Wrong");;
 		 }
 		 else {
 
@@ -149,22 +151,15 @@ public class MapBuildController implements Initializable,EventHandler{
         try {
         	FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("MapEditorNew.fxml"));
         	loader.setController(mvc);
-    
-        	root = (Parent) loader.load();
+           	root = (Parent) loader.load();
             Scene scene= new Scene(root);
             stage.setScene(scene);
-			//stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("MapEditorNew.fxml"))));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			} 
+        catch (IOException e) {
+				e.printStackTrace();
 		}
-        
-     //   Scene scene= new Scene((Parent) loader.load());
-        
         stage.setResizable(true);
-
         stage.show();
-        
 		 }
         }
 
@@ -172,13 +167,21 @@ public class MapBuildController implements Initializable,EventHandler{
         
 
 	
+	public static void enable(Control... controls) {
+		for (Control control : controls) {
+			control.setDisable(false);
+		}
+	}
+
+	public static void erasingTF(TextField... fields) {
+		for (TextField field : fields) {
+			field.clear();
+		}
+	}
     @FXML
     private void addingNewContinent(ActionEvent event) {
-
     Continents cont = null;
-
     try {
-    
     cont = mapMini.addingContinent(map, newContName.getText(), newContValue.getText());
     } 
     catch (Exception ex) {
@@ -194,18 +197,17 @@ public class MapBuildController implements Initializable,EventHandler{
 
 	@FXML
 	private void updatingNewContinent(ActionEvent event) {
-		System.out.println("Hai");
 		Continents continent = cntntList.getSelectionModel().getSelectedItem();
 		continent = mapMini.updatingContinent(continent, newContName.getText());
+		enable(newContName, addingContinent);
+		erasingTF(newContName, newContValue);
 	}
     
 	@FXML
 	private void deleteContinent(ActionEvent event) {
 		Continents continent = cntntList.getSelectionModel().getSelectedItem();
-
 		if (continent != null && continent.getTrrtrs() != null) {
 			if (continent.getTrrtrs().size() > 1) {
-				//MapUtil.outPutMessgae(outPutConsole, "Remove associated territories first", false);
 				System.out.println("Discarding attached territories");
 				return;
 			}
@@ -219,12 +221,9 @@ public class MapBuildController implements Initializable,EventHandler{
 
 	@FXML
 	private void addingNewTerritory(ActionEvent event) {
-
 		Continents continent = cntntList.getSelectionModel().getSelectedItem();
 		Territories adjTerritory = joiningAdjTerritories.getSelectionModel().getSelectedItem();
-
 		Territories territory = null;
-
 		try {
 			territory = mapMini.addTerritory(map, newTName.getText(), tXaxis.getText(),
 					tYaxis.getText(), adjTerritory, continent);
@@ -240,7 +239,6 @@ public class MapBuildController implements Initializable,EventHandler{
 	@FXML
 	private void removingAdjacentTrrtrs(ActionEvent event) {
 		Territories adjTerritory = adjTrrtrsList.getSelectionModel().getSelectedItem();
-
 		Territories territory = trrtrsList.getSelectionModel().getSelectedItem();
 		if (territory != null && territory.getTouchingTrrtrsExpand() != null) {
 			if (territory.getTouchingTrrtrsExpand().size() == 1) {
@@ -256,9 +254,8 @@ public class MapBuildController implements Initializable,EventHandler{
 	@FXML
 	private void deleteTerritories(ActionEvent event) {
 		Territories territory = trrtrsList.getSelectionModel().getSelectedItem();
-		HashSet<Territories> territoryToBeRemovedFrom = new HashSet<>();
+		HashSet<Territories> territoriesDetachedFrom = new HashSet<>();
 		Continents continent = cntntList.getSelectionModel().getSelectedItem();
-
 		if (continent != null && continent.getTrrtrs() != null) {
 			if (continent.getTrrtrs().size() == 1) {
 				System.out.println("Alert: Atleats One territory must be selecteed within the Continent ");
@@ -272,67 +269,56 @@ public class MapBuildController implements Initializable,EventHandler{
 						return;
 					}
 					if (terr.getTouchingTrrtrsExpand().contains(territory)  && terr.getTouchingTrrtrsExpand().size()>1) {
-						territoryToBeRemovedFrom.add(terr);
+						territoriesDetachedFrom.add(terr);
 					}
 				}
 			}
-			//If there was no exception than remove this territory from this other territory
-			for (Territories t : territoryToBeRemovedFrom) {
+			for (Territories t : territoriesDetachedFrom) {
 				t.getTouchingTrrtrsExpand().remove(territory);
 			}
 			continent.getTrrtrs().remove(territory);
 			trrtrsList.getItems().remove(territory);
 			System.out.println("Territory removed succesfully");
-			//MapUtil.outPutMessgae(outPutConsole, "Territory removed successfully.", true);
-
 		}
 	}
 	
 	@FXML
 	private void updateTerritories(ActionEvent event) {
 		Territories territory = trrtrsList.getSelectionModel().getSelectedItem();
-
 		Territories adjTerritory = joiningAdjTerritories.getSelectionModel().getSelectedItem();
-		territory = mapMini.updateTerritories(territory, tXaxis.getText(), tYaxis.getText(),
+		int newTXaxis= Integer.parseInt(tXaxis.getText());
+		int newTYaxis= Integer.parseInt(tYaxis.getText());
+		territory = mapMini.updateTerritories(territory, newTXaxis, newTYaxis,
 				adjTerritory);
+		
 	}
 
 	
 	private Map s_uMap(Map map) {
-            System.out.println("Map Read");
-		map.getMapData().put("Author", getEmptyBlank(Author.getText()));
-		map.getMapData().put("Warn", getEmptyBlank(Warn.getText()));
-		map.getMapData().put("Scroll", getEmptyBlank(Scroll.getText()));
-		map.getMapData().put("Wrap", getEmptyBlank(Wrap.getText()));
-		map.getMapData().put("Image", getEmptyBlank(Image.getText()));
+        System.out.println("Map Read");
+        map.getMapData().put("Author", Author.getText());
+        map.getMapData().put("Warn", Warn.getText());
+		map.getMapData().put("Scroll", Scroll.getText());
+		map.getMapData().put("Wrap", Wrap.getText());
+		map.getMapData().put("Image", Image.getText());
 		return map;
-	}
-
-      //  stage.show(); 
-      
-		 
-	
-
-        //stage.show(); 
-		 //}
-	//}
-
-	private String getEmptyBlank(String value) {
-		return value;
-	}
-
 	@FXML
 	private void SavingMap(ActionEvent event) {
 		System.out.println("Map Read");
 		map = s_uMap(map);
 		try {
+			AuthenticatingEnhanedmap.AuthFStep(map);
+			MapSaver fileSave = new MapSaver();
 
-			//MapFunctionalities.saveMap(this.file, map);
+				if (file == null) {
+					FileChooser fileChooser = new FileChooser();
+					FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Map files (*.map)", "*.map");
+					fileChooser.getExtensionFilters().add(extFilter);
+					file = fileChooser.showSaveDialog(null);
+				}
 
-		//	MapFunctionalities.saveMap(this.file, map);
-
+				fileSave.fStep(map, file);
 		} catch (Exception ex) {
-			//MapUtil.infoBox(ex.getMessage(), "Error", "InvalidMap");
 			return;
 		}
 		Stage stage = (Stage) saveMap.getScene().getWindow();
@@ -349,10 +335,6 @@ public class MapBuildController implements Initializable,EventHandler{
 		button.setText("Stop Touching Me..!!");
 	}
 
-	public MapBuildController() {
-		this.mapMini = new MapMiniature();
-	}
-	
 	public MapBuildController(Map map, File file) {
 		this.map = map;
 		this.file = file;
@@ -360,20 +342,14 @@ public class MapBuildController implements Initializable,EventHandler{
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//System.out.println("Hai");
-		// TODO Auto-generated method stub
-		if (this.map == null) {
+		if (this.map == null)
 			map = new Map();
-			System.out.println("Hai");
-		} else {
+		else 
 			loadMapData();
-			System.out.println("Hello");
-		}
 		cntntList.setCellFactory(param -> new ListCell<Continents>() {
 			@Override
 			protected void updateItem(Continents item, boolean empty) {
 				super.updateItem(item, empty);
-
 				if (empty || item == null || item.getAssignName() == null) {
 					setText(null);
 				} else {
@@ -381,19 +357,17 @@ public class MapBuildController implements Initializable,EventHandler{
 				}
 			}
 		});
-		cntntList.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
+		cntntList.setOnMouseClicked(new EventHandler<MouseEvent>() 
+		{
 			@Override
 			public void handle(MouseEvent event) {
 				onClickingContinentList(event);
 			}
 		});
-
 		trrtrsList.setCellFactory(param -> new ListCell<Territories>() {
 			@Override
 			protected void updateItem(Territories item, boolean empty) {
 				super.updateItem(item, empty);
-
 				if (empty || item == null || item.getAssignName() == null) {
 					setText(null);
 				} else {
@@ -431,8 +405,6 @@ public class MapBuildController implements Initializable,EventHandler{
 		newContName.setDisable(true);
 		newContValue.setText(continent.getCValue());
 		addingContinent.setDisable(true);
-		//MapUtil.clearTextField(newTerritoryName, territoryXaxis, territoryYaxis);
-		//MapUtil.enableControl(newTerritoryName, addTerritory);
 		adjTrrtrsList.getItems().clear();
 		displayTerritory(cntntList.getSelectionModel().getSelectedItem());
 	}
@@ -448,7 +420,6 @@ public class MapBuildController implements Initializable,EventHandler{
 	
 	private void onClickingTerritoryList(MouseEvent event) {
 		Territories territory = trrtrsList.getSelectionModel().getSelectedItem();
-
 		newTName.setText(territory.getAssignName());
 		tXaxis.setText(String.valueOf(territory.getPointX()));
 		tYaxis.setText(String.valueOf(territory.getPointY()));
@@ -484,14 +455,12 @@ private void displayCorrespondingTrrtrs(Territories territory) {
 	});
 }
 
-
-		
 		private void loadMapData() {
-			Author.setText(map.getMapData().get("author"));
-			Image.setText(map.getMapData().get("scroll"));
-			Scroll.setText(map.getMapData().get("image"));
-			Warn.setText(map.getMapData().get("warn"));
-			Wrap.setText(map.getMapData().get("wrap"));
+			Author.setText(map.getMapData().get("Author"));
+			Image.setText(map.getMapData().get("Scroll"));
+			Scroll.setText(map.getMapData().get("Image"));
+			Warn.setText(map.getMapData().get("Warn"));
+			Wrap.setText(map.getMapData().get("Wrap"));
 
 			// Load adjacent erritory
 			loadAdjTerritoryList();
@@ -512,8 +481,3 @@ private void displayCorrespondingTrrtrs(Territories territory) {
 		}
 
 	}
-
-
-	
-  
-
