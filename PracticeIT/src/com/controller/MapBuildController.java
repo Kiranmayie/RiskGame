@@ -42,7 +42,7 @@ public class MapBuildController implements Initializable,EventHandler{
     private Map map;
          
 	private MapMiniature mapMini;
-
+//
 	private File file;
 	
 	@FXML
