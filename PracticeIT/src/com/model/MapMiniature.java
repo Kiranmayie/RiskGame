@@ -12,7 +12,7 @@ public class MapMiniature {
 		
 		continent.setAssignName(contName);
 		continent.setCValue(cValue);
-		
+		//System.out.println(continent.toString());
 		if(map.getContinents().contains(continent)) 
 			System.out.println("Continent exists");
 		return continent;	
