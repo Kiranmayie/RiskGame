@@ -6,33 +6,39 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
-import com.Functionalities.MapFunctionalities;
 import com.main.MapSStep;
 import com.model.MapMiniature;
 import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
 import com.model.AuthenticatingEnhanedmap;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 //import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 //import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class MapBuildController implements Initializable,EventHandler{
 	
-    Map map;
+    private Map map;
          
-	MapMiniature mapMini;
+	private MapMiniature mapMini;
 
 	private File file;
 	
@@ -67,7 +73,7 @@ public class MapBuildController implements Initializable,EventHandler{
 	private Button deletingContinent;
 	
 	@FXML
-	private TextField sameContinentName;
+	private Label sameContinentName;
 	
 	@FXML
 	private TextField newTName;
@@ -118,27 +124,44 @@ public class MapBuildController implements Initializable,EventHandler{
 		
 		File mapReturnedFile = MapSStep.mapFileValidator();
 		 MapSStep mapsstep=new MapSStep();
+		// Map map = null;
 		 try {
-			mapsstep.readingMapFile(mapReturnedFile);
+			map=mapsstep.readingMapFile(mapReturnedFile);
+			System.out.println(map.toString());
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		 
+		 MapBuildController mvc= new MapBuildController(map, file);
+		 
 		 if(AuthenticatingEnhanedmap.x>0) {
 			 
 			 System.out.println("Sorry Something went wrong. We are investigating the issue.");;
 		 }
 		 else {
         stage.setTitle("FXML Welcome");
+        Parent root = null;
         try {
-			stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("MapEditorNew.fxml"))));
+        	FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("MapEditorNew.fxml"));
+        	loader.setController(mvc);
+    
+        	root = (Parent) loader.load();
+            Scene scene= new Scene(root);
+            stage.setScene(scene);
+			//stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("MapEditorNew.fxml"))));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        /*Parent root = null;
+        Scene scene= new Scene((Parent) loader.load());*/
+        
         stage.setResizable(true);
 
         stage.show();
+        
+		 }
         }
 	
     @FXML
@@ -147,6 +170,7 @@ public class MapBuildController implements Initializable,EventHandler{
     Continents cont = null;
 
     try {
+    
     cont = mapMini.addingContinent(map, newContName.getText(), newContValue.getText());
     } 
     catch (Exception ex) {
@@ -162,6 +186,7 @@ public class MapBuildController implements Initializable,EventHandler{
 
 	@FXML
 	private void updatingNewContinent(ActionEvent event) {
+		System.out.println("Hai");
 		Continents continent = cntntList.getSelectionModel().getSelectedItem();
 		continent = mapMini.updatingContinent(continent, newContName.getText());
 	}
@@ -266,7 +291,7 @@ public class MapBuildController implements Initializable,EventHandler{
 
 	
 	private Map s_uMap(Map map) {
-
+            System.out.println("Map Read");
 		map.getMapData().put("Author", getEmptyBlank(Author.getText()));
 		map.getMapData().put("Warn", getEmptyBlank(Warn.getText()));
 		map.getMapData().put("Scroll", getEmptyBlank(Scroll.getText()));
@@ -274,18 +299,20 @@ public class MapBuildController implements Initializable,EventHandler{
 		map.getMapData().put("Image", getEmptyBlank(Image.getText()));
 		return map;
 	}
-        stage.show(); 
-		 }
-	}
+      //  stage.show(); 
+      
+		 
+	
 	private String getEmptyBlank(String value) {
 		return value;
 	}
 
 	@FXML
 	private void SavingMap(ActionEvent event) {
+		System.out.println("Map Read");
 		map = s_uMap(map);
 		try {
-			MapFunctionalities.saveMap(this.file, map);
+			//MapFunctionalities.saveMap(this.file, map);
 		} catch (Exception ex) {
 			//MapUtil.infoBox(ex.getMessage(), "Error", "InvalidMap");
 			return;
@@ -304,14 +331,171 @@ public class MapBuildController implements Initializable,EventHandler{
 		button.setText("Stop Touching Me..!!");
 	}
 
+	public MapBuildController() {
+		this.mapMini = new MapMiniature();
+	}
+	
+	public MapBuildController(Map map, File file) {
+		this.map = map;
+		this.file = file;
+		this.mapMini = new MapMiniature();
+	}
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void initialize(URL location, ResourceBundle resources) {
+		//System.out.println("Hai");
 		// TODO Auto-generated method stub
-		
+		if (this.map == null) {
+			map = new Map();
+			System.out.println("Hai");
+		} else {
+			loadMapData();
+			System.out.println("Hello");
+		}
+		cntntList.setCellFactory(param -> new ListCell<Continents>() {
+			@Override
+			protected void updateItem(Continents item, boolean empty) {
+				super.updateItem(item, empty);
+
+				if (empty || item == null || item.getAssignName() == null) {
+					setText(null);
+				} else {
+					setText(item.getAssignName());
+				}
+			}
+		});
+		cntntList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				onClickingContinentList(event);
+			}
+		});
+
+		trrtrsList.setCellFactory(param -> new ListCell<Territories>() {
+			@Override
+			protected void updateItem(Territories item, boolean empty) {
+				super.updateItem(item, empty);
+
+				if (empty || item == null || item.getAssignName() == null) {
+					setText(null);
+				} else {
+					setText(item.getAssignName());
+				}
+			}
+		});
+		trrtrsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				onClickingTerritoryList(event);
+			}
+		});
+
+		joiningAdjTerritories.setCellFactory(param -> new ListCell<Territories>() {
+			@Override
+			protected void updateItem(Territories item, boolean empty) {
+				super.updateItem(item, empty);
+
+				if (empty || item == null || item.getAssignName() == null) {
+					setText(null);
+				} else {
+					setText(item.getAssignName());
+				}
+			}
+		});
+
+		}
+	
+	private void onClickingContinentList(MouseEvent event) {
+		Continents continent = cntntList.getSelectionModel().getSelectedItem();
+		sameContinentName.setText(continent.getAssignName());
+		newContName.setText(continent.getAssignName());
+		newContName.setDisable(true);
+		newContValue.setText(continent.getCValue());
+		addingContinent.setDisable(true);
+		//MapUtil.clearTextField(newTerritoryName, territoryXaxis, territoryYaxis);
+		//MapUtil.enableControl(newTerritoryName, addTerritory);
+		adjTrrtrsList.getItems().clear();
+		displayTerritory(cntntList.getSelectionModel().getSelectedItem());
+	}
+	
+	private void displayTerritory(Continents continent) {
+		trrtrsList.getItems().clear();
+		if (continent != null && continent.getTrrtrs() != null) {
+			for (Territories territory : continent.getTrrtrs()) {
+				trrtrsList.getItems().add(territory);
+			}
+		}
+	}
+	
+	private void onClickingTerritoryList(MouseEvent event) {
+		Territories territory = trrtrsList.getSelectionModel().getSelectedItem();
+
+		newTName.setText(territory.getAssignName());
+		tXaxis.setText(String.valueOf(territory.getPointX()));
+		tYaxis.setText(String.valueOf(territory.getPointY()));
+		newTName.setDisable(true);
+		addTerritory.setDisable(true);
+		displayCorrespondingTrrtrs(territory);
+
 	}
 
-	
-       
-    
+private void displayCorrespondingTrrtrs(Territories territory) {
+	adjTrrtrsList.getItems().clear();
+	for (Territories adjTerritory : territory.getTouchingTrrtrsExpand()) {
+		if (adjTerritory != null) {
+			adjTrrtrsList.getItems().add(adjTerritory);
+		}
 	}
+	adjTrrtrsList.setCellFactory(param -> new ListCell<Territories>() {
+		@Override
+		protected void updateItem(Territories item, boolean empty) {
+			super.updateItem(item, empty);
+
+			if (empty || item == null || item.getAssignName() == null) {
+				setText(null);
+			} else {
+				setText(item.getAssignName());
+			}
+		}
+	});
+	adjTrrtrsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		@Override
+		public void handle(MouseEvent event) {
+			}
+	});
+}
+
+
+		
+		private void loadMapData() {
+			Author.setText(map.getMapData().get("Author"));
+			Image.setText(map.getMapData().get("Scroll"));
+			Scroll.setText(map.getMapData().get("Image"));
+			Warn.setText(map.getMapData().get("Warn"));
+			Wrap.setText(map.getMapData().get("Wrap"));
+
+			// Load adjacent erritory
+			loadAdjTerritoryList();
+			for (Continents continent : map.getContinents()) {
+				cntntList.getItems().add(continent);
+			}
+		}
+
+		private void loadAdjTerritoryList() {
+
+			ObservableList<Territories> adjTerritoryList = FXCollections.observableArrayList();
+			for (Continents continent : map.getContinents()) {
+				for (Territories territory : continent.getTrrtrs()) {
+					adjTerritoryList.add(territory);
+				}
+			}
+			joiningAdjTerritories.setItems(adjTerritoryList);
+		}
+
+	}
+
+
+	
+  
 
