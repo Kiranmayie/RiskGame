@@ -15,7 +15,7 @@ public class MapSaver {
 	
 	public void fStep(Map map, File file) {
 		FileWriter fileSaver = null;
-	//
+	
 		try {
 			if (map == null) {
 				System.out.println("Cannot read the map data");

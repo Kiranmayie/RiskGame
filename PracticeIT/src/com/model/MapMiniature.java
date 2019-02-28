@@ -17,7 +17,7 @@ public class MapMiniature {
 			System.out.println("Continent exists");
 		return continent;	
 	}
-//
+	
 	public Territories updateTerritories(Territories territory, int xAxis, int yAxis, Territories adjTerritory) {
 		System.out.println("updated terrtrs");
 		territory.setPointX(xAxis);
