@@ -140,8 +140,12 @@ public class MapBuildController implements Initializable,EventHandler{
 			 System.out.println("Sorry Something went wrong. We are investigating the issue.");;
 		 }
 		 else {
+
         stage.setTitle("FXML Welcome");
         Parent root = null;
+        System.out.println(map.toString());
+			 /*stage.setTitle("FXML Welcome");
+
         try {
         	FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("MapEditorNew.fxml"));
         	loader.setController(mvc);
@@ -163,6 +167,10 @@ public class MapBuildController implements Initializable,EventHandler{
         
 		 }
         }
+
+        stage.show();}*/
+        }}
+
 	
     @FXML
     private void addingNewContinent(ActionEvent event) {
@@ -299,10 +307,16 @@ public class MapBuildController implements Initializable,EventHandler{
 		map.getMapData().put("Image", getEmptyBlank(Image.getText()));
 		return map;
 	}
+
       //  stage.show(); 
       
 		 
 	
+
+        //stage.show(); 
+		 //}
+	//}
+
 	private String getEmptyBlank(String value) {
 		return value;
 	}
@@ -312,7 +326,11 @@ public class MapBuildController implements Initializable,EventHandler{
 		System.out.println("Map Read");
 		map = s_uMap(map);
 		try {
+
 			//MapFunctionalities.saveMap(this.file, map);
+
+		//	MapFunctionalities.saveMap(this.file, map);
+
 		} catch (Exception ex) {
 			//MapUtil.infoBox(ex.getMessage(), "Error", "InvalidMap");
 			return;

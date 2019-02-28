@@ -116,6 +116,10 @@ public class Territories implements Serializable {
 	}
 	
 	public String toString() {
+
 		return ""+assignName.toString();
+
+		return "" + assignName ;
+
 	}
 }
