@@ -144,7 +144,7 @@ public class MapBuildController implements Initializable,EventHandler{
         stage.setTitle("FXML Welcome");
         Parent root = null;
         System.out.println(map.toString());
-			 /*stage.setTitle("FXML Welcome");
+			 stage.setTitle("FXML Welcome");
 
         try {
         	FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("MapEditorNew.fxml"));
@@ -158,8 +158,8 @@ public class MapBuildController implements Initializable,EventHandler{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        /*Parent root = null;
-        Scene scene= new Scene((Parent) loader.load());*/
+        
+     //   Scene scene= new Scene((Parent) loader.load());
         
         stage.setResizable(true);
 
@@ -168,8 +168,8 @@ public class MapBuildController implements Initializable,EventHandler{
 		 }
         }
 
-        stage.show();}*/
-        }}
+        
+        
 
 	
     @FXML
@@ -487,11 +487,11 @@ private void displayCorrespondingTrrtrs(Territories territory) {
 
 		
 		private void loadMapData() {
-			Author.setText(map.getMapData().get("Author"));
-			Image.setText(map.getMapData().get("Scroll"));
-			Scroll.setText(map.getMapData().get("Image"));
-			Warn.setText(map.getMapData().get("Warn"));
-			Wrap.setText(map.getMapData().get("Wrap"));
+			Author.setText(map.getMapData().get("author"));
+			Image.setText(map.getMapData().get("scroll"));
+			Scroll.setText(map.getMapData().get("image"));
+			Warn.setText(map.getMapData().get("warn"));
+			Wrap.setText(map.getMapData().get("wrap"));
 
 			// Load adjacent erritory
 			loadAdjTerritoryList();

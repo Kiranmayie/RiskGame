@@ -128,7 +128,7 @@ public class Continents implements Serializable {
 
 		return " " + assignName  ;//+ trrtrs.toString();
 
-		return "Name: " + assignName + cValue + " +"  + "List of territory :" + trrtrs.toString();
+		//return "Name: " + assignName + cValue + " +"  + "List of territory :" + trrtrs.toString();
 
 	}
 
