@@ -17,11 +17,11 @@ public class MapMiniature {
 			System.out.println("Continent exists");
 		return continent;	
 	}
-
-	public Territories updateTerritories(Territories territory, String xAxis, String yAxis, Territories adjTerritory) {
-
-		territory.setPointX(Integer.valueOf(xAxis));
-		territory.setPointY(Integer.valueOf(yAxis));
+	
+	public Territories updateTerritories(Territories territory, int xAxis, int yAxis, Territories adjTerritory) {
+		System.out.println("updated terrtrs");
+		territory.setPointX(xAxis);
+		territory.setPointY(yAxis);
 		if (adjTerritory != null) {
 			if (!territory.getTouchingTrrtrsExpand().contains(adjTerritory)) {
 				territory.getTouchingTrrtrsExpand().add(adjTerritory);
@@ -53,8 +53,6 @@ public class MapMiniature {
 			tList.add(adjTerritory);
 		}
 		territory.setTouchingTrrtrsExpand(tList);
-
-		// check for unique territory
 		for (Continents existContinent : map.getContinents()) {
 			if (existContinent.getTrrtrs().contains(territory)) {
 				throw new Exception(
