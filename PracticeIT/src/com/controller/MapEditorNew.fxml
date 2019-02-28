@@ -51,14 +51,15 @@
                   <Text layoutX="14.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
                   <Text layoutX="14.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X-axis" />
                   <Text layoutX="14.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y-axis" />
-                  <TextField fx.id= "sameContinentName" layoutX="70.0" layoutY="46.0" />
-                  <TextField fx.id= "newTName" layoutX="70.0" layoutY="81.0" />
-                  <TextField fx.id= "tXaxis" layoutX="69.0" layoutY="113.0" />
                   <Button fx:id="addTerritory" layoutX="45.0" layoutY="216.0" mnemonicParsing="false" onAction="#addingNewTerritory" prefHeight="25.0" prefWidth="39.0" text="Add" />
-                  <TextField fx.id= "tYaxis" layoutX="70.0" layoutY="10.0" prefHeight="8.0" prefWidth="149.0" />
-                  <Button fx:id="updateTerr" layoutX="119.0" layoutY="216.0" mnemonicParsing="false"  onAction="#updateTerritories" text="Update" />
+                  <Button fx:id="updateTerr" layoutX="119.0" layoutY="216.0" mnemonicParsing="false" onAction="#updateTerritories" text="Update" />
                   <Button fx:id="delTerr" layoutX="208.0" layoutY="216.0" mnemonicParsing="false" onAction="#deleteTerritories" text="Delete" />
                   <ComboBox fx:id="joiningAdjTerritories" layoutX="28.0" layoutY="163.0" prefHeight="25.0" prefWidth="237.0" promptText="Adjacent Territory" />
+                  <TextField fx:id="newTName" layoutX="65.0" layoutY="38.0" prefHeight="25.0" prefWidth="134.0" />
+                  <TextField fx:id="tXaxis" layoutX="65.0" layoutY="74.0" prefHeight="25.0" prefWidth="134.0" />
+                  <TextField fx:id="tYaxis" layoutX="65.0" layoutY="113.0" prefHeight="25.0" prefWidth="134.0" />
+                  <Label fx:id="sameContinentName" layoutX="118.0" layoutY="14.0" text="Label" />
+                                  
                </children>
             </AnchorPane>
          </content>
@@ -81,7 +82,7 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Button fx:id= "removingAdjTrrtrs" layoutX="746.0" layoutY="371.0" onAction="#removingAdjacentTrrtrs" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="removingAdjTrrtrs" layoutX="746.0" layoutY="371.0" mnemonicParsing="false" onAction="#removingAdjacentTrrtrs" text="Delete" />
       <Button fx:id="saveMap" layoutX="360.0" layoutY="670.0" mnemonicParsing="false" onAction="#SavingMap" text="Save Map">
          <font>
             <Font size="17.0" />
@@ -92,6 +93,5 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
