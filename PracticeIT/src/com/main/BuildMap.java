@@ -91,6 +91,6 @@ public class BuildMap extends Application implements EventHandler<ActionEvent> {
 		//mapEditorButton.setOnAction(new BuildMap());
 		//mapEditorButton.setMaxWidth(scene.getWidth());
 
-		return map editorbutton;
+		return mapEditorButton;
 	}*/
 	}
