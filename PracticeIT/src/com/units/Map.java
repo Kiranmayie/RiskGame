@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/*
- * Map files to initiALIZE CONTINENTS
+/**
+ * This class uses Map files to initialize continents.
  */
 
 public class Map implements Serializable {
