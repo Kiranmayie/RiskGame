@@ -301,7 +301,7 @@ public class MapBuildController implements Initializable,EventHandler{
 		map.getMapData().put("Scroll", Scroll.getText());
 		map.getMapData().put("Wrap", Wrap.getText());
 		map.getMapData().put("Image", Image.getText());
-		return map;
+		return map;}
 	@FXML
 	private void SavingMap(ActionEvent event) {
 		System.out.println("Map Read");
