@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 import com.model.PlayersAssignment;
 import com.model.PlayersAssignment;
-import com.units.Player;
+
+import com.units.Contestant;
 import com.units.Map;
 
 import javafx.beans.value.ObservableValue;
@@ -21,7 +22,7 @@ public class StartGameController implements Serializable {
 	static int numberPlayers;
 	static String[] names;
 	private PlayersAssignment playerAssign;
-	List<Player> playerList;
+	List<Contestant> playerList;
 	
 	
 	public StartGameController() {
@@ -37,9 +38,9 @@ public class StartGameController implements Serializable {
 			
 			}
 	
-	public static List<Player> createPlayer(int numberOfPlayers, List<Player> players) {
+	public static List<Contestant> createPlayer(int numberOfPlayers, List<Contestant> players) {
 		for (int i = 0; i < numberOfPlayers; i++) {
-			players.add(new Player(i));
+			players.add(new Contestant(i));
 			
 		}
 		return players;
@@ -49,3 +50,5 @@ public class StartGameController implements Serializable {
 		
 	
 }
+
+
