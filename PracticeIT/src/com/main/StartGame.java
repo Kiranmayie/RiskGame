@@ -1,32 +1,31 @@
 package com.main;
-
 import java.io.File;
-
-import com.controller.GamePlayController;
-import com.functionalities.MapFileLoader;
-import com.functionalities.MapFunctionalities;
+import java.io.FileNotFoundException;
+import com.controller.StartGameController;
 import com.units.Map;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class StartGame implements EventHandler<ActionEvent> {
+public class StartGame implements EventHandler<ActionEvent>  {
 
 	@Override
 	public void handle(ActionEvent event) {
 
 
-			File file = MapFunctionalities.showFileChooser();
+			File file = MapSStep.mapFileValidator();
 
-			MapFileLoader fileLoaderAndParser = new MapFileLoader();
-			Map map = null;
-			try {//
-				map = fileLoaderAndParser.ReadMapFile(file);
-			} catch (Exception ex) {
-				System.out.print("Error Invalid Map");
-				return;
-			}
-			GamePlayController controller = new GamePlayController(map);
+			MapSStep read = new MapSStep();
+			Map enhancedMap = null;
+				try {
+					enhancedMap = read.readingMapFile(file);
+				} catch (FileNotFoundException e) {
+					
+					e.printStackTrace();
+				}
+			
+			
+			StartGameController controller = new StartGameController(enhancedMap);
 
 	}
 
