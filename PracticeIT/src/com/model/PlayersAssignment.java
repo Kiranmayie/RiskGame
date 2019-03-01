@@ -1,5 +1,6 @@
 package com.model;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -262,3 +263,8 @@ public boolean isContestantWon(List<Contestant> currentContestant) {
 	return ContestantWon;
 }
 }
+
+
+
+
+

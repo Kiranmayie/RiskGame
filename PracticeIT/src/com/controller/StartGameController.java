@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import com.model.PlayersAssignment;
 import com.model.PlayersAssignment;
+
 import com.units.Contestant;
 import com.units.Map;
 
@@ -49,3 +50,5 @@ public class StartGameController implements Serializable {
 		
 	
 }
+
+
