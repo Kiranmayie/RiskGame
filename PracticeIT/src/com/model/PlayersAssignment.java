@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Scanner;
 
 import com.controller.StartGameController;
 
@@ -41,17 +42,22 @@ public static boolean playersArmyAssign(List<Contestant> contestants) {
 	boolean state = false;
 	int currentArmSz = 0;
 	int numberPlayers = contestants.size();
+	System.out.println(numberPlayers);
 	
  switch(numberPlayers)
  {
  case 3:
 		currentArmSz = THREE_PLAYER_ARMIES;
+		break;
  case 4:		
 	 currentArmSz = FOUR_PLAYER_ARMIES;
+	 break;
  case 5:
 		currentArmSz = FIVE_PLAYER_ARMIES;
+		break;
  case 6:
 		currentArmSz = SIX_PLAYER_ARMIES;
+		break;
  }
  
 	for (Contestant contestant : contestants) {
@@ -64,9 +70,16 @@ public static boolean playersArmyAssign(List<Contestant> contestants) {
 
 public List<Contestant> createContestant(int noOfPlayer, List<Contestant> contestants) {
 	for (int i = 0; i < noOfPlayer; i++) {
+		System.out.println("Enter players name of " + (i+1));
+		Scanner sc=new Scanner(System.in);
 		contestants.add(new Contestant(i));
-		// MapUtil.appendTextToGameConsole(name + " created!\n", textArea);
+		String name=sc.nextLine();
+		contestants.get(i).setContestantName(name);
+		
+		
+		System.out.println(contestants.get(i).getContestantName() + " created!\n");
 	}
+	
 	return contestants;
 }
 
