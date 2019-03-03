@@ -303,8 +303,10 @@ public class MapBuildController implements Initializable,EventHandler{
 		map.getMapData().put("Scroll", Scroll.getText());
 		map.getMapData().put("Wrap", Wrap.getText());
 		map.getMapData().put("Image", Image.getText());
-		return map;}
-	
+
+		return map;
+	}
+
 	
 	@FXML
 	private void SavingMap(ActionEvent event) {
@@ -460,11 +462,11 @@ private void displayCorrespondingTrrtrs(Territories territory) {
 }
 
 		private void loadMapData() {
-			Author.setText(map.getMapData().get("Author"));
-			Image.setText(map.getMapData().get("Scroll"));
-			Scroll.setText(map.getMapData().get("Image"));
-			Warn.setText(map.getMapData().get("Warn"));
-			Wrap.setText(map.getMapData().get("Wrap"));
+			Author.setText(map.getMapData().get("author"));
+			Image.setText(map.getMapData().get("scroll"));
+			Scroll.setText(map.getMapData().get("image"));
+			Warn.setText(map.getMapData().get("warn"));
+			Wrap.setText(map.getMapData().get("wrap"));
 
 			// Load adjacent erritory
 			loadAdjTerritoryList();

@@ -11,6 +11,8 @@ import java.util.List;
  *
  */
 
+
+
 public class Territories implements Serializable {
 	
     private String assignName;
@@ -39,10 +41,16 @@ public class Territories implements Serializable {
 	 * The @adjacentTerritories
 	 */
 	private List<Territories> touchingTrrtrsExpand;
+	
+	private int batallion;
+	
+	private Contestant contestant;
 
 
 	
 	private boolean isConnected;
+
+	Contestant currentContestant;
 	
 	public Territories() {
 		touchingTrrtrs = new ArrayList<>();
@@ -120,6 +128,36 @@ public class Territories implements Serializable {
 		return isConnected;
 	}
 	
+	public int getBatallion() {
+		return batallion;
+	}
+	
+	public void setBatallion(int batallion) {
+		this.batallion = batallion;
+	}
+	
+	/**
+	 * Get Player
+	 * 
+	 * @return player
+	 */
+	public Contestant getContestant() {
+		return contestant;
+	}
+
+	/**
+	 * Set Player
+	 * 
+	 * @param player 
+	 * 			    the player to set
+	 */
+	public void setContestant(Contestant contestant) {
+		this.contestant = contestant;
+	}
+	
+	public Contestant getCurrentContestant() {
+		return currentContestant;
+	}
 	public String toString() {
 
 		return ""+assignName.toString();
