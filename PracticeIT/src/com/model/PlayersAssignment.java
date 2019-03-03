@@ -27,26 +27,63 @@ import javafx.scene.layout.VBox;
 
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayersAssignment.
+ */
 public class PlayersAssignment  extends Observable implements Observer, Serializable{
 	
+	/** The current contestant. */
 	Contestant currentContestant;
+	
+	/** The Constant THREE_PLAYER_ARMIES. */
 	public static final Integer THREE_PLAYER_ARMIES = 35;
+	
+	/** The Constant FOUR_PLAYER_ARMIES. */
 	public static final Integer FOUR_PLAYER_ARMIES = 30;
+	
+	/** The Constant FIVE_PLAYER_ARMIES. */
 	public static final Integer FIVE_PLAYER_ARMIES = 25;
+	
+	/** The Constant SIX_PLAYER_ARMIES. */
 	public static final Integer SIX_PLAYER_ARMIES = 20;
+	
+	/** The contestants list. */
 	List<Contestant> contestantsList=new ArrayList<>();
+	
+	/** The trrtrs conquered. */
 	private int trrtrsConquered;
+	
+	/** The contestant looper. */
 	private Iterator<Contestant> contestantLooper;
+	
+	/** The pa. */
 	PlayersAssignment pa;
+	
+	/** The chosen trrtry list. */
 	List<Territories> chosenTrrtryList;
+	
+	/** The map. */
 	private Map map;
+	
+	/** The cntnts. */
 	private Continents cntnts;
+	
+	/** The trrtry. */
 	private Territories trrtry;
+	
+	/** The selected territory list. */
 	List<Territories> selectedTerritoryList = new ArrayList<>();;
 
 
 
 
+/**
+ * Players army assign.
+ *
+ * @param contestants the contestants
+ * @return true, if successful
+ */
 public static boolean playersArmyAssign(List<Contestant> contestants) {
 	//MapUtil.appendTextToGameConsole("===Assigning armies to players.===\n", textArea);
 	boolean state = false;
@@ -78,6 +115,13 @@ public static boolean playersArmyAssign(List<Contestant> contestants) {
 	return state;
 }
 
+/**
+ * Creates the contestant.
+ *
+ * @param noOfPlayer the no of player
+ * @param contestants the contestants
+ * @return the list
+ */
 public List<Contestant> createContestant(int noOfPlayer, List<Contestant> contestants) {
 	for (int i = 0; i < noOfPlayer; i++) {
 		System.out.println("Enter players name of " + (i+1));
@@ -93,6 +137,13 @@ public List<Contestant> createContestant(int noOfPlayer, List<Contestant> contes
 	return contestants;
 }
 
+/**
+ * Gets the continents owned by player.
+ *
+ * @param map the map
+ * @param presentContestant the present contestant
+ * @return the continents owned by player
+ */
 public List<Continents> getContinentsOwnedByPlayer(Map map, Contestant presentContestant) {
 	List<Continents> cntnts = new ArrayList<>();
 
@@ -112,6 +163,9 @@ public List<Continents> getContinentsOwnedByPlayer(Map map, Contestant presentCo
 	return cntnts;
 }
 
+/* (non-Javadoc)
+ * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+ */
 public void update(Observable o, Object arg) {
 	String view = (String) arg;
 
@@ -123,35 +177,78 @@ public void update(Observable o, Object arg) {
 	}
 }
 
+/**
+ * Value generator.
+ *
+ * @param num the num
+ * @return the int
+ */
 public int valueGenerator(int num) {
 	return (int) (Math.random() * num) + 0;
 }
 
+/**
+ * Gets the current contestant.
+ *
+ * @return the current contestant
+ */
 public Contestant getCurrentContestant() {
 	return currentContestant;
 }
 
+/**
+ * Sets the current contestant.
+ *
+ * @param currentContestant the new current contestant
+ */
 public void setCurrentContestant(Contestant currentContestant) {
 	this.currentContestant = currentContestant;
 }
 
+/**
+ * Gets the territory won.
+ *
+ * @return the territory won
+ */
 public int getTerritoryWon() {
 	return trrtrsConquered;
 }
 
+/**
+ * Sets the territory conquered.
+ *
+ * @param trrtrsConquered the new territory conquered
+ */
 public void setTerritoryConquered(int trrtrsConquered) {
 	this.trrtrsConquered = trrtrsConquered;
 }
 
+/**
+ * Gets the contestants list.
+ *
+ * @return the contestants list
+ */
 public List<Contestant> getContestantsList() {
 	return contestantsList;
 }
 
+/**
+ * Sets the contestants list.
+ *
+ * @param contestantsList the new contestants list
+ */
 public void setContestantsList(List<Contestant> contestantsList) {
 	this.contestantsList=contestantsList;
 }
 
 
+/**
+ * Gets the reinforce batallion.
+ *
+ * @param map the map
+ * @param currentContestant the current contestant
+ * @return the reinforce batallion
+ */
 public Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
 	int presentBatallion = currentContestant.getBatallion();
 	int trrtrSum = currentContestant.getcontestantTrrtrlist().size();
@@ -174,6 +271,12 @@ public Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
 
 
 
+/**
+ * Attack phase.
+ *
+ * @param attackTrrtsList the attack trrts list
+ * @param defendTrrtrsList the defend trrtrs list
+ */
 public void attackPhase(ListView<Territories> attackTrrtsList, ListView<Territories> defendTrrtrsList)  {
 	currentContestant.getGamePlan().attackPhase(attackTrrtsList, defendTrrtrsList,this );
 
@@ -181,6 +284,13 @@ public void attackPhase(ListView<Territories> attackTrrtsList, ListView<Territor
 }
 
 
+/**
+ * Place batallion.
+ *
+ * @param currentContestant the current contestant
+ * @param selectedTerritoryList2 the selected territory list 2
+ * @param contestants the contestants
+ */
 public void placeBatallion(Contestant currentContestant, List<Territories> selectedTerritoryList2, List<Contestant> contestants)
 {
 	if (currentContestant!= null)  {
@@ -215,6 +325,12 @@ public void placeBatallion(Contestant currentContestant, List<Territories> selec
 }
 	
 
+/**
+ * Checks if is contestant batallionattacked.
+ *
+ * @param contestantList the contestant list
+ * @return true, if is contestant batallionattacked
+ */
 private boolean isContestantBatallionattacked(List<Contestant> contestantList) {
 	int count = 0;
 
@@ -231,6 +347,11 @@ private boolean isContestantBatallionattacked(List<Contestant> contestantList) {
 	
 }
 
+/**
+ * Contestant assignment to territories.
+ *
+ * @param currentContestant the current contestant
+ */
 private void contestantAssignmentToTerritories(Contestant currentContestant) {
 	if (currentContestant.getBatallion() > 0) {
 		Territories territory = currentContestant.getcontestantTrrtrlist()
@@ -241,11 +362,24 @@ private void contestantAssignmentToTerritories(Contestant currentContestant) {
 	
 }
 
+/**
+ * Any number.
+ *
+ * @param i the i
+ * @return the int
+ */
 private int anyNumber(int i) {
 	return (int) (Math.random() * i) + 0;
 	
 }
 
+/**
+ * Reinforce phase.
+ *
+ * @param territoryList the territory list
+ * @param territory the territory
+ * @param gameConsole the game console
+ */
 public void reinforcePhase(ObservableList<Territories> territoryList, Territories territory, TextArea gameConsole) {
 	//currentContestant.getStrategy().reinforcementPhase(territoryList, territory, gameConsole, currentContestant);
 	// start attack phase
@@ -255,6 +389,13 @@ public void reinforcePhase(ObservableList<Territories> territoryList, Territorie
 		notifyObservers("Attack");
 	}
 }
+
+/**
+ * Fortify phase.
+ *
+ * @param selectedTerritory the selected territory
+ * @param adjTerritory the adj territory
+ */
 public void fortifyPhase(ListView<Territories> selectedTerritory, ListView<Territories> adjTerritory) {
 	//boolean isFortificationDone = currentContestant.getStrategy().fortificationPhase(selectedTerritory, adjTerritory,
 		//eConsole, currentContestant);
@@ -266,6 +407,14 @@ public void fortifyPhase(ListView<Territories> selectedTerritory, ListView<Terri
 	}
 
 }
+
+/**
+ * Fortify phase valid.
+ *
+ * @param map the map
+ * @param currentContestant the current contestant
+ * @return true, if successful
+ */
 public boolean FortifyPhaseValid(Map map, Contestant currentContestant) {
 	boolean isFortifyPossible=false;
 	//boolean isFortificationAvaialble = currentContestant.getStrategy().isFortificationPhaseValid(map, playerPlaying);
@@ -278,6 +427,13 @@ public boolean FortifyPhaseValid(Map map, Contestant currentContestant) {
 	}
 	return isFortifyPossible;
 }
+
+/**
+ * Checks if is contestant lost.
+ *
+ * @param currentContestant the current contestant
+ * @return the contestant
+ */
 public Contestant isContestantLost(List<Contestant> currentContestant) {
 	Contestant contestantLost = null;
 	for (Contestant contestant : currentContestant) {
@@ -288,6 +444,13 @@ public Contestant isContestantLost(List<Contestant> currentContestant) {
 	}
 	return contestantLost;
 }
+
+/**
+ * Checks if is contestant won.
+ *
+ * @param currentContestant the current contestant
+ * @return true, if is contestant won
+ */
 public boolean isContestantWon(List<Contestant> currentContestant) {
 	boolean ContestantWon = false;
 	if (currentContestant.size() == 1) {
@@ -296,6 +459,13 @@ public boolean isContestantWon(List<Contestant> currentContestant) {
 	return ContestantWon;
 }
 
+/**
+ * Territory assign to contestant.
+ *
+ * @param enhancedmap the enhancedmap
+ * @param contestants the contestants
+ * @return the list
+ */
 public List<Contestant> territoryAssignToContestant(Map enhancedmap, List<Contestant> contestants) {
 	System.out.println("Territory Assignment to the Contestants");
 	List<Territories> trrtrs = new ArrayList<>();
@@ -334,6 +504,11 @@ public List<Contestant> territoryAssignToContestant(Map enhancedmap, List<Contes
 	return contestants;
 }
 
+/**
+ * Executing current contestant.
+ *
+ * @return the list
+ */
 public List<Territories> executingCurrentContestant() {
 	if (!contestantLooper.hasNext()) {
 		System.out.println(contestantLooper);
@@ -374,6 +549,11 @@ return selectedTerritoryList;
 }
 	
 
+/**
+ * Load batallion.
+ *
+ * @param selectedTerritoryList the selected territory list
+ */
 public void loadBatallion(List<Territories> selectedTerritoryList) {
 	  System.out.println("Placing Batallion against each player");
 	  
