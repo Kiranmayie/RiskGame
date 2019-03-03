@@ -181,10 +181,10 @@ public class MapBuildController implements Initializable,EventHandler{
 		 }
 		 else {
 
-        stage.setTitle("FXML Welcome");
+        stage.setTitle("Map Selection");
         Parent root = null;
         System.out.println(map.toString());
-			 stage.setTitle("FXML Welcome");
+			 stage.setTitle("Map Selection");
 
         try {
         	FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("MapEditorNew.fxml"));
@@ -201,15 +201,7 @@ public class MapBuildController implements Initializable,EventHandler{
 		 }
         }
 
-        
-        
 
-	
-	/**
-	 * Enable.
-	 *
-	 * @param controls the controls
-	 */
 	public static void enable(Control... controls) {
 		for (Control control : controls) {
 			control.setDisable(false);
@@ -257,7 +249,7 @@ public class MapBuildController implements Initializable,EventHandler{
 	@FXML
 	private void updatingNewContinent(ActionEvent event) {
 		Continents continent = cntntList.getSelectionModel().getSelectedItem();
-		continent = mapMini.updatingContinent(continent, newContName.getText());
+		continent = mapMini.updatingContinent(continent, newContValue.getText());
 		enable(newContName, addingContinent);
 		erasingTF(newContName, newContValue);
 	}
@@ -386,11 +378,11 @@ public class MapBuildController implements Initializable,EventHandler{
 	 */
 	private Map s_uMap(Map map) {
         System.out.println("Map Read");
-        map.getMapData().put("Author", Author.getText());
-        map.getMapData().put("Warn", Warn.getText());
-		map.getMapData().put("Scroll", Scroll.getText());
-		map.getMapData().put("Wrap", Wrap.getText());
-		map.getMapData().put("Image", Image.getText());
+        map.getMapData().put("author", Author.getText());
+        map.getMapData().put("warn", Warn.getText());
+		map.getMapData().put("scroll", Scroll.getText());
+		map.getMapData().put("srap", Wrap.getText());
+		map.getMapData().put("image", Image.getText());
 
 		return map;
 	}
@@ -404,7 +396,13 @@ public class MapBuildController implements Initializable,EventHandler{
 	@FXML
 	private void SavingMap(ActionEvent event) {
 		System.out.println("Map Read");
-		map = s_uMap(map);
+        map.getMapData().put("author", Author.getText());
+        map.getMapData().put("warn", Warn.getText());
+		map.getMapData().put("scroll", Scroll.getText());
+		map.getMapData().put("srap", Wrap.getText());
+		map.getMapData().put("image", Image.getText());
+		//System.out.println("Map Read");
+		//map = s_uMap(map);
 		try {
 			AuthenticatingEnhanedmap.AuthFStep(map);
 			MapSaver fileSave = new MapSaver();
@@ -434,14 +432,6 @@ public class MapBuildController implements Initializable,EventHandler{
 		Stage stage = (Stage) exitButton.getScene().getWindow();
 		stage.close();
 	}
-	
-	/**
-	 * Handle button click.
-	 */
-	public void handleButtonClick() {
-		
-		button.setText("Stop Touching Me..!!");
-	}
 
 	/**
 	 * Instantiates a new map build controller.
@@ -462,8 +452,18 @@ public class MapBuildController implements Initializable,EventHandler{
 	public void initialize(URL location, ResourceBundle resources) {
 		if (this.map == null)
 			map = new Map();
-		else 
-			loadMapData();
+		else {
+			    Author.setText(map.getMapData().get("author"));
+				Image.setText(map.getMapData().get("scroll"));
+				Scroll.setText(map.getMapData().get("image"));
+				Warn.setText(map.getMapData().get("warn"));
+				Wrap.setText(map.getMapData().get("wrap"));
+
+				loadAdjTerritoryList();
+				for (Continents continent : map.getContinents()) 
+					cntntList.getItems().add(continent);
+				}
+
 		cntntList.setCellFactory(param -> new ListCell<Continents>() {
 			@Override
 			protected void updateItem(Continents item, boolean empty) {
@@ -479,9 +479,17 @@ public class MapBuildController implements Initializable,EventHandler{
 		{
 			@Override
 			public void handle(MouseEvent event) {
-				onClickingContinentList(event);
+					Continents continent = cntntList.getSelectionModel().getSelectedItem();
+					sameContinentName.setText(continent.getAssignName());
+					newContName.setText(continent.getAssignName());
+					newContName.setDisable(true);
+					newContValue.setText(continent.getCValue());
+					addingContinent.setDisable(true);
+					adjTrrtrsList.getItems().clear();
+					displayTerritory(cntntList.getSelectionModel().getSelectedItem());
+				}
 			}
-		});
+		);
 		trrtrsList.setCellFactory(param -> new ListCell<Territories>() {
 			@Override
 			protected void updateItem(Territories item, boolean empty) {
@@ -497,9 +505,17 @@ public class MapBuildController implements Initializable,EventHandler{
 
 			@Override
 			public void handle(MouseEvent event) {
-				onClickingTerritoryList(event);
+					Territories territory = trrtrsList.getSelectionModel().getSelectedItem();
+					newTName.setText(territory.getAssignName());
+					tXaxis.setText(String.valueOf(territory.getPointX()));
+					tYaxis.setText(String.valueOf(territory.getPointY()));
+					newTName.setDisable(true);
+					addTerritory.setDisable(true);
+					displayCorrespondingTrrtrs(territory);
+
+				}
 			}
-		});
+		);
 
 		joiningAdjTerritories.setCellFactory(param -> new ListCell<Territories>() {
 			@Override
@@ -516,6 +532,7 @@ public class MapBuildController implements Initializable,EventHandler{
 
 		}
 	
+
 	/**
 	 * On clicking continent list.
 	 *
@@ -546,6 +563,7 @@ public class MapBuildController implements Initializable,EventHandler{
 		}
 	}
 	
+
 	/**
 	 * On clicking territory list.
 	 *
@@ -568,6 +586,9 @@ public class MapBuildController implements Initializable,EventHandler{
  * @param territory the territory
  */
 private void displayCorrespondingTrrtrs(Territories territory) {
+=======
+	private void displayCorrespondingTrrtrs(Territories territory) {
+
 	adjTrrtrsList.getItems().clear();
 	for (Territories adjTerritory : territory.getTouchingTrrtrsExpand()) {
 		if (adjTerritory != null) {
