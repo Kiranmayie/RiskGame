@@ -17,11 +17,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+// TODO: Auto-generated Javadoc
+/**
+ * This main class inherits Application class.
+ * 
+ *
+ */
 
 public class Main extends Application {
 
 	
+	/* (non-Javadoc)
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Risk Map ");
@@ -54,6 +62,13 @@ public class Main extends Application {
 	}
 
 	
+	/**
+	 * Load image.
+	 *
+	 * @param scene the scene
+	 * @param classLoader the class loader
+	 * @return the image view
+	 */
 	public static ImageView LoadImage(Scene scene, ClassLoader classLoader) {
 		final ImageView imageView = new ImageView();
 
@@ -76,6 +91,12 @@ public class Main extends Application {
 	}
 
 
+	/**
+	 * Exit.
+	 *
+	 * @param scene the scene
+	 * @return the extbutton.
+	 */
 	public static Button exit(Scene scene) {
 		Button extButton = new Button("Exit");
 		extButton.setOnAction(e -> Platform.exit());
@@ -84,6 +105,13 @@ public class Main extends Application {
 	}
 
 	
+	
+	/**
+	 * Map modification.
+	 *
+	 * @param scene the scene
+	 * @return the button
+	 */
 	public static Button mapModification(Scene scene) {
 		Button mapMOdifyButton = new Button("Map Editor");
 	mapMOdifyButton.setOnAction(new MapFStep());
@@ -93,6 +121,12 @@ public class Main extends Application {
 	}
 
 	
+	/**
+	 * Start playing game.
+	 *
+	 * @param scene the scene
+	 * @return the button
+	 */
 	public static Button startPlayingGame(Scene scene) {
 		Button gameButton = new Button("Start New Game");
 		gameButton.setOnAction(new StartGame());
@@ -101,6 +135,11 @@ public class Main extends Application {
 	}
 	
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

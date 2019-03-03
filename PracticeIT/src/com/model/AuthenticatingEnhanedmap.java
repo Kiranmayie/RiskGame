@@ -8,9 +8,21 @@ import java.util.List;
 import java.util.Map.Entry;
 import com.units.Continents;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AuthenticatingEnhanedmap.
+ */
 public class AuthenticatingEnhanedmap {
+
+/** The x. */
 //
 	public static int x;
+	
+	/**
+	 * Auth F step.
+	 *
+	 * @param enhancedMap the enhanced map
+	 */
 	public static void AuthFStep(Map enhancedMap) {
 		if (enhancedMap != null) {
 			if (enhancedMap.getContinents().size() > 0) {
@@ -32,6 +44,12 @@ public class AuthenticatingEnhanedmap {
 	}
 
 
+/**
+ * Auth cntnt.
+ *
+ * @param cntnt the cntnt
+ * @param enhancedMap the enhanced map
+ */
 public static void authCntnt(Continents cntnt, Map enhancedMap)  {
 	if (cntnt.getTrrtrs().size() < 1) {
 		System.out.println("Continent: " + cntnt.getAssignName() + " should contain atleast one territory");
@@ -49,6 +67,13 @@ public static void authCntnt(Continents cntnt, Map enhancedMap)  {
 	}
 }
 
+/**
+ * Cntnt connected to another cntnt.
+ *
+ * @param cntnt the cntnt
+ * @param enhancedMap the enhanced map
+ * @return true, if successful
+ */
 public static boolean cntntConnectedToAnotherCntnt(Continents cntnt, Map enhancedMap) {
 	boolean isConnected = false;
 	HashSet<Continents> hs = new HashSet<>();
@@ -69,6 +94,12 @@ public static boolean cntntConnectedToAnotherCntnt(Continents cntnt, Map enhance
 	return isConnected;
 }
 
+/**
+ * Auth trrtr.
+ *
+ * @param trrtr the trrtr
+ * @param enhancedMap the enhanced map
+ */
 public static void authTrrtr(Territories trrtr, Map enhancedMap) {
 
 	List<Territories> partnerTrrtrList = trrtr.getTouchingTrrtrsExpand();
@@ -82,6 +113,12 @@ public static void authTrrtr(Territories trrtr, Map enhancedMap) {
 	} 
 }
 
+/**
+ * Checks if is trrtr inter connected.
+ *
+ * @param trrtr the trrtr
+ * @return true, if is trrtr inter connected
+ */
 public static boolean isTrrtrInterConnected(Territories trrtr) {
 	HashSet<Territories> hs = new HashSet<>();
 	Continents cntnt = trrtr.getLyingInCntnt();
@@ -100,6 +137,12 @@ public static boolean isTrrtrInterConnected(Territories trrtr) {
 	}
 }
 
+/**
+ * Check connection.
+ *
+ * @param trrtr the trrtr
+ * @param hs the hs
+ */
 public static void checkConnection(Territories trrtr, HashSet<Territories> hs) {
 	boolean isUnConnectedTrrtr = false;
 	for (Territories trrtrs : trrtr.getTouchingTrrtrsExpand()) {
@@ -115,6 +158,11 @@ public static void checkConnection(Territories trrtr, HashSet<Territories> hs) {
 	}
 }
 
+/**
+ * Checks if is territory uniquely associated.
+ *
+ * @param enhancedMap the enhanced map
+ */
 public static void isTerritoryUniquelyAssociated(Map enhancedMap)  {
 	HashMap<Territories, Integer> trrtrConnection = new HashMap<>();
 
