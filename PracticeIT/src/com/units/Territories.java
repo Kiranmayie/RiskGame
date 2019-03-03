@@ -45,6 +45,8 @@ public class Territories implements Serializable {
 
 	
 	private boolean isConnected;
+
+	Contestant currentContestant;
 	
 	public Territories() {
 		touchingTrrtrs = new ArrayList<>();
@@ -149,6 +151,9 @@ public class Territories implements Serializable {
 		this.contestant = contestant;
 	}
 	
+	public Contestant getCurrentContestant() {
+		return currentContestant;
+	}
 	public String toString() {
 
 		return ""+assignName.toString();

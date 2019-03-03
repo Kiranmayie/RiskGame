@@ -22,9 +22,6 @@ public class StartGameController implements Serializable {
 	 public  List<Contestant> contestants ;
 	PlayersAssignment pa;
 	
-	
-	
-	
 	public static int countingContestants()
 	{ 
 		System.out.print("Enter number of contestants");
@@ -34,12 +31,9 @@ public class StartGameController implements Serializable {
 	
 	}
 	
-	
-	
 	public StartGameController(Map enhancedMap)  {
 			this.map=enhancedMap;
 			StartGameController.numberContestants=countingContestants();
-			
 			}
 	
 	public static List<Contestant> createPlayer(int numberOfPlayers, List<Contestant> players) {
