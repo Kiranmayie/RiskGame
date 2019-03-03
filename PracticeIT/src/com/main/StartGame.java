@@ -15,16 +15,36 @@ import com.units.Territories;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StartGame.
+ */
 public class StartGame implements EventHandler<ActionEvent>  {
 
+	/** The enhanced map. */
 	public static Map enhancedMap;
+	
+	/** The cntnts. */
 	private Continents cntnts;
+	
+	/** The pa. */
 	private PlayersAssignment pa;
+	
+	/** The current contestant. */
 	private Contestant currentContestant;
+	
+	/** The trrtry 1. */
 	private Territories trrtry1;
+	
+	/** The contestants. */
 	private List<Contestant> contestants;
+	
+	/** The selected territory list. */
 	List<Territories> selectedTerritoryList;
 
+	/* (non-Javadoc)
+	 * @see javafx.event.EventHandler#handle(javafx.event.Event)
+	 */
 	@Override
 	public void handle(ActionEvent event) {
 		 List<Contestant> contestants = new ArrayList<>();

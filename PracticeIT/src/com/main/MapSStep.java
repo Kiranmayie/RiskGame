@@ -16,11 +16,23 @@ import com.model.AuthenticatingEnhanedmap;
  
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MapSStep.
+ */
 public class MapSStep {
 	
+	/** The enhanced map. */
 	Map enhancedMap;
+	
+	/** The trrtr cntnt aggregate. */
 	HashMap<String, Integer> trrtrCntntAggregate = new HashMap<>();
 	
+	/**
+	 * Map file validator.
+	 *
+	 * @return the file
+	 */
 	public static File mapFileValidator() {
 		
 		FileChooser fChooser = new FileChooser();
@@ -29,6 +41,13 @@ public class MapSStep {
 		return mapFile;
 	}
 	
+	/**
+	 * Reading map file.
+	 *
+	 * @param mapReturnedFile the map returned file
+	 * @return the map
+	 * @throws FileNotFoundException the file not found exception
+	 */
 	public Map readingMapFile(File mapReturnedFile) throws FileNotFoundException {
 		
 		this.enhancedMap=conversionOne(mapReturnedFile);
@@ -40,6 +59,13 @@ public class MapSStep {
 		return enhancedMap;
 	}
 	
+	/**
+	 * Conversion one.
+	 *
+	 * @param mapReturnedFile the map returned file
+	 * @return the map
+	 * @throws FileNotFoundException the file not found exception
+	 */
 	public Map conversionOne(File mapReturnedFile) throws FileNotFoundException {
 		
 		StringBuilder sb=new StringBuilder();
@@ -62,6 +88,12 @@ public class MapSStep {
 	
 	}
 	
+	/**
+	 * Conversion two.
+	 *
+	 * @param scNew the sc new
+	 * @return the map
+	 */
 	public Map conversionTwo(Scanner scNew) {
 		
 		Map enhancedMap=new Map();
@@ -89,6 +121,12 @@ public class MapSStep {
 		return enhancedMap;
 	}
 
+	/**
+	 * Conversion three.
+	 *
+	 * @param scNew the sc new
+	 * @return the list
+	 */
 	public List<Continents> conversionThree(Scanner scNew) {
 		// TODO Auto-generated method stub
 		
@@ -146,7 +184,14 @@ public class MapSStep {
 		return cntnts;
 	}
 	
-	 List<Territories> conversionFour(String td, List<Continents> cntnts){
+	 /**
+ 	 * Conversion four.
+ 	 *
+ 	 * @param td the td
+ 	 * @param cntnts the cntnts
+ 	 * @return the list
+ 	 */
+ 	List<Territories> conversionFour(String td, List<Continents> cntnts){
 
 			List<Territories> trrtrs = new ArrayList<>();
 			StringTokenizer creator = new StringTokenizer(td, "//");
