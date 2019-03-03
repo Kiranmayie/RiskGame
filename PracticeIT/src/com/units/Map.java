@@ -5,30 +5,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
-/*
- * Map files to initiALIZE CONTINENTS
- */
-
-/**
- * The Class Map.
- */
 public class Map implements Serializable {
 	
-	/** The data. */
+	
 	private HashMap<String, String> data;
 	 
 	
-	/** The cntnts. */
+	
 	private List<Continents> cntnts;
 	
 	
-	/** The cntns map. */
+	
 	private HashMap<String, Continents> cntnsMap;
 	
-	/**
-	 * Instantiates a new map.
-	 */
 	public Map() {
 		data = new HashMap<>();
 		cntnts = new ArrayList<>();

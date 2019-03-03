@@ -5,7 +5,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * This class is used to implement Serializable.
+ * @author Admin
+ *
+ */
 
 
 
@@ -19,7 +23,7 @@ public class Territories implements Serializable {
 	private int pointX;
 	
 	/**
-	 * The @yCoordinate.
+	 * The pointY.
 	 */
 	private int pointY;
 	
@@ -29,7 +33,7 @@ public class Territories implements Serializable {
 	private Continents lyingInCntnt;
 	
 	/**
-	 * The @adjTerritories.
+	 * The @touchingTrrtrs.
 	 */
 	private List<String> touchingTrrtrs;
 	

@@ -17,7 +17,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+/**
+ * This main class inherits Application class.
+ * 
+ *
+ */
 
 public class Main extends Application {
 
