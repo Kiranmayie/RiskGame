@@ -191,7 +191,7 @@ public void placeBatallion(Contestant currentContestant, List<Territories> selec
 			for(Territories terrtry:selectedTerritoryList2) {
 				if (contestantArmies > 0) {
 					if(st.equalsIgnoreCase(terrtry.getAssignName())) {
-						System.out.println(terrtry.getBatallion());
+						System.out.println(terrtry.getAssignName()+terrtry.getBatallion());
 			terrtry.setBatallion(terrtry.getBatallion() + 1);
 			currentContestant.setBatallion(contestantArmies - 1);
 			
@@ -369,15 +369,16 @@ public List<Territories> executingCurrentContestant() {
 	       System.out.println(trrtry1.getTouchingTrrtrs());
 	      
 	}
+	System.out.println(selectedTerritoryList);
 return selectedTerritoryList;
 }
 	
 
 public void loadBatallion(List<Territories> selectedTerritoryList) {
 	  System.out.println("Placing Batallion against each player");
-	
+	  
 		placeBatallion(currentContestant, selectedTerritoryList, contestantsList);
-		
+		selectedTerritoryList.removeAll(selectedTerritoryList);
 		executingCurrentContestant();
 		
 			loadBatallion(selectedTerritoryList);

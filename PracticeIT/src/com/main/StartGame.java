@@ -48,6 +48,8 @@ public class StartGame implements EventHandler<ActionEvent>  {
 			PlayersAssignment.playersArmyAssign(contestants);
 			pa.territoryAssignToContestant(enhancedMap,contestants); 
 			selectedTerritoryList=pa.executingCurrentContestant();	
+			System.out.println(selectedTerritoryList);
+			
 			 pa.loadBatallion(selectedTerritoryList);
 
 	}
