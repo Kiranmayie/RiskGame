@@ -191,8 +191,8 @@ public void placeBatallion(Contestant currentContestant, List<Territories> selec
 			for(Territories terrtry:selectedTerritoryList2) {
 				if (contestantArmies > 0) {
 					if(st.equalsIgnoreCase(terrtry.getAssignName())) {
-			int n=terrtry.getBatallion();
-			terrtry.setBatallion(n + 1);
+						System.out.println(terrtry.getBatallion());
+			terrtry.setBatallion(terrtry.getBatallion() + 1);
 			currentContestant.setBatallion(contestantArmies - 1);
 			
 		}
@@ -334,7 +334,7 @@ public List<Contestant> territoryAssignToContestant(Map enhancedmap, List<Contes
 	return contestants;
 }
 
-public void executingCurrentContestant() {
+public List<Territories> executingCurrentContestant() {
 	if (!contestantLooper.hasNext()) {
 		System.out.println(contestantLooper);
 		contestantLooper = contestantsList.iterator();
@@ -361,30 +361,29 @@ public void executingCurrentContestant() {
 	//getChosenTerritory(map,cntnts);
 	for (Territories trrtry1 : currentContestant.getContestantTrrtrlist()) {
 		//
+		if(trrtry1.getBatallion()==1) {
 		
 		
-		
-		 selectedTerritoryList.add(trrtry1);
+		 selectedTerritoryList.add(trrtry1);}
 		System.out.println( trrtry1.getAssignName() + ":-" + trrtry1.getBatallion() + "-" + currentContestant.getContestantName());
 	       System.out.println(trrtry1.getTouchingTrrtrs());
 	      
 	}
-
+return selectedTerritoryList;
 }
 	
 
-public void loadBatallion() {
+public void loadBatallion(List<Territories> selectedTerritoryList) {
 	  System.out.println("Placing Batallion against each player");
 	
 		placeBatallion(currentContestant, selectedTerritoryList, contestantsList);
 		
 		executingCurrentContestant();
-		if(currentContestant.getBatallion()>0) {
-			loadBatallion();
-		}
-		else {
-			System.out.println("Bye Bye");
-		}
+		
+			loadBatallion(selectedTerritoryList);
+		
+		
+		
 }
 
 
