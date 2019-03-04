@@ -36,7 +36,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 //import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+/**
+ * This class is about populating territories and continents from the world map. 
+ */
 public class MapBuildController implements Initializable,EventHandler{
 	
     private Map map;
@@ -301,7 +303,7 @@ public class MapBuildController implements Initializable,EventHandler{
 		return map;
 	}
 
-
+	
 	@FXML
 	private void SavingMap(ActionEvent event) {
 		System.out.println("Map Read");

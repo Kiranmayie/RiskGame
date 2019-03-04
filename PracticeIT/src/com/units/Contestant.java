@@ -3,15 +3,10 @@ package com.units;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.model.GamePlan;
 
-
-
-
-
-
 public class Contestant implements Serializable {
+	
 	
 	int contestantId;
 	String contestantName;
@@ -73,7 +68,6 @@ public class Contestant implements Serializable {
 		return contestantTrrtrlist;
 	}
 	
-	
 	public boolean equals(Object object) {
 		if (object == this) {
 			return true;
@@ -97,14 +91,6 @@ public class Contestant implements Serializable {
 		this.gamePlan=gamePlan;
 
 	}
-
-
-	//public  List<ContestantCards> getContestantCards() {
-		
-	//	return contestantCards;
-	//}
-	
-	
 	
 		
 	}

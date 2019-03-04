@@ -19,8 +19,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- * This class is used to create map from MapLayout.fxml
- * @author Garvpreet Singh
+ * This class is used to create map from MapLayout.
+ * @author 
  * @version 1.0.0
  *
  */
