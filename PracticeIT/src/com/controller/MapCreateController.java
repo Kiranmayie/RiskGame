@@ -14,7 +14,7 @@ public class MapCreateController implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent event) {
 	Stage stage = new Stage();
-	 stage.setTitle("FXML Welcome");
+	 stage.setTitle("Map Selection");
 	 MapBuildController mvc= new MapBuildController();
 	 FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("MapEditorNew.fxml"));
 		loader.setController(mvc);
