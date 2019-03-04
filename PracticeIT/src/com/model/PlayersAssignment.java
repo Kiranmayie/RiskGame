@@ -198,7 +198,7 @@ public void placeBatallion(Contestant currentContestant, List<Territories> selec
 			currentContestant.setBatallion(contestantArmies - 1);
 			break;
 		}
-					
+				//	
 					}
 				//System.out.println( terrtry.getAssignName() + ":-" + terrtry.getBatallion() + "-" + currentContestant.getContestantName());	
 			
