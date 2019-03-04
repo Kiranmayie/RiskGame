@@ -8,9 +8,21 @@ import java.util.List;
 import java.util.Map.Entry;
 import com.units.Continents;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AuthenticatingEnhanedmap.
+ */
 public class AuthenticatingEnhanedmap {
+
+/** The x. */
 //
 	public static int x;
+	
+	/**
+	 * Auth F step.
+	 *
+	 * @param enhancedMap the enhanced map
+	 */
 	public static void AuthFStep(Map enhancedMap) {
 		if (enhancedMap != null) {
 			if (enhancedMap.getContinents().size() > 0) {
@@ -21,26 +33,43 @@ public class AuthenticatingEnhanedmap {
 				}
 			} else {
 				
-				System.out.println("Map should contain atleast one continent.");
+
+				System.out.println("Invalid Map:Map should contain atleast one continent.");
+				System.out.println("Map should contain atleast one continent. Restart the game.");
+
 				x=x+1;
+				System.exit(0);
 			}
 			isTerritoryUniquelyAssociated(enhancedMap);
 		} else  {
 			System.out.println("Empty file no Map exist.");
 			x=x+1;
+			System.exit(0);
 		}
 	}
 
 
+/**
+ * Auth cntnt.
+ *
+ * @param cntnt the cntnt
+ * @param enhancedMap the enhanced map
+ */
 public static void authCntnt(Continents cntnt, Map enhancedMap)  {
 	if (cntnt.getTrrtrs().size() < 1) {
-		System.out.println("Continent: " + cntnt.getAssignName() + " should contain atleast one territory");
+
+		System.out.println("Invalid Map:Continent: " + cntnt.getAssignName() + " should contain atleast one territory");
+
+		System.out.println("Continent: " + cntnt.getAssignName() + " should contain atleast one territory. Restart The game.");
+
 		x=x+1;
+		System.exit(0);
 	}
 	if (!cntntConnectedToAnotherCntnt(cntnt, enhancedMap)) {
 		System.out.println("Continent: " + cntnt.getAssignName().toUpperCase()
-				+ " is not a subgraph. The continent should be connected to another continent via territory.");
+				+ " is not a subgraph. The continent should be connected to another continent via territory. Restart The game.");
 		x=x+1;
+		System.exit(0);
 	}
 	for (Territories trrtr : cntnt.getTrrtrs()) {
 		if (trrtr != null) {
@@ -49,6 +78,13 @@ public static void authCntnt(Continents cntnt, Map enhancedMap)  {
 	}
 }
 
+/**
+ * Cntnt connected to another cntnt.
+ *
+ * @param cntnt the cntnt
+ * @param enhancedMap the enhanced map
+ * @return true, if successful
+ */
 public static boolean cntntConnectedToAnotherCntnt(Continents cntnt, Map enhancedMap) {
 	boolean isConnected = false;
 	HashSet<Continents> hs = new HashSet<>();
@@ -69,19 +105,37 @@ public static boolean cntntConnectedToAnotherCntnt(Continents cntnt, Map enhance
 	return isConnected;
 }
 
+/**
+ * Auth trrtr.
+ *
+ * @param trrtr the trrtr
+ * @param enhancedMap the enhanced map
+ */
 public static void authTrrtr(Territories trrtr, Map enhancedMap) {
 
 	List<Territories> partnerTrrtrList = trrtr.getTouchingTrrtrsExpand();
 
 	if (partnerTrrtrList != null && partnerTrrtrList.size() < 1) {
-		System.out.println("Territory: " + trrtr.getAssignName() + " should be mapped with atleas one adjacent territory.");
+
+		System.out.println("Invalid Map:Territory: " + trrtr.getAssignName() + " should be mapped with atleas one adjacent territory.");
+
+		System.out.println("Territory: " + trrtr.getAssignName() + " should be mapped with atleas one adjacent territory. Restart the game.");
+
 		x=x+1;
+		System.exit(0);
 	} else if (!isTrrtrInterConnected(trrtr)) {
-		System.out.println("Territory: " + trrtr.getAssignName() + " is not forming a connected sub graph.");
+		System.out.println("Territory: " + trrtr.getAssignName() + " is not forming a connected sub graph. Restart the game.");
 		x=x+1;
+		System.exit(0);
 	} 
 }
 
+/**
+ * Checks if is trrtr inter connected.
+ *
+ * @param trrtr the trrtr
+ * @return true, if is trrtr inter connected
+ */
 public static boolean isTrrtrInterConnected(Territories trrtr) {
 	HashSet<Territories> hs = new HashSet<>();
 	Continents cntnt = trrtr.getLyingInCntnt();
@@ -100,6 +154,12 @@ public static boolean isTrrtrInterConnected(Territories trrtr) {
 	}
 }
 
+/**
+ * Check connection.
+ *
+ * @param trrtr the trrtr
+ * @param hs the hs
+ */
 public static void checkConnection(Territories trrtr, HashSet<Territories> hs) {
 	boolean isUnConnectedTrrtr = false;
 	for (Territories trrtrs : trrtr.getTouchingTrrtrsExpand()) {
@@ -115,6 +175,11 @@ public static void checkConnection(Territories trrtr, HashSet<Territories> hs) {
 	}
 }
 
+/**
+ * Checks if is territory uniquely associated.
+ *
+ * @param enhancedMap the enhanced map
+ */
 public static void isTerritoryUniquelyAssociated(Map enhancedMap)  {
 	HashMap<Territories, Integer> trrtrConnection = new HashMap<>();
 
@@ -130,8 +195,9 @@ public static void isTerritoryUniquelyAssociated(Map enhancedMap)  {
 
 	for (Entry<Territories, Integer> s : trrtrConnection.entrySet()) {
 		if (s.getValue() > 1) {
-			System.out.println("Territory: " + s.getKey().getAssignName() + " belongs to multiple continent.");
+			System.out.println("Territory: " + s.getKey().getAssignName() + " belongs to multiple continent. Restart the game.");
 			x=x+1;
+			System.exit(0);
 		}
 	}
 }
