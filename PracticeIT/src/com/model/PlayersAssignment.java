@@ -536,7 +536,7 @@ public List<Territories> executingCurrentContestant() {
 	//getChosenTerritory(map,cntnts);
 	for (Territories trrtry1 : currentContestant.getContestantTrrtrlist()) {
 		//
-		if(trrtry1.getBatallion()==1) {
+		if(trrtry1.getBatallion()>=1) {
 		
 		
 		 selectedTerritoryList.add(trrtry1);}
