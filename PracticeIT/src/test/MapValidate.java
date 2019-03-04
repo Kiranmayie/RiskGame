@@ -2,13 +2,17 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 
+import com.main.MapSStep;
 import com.model.AuthenticatingEnhanedmap;
 import com.units.Continents;
 import com.units.Map;
@@ -51,6 +55,8 @@ static AuthenticatingEnhanedmap mapValidator;
 	 */
 	@Before
 	public void beforeTest() {
+		
+			
 		mapValue = new HashMap<>();
 		mapValue.put("author", Author);
 		mapValue.put("image", Image);
@@ -78,27 +84,4 @@ static AuthenticatingEnhanedmap mapValidator;
 		AuthenticatingEnhanedmap.AuthFStep(new Map());
 	}
 	
-	
-	@Test  
-	public void validateContinentForNullTerritory() {
-		AuthenticatingEnhanedmap.authCntnt(new Continents(),map);	
-	}
-	
-	
-	@Test 
-	public void validateContinentForTerritory() {
-		map.setContinents(ContinentsList);
-		AuthenticatingEnhanedmap.authCntnt(continent,map);	
-	} 
-	
-	
-	@Test
-	public void validateContinentForSubGraph(){		
-		Assert.assertFalse(AuthenticatingEnhanedmap.cntntConnectedToAnotherCntnt(continent, map));
-	}
-	
-	
-	
-	
-
 }
