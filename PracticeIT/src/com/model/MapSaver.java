@@ -10,9 +10,19 @@ import com.units.Territories;
 
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MapSaver.
+ */
 public class MapSaver {
 	
 	
+	/**
+	 * F step.
+	 *
+	 * @param map the map
+	 * @param file the file
+	 */
 	public void fStep(Map map, File file) {
 		FileWriter fileSaver = null;
 	
@@ -29,12 +39,25 @@ public class MapSaver {
 		}
 	}
 
+	/**
+	 * Change format.
+	 *
+	 * @param map the map
+	 * @return the string
+	 */
 	private String changeFormat(Map map) {
 		StringBuilder mapIndex = new StringBuilder();
 		mapIndex = loadingMapData(map, mapIndex);
 		return mapIndex.toString();
 	}
 	
+	/**
+	 * Loading map data.
+	 *
+	 * @param map the map
+	 * @param mapIndex the map index
+	 * @return the string builder
+	 */
 	private StringBuilder loadingMapData(Map map, StringBuilder mapIndex) {
 		mapIndex.append("[Map]");
 		mapIndex.append("\n");
@@ -46,6 +69,13 @@ public class MapSaver {
 		return mapIndex;
 	}
 	
+	/**
+	 * Loading cntnt data.
+	 *
+	 * @param map the map
+	 * @param mapIndex the map index
+	 * @return the string builder
+	 */
 	private StringBuilder LoadingCntntData(Map map, StringBuilder mapIndex) {
 		mapIndex.append("\n");
 		mapIndex.append("[Continents]");
@@ -58,6 +88,13 @@ public class MapSaver {
 		return mapIndex;
 	}
 	
+	/**
+	 * Loading trrtrs data.
+	 *
+	 * @param map the map
+	 * @param mapIndex the map index
+	 * @return the string builder
+	 */
 	private StringBuilder loadingTrrtrsData(Map map, StringBuilder mapIndex) {
 		mapIndex.append("\n");
 		mapIndex.append("[Territories]");

@@ -23,8 +23,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MapFStep.
+ */
 public class MapFStep implements EventHandler<ActionEvent>{
 
+	/* (non-Javadoc)
+	 * @see javafx.event.EventHandler#handle(javafx.event.Event)
+	 */
 	@Override
 	public void handle(ActionEvent arg0) {
 		Stage stg = new Stage();
@@ -60,6 +67,12 @@ public class MapFStep implements EventHandler<ActionEvent>{
 				
 			
 	       
+	/**
+	 * Exit.
+	 *
+	 * @param scene the scene
+	 * @return the button
+	 */
 	public static Button exit(Scene scene) {
 		Button extButton = new Button("Exit");
 		extButton.setOnAction(e -> Platform.exit());
@@ -68,6 +81,12 @@ public class MapFStep implements EventHandler<ActionEvent>{
 	}
 
 	
+	/**
+	 * Map modification.
+	 *
+	 * @param scene the scene
+	 * @return the button
+	 */
 	public static Button mapModification(Scene scene) {
 		Button newMapButton = new Button("New Map");
 	    newMapButton.setOnAction(new MapCreateController());
@@ -76,6 +95,12 @@ public class MapFStep implements EventHandler<ActionEvent>{
 		return newMapButton;
 	}
 	
+	/**
+	 * Start playing game.
+	 *
+	 * @param scene the scene
+	 * @return the button
+	 */
 	public static Button startPlayingGame(Scene scene) {
 		Button loadEditButton = new Button("Load and Edit Map");
 		loadEditButton.setOnAction(new MapBuildController());

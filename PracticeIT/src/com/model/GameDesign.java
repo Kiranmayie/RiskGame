@@ -10,9 +10,21 @@ import com.units.Map;
 
 import javafx.scene.control.TextArea;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GameDesign.
+ */
 public class GameDesign {
 
 	
+	/**
+	 * Contestant and its terrtrs.
+	 *
+	 * @param map the map
+	 * @param contestants the contestants
+	 * @param textAres the text ares
+	 * @return the list
+	 */
 	public List<Contestant> contestantAndItsTerrtrs(Map map, List<Contestant> contestants, TextArea textAres) {
 
 		List<Territories> sumTrrtrs = new ArrayList<>();
