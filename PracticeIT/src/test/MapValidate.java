@@ -1,17 +1,22 @@
 package test;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.main.MapSStep;
 import com.model.AuthenticatingEnhanedmap;
 import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
+
+import javafx.stage.FileChooser;
 
 
 
@@ -32,7 +37,13 @@ static AuthenticatingEnhanedmap mapValidator;
 	String controlValue = "7";
 	
 	static HashMap<String, String> mapValue;
+
+	private static MapSStep mrm;
 	List<Continents> ContinentsList;
+
+	private File file;
+
+   
 	
 	/**
 	 * This method is invoked at the start of the test class.
@@ -43,6 +54,7 @@ static AuthenticatingEnhanedmap mapValidator;
 		territory = new Territories();
 		map = new Map();
 		mapValidator = new AuthenticatingEnhanedmap();
+		mrm = new MapSStep();
 	}	
 	
 	/**
@@ -79,4 +91,16 @@ static AuthenticatingEnhanedmap mapValidator;
 		AuthenticatingEnhanedmap.AuthFStep(new Map());
 	}
 	
+	/*public void checkValidNumberOfContinents() {
+		
+		Map map = mrm.readingMapFile(new Map());
+		Assert.assertEquals(map.getContinents().size(), 7);
+	}
+	@Test 
+	public void checkInvalidMapForContinentWithoutTerritory() {
+		file = new File("C:/Users/pr_na/Desktop");
+		AuthenticatingEnhanedmap at = new AuthenticatingEnhanedmap();
+		at.authCntnt(Continents cntnt, Map enhancedMap)
+		
+	}*/
 }

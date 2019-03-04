@@ -171,6 +171,12 @@ public class Contestant implements Serializable {
 		this.gamePlan=gamePlan;
 
 	}
+
+
+	public void add(Contestant contestant) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 		
 	}

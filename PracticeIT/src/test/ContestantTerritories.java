@@ -25,7 +25,7 @@ import com.units.Territories;
 public class ContestantTerritories {
 
 	/**
-	 * Test method for {@link com.model.PlayersAssignment#playersArmyAssign(java.util.List)}.
+	 * Test method for {@link com.model.contestantAssignment#contestantArmyAssign(java.util.List)}.
 	 */
 	
 static PlayersAssignment playersAssignment;
@@ -51,19 +51,12 @@ static PlayersAssignment playersAssignment;
 	static Map map;
 	
 	/**
-	 * The @player 
+	 * The @Contestant 
 	 */
 	static Contestant contestant;
-	/**
-	 * The @territoryName1
-	 */
 	String territoryName1 = "India";
-	
-	/**
-	 * The @territoryName2
-	 */
 	String territoryName2 = "China";	
-	
+
 	/**
 	 * The @listOfContinents
 	 */
@@ -75,9 +68,9 @@ static PlayersAssignment playersAssignment;
 	static List<Territories> listOfTerritories;
 	
 	/**
-	 * The @listOfPlayers
+	 * The @listOfcontestant
 	 */
-	static List<Contestant> listOfPlayers;
+	static List<Contestant> listOfcontestant;
 	@BeforeClass
 	public static void beforeClass() {
 		playersAssignment = new PlayersAssignment();
@@ -88,7 +81,7 @@ static PlayersAssignment playersAssignment;
 		contestant = new Contestant(1);
 		listOfContinents = new ArrayList<>();
 		listOfTerritories = new ArrayList<>();
-		listOfPlayers = new ArrayList<>();
+		listOfcontestant = new ArrayList<>();
 	}
 	/**
 	 * This method is invoked at the start of all the test methods.
@@ -100,19 +93,32 @@ static PlayersAssignment playersAssignment;
 		
 		territory2.setAssignName(territoryName2);
 				
-		contestant.setBatallion(100);
+		contestant.setBatallion(35);
 		
 		listOfTerritories.add(territory1);
-		playersAssignment.territoryAssignToContestant(map, listOfPlayers);
-		listOfPlayers.add(contestant);
+		playersAssignment.territoryAssignToContestant(map, listOfcontestant);
+		listOfcontestant.add(contestant);
 	}
 	/**
-	 * Test method for {@link com.model.PlayersAssignment#territoryAssignToContestant(com.units.Map, java.util.List)}.
+	 * Test method for {@link com.model.contestantAssignment#territoryAssignToContestant(com.units.Map, java.util.List)}.
 	 */
 	@Test
 	public void testTerritoryAssignToContestant() {
-		List<Contestant> contestant = playersAssignment.territoryAssignToContestant(map, listOfPlayers);
+		List<Contestant> contestant = playersAssignment.territoryAssignToContestant(map, listOfcontestant);
 		Assert.assertNotNull(contestant);	 // TODO
 	}
+	
+	
 
+	
+	@Test
+	public void testPlayersArmyAssign() {
+		listOfcontestant = new ArrayList<>();
+		listOfcontestant.add(new Contestant(1));
+		listOfcontestant.add(new Contestant(2));
+		listOfcontestant.add(new Contestant(3));
+		
+		Assert.assertEquals(playersAssignment.THREE_PLAYER_ARMIES, (Integer) contestant.getBatallion());
+
+	}
 }

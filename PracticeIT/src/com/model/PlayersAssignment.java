@@ -498,9 +498,9 @@ public List<Contestant> territoryAssignToContestant(Map enhancedmap, List<Contes
 		}
 	}
 	contestantsList.addAll(contestants);
-	System.out.println(contestantsList);
+	//System.out.println(contestantsList);
 	contestantLooper=contestants.iterator();
-	System.out.println(contestantLooper);
+	//System.out.println(contestantLooper);
 	return contestants;
 }
 
