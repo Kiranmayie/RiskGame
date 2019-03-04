@@ -18,6 +18,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+// TODO: Auto-generated Javadoc
 /**
  * This class is used to create map from MapLayout.
  * @author 
@@ -32,6 +33,11 @@ public class BuildMap extends Application implements EventHandler<ActionEvent> {
 	 * @see javafx.event.EventHandler#handle(javafx.event.Event)
 	 */
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String args[]) {
 		
 		//BuildMap bm=new BuildMap();
@@ -40,6 +46,9 @@ public class BuildMap extends Application implements EventHandler<ActionEvent> {
 		 }
 	
 	
+	/* (non-Javadoc)
+	 * @see javafx.event.EventHandler#handle(javafx.event.Event)
+	 */
 	@Override
 	public void handle(ActionEvent event) {
 		VBox vbox=null;
@@ -69,6 +78,9 @@ public class BuildMap extends Application implements EventHandler<ActionEvent> {
 	
 }
 
+	/* (non-Javadoc)
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	public void start(Stage primaryStage) throws Exception {
 		
 		primaryStage.setTitle("Map");

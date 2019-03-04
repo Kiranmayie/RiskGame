@@ -6,31 +6,40 @@ import java.util.HashMap;
 import java.util.List;
 
 
-/**This class is used to initialize all the continents 
- * 
- * @author Admin
+// TODO: Auto-generated Javadoc
+/**
+ * This class is used to initialize all the continents .
  *
+ * @author Admin
  */
 public class Continents implements Serializable {
 	
+	/** The assign name. */
 	private String assignName;
 	
 	
+	/** The c value. */
 	private String cValue;
 	
 	
+	/** The trrtrs mp. */
 	private HashMap<String, Territories> trrtrsMp;
 	
 	
+	/** The trrtrs. */
 	private List<Territories> trrtrs;
 	
+	/**
+	 * Instantiates a new continents.
+	 */
 	public Continents() {
 		trrtrsMp = new HashMap<>();
 		trrtrs = new ArrayList<>();
 	}
    
 	/**
-	 * Get Territory Map
+	 * Get Territory Map.
+	 *
 	 * @return the trrtrsMp
 	 */
 	public HashMap<String, Territories> geTtrrtrsMp() {
@@ -38,38 +47,36 @@ public class Continents implements Serializable {
 	}
 
 	/**
-	 * Set territory Map
-	 * 
-	 * @param territoryMap
-	 *            the territoryMap to set
+	 * Set territory Map.
+	 *
+	 * @param trrtrsMp the trrtrs mp
 	 */
 	public void seTtrrtrsMp(HashMap<String, Territories> trrtrsMp) {
 		this.trrtrsMp = trrtrsMp;
 	}
 
 	/**
-	 * Get name
-	 * 
-	 * @return assignName 
+	 * Get name.
+	 *
+	 * @return assignName
 	 */
 	public String getAssignName() {
 		return assignName;
 	}
 
 	/**
-	 * Set Name
-	 * 
-	 * @param name
-	 *            the name to set
+	 * Set Name.
+	 *
+	 * @param assignName the new assign name
 	 */
 	public void setAssignName(String assignName) {
 		this.assignName = assignName;
 	}
 
 	/**
-	 * Get cValue
-	 * 
-	 * @return cValue 
+	 * Get cValue.
+	 *
+	 * @return cValue
 	 */
 	public String getCValue() {
 		return cValue;
@@ -86,9 +93,9 @@ public class Continents implements Serializable {
 	}
 
 	/**
-	 * Get Territories
-	 * 
-	 * @return trrtrs 
+	 * Get Territories.
+	 *
+	 * @return trrtrs
 	 */
 	public List<Territories> getTrrtrs() {
 		return trrtrs;
@@ -96,9 +103,8 @@ public class Continents implements Serializable {
 
 	/**
 	 * This set method is used to Set territories.
-	 * 
-	 * @param territories
-	 *            the territories to set
+	 *
+	 * @param trrtrs the trrtrs
 	 */
 	public void seTtrrtrs(List<Territories> trrtrs) {
 		this.trrtrs = trrtrs;

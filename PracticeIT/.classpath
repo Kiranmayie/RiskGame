@@ -2,12 +2,7 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-
-	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_202/lib/ext/jfxrt.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_202/lib/jfxswt.jar"/>
-
 	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_201/lib/ext/jfxrt.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_201/lib/jfxswt.jar"/>
-
 	<classpathentry kind="output" path="bin"/>
 </classpath>
