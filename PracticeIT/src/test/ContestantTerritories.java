@@ -1,14 +1,16 @@
+/**
+ * 
+ */
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import com.model.PlayersAssignment;
 import com.units.Contestant;
@@ -16,9 +18,17 @@ import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
 
-class ContestantTerritories {
+/**
+ * @author Pritpal Kaur
+ *
+ */
+public class ContestantTerritories {
+
+	/**
+	 * Test method for {@link com.model.PlayersAssignment#playersArmyAssign(java.util.List)}.
+	 */
 	
-	static PlayersAssignment pa;
+static PlayersAssignment playersAssignment;
 	
 	/**
 	 * The @continent reference
@@ -40,10 +50,13 @@ class ContestantTerritories {
 	 */
 	static Map map;
 	
-	
+	/**
+	 * The @player 
+	 */
 	static Contestant contestant;
-	
-	
+	/**
+	 * The @territoryName1
+	 */
 	String territoryName1 = "India";
 	
 	/**
@@ -65,13 +78,9 @@ class ContestantTerritories {
 	 * The @listOfPlayers
 	 */
 	static List<Contestant> listOfPlayers;
-	
-	/**
-	 * This method is invoked at the start of the test class.
-	 */
 	@BeforeClass
 	public static void beforeClass() {
-		pa = new PlayersAssignment();
+		playersAssignment = new PlayersAssignment();
 		continent = new Continents();
 		territory1 = new Territories();
 		territory2 = new Territories();
@@ -80,40 +89,30 @@ class ContestantTerritories {
 		listOfContinents = new ArrayList<>();
 		listOfTerritories = new ArrayList<>();
 		listOfPlayers = new ArrayList<>();
-				
-	}	
-	
+	}
 	/**
 	 * This method is invoked at the start of all the test methods.
 	 */
 	@Before
 	public void beforeTest() {
 		
-		
 		territory1.setAssignName(territoryName1);
-		territory1.setLyingInCntnt(continent);
+		
 		territory2.setAssignName(territoryName2);
-		territory2.getTouchingTrrtrs().add(territoryName2);
-		territory1.setTouchingTrrtrs(territory2.getTouchingTrrtrs());		
-		territory1.getTouchingTrrtrs().add(territoryName1);
-		territory2.setTouchingTrrtrs(territory1.getTouchingTrrtrs());
-		
-		listOfContinents.add(continent);
-		map.setContinents(listOfContinents);
-		
+				
 		contestant.setBatallion(100);
 		
 		listOfTerritories.add(territory1);
-		contestant.setcontestantTrrtrlist(listOfTerritories);
+		playersAssignment.territoryAssignToContestant(map, listOfPlayers);
 		listOfPlayers.add(contestant);
 	}
-	
-
+	/**
+	 * Test method for {@link com.model.PlayersAssignment#territoryAssignToContestant(com.units.Map, java.util.List)}.
+	 */
 	@Test
-	public void assignTerritoryToPlayer() {
-		List<Contestant> players = pa.territoryAssignToContestant(map, listOfPlayers);
-		Assert.assertNotNull(players);		
-
+	public void testTerritoryAssignToContestant() {
+		List<Contestant> contestant = playersAssignment.territoryAssignToContestant(map, listOfPlayers);
+		Assert.assertNotNull(contestant);	 // TODO
 	}
 
 }

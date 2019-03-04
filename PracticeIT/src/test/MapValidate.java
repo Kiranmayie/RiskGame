@@ -1,24 +1,19 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import com.main.MapSStep;
 import com.model.AuthenticatingEnhanedmap;
 import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
 
-import junit.framework.Assert;
+
 
 class MapValidate {
 static AuthenticatingEnhanedmap mapValidator;
