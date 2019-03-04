@@ -10,7 +10,7 @@ import java.util.Observer;
 import java.util.Scanner;
 
 import com.controller.StartGameController;
-
+import com.sun.xml.internal.bind.v2.runtime.Name;
 import com.units.Contestant;
 import com.units.Territories;
 import com.units.Continents;
@@ -35,11 +35,15 @@ public class PlayersAssignment  extends Observable implements Observer, Serializ
 	
 	/** The current contestant. */
 	Contestant currentContestant;
+
 	
 	/** The Constant THREE_PLAYER_ARMIES. */
 	public static final Integer THREE_PLAYER_ARMIES = 35;
 	
 	/** The Constant FOUR_PLAYER_ARMIES. */
+
+	public static final Integer THREE_PLAYER_ARMIES = 10;
+
 	public static final Integer FOUR_PLAYER_ARMIES = 30;
 	
 	/** The Constant FIVE_PLAYER_ARMIES. */
@@ -137,6 +141,7 @@ public List<Contestant> createContestant(int noOfPlayer, List<Contestant> contes
 	return contestants;
 }
 
+
 /**
  * Gets the continents owned by player.
  *
@@ -145,12 +150,15 @@ public List<Contestant> createContestant(int noOfPlayer, List<Contestant> contes
  * @return the continents owned by player
  */
 public List<Continents> getContinentsOwnedByPlayer(Map map, Contestant presentContestant) {
-	List<Continents> cntnts = new ArrayList<>();
 
+public List<Continents> getContinentsOwnedByPlayer(Map map, Contestant currentContestant) {
+
+	List<Continents> cntnts = new ArrayList<>();
+    System.out.println( map.getContinents());
 	for (Continents cntnt : map.getContinents()) {
 		boolean contestantHasThisCntnt = true;
 		for (Territories trrtr : cntnt.getTrrtrs()) {
-			if (!trrtr.getContestant().equals(presentContestant)) {
+			if (!trrtr.getContestant().equals(currentContestant)) {
 				contestantHasThisCntnt = false;
 				break;
 			}
@@ -293,25 +301,31 @@ public void attackPhase(ListView<Territories> attackTrrtsList, ListView<Territor
  */
 public void placeBatallion(Contestant currentContestant, List<Territories> selectedTerritoryList2, List<Contestant> contestants)
 {
-	if (currentContestant!= null)  {
-		int contestantArmies = currentContestant.getBatallion();
+	int contestantArmies = currentContestant.getBatallion();
+	if (currentContestant!= null && contestantArmies > 0)  {
 		 System.out.println("Select the country on which you want to place your batallion");
 		 Scanner sc=new Scanner(System.in);
 		 String st=sc.nextLine();
 			for(Territories terrtry:selectedTerritoryList2) {
-				if (contestantArmies > 0) {
+				
+				
+					System.out.println(terrtry.getAssignName()+terrtry.getBatallion());
 					if(st.equalsIgnoreCase(terrtry.getAssignName())) {
-						System.out.println(terrtry.getAssignName()+terrtry.getBatallion());
+						System.out.println(terrtry.getAssignName());//+terrtry.getBatallion());
 			terrtry.setBatallion(terrtry.getBatallion() + 1);
 			currentContestant.setBatallion(contestantArmies - 1);
-			
+			break;
 		}
+				//	
 					}
 				//System.out.println( terrtry.getAssignName() + ":-" + terrtry.getBatallion() + "-" + currentContestant.getContestantName());	
-			}
+			
 	} else {
-		contestantAssignmentToTerritories(currentContestant);
+		System.out.println("Moving on to attack face and forward...Awaiting implementation strategies.");
+		//getReinforceBatallion();
+		//contestantAssignmentToTerritories(currentContestant);
 	}
+	
 		
 	boolean batallionAttacked = isContestantBatallionattacked(contestantsList);
 	if (batallionAttacked) {
@@ -510,6 +524,7 @@ public List<Contestant> territoryAssignToContestant(Map enhancedmap, List<Contes
  * @return the list
  */
 public List<Territories> executingCurrentContestant() {
+	
 	if (!contestantLooper.hasNext()) {
 		System.out.println(contestantLooper);
 		contestantLooper = contestantsList.iterator();
@@ -560,16 +575,48 @@ public void loadBatallion(List<Territories> selectedTerritoryList) {
 		placeBatallion(currentContestant, selectedTerritoryList, contestantsList);
 		selectedTerritoryList.removeAll(selectedTerritoryList);
 		executingCurrentContestant();
-		
+		for(Contestant contestant:contestantsList) {
+		if(contestant.getBatallion()!=0) {
 			loadBatallion(selectedTerritoryList);
+		}
+			//getReinforceBatallion();
 		
-		
-		
+}
 }
 
 
 
+public void getReinforceBatallion() {
+	if (this.currentContestant != null) {
+		currentContestant = getReinforceBatallion(map, currentContestant);
+		System.out.println(currentContestant.getContestantName() + currentContestant.getBatallion() + " armies left.");
+	} else {
+		System.out.println("Error!. No player playing.");
 	
+}}
+
+
+
+/*public Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
+	int presentBatallion = currentContestant.getBatallion();
+	int trrtrSum = currentContestant.getcontestantTrrtrlist().size();
+	if (trrtrSum < 9) {
+		presentBatallion = presentBatallion + 3;
+	} else {
+		presentBatallion = presentBatallion + (trrtrSum / 3);
+	}
+
+	List<Continents> continents = getContinentsOwnedByPlayer(map, currentContestant);
+	if (continents.size() > 0) {
+		for (Continents continent : continents) {
+			presentBatallion = presentBatallion + Integer.parseInt(continent.getCValue());
+		}
+	}
+	currentContestant.setBatallion(presentBatallion);
+
+	return currentContestant;*/
+
+
 
 
 
