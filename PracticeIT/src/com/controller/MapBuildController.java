@@ -202,6 +202,7 @@ public class MapBuildController implements Initializable,EventHandler{
         }
 
 
+
 	public static void enable(Control... controls) {
 		for (Control control : controls) {
 			control.setDisable(false);
@@ -433,12 +434,14 @@ public class MapBuildController implements Initializable,EventHandler{
 		stage.close();
 	}
 
+
 	/**
 	 * Instantiates a new map build controller.
 	 *
 	 * @param map the map
 	 * @param file the file
 	 */
+
 	public MapBuildController(Map map, File file) {
 		this.map = map;
 		this.file = file;
@@ -533,6 +536,7 @@ public class MapBuildController implements Initializable,EventHandler{
 		}
 	
 
+
 	/**
 	 * On clicking continent list.
 	 *
@@ -554,6 +558,7 @@ public class MapBuildController implements Initializable,EventHandler{
 	 *
 	 * @param continent the continent
 	 */
+
 	private void displayTerritory(Continents continent) {
 		trrtrsList.getItems().clear();
 		if (continent != null && continent.getTrrtrs() != null) {
@@ -563,6 +568,7 @@ public class MapBuildController implements Initializable,EventHandler{
 		}
 	}
 	
+
 
 	/**
 	 * On clicking territory list.
@@ -585,6 +591,12 @@ public class MapBuildController implements Initializable,EventHandler{
  *
  * @param territory the territory
  */
+
+private void displayCorrespondingTrrtrs(Territories territory) {
+
+	private void displayCorrespondingTrrtrs(Territories territory) {
+
+
 
 	private void displayCorrespondingTrrtrs(Territories territory) {
 
@@ -613,6 +625,7 @@ public class MapBuildController implements Initializable,EventHandler{
 	});
 }
 
+
 		/**
 		 * Load map data.
 		 */
@@ -633,6 +646,7 @@ public class MapBuildController implements Initializable,EventHandler{
 		/**
 		 * Load adj territory list.
 		 */
+
 		private void loadAdjTerritoryList() {
 
 			ObservableList<Territories> adjTerritoryList = FXCollections.observableArrayList();
