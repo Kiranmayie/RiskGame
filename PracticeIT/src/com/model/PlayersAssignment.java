@@ -30,7 +30,7 @@ import javafx.scene.layout.VBox;
 public class PlayersAssignment  extends Observable implements Observer, Serializable{
 	
 	Contestant currentContestant;
-	public static final Integer THREE_PLAYER_ARMIES = 35;
+	public static final Integer THREE_PLAYER_ARMIES = 10;
 	public static final Integer FOUR_PLAYER_ARMIES = 30;
 	public static final Integer FIVE_PLAYER_ARMIES = 25;
 	public static final Integer SIX_PLAYER_ARMIES = 20;
@@ -93,13 +93,13 @@ public List<Contestant> createContestant(int noOfPlayer, List<Contestant> contes
 	return contestants;
 }
 
-public List<Continents> getContinentsOwnedByPlayer(Map map, Contestant presentContestant) {
+public List<Continents> getContinentsOwnedByPlayer(Map map, Contestant currentContestant) {
 	List<Continents> cntnts = new ArrayList<>();
-
+    System.out.println( map.getContinents());
 	for (Continents cntnt : map.getContinents()) {
 		boolean contestantHasThisCntnt = true;
 		for (Territories trrtr : cntnt.getTrrtrs()) {
-			if (!trrtr.getContestant().equals(presentContestant)) {
+			if (!trrtr.getContestant().equals(currentContestant)) {
 				contestantHasThisCntnt = false;
 				break;
 			}
@@ -183,25 +183,29 @@ public void attackPhase(ListView<Territories> attackTrrtsList, ListView<Territor
 
 public void placeBatallion(Contestant currentContestant, List<Territories> selectedTerritoryList2, List<Contestant> contestants)
 {
-	if (currentContestant!= null)  {
-		int contestantArmies = currentContestant.getBatallion();
+	int contestantArmies = currentContestant.getBatallion();
+	if (currentContestant!= null && contestantArmies > 0)  {
 		 System.out.println("Select the country on which you want to place your batallion");
 		 Scanner sc=new Scanner(System.in);
 		 String st=sc.nextLine();
 			for(Territories terrtry:selectedTerritoryList2) {
-				if (contestantArmies > 0) {
-					if(st.equalsIgnoreCase(terrtry.getAssignName())) {
-						System.out.println(terrtry.getAssignName()+terrtry.getBatallion());
+				
+				
+					System.out.println(terrtry.getAssignName()+terrtry.getBatallion());
+					if(st.equals(terrtry.getAssignName())) {
+						System.out.println(terrtry.getAssignName());//+terrtry.getBatallion());
 			terrtry.setBatallion(terrtry.getBatallion() + 1);
 			currentContestant.setBatallion(contestantArmies - 1);
 			
 		}
 					}
 				//System.out.println( terrtry.getAssignName() + ":-" + terrtry.getBatallion() + "-" + currentContestant.getContestantName());	
-			}
+			
 	} else {
-		contestantAssignmentToTerritories(currentContestant);
+		getReinforceBatallion();
+		//contestantAssignmentToTerritories(currentContestant);
 	}
+	
 		
 	boolean batallionAttacked = isContestantBatallionattacked(contestantsList);
 	if (batallionAttacked) {
@@ -361,7 +365,7 @@ public List<Territories> executingCurrentContestant() {
 	//getChosenTerritory(map,cntnts);
 	for (Territories trrtry1 : currentContestant.getContestantTrrtrlist()) {
 		//
-		if(trrtry1.getBatallion()==1) {
+		if(trrtry1.getBatallion()>=1) {
 		
 		
 		 selectedTerritoryList.add(trrtry1);}
@@ -383,13 +387,43 @@ public void loadBatallion(List<Territories> selectedTerritoryList) {
 		
 			loadBatallion(selectedTerritoryList);
 		
-		
+			getReinforceBatallion();
 		
 }
 
 
 
+public void getReinforceBatallion() {
+	if (this.currentContestant != null) {
+		currentContestant = getReinforceBatallion(map, currentContestant);
+		System.out.println(currentContestant.getContestantName() + currentContestant.getBatallion() + " armies left.");
+	} else {
+		System.out.println("Error!. No player playing.");
 	
+}}
+
+
+
+/*public Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
+	int presentBatallion = currentContestant.getBatallion();
+	int trrtrSum = currentContestant.getcontestantTrrtrlist().size();
+	if (trrtrSum < 9) {
+		presentBatallion = presentBatallion + 3;
+	} else {
+		presentBatallion = presentBatallion + (trrtrSum / 3);
+	}
+
+	List<Continents> continents = getContinentsOwnedByPlayer(map, currentContestant);
+	if (continents.size() > 0) {
+		for (Continents continent : continents) {
+			presentBatallion = presentBatallion + Integer.parseInt(continent.getCValue());
+		}
+	}
+	currentContestant.setBatallion(presentBatallion);
+
+	return currentContestant;*/
+
+
 
 
 
