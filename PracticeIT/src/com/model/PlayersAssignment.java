@@ -10,7 +10,7 @@ import java.util.Observer;
 import java.util.Scanner;
 
 import com.controller.StartGameController;
-
+import com.sun.xml.internal.bind.v2.runtime.Name;
 import com.units.Contestant;
 import com.units.Territories;
 import com.units.Continents;
@@ -192,17 +192,19 @@ public void placeBatallion(Contestant currentContestant, List<Territories> selec
 				
 				
 					System.out.println(terrtry.getAssignName()+terrtry.getBatallion());
-					if(st.equals(terrtry.getAssignName())) {
+					if(st.equalsIgnoreCase(terrtry.getAssignName())) {
 						System.out.println(terrtry.getAssignName());//+terrtry.getBatallion());
 			terrtry.setBatallion(terrtry.getBatallion() + 1);
 			currentContestant.setBatallion(contestantArmies - 1);
-			
+			break;
 		}
+					
 					}
 				//System.out.println( terrtry.getAssignName() + ":-" + terrtry.getBatallion() + "-" + currentContestant.getContestantName());	
 			
 	} else {
-		getReinforceBatallion();
+		System.out.println("Moving on to attack face and forward...Awaiting implementation strategies.");
+		//getReinforceBatallion();
 		//contestantAssignmentToTerritories(currentContestant);
 	}
 	
@@ -339,6 +341,7 @@ public List<Contestant> territoryAssignToContestant(Map enhancedmap, List<Contes
 }
 
 public List<Territories> executingCurrentContestant() {
+	
 	if (!contestantLooper.hasNext()) {
 		System.out.println(contestantLooper);
 		contestantLooper = contestantsList.iterator();
@@ -384,11 +387,13 @@ public void loadBatallion(List<Territories> selectedTerritoryList) {
 		placeBatallion(currentContestant, selectedTerritoryList, contestantsList);
 		selectedTerritoryList.removeAll(selectedTerritoryList);
 		executingCurrentContestant();
-		
+		for(Contestant contestant:contestantsList) {
+		if(contestant.getBatallion()!=0) {
 			loadBatallion(selectedTerritoryList);
+		}
+			//getReinforceBatallion();
 		
-			getReinforceBatallion();
-		
+}
 }
 
 
