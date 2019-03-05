@@ -1,10 +1,8 @@
-/**
- * 
- */
 package test;
 
 import static org.junit.Assert.*;
 
+import org.junit.Test;
 import java.util.*;
 
 import org.junit.Assert;
@@ -17,11 +15,6 @@ import com.units.Contestant;
 import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
-
-/**
- * @author Pritpal Kaur
- *
- */
 public class ContestantTerritories {
 
 	/**
@@ -55,7 +48,9 @@ static PlayersAssignment playersAssignment;
 	 */
 	static Contestant contestant;
 	String territoryName1 = "India";
-	String territoryName2 = "China";	
+	String territoryName2 = "China";
+
+	
 
 	/**
 	 * The @listOfContinents
@@ -102,6 +97,16 @@ static PlayersAssignment playersAssignment;
 	/**
 	 * Test method for {@link com.model.contestantAssignment#territoryAssignToContestant(com.units.Map, java.util.List)}.
 	 */
+	@Test
+	public void testCreateContestant() {
+		List<Contestant> contestants = new ArrayList<>();
+		listOfcontestant = new ArrayList<>();
+		listOfcontestant.add(new Contestant(0));
+		listOfcontestant.add(new Contestant(1));
+		listOfcontestant.add(new Contestant(2));
+		playersAssignment.createContestant(listOfcontestant.size(), contestants);
+		Assert.assertEquals(3, contestants.size());
+	}
 	@Test
 	public void testTerritoryAssignToContestant() {
 		List<Contestant> contestant = playersAssignment.territoryAssignToContestant(map, listOfcontestant);
