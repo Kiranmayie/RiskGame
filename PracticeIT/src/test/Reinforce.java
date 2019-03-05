@@ -3,7 +3,8 @@ package test;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,11 +16,8 @@ import com.units.Contestant;
 import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
-public class ContestantTerritories {
+public class Reinforce {
 
-	/**
-	 * Test method for {@link com.model.contestantAssignment#contestantArmyAssign(java.util.List)}.
-	 */
 	
 static PlayersAssignment playersAssignment;
 	
@@ -66,6 +64,7 @@ static PlayersAssignment playersAssignment;
 	 * The @listOfcontestant
 	 */
 	static List<Contestant> listOfcontestant;
+	
 	@BeforeClass
 	public static void beforeClass() {
 		playersAssignment = new PlayersAssignment();
@@ -94,36 +93,19 @@ static PlayersAssignment playersAssignment;
 		playersAssignment.territoryAssignToContestant(map, listOfcontestant);
 		listOfcontestant.add(contestant);
 	}
-	/**
-	 * Test method for {@link com.model.contestantAssignment#territoryAssignToContestant(com.units.Map, java.util.List)}.
-	 */
 	@Test
-	public void testCreateContestant() {
-		List<Contestant> contestants = new ArrayList<>();
-		listOfcontestant = new ArrayList<>();
-		listOfcontestant.add(new Contestant(0));
-		listOfcontestant.add(new Contestant(1));
-		listOfcontestant.add(new Contestant(2));
-		playersAssignment.createContestant(listOfcontestant.size(), contestants);
-		Assert.assertEquals(3, contestants.size());
-	}
-	@Test
-	public void testTerritoryAssignToContestant() {
-		List<Contestant> contestant = playersAssignment.territoryAssignToContestant(map, listOfcontestant);
-		Assert.assertNotNull(contestant);	 // TODO
-	}
+	public final void testGetReinforceBatallionMapContestant() {
+	
+			contestant.setBatallion(8);
+			playersAssignment.territoryAssignToContestant(map, listOfcontestant);
+			territory1.setContestant(contestant);
+			playersAssignment.territoryAssignToContestant(map, listOfcontestant);
+			territory2.setContestant(contestant);;
+			Contestant returningContestant = playersAssignment.getReinforceBatallion(map, contestant);
+			Assert.assertEquals(returningContestant.getBatallion(), 12);
+		}
 	
 	
+	}
 
-	
-	@Test
-	public void testPlayersArmyAssign() {
-		listOfcontestant = new ArrayList<>();
-		listOfcontestant.add(new Contestant(1));
-		listOfcontestant.add(new Contestant(2));
-		listOfcontestant.add(new Contestant(3));
-		
-		Assert.assertEquals(playersAssignment.THREE_PLAYER_ARMIES, (Integer) contestant.getBatallion());
 
-	}
-}
