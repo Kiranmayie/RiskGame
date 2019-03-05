@@ -592,9 +592,7 @@ public class MapBuildController implements Initializable,EventHandler{
  * @param territory the territory
  */
 
-private void displayCorrespondingTrrtrs(Territories territory) {
 
-	private void displayCorrespondingTrrtrs(Territories territory) {
 
 
 
