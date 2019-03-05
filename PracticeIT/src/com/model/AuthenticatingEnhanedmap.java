@@ -33,7 +33,10 @@ public class AuthenticatingEnhanedmap {
 				}
 			} else {
 				
+
+				System.out.println("Invalid Map:Map should contain atleast one continent.");
 				System.out.println("Map should contain atleast one continent. Restart the game.");
+
 				x=x+1;
 				System.exit(0);
 			}
@@ -54,7 +57,11 @@ public class AuthenticatingEnhanedmap {
  */
 public static void authCntnt(Continents cntnt, Map enhancedMap)  {
 	if (cntnt.getTrrtrs().size() < 1) {
+
+		System.out.println("Invalid Map:Continent: " + cntnt.getAssignName() + " should contain atleast one territory");
+
 		System.out.println("Continent: " + cntnt.getAssignName() + " should contain atleast one territory. Restart The game.");
+
 		x=x+1;
 		System.exit(0);
 	}
@@ -109,7 +116,11 @@ public static void authTrrtr(Territories trrtr, Map enhancedMap) {
 	List<Territories> partnerTrrtrList = trrtr.getTouchingTrrtrsExpand();
 
 	if (partnerTrrtrList != null && partnerTrrtrList.size() < 1) {
+
+		System.out.println("Invalid Map:Territory: " + trrtr.getAssignName() + " should be mapped with atleas one adjacent territory.");
+
 		System.out.println("Territory: " + trrtr.getAssignName() + " should be mapped with atleas one adjacent territory. Restart the game.");
+
 		x=x+1;
 		System.exit(0);
 	} else if (!isTrrtrInterConnected(trrtr)) {
