@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class MapCreateController.
+ * The Class MapCreateController initiates a new map windowbased on the user selection.
  */
 public class MapCreateController implements EventHandler<ActionEvent> {
 	

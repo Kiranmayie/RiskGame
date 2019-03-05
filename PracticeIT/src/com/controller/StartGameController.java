@@ -13,7 +13,7 @@ import javafx.scene.control.TextArea;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class StartGameController.
+ * The Class StartGameController initiates a game and let the contestants play the game in round robin fashion.
  */
 public class StartGameController implements Serializable {
 	

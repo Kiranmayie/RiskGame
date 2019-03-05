@@ -17,7 +17,7 @@ import javafx.event.EventHandler;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class StartGame.
+ * The Class StartGame populates various entities required to start the game.
  */
 public class StartGame implements EventHandler<ActionEvent>  {
 

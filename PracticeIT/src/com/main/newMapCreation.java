@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class newMapCreation.
+ * The Class newMapCreation is responsible for opening a new map window.
  */
 public class newMapCreation implements EventHandler<ActionEvent> {
 

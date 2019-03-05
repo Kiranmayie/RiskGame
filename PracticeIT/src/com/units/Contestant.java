@@ -7,7 +7,7 @@ import com.model.GamePlan;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class Contestant.
+ * The Class Contestant is used to populate the fields related to contestant.
  */
 public class Contestant implements Serializable {
 	

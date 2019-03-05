@@ -18,7 +18,7 @@ import com.model.AuthenticatingEnhanedmap;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class MapSStep.
+ * The Class MapSStep is the second step towards map selection and leading to further validation.
  */
 public class MapSStep {
 	

@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class MapFStep.
+ * The Class MapFStep is the first step towards map loading or creation.
  */
 public class MapFStep implements EventHandler<ActionEvent>{
 
