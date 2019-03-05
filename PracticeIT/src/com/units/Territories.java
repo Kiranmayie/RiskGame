@@ -88,7 +88,9 @@ public class Territories implements Serializable {
 	 * @return the assign name
 	 */
 	
-	
+	public String getAssignName() {
+		return assignName;
+	}
 	/**
 	 * Sets the assign name.
 	 *
