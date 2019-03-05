@@ -163,7 +163,7 @@ public class MapSStep {
 					trrtr.getTouchingTrrtrsExpand().add(hashMap.get(var));
 				} else {
 					System.out.println("Territory: " + var + " not mapped with any continent. Restart The game.");
-					System.exit(0);
+					//System.exit(0);
 				}
 			}
 		}
@@ -215,7 +215,7 @@ public class MapSStep {
 							trrtrCntntAggregate.put(trrtrData[0], 1);
 						} else {
 							System.out.println("A Territory cannot be assigned to more than one Continent. Restart The game.");
-							System.exit(0);
+							//System.exit(0);
 						}
 					}
 				}

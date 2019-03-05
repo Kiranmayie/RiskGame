@@ -92,22 +92,22 @@ static AuthenticatingEnhanedmap mapValidator;
 	public void validateMapForContinent() {
 		AuthenticatingEnhanedmap.AuthFStep(new Map());
 	}
-	@Test 
+	@Test
 	public void checkValidNumberOfContinents() throws FileNotFoundException {
-		file = new File("C:/Users/k_bethi/Desktop/World.map");
+		file = new File("C:/Users/pr_na/Desktop/World.map");
 		Map map = mrm.readingMapFile(file);
 		Assert.assertEquals(map.getContinents().size(), 7);
 	}
 	@Test 
 	public void checkInvalidMapForContinentWithoutTerritory() throws FileNotFoundException {
-		file = new File("C:/Users/k_bethi/Desktop/World_Invalid_Continent.map");
+		file = new File("C:/Users/pr_na/Desktop/World_Invalid_Continent.map");
 		Map map = mrm.readingMapFile(file);
 		
 		
 	}
 	@Test
 	public void checkInvalidMapForTerritorySubgraph() throws FileNotFoundException  {
-		file = new File("C:/Users/k_bethi/Desktop/World_Invalid_Territory_Subgraph.map");
+		file = new File("C:/Users/pr_na/Desktop/World_Invalid_Territory_Subgraph.map");
 		Map map = mrm.readingMapFile(file);
 		
 	}
@@ -115,7 +115,7 @@ static AuthenticatingEnhanedmap mapValidator;
 	
 	@Test 
 	public void checkInvalidMapForContinentSubgraph() throws FileNotFoundException  {
-		file = new File("C:/Users/k_bethi/Desktop/World_Invalid_Continent_Subgraph.map");
+		file = new File("C:/Users/pr_na/Desktop/World_Invalid_Continent_Subgraph.map");
 		Map map = mrm.readingMapFile(file);
 	}
 

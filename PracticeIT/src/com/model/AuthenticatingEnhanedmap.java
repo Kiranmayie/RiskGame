@@ -38,13 +38,13 @@ public class AuthenticatingEnhanedmap {
 				System.out.println("Map should contain atleast one continent. Restart the game.");
 
 				x=x+1;
-				System.exit(0);
+				//System.exit(0);
 			}
 			isTerritoryUniquelyAssociated(enhancedMap);
 		} else  {
 			System.out.println("Empty file no Map exist.");
 			x=x+1;
-			System.exit(0);
+			//System.exit(0);
 		}
 	}
 
@@ -63,13 +63,13 @@ public static void authCntnt(Continents cntnt, Map enhancedMap)  {
 		System.out.println("Continent: " + cntnt.getAssignName() + " should contain atleast one territory. Restart The game.");
 
 		x=x+1;
-		System.exit(0);
+		//System.exit(0);
 	}
 	if (!cntntConnectedToAnotherCntnt(cntnt, enhancedMap)) {
 		System.out.println("Continent: " + cntnt.getAssignName().toUpperCase()
 				+ " is not a subgraph. The continent should be connected to another continent via territory. Restart The game.");
 		x=x+1;
-		System.exit(0);
+		//System.exit(0);
 	}
 	for (Territories trrtr : cntnt.getTrrtrs()) {
 		if (trrtr != null) {
@@ -122,11 +122,11 @@ public static void authTrrtr(Territories trrtr, Map enhancedMap) {
 		System.out.println("Territory: " + trrtr.getAssignName() + " should be mapped with atleas one adjacent territory. Restart the game.");
 
 		x=x+1;
-		System.exit(0);
+		//System.exit(0);
 	} else if (!isTrrtrInterConnected(trrtr)) {
 		System.out.println("Territory: " + trrtr.getAssignName() + " is not forming a connected sub graph. Restart the game.");
 		x=x+1;
-		System.exit(0);
+		//System.exit(0);
 	} 
 }
 
@@ -197,7 +197,7 @@ public static void isTerritoryUniquelyAssociated(Map enhancedMap)  {
 		if (s.getValue() > 1) {
 			System.out.println("Territory: " + s.getKey().getAssignName() + " belongs to multiple continent. Restart the game.");
 			x=x+1;
-			System.exit(0);
+			//System.exit(0);
 		}
 	}
 }
