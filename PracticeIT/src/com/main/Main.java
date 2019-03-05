@@ -120,7 +120,7 @@ public class Main extends Application {
 		return mapMOdifyButton;
 	}
 
-	
+
 	/**
 	 * Start playing game.
 	 *
