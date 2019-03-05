@@ -1,6 +1,10 @@
 package test;
 
+import static org.junit.Assert.*;
+
+import org.junit.Test;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,10 +21,8 @@ import com.units.Map;
 import com.units.Territories;
 
 import javafx.stage.FileChooser;
+public class MapValidate {
 
-
-
-class MapValidate {
 static AuthenticatingEnhanedmap mapValidator;
 	
 	static Continents continent;
@@ -38,10 +40,10 @@ static AuthenticatingEnhanedmap mapValidator;
 	
 	static HashMap<String, String> mapValue;
 
-	private static MapSStep mrm;
+	public static MapSStep mrm;
 	List<Continents> ContinentsList;
 
-	private File file;
+	public File file;
 
    
 	
@@ -90,17 +92,31 @@ static AuthenticatingEnhanedmap mapValidator;
 	public void validateMapForContinent() {
 		AuthenticatingEnhanedmap.AuthFStep(new Map());
 	}
-	
-	/*public void checkValidNumberOfContinents() {
-		
-		Map map = mrm.readingMapFile(new Map());
+	@Test 
+	public void checkValidNumberOfContinents() throws FileNotFoundException {
+		file = new File("C:/Users/k_bethi/Desktop/World.map");
+		Map map = mrm.readingMapFile(file);
 		Assert.assertEquals(map.getContinents().size(), 7);
 	}
 	@Test 
-	public void checkInvalidMapForContinentWithoutTerritory() {
-		file = new File("C:/Users/pr_na/Desktop");
-		AuthenticatingEnhanedmap at = new AuthenticatingEnhanedmap();
-		at.authCntnt(Continents cntnt, Map enhancedMap)
+	public void checkInvalidMapForContinentWithoutTerritory() throws FileNotFoundException {
+		file = new File("C:/Users/k_bethi/Desktop/World_Invalid_Continent.map");
+		Map map = mrm.readingMapFile(file);
 		
-	}*/
+		
+	}
+	@Test
+	public void checkInvalidMapForTerritorySubgraph() throws FileNotFoundException  {
+		file = new File("C:/Users/k_bethi/Desktop/World_Invalid_Territory_Subgraph.map");
+		Map map = mrm.readingMapFile(file);
+		
+	}
+	
+	
+	@Test 
+	public void checkInvalidMapForContinentSubgraph() throws FileNotFoundException  {
+		file = new File("C:/Users/k_bethi/Desktop/World_Invalid_Continent_Subgraph.map");
+		Map map = mrm.readingMapFile(file);
+	}
+
 }

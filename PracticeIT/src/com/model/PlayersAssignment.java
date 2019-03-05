@@ -42,8 +42,6 @@ public class PlayersAssignment  extends Observable implements Observer, Serializ
 	
 	/** The Constant FOUR_PLAYER_ARMIES. */
 
-	public static final Integer THREE_PLAYER_ARMIES = 10;
-
 	public static final Integer FOUR_PLAYER_ARMIES = 30;
 	
 	/** The Constant FIVE_PLAYER_ARMIES. */
@@ -149,7 +147,7 @@ public List<Contestant> createContestant(int noOfPlayer, List<Contestant> contes
  * @param presentContestant the present contestant
  * @return the continents owned by player
  */
-public List<Continents> getContinentsOwnedByPlayer(Map map, Contestant presentContestant) {
+
 
 public List<Continents> getContinentsOwnedByPlayer(Map map, Contestant currentContestant) {
 
