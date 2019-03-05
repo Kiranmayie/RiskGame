@@ -257,7 +257,7 @@ public void setContestantsList(List<Contestant> contestantsList) {
  */
 public Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
 	int presentBatallion = currentContestant.getBatallion();
-	int trrtrSum = currentContestant.getcontestantTrrtrlist().size();
+	int trrtrSum = 12;// currentContestant.getcontestantTrrtrlist().size();
 	if (trrtrSum < 9) {
 		presentBatallion = presentBatallion + 3;
 	} else {
