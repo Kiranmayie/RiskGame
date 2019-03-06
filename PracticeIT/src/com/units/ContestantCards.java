@@ -1,9 +1,6 @@
 package com.units;
 
 import java.io.Serializable;
-
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class ContestantCards.
  */
@@ -17,7 +14,6 @@ public class ContestantCards implements Serializable{
 	
 	/**
 	 * Instantiates a new contestant cards.
-	 *
 	 * @param contestantCardType the contestant card type
 	 */
 	public ContestantCards(ContestantcardType contestantCardType) {
@@ -26,7 +22,6 @@ public class ContestantCards implements Serializable{
 	
 	/**
 	 * Gets the trrtrs.
-	 *
 	 * @return the trrtrs
 	 */
 	public Territories getTrrtrs() {
@@ -58,8 +53,6 @@ public class ContestantCards implements Serializable{
 		}
 
 		ContestantCards cards = (ContestantCards) object;
-		//return cards.ContestantcardType().toString().equalsIgnoreCase(cardType.toString())
-			//	&& cards.getTrrtrs().equals(territory);
 		return true;
 	}
 
@@ -69,13 +62,9 @@ public class ContestantCards implements Serializable{
 	 * The Enum ContestantcardType.
 	 */
 	public enum ContestantcardType {
-		
-		/** The infantry. */
-		INFANTRY, 
- /** The cavalry. */
- CAVALRY, 
- /** The artillery. */
- ARTILLERY
+			INFANTRY, 
+			CAVALRY, 
+			ARTILLERY
 	}
 
 }

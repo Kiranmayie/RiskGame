@@ -4,25 +4,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-// TODO: Auto-generated Javadoc
 /**
- * The Class Map.
+ * The Class Map have functionalities of storing and reading the Map.
  */
 public class Map implements Serializable {
 	
 	
 	/** The data. */
 	private HashMap<String, String> data;
-	 
 	
-	
-	/** The cntnts. */
+	/** The Continents. */
 	private List<Continents> cntnts;
 	
-	
-	
-	/** The cntns map. */
+	/** The Continents map. */
 	private HashMap<String, Continents> cntnsMap;
 	
 	/**
@@ -36,7 +30,6 @@ public class Map implements Serializable {
 	
 	/**
 	 * Gets the continent map.
-	 *
 	 * @return the continent map
 	 */
 	public HashMap<String, Continents> getContinentMap() {
@@ -46,7 +39,6 @@ public class Map implements Serializable {
 	
 	/**
 	 * Sets the continent map.
-	 *
 	 * @param continentMap the continent map
 	 */
 	public void setContinentMap(HashMap<String, Continents> continentMap) {
@@ -56,7 +48,6 @@ public class Map implements Serializable {
 	
 	/**
 	 * Gets the map data.
-	 *
 	 * @return the map data
 	 */
 	public HashMap<String, String> getMapData() { 
@@ -66,7 +57,6 @@ public class Map implements Serializable {
 	
 	/**
 	 * Sets the map data.
-	 *
 	 * @param mapData the map data
 	 */
 	public void setMapData(HashMap<String, String> mapData) {
@@ -76,7 +66,6 @@ public class Map implements Serializable {
 	
 	/**
 	 * Gets the continents.
-	 *
 	 * @return the continents
 	 */
 	public List<Continents> getContinents() {
@@ -86,7 +75,6 @@ public class Map implements Serializable {
 	
 	/**
 	 * Sets the continents.
-	 *
 	 * @param continents the new continents
 	 */
 	public void setContinents(List<Continents> continents) {

@@ -7,25 +7,17 @@ import java.util.List;
 import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
-
-
-
-// TODO: Auto-generated Javadoc
 /**
- * The Class MapSaver.
+ * The Class MapSaver is used to save the Map.
  */
 public class MapSaver {
-	
-	
 	/**
-	 * F step.
-	 *
-	 * @param map the map
-	 * @param file the file
+	 * First step.
+	 * @param map 
+	 * @param file
 	 */
 	public void fStep(Map map, File file) {
 		FileWriter fileSaver = null;
-	
 		try {
 			if (map == null) {
 				System.out.println("Cannot read the map data");
@@ -41,8 +33,7 @@ public class MapSaver {
 
 	/**
 	 * Change format.
-	 *
-	 * @param map the map
+	 * @param map 
 	 * @return the string
 	 */
 	private String changeFormat(Map map) {
@@ -53,9 +44,8 @@ public class MapSaver {
 	
 	/**
 	 * Loading map data.
-	 *
-	 * @param map the map
-	 * @param mapIndex the map index
+	 * @param map 
+	 * @param mapIndex 
 	 * @return the string builder
 	 */
 	private StringBuilder loadingMapData(Map map, StringBuilder mapIndex) {
@@ -70,10 +60,9 @@ public class MapSaver {
 	}
 	
 	/**
-	 * Loading cntnt data.
-	 *
-	 * @param map the map
-	 * @param mapIndex the map index
+	 * Loading Continent data.
+	 * @param map 
+	 * @param mapIndex 
 	 * @return the string builder
 	 */
 	private StringBuilder LoadingCntntData(Map map, StringBuilder mapIndex) {
@@ -89,10 +78,9 @@ public class MapSaver {
 	}
 	
 	/**
-	 * Loading trrtrs data.
-	 *
-	 * @param map the map
-	 * @param mapIndex the map index
+	 * Loading Territories data.
+	 * @param map 
+	 * @param mapIndex 
 	 * @return the string builder
 	 */
 	private StringBuilder loadingTrrtrsData(Map map, StringBuilder mapIndex) {
