@@ -16,7 +16,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-// TODO: Auto-generated Javadoc
 /**
  * This main class inherits Application class.
  * @ref {@link www.github.com}
