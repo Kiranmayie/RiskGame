@@ -13,24 +13,20 @@ import com.units.Map;
 import com.units.Territories;
 import javafx.stage.FileChooser;
 import com.model.AuthenticatingEnhanedmap;
- 
-
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class MapSStep.
  */
 public class MapSStep {
 	
-	/** The enhanced map. */
+	/** The enhanced map object for Map. */
 	Map enhancedMap;
 	
-	/** The trrtr cntnt aggregate. */
+	/** The Territory continent aggregation. */
 	HashMap<String, Integer> trrtrCntntAggregate = new HashMap<>();
+	public static int systemExit=0;
 	
 	/**
 	 * Map file validator.
-	 *
 	 * @return the file
 	 */
 	public static File mapFileValidator() {
@@ -43,43 +39,34 @@ public class MapSStep {
 	
 	/**
 	 * Reading map file.
-	 *
-	 * @param mapReturnedFile the map returned file
+	 * @param mapReturnedFile 
 	 * @return the map
 	 * @throws FileNotFoundException the file not found exception
 	 */
 	public Map readingMapFile(File mapReturnedFile) throws FileNotFoundException {
 		
 		this.enhancedMap=conversionOne(mapReturnedFile);
-
-		//System.out.println(enhancedMap.toString());
-
 		AuthenticatingEnhanedmap.AuthFStep(enhancedMap);
-		//System.out.println(enhancedMap.toString());
 		return enhancedMap;
 	}
 	
 	/**
 	 * Conversion one.
-	 *
-	 * @param mapReturnedFile the map returned file
+	 * @param mapReturnedFile 
 	 * @return the map
 	 * @throws FileNotFoundException the file not found exception
 	 */
 	public Map conversionOne(File mapReturnedFile) throws FileNotFoundException {
-		
 		StringBuilder sb=new StringBuilder();
 		Scanner sc=new Scanner(new FileReader(mapReturnedFile));
 		while (sc.hasNextLine()) {
 			String mapData = sc.nextLine();
 			if (mapData.isEmpty()) {
 				sb.append("\n");	
-				
 			} else {
 				sb.append(mapData + "//");
 			}
 		}
-		//System.out.println(sb);
 		Scanner scNew=new Scanner(sb.toString());
 		sc.close();
 		Map enhancedMap=conversionTwo(scNew);
@@ -90,16 +77,13 @@ public class MapSStep {
 	
 	/**
 	 * Conversion two.
-	 *
-	 * @param scNew the sc new
+	 * @param scNew 
 	 * @return the map
 	 */
 	public Map conversionTwo(Scanner scNew) {
-		
 		Map enhancedMap=new Map();
 		HashMap<String, String> mapFeatures = new HashMap<>();
 		StringTokenizer creator = new StringTokenizer(scNew.nextLine(), "//");
-		
 		while(creator.hasMoreTokens()) {
 			String element = creator.nextToken();
 			if (element.equalsIgnoreCase("[Map]")) {
@@ -109,7 +93,6 @@ public class MapSStep {
 				mapFeatures.put(mapData[0], mapData[1]);
 			}
 		}
-		
 		enhancedMap.setMapData(mapFeatures);
 		List<Continents> cntnts = conversionThree(scNew);
 		HashMap<String, Continents> hashMapOne = new HashMap<>();
@@ -123,13 +106,10 @@ public class MapSStep {
 
 	/**
 	 * Conversion three.
-	 *
-	 * @param scNew the sc new
+	 * @param scNew 
 	 * @return the list
 	 */
 	public List<Continents> conversionThree(Scanner scNew) {
-		// TODO Auto-generated method stub
-		
 		List<Continents> cntnts = new ArrayList<>();
 		StringTokenizer creator = new StringTokenizer(scNew.nextLine(), "//");
 		while (creator.hasMoreTokens()) {
@@ -149,7 +129,6 @@ public class MapSStep {
 			String td = scNew.nextLine();
 			trrtrs.addAll(conversionFour(td, cntnts));
 		}
-		
 		HashMap<String, Territories> hashMap = new HashMap<>();
 		for (Territories trrtr : trrtrs) {
 			hashMap.put(trrtr.getAssignName(), trrtr);
@@ -163,7 +142,8 @@ public class MapSStep {
 					trrtr.getTouchingTrrtrsExpand().add(hashMap.get(var));
 				} else {
 					System.out.println("Territory: " + var + " not mapped with any continent. Restart The game.");
-					System.exit(0);
+					systemExit=systemExit+1;
+					//System.exit(0);
 				}
 			}
 		}
@@ -187,13 +167,11 @@ public class MapSStep {
 	
 	 /**
  	 * Conversion four.
- 	 *
- 	 * @param td the td
- 	 * @param cntnts the cntnts
+ 	 * @param td 
+ 	 * @param cntnts 
  	 * @return the list
  	 */
  	List<Territories> conversionFour(String td, List<Continents> cntnts){
-
 			List<Territories> trrtrs = new ArrayList<>();
 			StringTokenizer creator = new StringTokenizer(td, "//");
 			while (creator.hasMoreTokens()) {
@@ -207,7 +185,6 @@ public class MapSStep {
 					trrtr.setAssignName(trrtrData[0]);
 					trrtr.setPointX(Integer.parseInt(trrtrData[1]));
 					trrtr.setPointY(Integer.parseInt(trrtrData[2]));
-				
 				for (Continents cntnt : cntnts) {
 					if (cntnt.getAssignName().equalsIgnoreCase(trrtrData[3])) {
 						trrtr.setLyingInCntnt(cntnt);
@@ -215,13 +192,15 @@ public class MapSStep {
 							trrtrCntntAggregate.put(trrtrData[0], 1);
 						} else {
 							System.out.println("A Territory cannot be assigned to more than one Continent. Restart The game.");
-							System.exit(0);
+							//System.exit(0);
+							systemExit=systemExit+1;
 						}
 					}
 				}
 				if (trrtrCntntAggregate.get(trrtrData[0]) == null) {
 					System.out.println("A Territory should be assigned to one Continent. Restart The game.");
-					System.exit(0);
+					//System.exit(0);
+					systemExit=systemExit+1;
 				}
 				for (int j = 4; j < trrtrData.length; j++) {
 					touchingTrrtrsExpand.add(trrtrData[j]);

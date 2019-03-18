@@ -4,19 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-
-// TODO: Auto-generated Javadoc
 /**
  * This class is used to initialize all the continents .
- *
- * @author Admin
  */
 public class Continents implements Serializable {
 	
 	/** The assign name. */
 	private String assignName;
-	
 	
 	/** The c value. */
 	private String cValue;
@@ -48,8 +42,7 @@ public class Continents implements Serializable {
 
 	/**
 	 * Set territory Map.
-	 *
-	 * @param trrtrsMp the trrtrs mp
+	 * @param trrtrsMp 
 	 */
 	public void seTtrrtrsMp(HashMap<String, Territories> trrtrsMp) {
 		this.trrtrsMp = trrtrsMp;
@@ -57,7 +50,6 @@ public class Continents implements Serializable {
 
 	/**
 	 * Get name.
-	 *
 	 * @return assignName
 	 */
 	public String getAssignName() {
@@ -66,8 +58,7 @@ public class Continents implements Serializable {
 
 	/**
 	 * Set Name.
-	 *
-	 * @param assignName the new assign name
+	 * @param assignName 
 	 */
 	public void setAssignName(String assignName) {
 		this.assignName = assignName;
@@ -75,7 +66,6 @@ public class Continents implements Serializable {
 
 	/**
 	 * Get cValue.
-	 *
 	 * @return cValue
 	 */
 	public String getCValue() {
@@ -84,9 +74,8 @@ public class Continents implements Serializable {
 
 	/**
 	 * This set method is used to Set continent Value.
-	 * 
 	 * @param cValue
-	 *            the value to set
+	 * the value to set
 	 */
 	public void setCValue(String cValue) {
 		this.cValue = cValue;
@@ -94,7 +83,6 @@ public class Continents implements Serializable {
 
 	/**
 	 * Get Territories.
-	 *
 	 * @return trrtrs
 	 */
 	public List<Territories> getTrrtrs() {
@@ -103,8 +91,7 @@ public class Continents implements Serializable {
 
 	/**
 	 * This set method is used to Set territories.
-	 *
-	 * @param trrtrs the trrtrs
+	 * @param trrtrs 
 	 */
 	public void seTtrrtrs(List<Territories> trrtrs) {
 		this.trrtrs = trrtrs;
@@ -135,10 +122,6 @@ public class Continents implements Serializable {
 	 */
 	public String toString() {
 
-		return " " + assignName  ;//+ trrtrs.toString();
-
-		//return "Name: " + assignName + cValue + " +"  + "List of territory :" + trrtrs.toString();
-
-	}
+		return " " + assignName  ;	}
 
 }
