@@ -58,9 +58,13 @@ public class StartGame implements EventHandler<ActionEvent>  {
 			PlayersAssignment.playersArmyAssign(contestants);
 			pa.territoryAssignToContestant(enhancedMap,contestants); 
 			selectedTerritoryList=pa.executingCurrentContestant();	
-			System.out.println(selectedTerritoryList);
+			//System.out.println(selectedTerritoryList);
 			 pa.loadBatallion(selectedTerritoryList);
-
+			 for(Contestant contestant:contestants) {
+			 //System.out.println(contestant.getcontestantTrrtrlist().size());
+			contestant= pa.getReinforceBatallion(enhancedMap,contestant);
+			System.out.println(contestant.getContestantName() + contestant.getBatallion() + " armies left.");
+			 }
 	}
 
 }
