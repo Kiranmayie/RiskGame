@@ -133,7 +133,14 @@ public class Contestant implements Serializable {
 		Contestant contestant = (Contestant) object;
 		return contestant.getContestantId() == contestantId;
 	}
+	
+	/*public PlayerBehaviorStrategy getStrategy() {
+		return strategy;
+	}
 
+	public void setStrategy(PlayerBehaviorStrategy strategy) {
+		this.strategy = strategy;
+	}*/
 
 	/**
 	 * Gets the game plan.
