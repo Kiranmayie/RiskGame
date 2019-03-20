@@ -31,7 +31,7 @@ public class PlayersAssignment  extends Observable implements Observer, Serializ
 	Contestant currentContestant;
 	
 	/** The Constant TWO_PLAYER_ARMIES. */
-	public static final Integer TWO_PLAYER_ARMIES = 26;
+	public static final Integer TWO_PLAYER_ARMIES = 8;
 	
 	/** The Constant THREE_PLAYER_ARMIES. */
 	public static final Integer THREE_PLAYER_ARMIES = 35;
