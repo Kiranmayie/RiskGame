@@ -7,15 +7,17 @@ import java.util.List;
 import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
-
-
-
+/**
+ * The Class MapSaver is used to save the Map.
+ */
 public class MapSaver {
-	
-	
+	/**
+	 * First step.
+	 * @param map 
+	 * @param file
+	 */
 	public void fStep(Map map, File file) {
 		FileWriter fileSaver = null;
-	
 		try {
 			if (map == null) {
 				System.out.println("Cannot read the map data");
@@ -29,12 +31,23 @@ public class MapSaver {
 		}
 	}
 
+	/**
+	 * Change format.
+	 * @param map 
+	 * @return the string
+	 */
 	private String changeFormat(Map map) {
 		StringBuilder mapIndex = new StringBuilder();
 		mapIndex = loadingMapData(map, mapIndex);
 		return mapIndex.toString();
 	}
 	
+	/**
+	 * Loading map data.
+	 * @param map 
+	 * @param mapIndex 
+	 * @return the string builder
+	 */
 	private StringBuilder loadingMapData(Map map, StringBuilder mapIndex) {
 		mapIndex.append("[Map]");
 		mapIndex.append("\n");
@@ -46,6 +59,12 @@ public class MapSaver {
 		return mapIndex;
 	}
 	
+	/**
+	 * Loading Continent data.
+	 * @param map 
+	 * @param mapIndex 
+	 * @return the string builder
+	 */
 	private StringBuilder LoadingCntntData(Map map, StringBuilder mapIndex) {
 		mapIndex.append("\n");
 		mapIndex.append("[Continents]");
@@ -58,6 +77,12 @@ public class MapSaver {
 		return mapIndex;
 	}
 	
+	/**
+	 * Loading Territories data.
+	 * @param map 
+	 * @param mapIndex 
+	 * @return the string builder
+	 */
 	private StringBuilder loadingTrrtrsData(Map map, StringBuilder mapIndex) {
 		mapIndex.append("\n");
 		mapIndex.append("[Territories]");

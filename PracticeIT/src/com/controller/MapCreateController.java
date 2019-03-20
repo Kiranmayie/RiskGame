@@ -9,8 +9,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * The Class MapCreateController is used create a map.
+ */
 public class MapCreateController implements EventHandler<ActionEvent> {
 	
+	/* (non-Javadoc)
+	 * @see javafx.event.EventHandler#handle(javafx.event.Event)
+	 */
 	@Override
 	public void handle(ActionEvent event) {
 	Stage stage = new Stage();
@@ -18,12 +24,10 @@ public class MapCreateController implements EventHandler<ActionEvent> {
 	 MapBuildController mvc= new MapBuildController();
 	 FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("MapEditorNew.fxml"));
 		loader.setController(mvc);
-
 		Parent root = null;
 		try {
 			root = (Parent) loader.load();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

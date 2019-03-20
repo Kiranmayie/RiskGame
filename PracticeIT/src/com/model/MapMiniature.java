@@ -4,20 +4,35 @@ import java.util.ArrayList;
 import java.util.List;
 import com.units.*;
 import com.units.Map;
-
+/**
+ * The Class MapMiniature has functionalities for Map Build Controller.
+ */
 public class MapMiniature {
 	
+	/**
+	 * Adding continent.
+	 * @param map 
+	 * @param contName 
+	 * @param cValue
+	 * @return the continents
+	 * @throws Exception 
+	 */
 	public Continents addingContinent(Map map,String contName,String cValue) throws Exception{
 		Continents continent= new Continents();
-		
 		continent.setAssignName(contName);
 		continent.setCValue(cValue);
-		//System.out.println(continent.toString());
 		if(map.getContinents().contains(continent)) 
-			System.out.println("Continent exists");
+		System.out.println("Continent exists");
 		return continent;	
 	}
-	
+	/**
+	 * Update territories.
+	 * @param territory 
+	 * @param xAxis 
+	 * @param yAxis 
+	 * @param adjTerritory 
+	 * @return the territories
+	 */
 	public Territories updateTerritories(Territories territory, int xAxis, int yAxis, Territories adjTerritory) {
 		System.out.println("updated terrtrs");
 		territory.setPointX(xAxis);
@@ -34,17 +49,32 @@ public class MapMiniature {
 		return territory;
 	}
 
+	/**
+	 * Updating continent.
+	 * @param continent 
+	 * @param cValue 
+	 * @return the continents
+	 */
 	public Continents updatingContinent(Continents continent,String cValue){
 		continent.setCValue(cValue);
 		return continent;
 	}
 
+	/**
+	 * Adds the territory.
+	 * @param map 
+	 * @param assignName 
+	 * @param xAxis 
+	 * @param yAxis 
+	 * @param adjTerritory
+	 * @param continent
+	 * @return the territories
+	 * @throws Exception
+	 */
 	public Territories addTerritory(Map map, String assignName, String xAxis, String yAxis, Territories adjTerritory,
 			Continents continent) throws Exception {
-
 		Territories territory = new Territories();
 		List<Territories> tList = new ArrayList<>();
-
 		territory.setAssignName(assignName);
 		territory.setPointX(Integer.parseInt(xAxis));
 		territory.setPointY(Integer.parseInt(yAxis));
@@ -65,8 +95,13 @@ public class MapMiniature {
 		return territory;
 	}
 
+	/**
+	 * Assign territory to continent.
+	 * @param continent 
+	 * @param territory 
+	 * @return the continents
+	 */
 	public Continents assignTerrToContinent(Continents continent, Territories territory) {
-
 		if (continent.getTrrtrs() == null) {
 			List<Territories> nTList = new ArrayList<>();
 			nTList.add(territory);

@@ -3,6 +3,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import com.main.MapSStep;
+import com.model.AuthenticatingEnhanedmap;
 import com.model.PlayersAssignment;
 import com.units.Contestant;
 import com.units.Map;
@@ -11,31 +14,68 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StartGameController implements Serializable, Initiates the Game play.
+ */
 public class StartGameController implements Serializable {
 	
+	/** The map object */
 	private Map map;
+	
+	/** The Player object */
 	private Object Player;
+	
+	/** The number of players object */
 	private Object numberOfPlayers;
+	
+	/** The number contestants. */
 	public static int numberContestants;
+	
+	/** The names. */
 	static String[] names;
+	
+	/** The player assign. */
 	private PlayersAssignment playerAssign;
-	 public  List<Contestant> contestants ;
+	 
+ 	/** The contestants. */
+ 	public  List<Contestant> contestants ;
+	
+	/** The pa. */
 	PlayersAssignment pa;
 	
+	/**
+	 * Counting contestants.
+	 *
+	 * @return the int
+	 */
 	public static int countingContestants()
 	{ 
+		
+		if(MapSStep.systemExit>=1 || AuthenticatingEnhanedmap.x>0) {
+			 System.exit(0);
+		 }
 		System.out.print("Enter number of contestants");
 		Scanner sc=new Scanner(System.in);
 		numberContestants=sc.nextInt();
 		return numberContestants;   
-	
 	}
 	
+	/**
+	 * Instantiates a new start game controller.
+	 * @param enhancedMap the enhanced map
+	 */
 	public StartGameController(Map enhancedMap)  {
 			this.map=enhancedMap;
 			StartGameController.numberContestants=countingContestants();
 			}
 	
+	/**
+	 * Creates the player.
+	 * @param numberOfPlayers 
+	 * @param players 
+	 * @return the list
+	 */
 	public static List<Contestant> createPlayer(int numberOfPlayers, List<Contestant> players) {
 		for (int i = 0; i < numberOfPlayers; i++) {
 			players.add(new Contestant(i));
@@ -44,8 +84,6 @@ public class StartGameController implements Serializable {
 		return players;
 	}
 	
-	
-		
 	
 }
 

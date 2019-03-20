@@ -22,64 +22,65 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+/**
+ * The Class MapFStep implements Eventhandler, Authenticates the map.
+ */
 public class MapFStep implements EventHandler<ActionEvent>{
 
+	/* (non-Javadoc)
+	 * @see javafx.event.EventHandler#handle(javafx.event.Event)
+	 */
 	@Override
 	public void handle(ActionEvent arg0) {
 		Stage stg = new Stage();
 		stg.setTitle("Map Selector");;
 		ClassLoader classLoader = getClass().getClassLoader();
 		try {
-			
-			//group class object created
-			Group base = new Group();
-			
-			Scene scene = new Scene(base, 300, 240);
-			//scene.getStylesheets().add("application.css");
-			
-			VBox vbox = new VBox();
-			vbox.setAlignment(Pos.BOTTOM_CENTER);
-			vbox.getChildren().addAll(startPlayingGame(scene),  mapModification(scene), exit(scene));			
-			
+			Group grp = new Group();
+			Scene sc = new Scene(grp, 350, 280);
+			VBox vb = new VBox();
+			vb.setAlignment(Pos.BOTTOM_CENTER);
+			vb.getChildren().addAll(loadingAndEditingMap(sc),  creatingNewMap(sc), exit(sc));			
 			BorderPane bp = new BorderPane();
-			bp.setBottom(vbox);
-			bp.prefWidthProperty().bind(scene.widthProperty());
-			bp.setCenter(Main.LoadImage(scene, classLoader));
-
-			base.getChildren().addAll(bp );
-
-			stg.setScene(scene);
+			bp.setBottom(vb);
+			bp.setCenter(Main.LoadImage(sc, classLoader));
+			grp.getChildren().addAll(bp );
+			stg.setScene(sc);
 			stg.show();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
-				
-			
-	       
-	public static Button exit(Scene scene) {
+	/**
+	 * Exit.
+	 * @param sc 
+	 * @return the button
+	 */
+	public static Button exit(Scene sc) {
 		Button extButton = new Button("Exit");
 		extButton.setOnAction(e -> Platform.exit());
-		extButton.setMaxWidth(scene.getWidth());
 		return extButton;
 	}
-
-	
-	public static Button mapModification(Scene scene) {
+	/**
+	 * Creating New Map
+	 * @param sc 
+	 * @return the button
+	 */
+	public static Button creatingNewMap(Scene sc) {
 		Button newMapButton = new Button("New Map");
 	    newMapButton.setOnAction(new MapCreateController());
-		newMapButton.setMaxWidth(scene.getWidth());
-
 		return newMapButton;
 	}
 	
-	public static Button startPlayingGame(Scene scene) {
+	/**
+	 * Loading and Editing Map
+	 * @param sc 
+	 * @return the button
+	 */
+	public static Button loadingAndEditingMap(Scene sc) {
 		Button loadEditButton = new Button("Load and Edit Map");
 		loadEditButton.setOnAction(new MapBuildController());
-		loadEditButton.setMaxWidth(scene.getWidth());
 		return loadEditButton;
 	}
 	}

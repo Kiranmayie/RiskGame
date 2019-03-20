@@ -9,14 +9,21 @@ import com.units.Continents;
 import com.units.Map;
 
 import javafx.scene.control.TextArea;
-
+/**
+ * The Class GameDesign is used for assignment of armies which uses round robin .
+ */
 public class GameDesign {
 
 	
+	/**
+	 * Contestant and its Territories.
+	 * @param map 
+	 * @param contestants 
+	 * @param textAres 
+	 * @return the list
+	 */
 	public List<Contestant> contestantAndItsTerrtrs(Map map, List<Contestant> contestants, TextArea textAres) {
-
 		List<Territories> sumTrrtrs = new ArrayList<>();
-
 		if (map.getContinents() != null) {
 			for (Continents cntnt : map.getContinents()) {
 				if (cntnt != null && cntnt.getTrrtrs() != null) {
@@ -37,7 +44,6 @@ public class GameDesign {
 						trrtr.setBatallion(trrtr.getBatallion() + 1);
 						contestant.setBatallion(contestant.getBatallion() - 1);
 						contestant.getContestantTrrtrlist().add(trrtr);
-						
 						System.out.println(trrtr.getAssignName() + " assigned to " + contestant.getContestantName() + " ! \n");
 						break;
 					}

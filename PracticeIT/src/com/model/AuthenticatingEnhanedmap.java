@@ -7,52 +7,85 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import com.units.Continents;
-
+/**
+ * The Class AuthenticatingEnhanedmap which authenticates the Map is Valid or Invalid.
+ */
 public class AuthenticatingEnhanedmap {
-//
+
+/** The Static Integer Variable X */
 	public static int x;
+
+	/**
+	 * Authentication First step.
+	 * @param enhancedMap 
+	 */
 	public static void AuthFStep(Map enhancedMap) {
 		if (enhancedMap != null) {
 			if (enhancedMap.getContinents().size() > 0) {
 				for (Continents cntnt : enhancedMap.getContinents()) {
 					if (cntnt != null) {
-						authCntnt(cntnt, enhancedMap);
+						if (cntnt.getTrrtrs().size() < 1) {
+							System.out.println("Continent: " + cntnt.getAssignName() + " must contain one territory. Restart The game.");
+							x=x+1;
+							//System.exit(0);
+						}
+						if (!cntntConnectedToAnotherCntnt(cntnt, enhancedMap)) {
+							System.out.println("Continent: " + cntnt.getAssignName().toUpperCase()
+									+ " is not connected, should be linked to another continent via territory. Restart The game.");
+							x=x+1;
+							//System.exit(0);
+						}
+						for (Territories trrtr : cntnt.getTrrtrs()) {
+							if (trrtr != null) {
+								List<Territories> partnerTrrtrList = trrtr.getTouchingTrrtrsExpand();
+								if (partnerTrrtrList != null && partnerTrrtrList.size() < 1) {
+									System.out.println("Territory: " + trrtr.getAssignName() + " must be linked with one adjacent territory. Restart the game.");
+									x=x+1;
+									//System.exit(0);
+								} else if (!isTrrtrInterConnected(trrtr)) {
+									x=x+1;
+									System.out.println("Territory: " + trrtr.getAssignName() + " is not organized as tree. Restart the game.");
+									//System.exit(0);
+								} 
+
+							}
+						}
 					}
 				}
 			} else {
-				
-				System.out.println("Map should contain atleast one continent. Restart the game.");
+				System.out.println("Map must have one continent. Restart the game.");
 				x=x+1;
-				System.exit(0);
+				//System.exit(0);
 			}
-			isTerritoryUniquelyAssociated(enhancedMap);
+			HashMap<Territories, Integer> trrtrConnection = new HashMap<>();
+			for (Continents cntnt : enhancedMap.getContinents()) {
+				for (Territories trrtr : cntnt.getTrrtrs()) {
+					if (trrtrConnection.containsKey(trrtr)) {
+						trrtrConnection.put(trrtr, trrtrConnection.get(trrtr) + 1);
+					} else {
+						trrtrConnection.put(trrtr, 1);
+					}
+				}
+			}
+			for (Entry<Territories, Integer> s : trrtrConnection.entrySet()) {
+				if (s.getValue() > 1) {
+					System.out.println("Territory: " + s.getKey().getAssignName() + " exists in different continents. Restart the game.");
+					x=x+1;
+					//System.exit(0);
+				}
+			}
 		} else  {
-			System.out.println("Empty file no Map exist.");
+			System.out.println("Alert: No Map exists in the File selected.");
 			x=x+1;
-			System.exit(0);
+			//System.exit(0);
 		}
 	}
-
-
-public static void authCntnt(Continents cntnt, Map enhancedMap)  {
-	if (cntnt.getTrrtrs().size() < 1) {
-		System.out.println("Continent: " + cntnt.getAssignName() + " should contain atleast one territory. Restart The game.");
-		x=x+1;
-		System.exit(0);
-	}
-	if (!cntntConnectedToAnotherCntnt(cntnt, enhancedMap)) {
-		System.out.println("Continent: " + cntnt.getAssignName().toUpperCase()
-				+ " is not a subgraph. The continent should be connected to another continent via territory. Restart The game.");
-		x=x+1;
-		System.exit(0);
-	}
-	for (Territories trrtr : cntnt.getTrrtrs()) {
-		if (trrtr != null) {
-			authTrrtr(trrtr, enhancedMap);
-		}
-	}
-}
-
+/**
+ * Continents connected to another Continent.
+ * @param cntn
+ * @param enhancedMap 
+ * @return true, if successful
+ */
 public static boolean cntntConnectedToAnotherCntnt(Continents cntnt, Map enhancedMap) {
 	boolean isConnected = false;
 	HashSet<Continents> hs = new HashSet<>();
@@ -73,28 +106,17 @@ public static boolean cntntConnectedToAnotherCntnt(Continents cntnt, Map enhance
 	return isConnected;
 }
 
-public static void authTrrtr(Territories trrtr, Map enhancedMap) {
-
-	List<Territories> partnerTrrtrList = trrtr.getTouchingTrrtrsExpand();
-
-	if (partnerTrrtrList != null && partnerTrrtrList.size() < 1) {
-		System.out.println("Territory: " + trrtr.getAssignName() + " should be mapped with atleas one adjacent territory. Restart the game.");
-		x=x+1;
-		System.exit(0);
-	} else if (!isTrrtrInterConnected(trrtr)) {
-		System.out.println("Territory: " + trrtr.getAssignName() + " is not forming a connected sub graph. Restart the game.");
-		x=x+1;
-		System.exit(0);
-	} 
-}
-
+/**
+ * Checks if is Territories inter connected.
+ * @param trrtr 
+ * @return true, if Territories are inter connected
+ */
 public static boolean isTrrtrInterConnected(Territories trrtr) {
 	HashSet<Territories> hs = new HashSet<>();
 	Continents cntnt = trrtr.getLyingInCntnt();
 	List<Territories> partnerTrrtrList = cntnt.getTrrtrs();
 	hs.add(trrtr);
 	trrtr.setConnected(true);
-
 	checkConnection(trrtr, hs);
 	for (Territories trrtrs : cntnt.getTrrtrs()) {
 		trrtrs.setConnected(false);
@@ -106,6 +128,11 @@ public static boolean isTrrtrInterConnected(Territories trrtr) {
 	}
 }
 
+/**
+ * Check connection.
+ * @param trrtr 
+ * @param hs 
+ */
 public static void checkConnection(Territories trrtr, HashSet<Territories> hs) {
 	boolean isUnConnectedTrrtr = false;
 	for (Territories trrtrs : trrtr.getTouchingTrrtrsExpand()) {
@@ -119,28 +146,4 @@ public static void checkConnection(Territories trrtr, HashSet<Territories> hs) {
 	if (!isUnConnectedTrrtr) {
 		return;
 	}
-}
-
-public static void isTerritoryUniquelyAssociated(Map enhancedMap)  {
-	HashMap<Territories, Integer> trrtrConnection = new HashMap<>();
-
-	for (Continents cntnt : enhancedMap.getContinents()) {
-		for (Territories trrtr : cntnt.getTrrtrs()) {
-			if (trrtrConnection.containsKey(trrtr)) {
-				trrtrConnection.put(trrtr, trrtrConnection.get(trrtr) + 1);
-			} else {
-				trrtrConnection.put(trrtr, 1);
-			}
-		}
-	}
-
-	for (Entry<Territories, Integer> s : trrtrConnection.entrySet()) {
-		if (s.getValue() > 1) {
-			System.out.println("Territory: " + s.getKey().getAssignName() + " belongs to multiple continent. Restart the game.");
-			x=x+1;
-			System.exit(0);
-		}
-	}
-}
-//
-}
+}}
