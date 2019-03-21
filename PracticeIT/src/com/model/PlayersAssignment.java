@@ -31,7 +31,7 @@ public class PlayersAssignment  extends Observable implements Observer, Serializ
 	Contestant currentContestant;
 	
 	/** The Constant TWO_PLAYER_ARMIES. */
-	public static final Integer TWO_PLAYER_ARMIES = 26;
+	public static final Integer TWO_PLAYER_ARMIES = 8;
 	
 	/** The Constant THREE_PLAYER_ARMIES. */
 	public static final Integer THREE_PLAYER_ARMIES = 35;
@@ -346,6 +346,68 @@ public void reinforcePhase(ObservableList<Territories> territoryList, Territorie
 	}
 }
 
+
+
+/**
+ * Fortification Phase
+ * 
+ * @param selectedTerritory
+ *            selected Territory object
+ * @param adjTerritory
+ *            adj Territory object
+ * @param gameConsole
+ *            gameConsole
+ */
+/*public void fortificationPhase(ListView<Territories> selectedTerritory, ListView<Territories> adjTerritory) {
+	boolean isFortificationDone = currentContestant.getStrategy().fortificationPhase(selectedTerritory, adjTerritory, currentContestant);
+
+	if (isFortificationDone && contestantsList.size() > 1) {
+		setChanged();
+		notifyObservers("Reinforcement");
+	}
+
+}*/
+
+/**
+ * Check if there are armies to be fortified.
+ * 
+ * @param map
+ *            map object
+ * @param playerPlaying
+ *            current player playing
+ * @return isFortificationAvaialble is fortification of armies available.
+ */
+/*public boolean isFortificationPhaseValid(Map map, Contestant pPlay) {
+	boolean isFortificationAvaialble = pPlay.getStrategy().isFortificationPhaseValid(map, pPlay);
+	if (isFortificationAvaialble) {
+		setChanged();
+		notifyObservers("Fortification");
+	} else {
+		setChanged();
+		notifyObservers("noFortificationMove");
+	}
+	return isFortificationAvaialble;
+}*/
+
+/**
+ * Check if player has valid attack move
+ * 
+ * @param territories
+ *            territories List View
+ * @param gameConsole
+ *            gameConsole text area
+ * 
+ * @return hasAValidMove true if player has valid move else false
+ */
+/*public boolean playerHasAValidAttackMove(ListView<Territory> territories, TextArea gameConsole) {
+	boolean hasValidAttackMove = playerPlaying.getStrategy().playerHasAValidAttackMove(territories, gameConsole);
+	if (!hasValidAttackMove) {
+		setChanged();
+		notifyObservers("checkIfFortificationPhaseValid");
+	}
+
+	return hasValidAttackMove;
+}*/
 /**
  * Fortify phase.
  * @param selectedTerritory 
