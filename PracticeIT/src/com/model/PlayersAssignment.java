@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import com.controller.StartGameController;
+
 import com.sun.xml.internal.bind.v2.runtime.Name;
 import com.units.Contestant;
 import com.units.Territories;
@@ -31,7 +33,7 @@ public class PlayersAssignment  extends Observable implements Observer, Serializ
 	Contestant currentContestant;
 	
 	/** The Constant TWO_PLAYER_ARMIES. */
-	public static final Integer TWO_PLAYER_ARMIES = 26;
+	public static final Integer TWO_PLAYER_ARMIES = 8;
 	
 	/** The Constant THREE_PLAYER_ARMIES. */
 	public static final Integer THREE_PLAYER_ARMIES = 35;
@@ -71,7 +73,8 @@ public class PlayersAssignment  extends Observable implements Observer, Serializ
 	private Territories trrtry;
 	
 	/** The selected territory list. */
-	List<Territories> selectedTerritoryList = new ArrayList<>();;
+	List<Territories> selectedTerritoryList = new ArrayList<>();
+
 
 
 
@@ -251,9 +254,105 @@ public Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
  * @param attackTrrtsList 
  * @param defendTrrtrsList
  */
-public void attackPhase(ListView<Territories> attackTrrtsList, ListView<Territories> defendTrrtrsList)  {
-	currentContestant.getGamePlan().attackPhase(attackTrrtsList, defendTrrtrsList,this );
+public void attackPhase(List<Territories> attackTrrtsList, List<Territories> defendTrrtrsList)  {
+	System.out.println("Select the attacking territory, defending territory and player you want to attack");
+	System.out.println(attackTrrtsList);
+	
+	Scanner sa=new Scanner(System.in);
+	String attackingTerritory=sa.nextLine();
+	String beingAttackedTerritory=sa.nextLine();
+	String Contestant=sa.nextLine();
+	
+	for (Territories territory : attackTrrtsList) {
+		System.out.println(getDefendingTerritory(territory));
+		System.out.println(territory.getBatallion());
+		System.out.println(getDefendingTerritory(territory).size());
+		System.out.println(territory.getAssignName());
+		if (territory.getAssignName().equals(attackingTerritory ))//&& territory.getBatallion() > 1 && getDefendingTerritory(territory).size() > 0) 
+		{ 
+			  int n=territory.getBatallion();
+		
+				System.out.println("Attacker's Turn");
+				int[] attackerDiceValue=rollDice(n);
+				int m=defendingDiceCalculation(getDefendingTerritory(territory), beingAttackedTerritory);
+				System.out.println("Defender's Turn");
+				int[] defenderDiceValue=rollDice(m);
+				for(int i=0;i<attackerDiceValue.length;i++) {
+					for(int j=0;j<defenderDiceValue.length;j++) {
+						if(attackerDiceValue[i]>defenderDiceValue[j]) {
+							attackTerritory(defendTrrtrsList, attackTrrtsList, beingAttackedTerritory,Contestant);
+							placeBatallion(currentContestant, attackTrrtsList, contestantsList);
+						}
+						}
+							
+					}
+				
+				
+				
+			}
+		}
+	}					
+private int defendingDiceCalculation(List<Territories> defendTrrtrsList,String beingAttackedTerritory) {
+	// TODO Auto-generated method stub
+	int m=0;
+	for (Territories territory : defendTrrtrsList) {
+		if (territory.getAssignName().equals(beingAttackedTerritory) && territory.getBatallion() > 1) 
+		
+			{   m=territory.getBatallion();
+			
+			}}
+		System.out.println(m);
+	return m;
+}
 
+private void attackTerritory(List<Territories> attackTrrtsList,List<Territories> defendTrrtrsList,String beingAttackedTerritory, String contestant) {
+	for (Territories territory : defendTrrtrsList) {
+		if(territory.getAssignName()==beingAttackedTerritory)
+		{
+			//currentterritory.getBatallion()
+		}
+	}
+	
+}
+
+private int[] rollDice(int n) {
+	int m = 0;	
+	int[] DiceResult = null;
+	Scanner sc=new Scanner(System.in);
+	switch(n)
+	{
+	case 2: System.out.println("Roll the dice you can only roll maximum of " +(n-1)+"dice hence you cannot choose");
+	DiceResult=anyNumber(1);
+	break;
+	
+	case 3:System.out.println("Roll the dice you can only roll maximum of " +(n-1)+"dice. So How many you want to choose");
+	m=sc.nextInt();
+	DiceResult=anyNumber(m);
+	break;
+	
+	case 4:System.out.println("Roll the dice you can only roll maximum of " +(n-1)+"dice. So How many you want to choose");
+	m=sc.nextInt();
+	DiceResult=anyNumber(m);
+	break;
+	}
+	
+	return DiceResult;
+}
+
+private List<Territories> getDefendingTerritory(Territories territory) {
+	// TODO Auto-generated method stub
+	List<Territories> defendingTerritories = territory.getTouchingTrrtrsExpand();
+	return defendingTerritories;
+}
+private int[] anyNumber(int i) {
+	
+	int allresultOfDice[] = new int[i];
+	for(int j=0;j<i;j++) {
+	allresultOfDice[j] = (int) (Math.random() * i);
+	}
+	
+	return allresultOfDice;
+	
 }
 
 
@@ -316,11 +415,16 @@ private boolean isContestantBatallionattacked(List<Contestant> contestantList) {
 private void contestantAssignmentToTerritories(Contestant currentContestant) {
 	if (currentContestant.getBatallion() > 0) {
 		Territories territory = currentContestant.getcontestantTrrtrlist()
-				.get(anyNumber(currentContestant.getcontestantTrrtrlist().size() - 1));
+				.get(anynumber(currentContestant.getcontestantTrrtrlist().size() - 1));
 		territory.setBatallion(territory.getBatallion() + 1);
 		currentContestant.setBatallion(currentContestant.getBatallion() - 1);
 	}
 	
+}
+
+private int anynumber(int i) {
+	// TODO Auto-generated method stub
+	return (int) ((Math.random() * i)+0) ;
 }
 
 /**
@@ -328,10 +432,7 @@ private void contestantAssignmentToTerritories(Contestant currentContestant) {
  * @param i 
  * @return the int
  */
-private int anyNumber(int i) {
-	return (int) (Math.random() * i) + 0;
-	
-}
+
 
 /**
  * Reinforce phase.
