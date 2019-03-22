@@ -273,15 +273,15 @@ public void attackPhase(List<Territories> attackTrrtsList, List<Territories> def
 			  int n=territory.getBatallion();
 		
 				System.out.println("Attacker's Turn");
-				int[] attackerDiceValue=rollDice(n);
+				int[] attackerDiceValue=rollDiceAttacker(n);
 				int m=defendingDiceCalculation(getDefendingTerritory(territory), beingAttackedTerritory);
 				System.out.println("Defender's Turn");
-				int[] defenderDiceValue=rollDice(m);
+				int[] defenderDiceValue=rollDiceDefender(m);
 				for(int i=0;i<attackerDiceValue.length;i++) {
 					for(int j=0;j<defenderDiceValue.length;j++) {
 						if(attackerDiceValue[i]>defenderDiceValue[j]) {
 							attackTerritory(defendTrrtrsList, attackTrrtsList, beingAttackedTerritory,Contestant);
-							placeBatallion(currentContestant, attackTrrtsList, contestantsList);
+							//placeBatallion(currentContestant, attackTrrtsList, contestantsList);
 						}
 						}
 							
@@ -292,6 +292,31 @@ public void attackPhase(List<Territories> attackTrrtsList, List<Territories> def
 			}
 		}
 	}					
+private int[] rollDiceDefender(int m) {
+	int m1 = 0;	
+	int[] DiceResult = null;
+	Scanner sc=new Scanner(System.in);
+	switch(m)
+	{
+	case 2: System.out.println("Roll the dice you can only roll maximum of " +(m-1)+"dice hence you cannot choose");
+	DiceResult=anyNumber(1);
+	break;
+	
+	case 3:System.out.println("Roll the dice you can only roll maximum of " +(m-1)+"dice. So How many you want to choose");
+	m1=sc.nextInt();
+	DiceResult=anyNumber(m1);
+	break;
+	
+	default:System.out.println("Roll the dice you can only roll maximum of 2 dice. So How many you want to choose");
+	m1=sc.nextInt();
+	DiceResult=anyNumber(m1);
+	break;
+	}
+	
+	return DiceResult;
+
+}
+
 private int defendingDiceCalculation(List<Territories> defendTrrtrsList,String beingAttackedTerritory) {
 	// TODO Auto-generated method stub
 	int m=0;
@@ -315,7 +340,7 @@ private void attackTerritory(List<Territories> attackTrrtsList,List<Territories>
 	
 }
 
-private int[] rollDice(int n) {
+private int[] rollDiceAttacker(int n) {
 	int m = 0;	
 	int[] DiceResult = null;
 	Scanner sc=new Scanner(System.in);
