@@ -459,16 +459,15 @@ public void reinforcePhase(ObservableList<Territories> territoryList, Territorie
  * @param gameConsole
  *            gameConsole
  */
-/*public void fortificationPhase(ListView<Territories> selectedTerritory, ListView<Territories> adjTerritory) {
-	boolean isFortificationDone = currentContestant.getStrategy().fortificationPhase(selectedTerritory, adjTerritory, currentContestant);
+ public void fortificationPhase(ListView<Territories> selectedTerritory, ListView<Territories> adjTerritory) {
+	boolean isFortificationDone = currentContestant.getGamePlan().fortificationPhase(selectedTerritory, adjTerritory, currentContestant);
 
 	if (isFortificationDone && contestantsList.size() > 1) {
 		setChanged();
 		notifyObservers("Reinforcement");
 	}
 
-}*/
-
+}
 /**
  * Check if there are armies to be fortified.
  * 
@@ -478,8 +477,8 @@ public void reinforcePhase(ObservableList<Territories> territoryList, Territorie
  *            current player playing
  * @return isFortificationAvaialble is fortification of armies available.
  */
-/*public boolean isFortificationPhaseValid(Map map, Contestant pPlay) {
-	boolean isFortificationAvaialble = pPlay.getStrategy().isFortificationPhaseValid(map, pPlay);
+ public boolean isFortificationPhaseValid(Map map, Contestant pPlay) {
+	boolean isFortificationAvaialble = pPlay.getGamePlan().isFortificationPhaseValid(map, pPlay);
 	if (isFortificationAvaialble) {
 		setChanged();
 		notifyObservers("Fortification");
@@ -488,7 +487,7 @@ public void reinforcePhase(ObservableList<Territories> territoryList, Territorie
 		notifyObservers("noFortificationMove");
 	}
 	return isFortificationAvaialble;
-}*/
+}
 
 /**
  * Check if player has valid attack move
