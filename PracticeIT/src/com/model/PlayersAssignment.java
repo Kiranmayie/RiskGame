@@ -253,7 +253,7 @@ public Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
  */
 public void attackPhase(ListView<Territories> attackTrrtsList, ListView<Territories> defendTrrtrsList)  {
 	currentContestant.getGamePlan().attackPhase(attackTrrtsList, defendTrrtrsList,this );
-
+// attack\phase
 }
 
 
