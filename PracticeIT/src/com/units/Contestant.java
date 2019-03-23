@@ -30,7 +30,8 @@ public class Contestant implements Serializable {
 	
 	/** The game plan. */
 	GamePlan gamePlan;
-	//List<Cards> contestantCards;
+	
+	int count;
 
 	
 	/**
@@ -152,5 +153,16 @@ public class Contestant implements Serializable {
 		this.gamePlan=gamePlan;
 
 	}
+	
+	
+	public int getCardsInPocket() {
+		
+		return count;
 	}
+	public void setCardsInPocket(int count) {
+		// TODO Auto-generated method stub
+		this.count=count;
+	}
+}
+	
 	

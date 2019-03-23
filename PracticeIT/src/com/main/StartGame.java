@@ -79,7 +79,7 @@ public class StartGame implements EventHandler<ActionEvent>  {
 			 }
 				 else if( selector == 2)  {
 					 
-					 pa.attackPhase(contestant.getContestantTrrtrlist(),contestant.getContestantTrrtrlist());
+					 pa.attackPhase(contestant.getContestantTrrtrlist(),contestant.getContestantTrrtrlist(), contestant);
 				 }
 	}
 	}
