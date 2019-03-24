@@ -569,7 +569,6 @@ public void reinforcePhase(ObservableList<Territories> territoryList, Territorie
  */
  public void fortificationPhase(ListView<Territories> selectedTerritory, ListView<Territories> adjTerritory) {
 	boolean isFortificationDone = currentContestant.getGamePlan().fortificationPhase(selectedTerritory, adjTerritory, currentContestant);
-
 	if (isFortificationDone && contestantsList.size() > 1) {
 		setChanged();
 		notifyObservers("Reinforcement");
@@ -607,15 +606,15 @@ public void reinforcePhase(ObservableList<Territories> territoryList, Territorie
  * 
  * @return hasAValidMove true if player has valid move else false
  */
-/*public boolean playerHasAValidAttackMove(ListView<Territory> territories, TextArea gameConsole) {
-	boolean hasValidAttackMove = playerPlaying.getStrategy().playerHasAValidAttackMove(territories, gameConsole);
-	if (!hasValidAttackMove) {
+ 	public boolean attackMoveAvailable(ListView<Territories> territories) {
+	boolean attackMove = currentContestant.getGamePlan().attackMoveAvailable(territories);
+	if (!attackMove) {
 		setChanged();
-		notifyObservers("checkIfFortificationPhaseValid");
+		notifyObservers("fortificationPhaseIsAvailable");
 	}
 
-	return hasValidAttackMove;
-}*/
+	return attackMove;
+}
 /**
  * Fortify phase.
  * @param selectedTerritory 
