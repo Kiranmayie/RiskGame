@@ -47,6 +47,12 @@ public class PlayersAssignment  extends Observable implements Observer, Serializ
 	
 	/** The Constant SIX_PLAYER_ARMIES. */
 	public static final Integer SIX_PLAYER_ARMIES = 20;
+
+	private static final String INFANTRY = null;
+
+	private static final String CAVALRY = null;
+
+	private static final String ARTILLERY = null;
 	
 	/** The contestants list. */
 	List<Contestant> contestantsList=new ArrayList<>();
@@ -424,15 +430,57 @@ public int attackTerritory(List<Territories> defendTrrtrsList,String beingAttack
 					count++;
 					territory.setBatallion(m1);
 					currentContestant.setCardsInPocket(count);
-					System.out.println(currentContestant.getCardsInPocket());
-				}
-				
+					
+					String cardtype=Cards.selectCards();
+					System.out.println("The player has been assigned"+currentContestant.getCardsInPocket()+"of type" +cardtype);
+					if(validTrade(cardtype)) reinforceWithCards(count);
+									}
+					
 				currentContestant.setBatallion(currentBatallion);
 				System.out.println("The Attacker after attack  has "+currentContestant.getBatallion()+" Batallion left");
+				
 
 		}
 	}
 	return count;
+	
+}
+
+private boolean validTrade(String cardtype) {
+	int infantry = 0;
+	int cavalry = 0;
+	int artillery = 0;
+	switch(cardtype)
+	{
+	case "INFANTRY": infantry++;
+	break;
+	case "CAVALRY": cavalry++;
+	break;
+	case "ARTILLERY": artillery++;
+	break;
+	
+	}
+	
+	if ((infantry == 1 && cavalry == 1 && artillery == 1) || infantry == 3 || cavalry == 3 || artillery == 3) {
+		return true;
+	}
+	else return false;
+}
+
+
+
+private void reinforceWithCards(int counter) {
+	if(currentContestant.getCardsInPocket()>=3)
+	{	
+		System.out.println("You have 3 or more cards. please exchange them with armies");
+		int currentBatallion=currentContestant.getBatallion();
+		
+		currentBatallion=currentBatallion+5;
+		currentContestant.setBatallion(currentBatallion);
+		int count=currentContestant.getCardsInPocket();
+		count=count-3;
+		currentContestant.setCardsInPocket(count);;
+	}
 	
 }
 

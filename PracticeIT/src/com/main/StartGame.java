@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import com.controller.StartGameController;
 import com.model.PlayersAssignment;
-
+import com.model.StartUpPhase;
 import com.units.Contestant;
 import com.units.Continents;
 import com.units.Map;
@@ -36,6 +36,7 @@ public class StartGame implements EventHandler<ActionEvent>  {
 	
 	/** The selected territory list. */
 	List<Territories> selectedTerritoryList;
+	private StartUpPhase sup;
 
 	/* (non-Javadoc)
 	 * @see javafx.event.EventHandler#handle(javafx.event.Event)
@@ -61,26 +62,6 @@ public class StartGame implements EventHandler<ActionEvent>  {
 				selectedTerritoryList=pa.executingCurrentContestant();	
 				//System.out.println(selectedTerritoryList);
 				 pa.loadBatallion(selectedTerritoryList);
-				 for(Contestant contestant:contestants) {
-				 //System.out.println(contestant.getcontestantTrrtrlist().size());
-				contestant= pa.getReinforceBatallion(enhancedMap,contestant);
-				System.out.println("Reinforcement has begun as per the rules:- "+contestant.getContestantName() + " "+contestant.getBatallion() + " armies left.");
-				 
-				 
-				 System.out.println("Player "+contestant.getContestantName()+" :- Please select the following optons:- \n" +"Option 1: Getting and Placing New Armies \n"+"Option 2: Attacking \n"+ "Option 3: Fortifying");
-				 Scanner sc=new Scanner(System.in);
-				 int selector=sc.nextInt();
-				 if(selector == 1) {
-					 
-					 //pa.territoryAssignToContestant(enhancedMap,contestants); 
-						selectedTerritoryList=pa.executingCurrentContestant();	
-						//System.out.println(selectedTerritoryList);
-						 pa.loadBatallion(selectedTerritoryList);
-			 }
-				 else if( selector == 2)  {
-					 
-					 pa.attackPhase(contestant.getContestantTrrtrlist(),contestant.getContestantTrrtrlist(), contestant);
-				 }
-	}
+				 sup.StartUp();
 	}
 }

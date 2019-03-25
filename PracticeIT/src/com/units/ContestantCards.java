@@ -1,13 +1,15 @@
 package com.units;
 
 import java.io.Serializable;
+
+
 /**
  * The Class ContestantCards.
  */
 public class ContestantCards implements Serializable{
 	
 	/** The contestant card type. */
-	ContestantcardType contestantCardType;
+	
 	
 	/** The trrtry. */
 	private Territories trrtry;
@@ -16,9 +18,6 @@ public class ContestantCards implements Serializable{
 	 * Instantiates a new contestant cards.
 	 * @param contestantCardType the contestant card type
 	 */
-	public ContestantCards(ContestantcardType contestantCardType) {
-		this.contestantCardType = contestantCardType;
-	}
 	
 	/**
 	 * Gets the trrtrs.
@@ -57,14 +56,5 @@ public class ContestantCards implements Serializable{
 	}
 
 
-
-	/**
-	 * The Enum ContestantcardType.
-	 */
-	public enum ContestantcardType {
-			INFANTRY, 
-			CAVALRY, 
-			ARTILLERY
-	}
 
 }
