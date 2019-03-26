@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 
 /**
- * The Class ContestantCards.
+ * The Class ContestantCards is used to populate the fields related to contestantcards being hold by particular contestant.
  */
 public class ContestantCards implements Serializable{
 	

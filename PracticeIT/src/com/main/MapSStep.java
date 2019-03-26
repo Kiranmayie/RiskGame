@@ -14,7 +14,7 @@ import com.units.Territories;
 import javafx.stage.FileChooser;
 import com.model.AuthenticatingEnhanedmap;
 /**
- * The Class MapSStep.
+ * The Class MapSStep is the second step towards map selection and leading to further validation.
  */
 public class MapSStep {
 	

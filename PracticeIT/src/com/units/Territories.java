@@ -77,10 +77,10 @@ public class Territories implements Serializable {
 	 * Gets the assign name.
 	 * @return the assign name
 	 */
+	
 	public String getAssignName() {
 		return assignName;
 	}
-	
 	/**
 	 * Sets the assign name.
 	 * @param assignName 
