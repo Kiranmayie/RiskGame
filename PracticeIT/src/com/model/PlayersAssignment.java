@@ -264,6 +264,7 @@ public Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
  * @param defendTrrtrsList
 
  */
+
 public void attackPhase(List<Territories> attackTrrtsList, List<Territories> defendTrrtrsList, Contestant currentContestant)  {
 	System.out.println("Select the attacking territory, defending territory and player you want to attack");
 	System.out.println(attackTrrtsList);
@@ -547,7 +548,11 @@ private int[] anyNumber(int i) {
 	}
 	
 	return allresultOfDice;
-	
+
+public void attackPhase(ListView<Territories> attackTrrtsList, ListView<Territories> defendTrrtrsList)  {
+	currentContestant.getGamePlan().attackPhase(attackTrrtsList, defendTrrtrsList,this );
+// attack\phase
+
 }
 
 
