@@ -8,11 +8,10 @@ import com.units.Map;
 import com.units.Territories;
 
 public class StartUpPhase {
-	private List<Contestant> contestants;
-	public static Map enhancedMap;
-	List<Territories> selectedTerritoryList;
+	
 	 private PlayersAssignment pa;
-	 public void StartUp() {
+	 public void StartUp(List<Contestant> contestants, Map enhancedMap, List<Territories> selectedTerritoryList) {
+		 PlayersAssignment pa=new PlayersAssignment();
 		if(contestants.size()>1) {
 		for(Contestant contestant:contestants) {
 		 //System.out.println(contestant.getcontestantTrrtrlist().size());
@@ -35,7 +34,7 @@ public class StartUpPhase {
 			 pa.attackPhase(contestant.getContestantTrrtrlist(),contestant.getContestantTrrtrlist(), contestant);
 		 }
 }
-		StartUp();
+		StartUp(contestants, enhancedMap, selectedTerritoryList);
 }
 	 }
 }
