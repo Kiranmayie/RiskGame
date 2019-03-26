@@ -16,6 +16,7 @@ import com.units.Territories;
 import Patterns.Observable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+// TODO: Auto-generated Javadoc
 /**
  * The Class StartGame implements EventHandler, Inititates the Game Play.
  */
@@ -39,6 +40,7 @@ public class StartGame implements EventHandler<ActionEvent>  {
 	List<Territories> selectedTerritoryList;
 
 	
+	/** The sup. */
 	private StartUpPhase sup;
 
 

@@ -5,19 +5,35 @@ import com.model.StartUpPhase;
 import Patterns.Observable;
 import Patterns.Observer;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayersDominationView.
+ */
 public class PlayersDominationView implements Observer{
 
+	/** The obs. */
 	public Observable obs;
 	
-	 public PlayersDominationView(Observable obs){
+	 /**
+ 	 * Instantiates a new players domination view.
+ 	 *
+ 	 * @param obs the obs
+ 	 */
+ 	public PlayersDominationView(Observable obs){
 		 Observer obs1=new PlayersDominationView();
 		 //System.out.println(obs1);
 		 this.obs=obs;
 		 obs.registerObserver(obs1);
 	 }
 	
-	 public PlayersDominationView() {}
+	 /**
+ 	 * Instantiates a new players domination view.
+ 	 */
+ 	public PlayersDominationView() {}
 	 
+	/* (non-Javadoc)
+	 * @see Patterns.Observer#update(java.lang.Object)
+	 */
 	@Override
 	public void update(Object arg1) {
 		

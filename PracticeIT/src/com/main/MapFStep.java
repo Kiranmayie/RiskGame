@@ -23,6 +23,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class MapFStep implements Eventhandler, Authenticates the map.
  * The Class MapFStep is the first step towards map loading or creation.
@@ -54,9 +55,11 @@ public class MapFStep implements EventHandler<ActionEvent>{
 			e.printStackTrace();
 		}
 	}
+	
 	/**
 	 * Exit.
-	 * @param sc 
+	 *
+	 * @param sc the sc
 	 * @return the button
 	 */
 	public static Button exit(Scene sc) {
@@ -64,9 +67,11 @@ public class MapFStep implements EventHandler<ActionEvent>{
 		extButton.setOnAction(e -> Platform.exit());
 		return extButton;
 	}
+	
 	/**
-	 * Creating New Map
-	 * @param sc 
+	 * Creating New Map.
+	 *
+	 * @param sc the sc
 	 * @return the button
 	 */
 	public static Button creatingNewMap(Scene sc) {
@@ -76,8 +81,9 @@ public class MapFStep implements EventHandler<ActionEvent>{
 	}
 	
 	/**
-	 * Loading and Editing Map
-	 * @param sc 
+	 * Loading and Editing Map.
+	 *
+	 * @param sc the sc
 	 * @return the button
 	 */
 	public static Button loadingAndEditingMap(Scene sc) {
