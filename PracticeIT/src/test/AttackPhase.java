@@ -1,11 +1,12 @@
+/**
+ * 
+ */
 package test;
 
-import static org.junit.Assert.*;
 
-import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -16,9 +17,15 @@ import com.units.Contestant;
 import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
-public class Reinforce {
 
-	
+
+
+/**
+ * @author k_bethi
+ *
+ */
+
+public class AttackPhase {
 static PlayersAssignment playersAssignment;
 	
 	/**
@@ -65,6 +72,9 @@ static PlayersAssignment playersAssignment;
 	 */
 	static List<Contestant> listOfcontestant;
 	
+	/**
+	 * Test method for {@link com.model.PlayersAssignment#attackPhase(java.util.List, java.util.List, com.units.Contestant)}.
+	 */
 	@BeforeClass
 	public static void beforeClass() {
 		playersAssignment = new PlayersAssignment();
@@ -94,19 +104,46 @@ static PlayersAssignment playersAssignment;
 		listOfcontestant.add(contestant);
 	}
 	@Test
-	public final void testGetReinforceBatallionMapContestant() {
-	
-			contestant.setBatallion(8);
-			playersAssignment.territoryAssignToContestant(map, listOfcontestant);
-			territory1.setContestant(contestant);
-			playersAssignment.territoryAssignToContestant(map, listOfcontestant);
-			territory2.setContestant(contestant);;
-			Contestant returningContestant = playersAssignment.getReinforceBatallion(map, contestant);
-			Assert.assertEquals(returningContestant.getBatallion(), 11);
-		}
-
-	
-	
+	public final void testAttackPhaseListOfTerritoriesListOfTerritoriesContestant() {
+		fail("Not yet implemented"); // TODO
 	}
 
+	/**
+	 * Test method for {@link com.model.PlayersAssignment#fortificationPhase(java.util.List, java.util.List, com.units.Contestant)}.
+	 */
+	@Test
+	public final void testFortificationPhase() {
+		fail("Not yet implemented"); // TODO
+	}
 
+	/**
+	 * Test method for {@link com.model.PlayersAssignment#isFortificationPhaseValid(com.units.Map, com.units.Contestant)}.
+	 */
+	@Test
+	public final void testIsFortificationPhaseValid() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link com.model.PlayersAssignment#isContestantLost(java.util.List)}.
+	 */
+	@Test
+	public final void testIsContestantLost() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link com.model.PlayersAssignment#isContestantWon(java.util.List)}.
+	 * @return 
+	 */
+	@Test
+	public final void testIsContestantWon() {
+		boolean ContestantWon = false;
+		if (listOfcontestant.size() == 1) {
+			ContestantWon = true;
+		}
+		Assert.assertEquals(isContestantWon(listOfcontestant contestant), true);
+		
+	}
+
+}
