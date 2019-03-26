@@ -5,6 +5,14 @@ import com.model.StartUpPhase;
 import Patterns.Observable;
 import Patterns.Observer;
 
+/**
+ * @author Sathwik
+ * @author Sidharth Sharma
+ * @author Kiran Mayie
+ * @author Amandeep Kaur khosa
+ * @author Pritpal Kaur
+ *
+ */
 public class PhaseView implements Observer {
 
 	 public Observable obs;

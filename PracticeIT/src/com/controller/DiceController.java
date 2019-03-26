@@ -8,7 +8,11 @@ import javafx.fxml.Initializable;
 /**
  * DiceRollController controller to control all the
  * 
- * @author Gurpreet Singh
+ * @author Sathwik
+ * @author Sidharth Sharma
+ * @author Kiran Mayie
+ * @author Pritpal Kaur
+ * @author Amandeep Kaur Khosa
  * @version 1.0.0
  */
 public class DiceController implements Initializable {
