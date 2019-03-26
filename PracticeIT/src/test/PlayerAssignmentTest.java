@@ -60,6 +60,8 @@ public class PlayerAssignmentTest {
 	 * The @territoryListView
 	 */
 	static List<Territories> territoryList;
+	static List<Territories> attackTerritoryList;
+	static List<Territories> defendTerritoryList;
 	
 	static List<Contestant> contestantList;
 	/**
@@ -122,6 +124,8 @@ public class PlayerAssignmentTest {
 		territoryList.getItems().add(territory2);
 */
 		playerGamePhase.setCurrentContestant(contestant);
+		String[] attackTerritoryList = {"Alaska","Alberta","Quebec"};
+		String[] defendTerritoryList = {"New Guinea","Egypt","Greenland" };
 	}
 	
 	@Test
@@ -150,6 +154,29 @@ public class PlayerAssignmentTest {
 		listOfPlayers.add(new Contestant(1));
 		boolean actualResult = playerGamePhase.isContestantWon(listOfPlayers);
 		Assert.assertTrue(actualResult);
+	}
+	
+	/*@Test
+	public final void testFortificationPhase() {
+		territory1.setContestant(contestant);
+		territory1.setBatallion(2);
+		territory2.setContestant(contestant);
+		boolean ifPhaseValid = playerGamePhase.fortificationPhase(attackTerritoryList,defendTerritoryList,contestant);
+		Assert.assertEquals(true, ifPhaseValid);
+		
+	}*/
+	
+	@Test
+	public void checkIfPlayersArmiesExhausted() {
+		contestantList = new ArrayList<>();
+		contestantList.add(new Contestant(0));
+		contestantList.get(0).setBatallion(0);
+		contestantList = new ArrayList<>();
+		contestantList.add(new Contestant(0));
+		contestantList.get(0).setBatallion(0);
+		
+		//System.out.println("Hello");
+		Assert.assertEquals(playerGamePhase.checkIfPlayersArmiesExhausted(contestantList), true);
 	}
 	
 

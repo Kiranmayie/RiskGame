@@ -333,16 +333,17 @@ public void attackPhase(List<Territories> attackTrrtsList, List<Territories> def
 					}	
 				
 
-	public void fortificationPhase(List<Territories> selectedTerritoryList, List<Territories> adjancentTerritory, Contestant currentContestant) {
+	public boolean fortificationPhase(List<Territories> selectedTerritoryList, List<Territories> adjancentTerritory, Contestant currentContestant) {
 		Scanner a = new Scanner(System.in);
-		
 		String Territory1 = " ";
 		String Territory2=" ";
 		System.out.println(selectedTerritoryList);
-		
+		boolean count = true;
+		System.out.println(adjancentTerritory);
 		System.out.println("Select the territory you want to move the armies from");
 		Territory1=a.next();
 		Territory2=a.next();
+		
 		System.out.println("You have selected to move your armies from "+Territory1 + "to" + Territory2);
 		for(Territories territory:selectedTerritoryList) {
 			System.out.println(getDefendingTerritory(territory));
@@ -354,8 +355,9 @@ public void attackPhase(List<Territories> attackTrrtsList, List<Territories> def
 			currentBatallion1=currentBatallion1+f_army1;
 			int currentBatallion2=((Contestant) getDefendingTerritory(territory)).getBatallion();
 			currentBatallion2=currentBatallion2-f_army1;}
-			
+			count = false;
 			   }
+		return count;
 		}
 		
 		
@@ -475,6 +477,25 @@ public int attackTerritory(List<Territories> defendTrrtrsList,String beingAttack
 	return count;
 	
 }
+
+
+public boolean checkIfPlayersArmiesExhausted(List<Contestant> players) {
+	
+	//System.out.println("Hello");
+	int count = 0;
+
+	for (Contestant player : players) {
+		if (player.getBatallion() == 0) {
+			count++;
+		}
+	}
+	if (count == players.size()) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 /*private boolean isAllTerritoriesConquered() {
 	Contestant lost = null;
 	for (Contestant contestant : currentContestant) {
