@@ -4,10 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import com.model.GamePlan;
-
-// TODO: Auto-generated Javadoc
 /**
- * The Class Contestant.
+ * The Class Contestant immplements Serializable .
  */
 public class Contestant implements Serializable {
 	
@@ -32,55 +30,49 @@ public class Contestant implements Serializable {
 	
 	/** The game plan. */
 	GamePlan gamePlan;
-	//List<Cards> contestantCards;
+	
+	int count;
+
+	private int timer;
 
 	
 	/**
 	 * Instantiates a new contestant.
-	 *
-	 * @param contestantId the contestant id
+	 * @param contestantId 
 	 */
 	public Contestant(int contestantId){
 		this.contestantId=contestantId;
 		this.contestantTrrtrlist= new ArrayList();
 	
 	}
-	
-	
 	/**
 	 * Gets the contestant id.
-	 *
 	 * @return the contestant id
 	 */
 	public int getContestantId(){
 		return contestantId;
 	}
 	
-	
 	/**
 	 * Sets the contestant id.
-	 *
-	 * @param contestantId the new contestant id
+	 * @param contestantId 
 	 */
 	public void setContestantId(int contestantId){
 		this.contestantId=contestantId;
 	}
 	
 	
+	
 	 /**
  	 * Gets the contestant name.
- 	 *
  	 * @return the contestant name
  	 */
  	public String getContestantName(){
 		 return contestantName;
 	 }
-	 
-	 
 	 /**
  	 * Sets the contestant name.
- 	 *
- 	 * @param contestantName the new contestant name
+ 	 * @param contestantName 
  	 */
  	public void setContestantName(String contestantName){
 		 this.contestantName=contestantName;
@@ -89,7 +81,6 @@ public class Contestant implements Serializable {
 	 
 	 /**
  	 * Gets the batallion.
- 	 *
  	 * @return the batallion
  	 */
  	public int getBatallion() {
@@ -109,18 +100,15 @@ public class Contestant implements Serializable {
 	
 	/**
 	 * Gets the contestant trrtrlist.
-	 *
 	 * @return the contestant trrtrlist
 	 */
 	public List<Territories> getcontestantTrrtrlist(){
 		return contestantTrrtrlist;
 	}
 	
-	
 	/**
 	 * Sets the contestant trrtrlist.
-	 *
-	 * @param contestantTrrtrlist the new contestant trrtrlist
+	 * @param contestantTrrtrlist 
 	 */
 	public void setcontestantTrrtrlist(List<Territories> contestantTrrtrlist){
 		this.contestantTrrtrlist=contestantTrrtrlist;
@@ -128,7 +116,6 @@ public class Contestant implements Serializable {
 	
 	/**
 	 * Gets the contestant trrtrlist.
-	 *
 	 * @return the contestant trrtrlist
 	 */
 	public List<Territories> getContestantTrrtrlist() {
@@ -150,11 +137,17 @@ public class Contestant implements Serializable {
 		Contestant contestant = (Contestant) object;
 		return contestant.getContestantId() == contestantId;
 	}
+	
+	public GamePlan getPlan() {
+		return gamePlan;
+	}
 
+	public void setPlan(GamePlan strategy) {
+		this.gamePlan = gamePlan;
+	}
 
 	/**
 	 * Gets the game plan.
-	 *
 	 * @return the game plan
 	 */
 	public GamePlan getGamePlan() {
@@ -164,19 +157,30 @@ public class Contestant implements Serializable {
 	
 	/**
 	 * Sets the game plan.
-	 *
 	 * @param gamePlan the new game plan
 	 */
 	public void setGamePlan(GamePlan gamePlan) {
 		this.gamePlan=gamePlan;
 
 	}
-
-
-	public void add(Contestant contestant) {
-		// TODO Auto-generated method stub
-		
-	}
 	
+	
+	public int getCardsInPocket() {
+		
+		return count;
+	}
+	public void setCardsInPocket(int count) {
+		// TODO Auto-generated method stub
+		this.count=count;
+	}
+	public void setTimer(int timer) {
+		this.timer=timer+1;
 		
 	}
+	public int getTimer() {
+		
+		return timer;
+	}
+}
+	
+	
