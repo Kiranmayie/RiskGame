@@ -11,7 +11,6 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import com.controller.StartGameController;
-import com.risk.entity.Player;
 import com.sun.xml.internal.bind.v2.runtime.Name;
 import com.units.Contestant;
 import com.units.Territories;
@@ -152,7 +151,7 @@ public List<Contestant> createContestant(int noOfPlayer, List<Contestant> contes
  */
 
 
-public List<Continents> getContinentsOwnedByPlayer(Map map, Contestant currentContestant) {
+public static List<Continents> getContinentsOwnedByPlayer(Map map, Contestant currentContestant) {
 
 	List<Continents> cntnts = new ArrayList<>();
     //System.out.println( map.getContinents());
@@ -236,7 +235,7 @@ public void setContestantsList(List<Contestant> contestantsList) {
  * @param currentContestant 
  * @return the reinforce batallion
  */
-public Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
+public static Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
 	int presentBatallion = currentContestant.getBatallion();
 	int trrtrSum =  currentContestant.getcontestantTrrtrlist().size();
 	if (trrtrSum < 9) {
@@ -264,6 +263,7 @@ public Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
  * @param defendTrrtrsList
 
  */
+
 public void attackPhase(List<Territories> attackTrrtsList, List<Territories> defendTrrtrsList, Contestant currentContestant)  {
 	System.out.println("Select the attacking territory, defending territory and player you want to attack");
 	System.out.println(attackTrrtsList);
@@ -308,10 +308,10 @@ public void attackPhase(List<Territories> attackTrrtsList, List<Territories> def
 									{
 										attackPhase(attackTrrtsList, defendTrrtrsList, currentContestant);
 									}
-							/*else
+							else
 							{
-								fortificationPhase();
-							}*/
+								fortificationPhase(attackTrrtsList, defendTrrtrsList, currentContestant);
+							}
 							}
 				else if(attackerDiceValue[Attackerdice-1]==defenderDiceValue[DefenderDice-1]||attackerDiceValue[Attackerdice-1]<defenderDiceValue[DefenderDice-1])
 				{
@@ -332,7 +332,37 @@ public void attackPhase(List<Territories> attackTrrtsList, List<Territories> def
 							
 					}	
 				
-					
+
+	public boolean fortificationPhase(List<Territories> selectedTerritoryList, List<Territories> adjancentTerritory, Contestant currentContestant) {
+		Scanner a = new Scanner(System.in);
+		String Territory1 = " ";
+		String Territory2=" ";
+		System.out.println(selectedTerritoryList);
+		boolean count = true;
+		System.out.println(adjancentTerritory);
+		System.out.println("Select the territory you want to move the armies from");
+		Territory1=a.next();
+		Territory2=a.next();
+		
+		System.out.println("You have selected to move your armies from "+Territory1 + "to" + Territory2);
+		for(Territories territory:selectedTerritoryList) {
+			System.out.println(getDefendingTerritory(territory));
+			if(Territory1.equals(selectedTerritoryList) && Territory2.equals(getDefendingTerritory(territory))) {
+				int size=getDefendingTerritory(territory).size()-1;
+		   System.out.println("Enter armies to fortify(max " +size + ") :");
+			int f_army1=a.nextInt();
+			int currentBatallion1=territory.getBatallion();
+			currentBatallion1=currentBatallion1+f_army1;
+			int currentBatallion2=((Contestant) getDefendingTerritory(territory)).getBatallion();
+			currentBatallion2=currentBatallion2-f_army1;}
+			count = false;
+			   }
+		return count;
+		}
+		
+		
+
+
 private int DefendTerritory(List<Territories> attackTrrtsList, String attackingTerritory, String contestant) {
 int count=0;
 	
@@ -448,7 +478,25 @@ public int attackTerritory(List<Territories> defendTrrtrsList,String beingAttack
 	
 }
 
-private boolean isAllTerritoriesConquered() {
+
+public boolean checkIfPlayersArmiesExhausted(List<Contestant> players) {
+	
+	//System.out.println("Hello");
+	int count = 0;
+
+	for (Contestant player : players) {
+		if (player.getBatallion() == 0) {
+			count++;
+		}
+	}
+	if (count == players.size()) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/*private boolean isAllTerritoriesConquered() {
 	Contestant lost = null;
 	for (Contestant contestant : currentContestant) {
 		if (contestant.getAssignedTerritory().isEmpty()) {
@@ -458,8 +506,7 @@ private boolean isAllTerritoriesConquered() {
 	}
 	return playerLost;
 	return false;
-}
-
+}*/
 private boolean validTrade(String cardtype) {
 	int infantry = 0;
 	int cavalry = 0;
@@ -547,7 +594,11 @@ private int[] anyNumber(int i) {
 	}
 	
 	return allresultOfDice;
-	
+}
+public void attackPhase(ListView<Territories> attackTrrtsList, ListView<Territories> defendTrrtrsList)  {
+	currentContestant.getGamePlan().attackPhase(attackTrrtsList, defendTrrtrsList,this );
+// attack\phase
+
 }
 
 
@@ -616,25 +667,7 @@ private int anynumber(int i) {
 	return isFortificationAvaialble;
 }
 
-/**
- * Check if player has valid attack move
- * 
- * @param territories
- *            territories List View
- * @param gameConsole
- *            gameConsole text area
- * 
- * @return hasAValidMove true if player has valid move else false
- */
- 	public boolean attackMoveAvailable(ListView<Territories> territories) {
-	boolean attackMove = currentContestant.getGamePlan().attackMoveAvailable(territories);
-	if (!attackMove) {
-//		setChanged();
-	//	notifyObservers("fortificationPhaseIsAvailable");
-	}
 
-	return attackMove;
-}
 /**
  * Fortify phase.
  * @param selectedTerritory 
@@ -678,7 +711,7 @@ public Contestant isContestantLost(List<Contestant> currentContestant) {
 	for (Contestant contestant : currentContestant) {
 		if (contestant.getcontestantTrrtrlist().isEmpty()) {
 			contestantLost = contestant;
-			//contestant.getContestantCards().addAll(contestantLost.getContestantCards());
+			
 		}
 	}
 	return contestantLost;

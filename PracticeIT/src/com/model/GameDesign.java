@@ -22,7 +22,7 @@ public class GameDesign {
 	 * @param textAres 
 	 * @return the list
 	 */
-	public List<Contestant> contestantAndItsTerrtrs(Map map, List<Contestant> contestants, TextArea textAres) {
+	public List<Contestant> contestantAndItsTerrtrs(Map map, List<Contestant> contestants) {
 		List<Territories> sumTrrtrs = new ArrayList<>();
 		if (map.getContinents() != null) {
 			for (Continents cntnt : map.getContinents()) {

@@ -285,8 +285,7 @@ public class MapBuildController implements Initializable,EventHandler{
 		Territories adjTerritory = joiningAdjTerritories.getSelectionModel().getSelectedItem();
 		Territories territory = null;
 		try {
-			territory = mapMini.addTerritory(map, newTName.getText(), tXaxis.getText(),
-					tYaxis.getText(), adjTerritory, continent);
+			territory = mapMini.addTerritory(map, newTName.getText(), tXaxis.getText(),tYaxis.getText(), adjTerritory, continent);
 		} catch (Exception ex) {
 			System.out.println("Error: Invalid Map");
 			return;
