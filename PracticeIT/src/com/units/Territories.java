@@ -4,16 +4,9 @@ package com.units;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-// TODO: Auto-generated Javadoc
 /**
- * This class is used to implement Serializable.
- * @author Admin
- *
+ * This class is used to implement Serializable and Store, read the Territories.
  */
-
-
-
 public class Territories implements Serializable {
 	
     /** The assign name. */
@@ -65,8 +58,7 @@ public class Territories implements Serializable {
 	}
 	
 	/**
-	 * Gets the touching trrtrs.
-	 *
+	 * Gets the touching Territories.
 	 * @return the touching trrtrs
 	 */
 	public List<String> getTouchingTrrtrs() {
@@ -74,8 +66,7 @@ public class Territories implements Serializable {
 	}
 	
 	/**
-	 * Sets the touching trrtrs.
-	 *
+	 * Sets the touching Territories.
 	 * @param touchingTrrtrs the new touching trrtrs
 	 */
 	public void setTouchingTrrtrs(List<String> touchingTrrtrs) {
@@ -84,7 +75,6 @@ public class Territories implements Serializable {
 	
 	/**
 	 * Gets the assign name.
-	 *
 	 * @return the assign name
 	 */
 	
@@ -93,8 +83,7 @@ public class Territories implements Serializable {
 	}
 	/**
 	 * Sets the assign name.
-	 *
-	 * @param assignName the new assign name
+	 * @param assignName 
 	 */
 	public void setAssignName(String assignName) {
 		this.assignName = assignName;
@@ -102,7 +91,6 @@ public class Territories implements Serializable {
 	
 	/**
 	 * Gets the point X.
-	 *
 	 * @return the point X
 	 */
 	public int getPointX() {
@@ -111,8 +99,7 @@ public class Territories implements Serializable {
 	
 	/**
 	 * Sets the point X.
-	 *
-	 * @param pointX the new point X
+	 * @param pointX 
 	 */
 	public void setPointX(int pointX) {
 		this.pointX = pointX;
@@ -120,7 +107,6 @@ public class Territories implements Serializable {
 	
 	/**
 	 * Gets the point Y.
-	 *
 	 * @return the point Y
 	 */
 	public int getPointY() {
@@ -129,16 +115,14 @@ public class Territories implements Serializable {
 	
 	/**
 	 * Sets the point Y.
-	 *
-	 * @param pointY the new point Y
+	 * @param pointY 
 	 */
 	public void setPointY(int pointY) {
 		this.pointY = pointY;
 	}
 	
 	/**
-	 * Gets the touching trrtrs expand.
-	 *
+	 * Gets the touching Territories expand.
 	 * @return the touching trrtrs expand
 	 */
 	public List<Territories> getTouchingTrrtrsExpand() {
@@ -146,17 +130,15 @@ public class Territories implements Serializable {
 	}
 	
 	/**
-	 * Sets the touching trrtrs expand.
-	 *
-	 * @param touchingTrrtrsExpand the new touching trrtrs expand
+	 * Sets the touching Territories expand.
+	 * @param touchingTrrtrsExpand 
 	 */
 	public void setTouchingTrrtrsExpand(List<Territories> touchingTrrtrsExpand) {
 		this.touchingTrrtrsExpand = touchingTrrtrsExpand;
 	}
 	
 	/**
-	 * Gets the lying in cntnt.
-	 *
+	 * Gets the lying in Continents.
 	 * @return the lying in cntnt
 	 */
 	public Continents getLyingInCntnt() {
@@ -165,10 +147,8 @@ public class Territories implements Serializable {
 
 	/**
 	 * Sets the lying in cntnt.
-	 *
-	 * @param lyingInCntnt the new lying in cntnt
+	 * @param lyingInCntnt 
 	 */
-	//
 	public void setLyingInCntnt(Continents lyingInCntnt) {
 		this.lyingInCntnt = lyingInCntnt;
 	}
@@ -192,7 +172,6 @@ public class Territories implements Serializable {
 	
 	/**
 	 * Sets the connected.
-	 *
 	 * @param isConnected the new connected
 	 */
 	public void setConnected(boolean isConnected) {
@@ -201,7 +180,6 @@ public class Territories implements Serializable {
 	
 	/**
 	 * Checks if is connected.
-	 *
 	 * @return true, if is connected
 	 */
 	public boolean isConnected() {
@@ -210,7 +188,6 @@ public class Territories implements Serializable {
 	
 	/**
 	 * Gets the batallion.
-	 *
 	 * @return the batallion
 	 */
 	public int getBatallion() {
@@ -219,7 +196,6 @@ public class Territories implements Serializable {
 	
 	/**
 	 * Sets the batallion.
-	 *
 	 * @param batallion the new batallion
 	 */
 	public void setBatallion(int batallion) {
@@ -228,7 +204,6 @@ public class Territories implements Serializable {
 	
 	/**
 	 * Get Player.
-	 *
 	 * @return player
 	 */
 	public Contestant getContestant() {
@@ -237,7 +212,6 @@ public class Territories implements Serializable {
 
 	/**
 	 * Set Player.
-	 *
 	 * @param contestant the new contestant
 	 */
 	public void setContestant(Contestant contestant) {
@@ -246,7 +220,6 @@ public class Territories implements Serializable {
 	
 	/**
 	 * Gets the current contestant.
-	 *
 	 * @return the current contestant
 	 */
 	public Contestant getCurrentContestant() {

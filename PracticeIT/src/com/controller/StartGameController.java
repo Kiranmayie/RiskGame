@@ -3,6 +3,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import com.main.MapSStep;
+import com.model.AuthenticatingEnhanedmap;
 import com.model.PlayersAssignment;
 import com.units.Contestant;
 import com.units.Map;
@@ -11,19 +14,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class StartGameController initiates a game and let the contestants play the game in round robin fashion.
  */
 public class StartGameController implements Serializable {
 	
-	/** The map. */
+	/** The map object */
 	private Map map;
 	
-	/** The Player. */
+	/** The Player object */
 	private Object Player;
 	
-	/** The number of players. */
+	/** The number of players object */
 	private Object numberOfPlayers;
 	
 	/** The number contestants. */
@@ -48,16 +50,18 @@ public class StartGameController implements Serializable {
 	 */
 	public static int countingContestants()
 	{ 
+		
+		if(MapSStep.systemExit>=1 || AuthenticatingEnhanedmap.x>0) {
+			 System.exit(0);
+		 }
 		System.out.print("Enter number of contestants");
 		Scanner sc=new Scanner(System.in);
 		numberContestants=sc.nextInt();
 		return numberContestants;   
-	
 	}
 	
 	/**
 	 * Instantiates a new start game controller.
-	 *
 	 * @param enhancedMap the enhanced map
 	 */
 	public StartGameController(Map enhancedMap)  {
@@ -67,9 +71,8 @@ public class StartGameController implements Serializable {
 	
 	/**
 	 * Creates the player.
-	 *
-	 * @param numberOfPlayers the number of players
-	 * @param players the players
+	 * @param numberOfPlayers 
+	 * @param players 
 	 * @return the list
 	 */
 	public static List<Contestant> createPlayer(int numberOfPlayers, List<Contestant> players) {
@@ -80,8 +83,6 @@ public class StartGameController implements Serializable {
 		return players;
 	}
 	
-	
-		
 	
 }
 

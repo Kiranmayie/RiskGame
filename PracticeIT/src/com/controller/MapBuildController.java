@@ -36,119 +36,118 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 //import javafx.scene.text.Text;
 import javafx.stage.Stage;
-// TODO: Auto-generated Javadoc
 /**
  * This class is about populating territories and continents from the world map. 
  */
 public class MapBuildController implements Initializable,EventHandler{
 	
-    /** The map. */
+    /** The Map object */
     private Map map;
          
-	/** The map mini. */
+	/** The Map Miniature object */
 	private MapMiniature mapMini;
 
-	/** The file. */
+	/** The file object */
 	private File file;
 	
-	/** The Author. */
+	/** The Author Textfield */
 	@FXML
 	private TextField Author;
 
-	/** The Warn. */
+	/** The Warn Textfield */
 	@FXML
 	private TextField Warn;
 
-	/** The Scroll. */
+	/** The Scroll Textfield */
 	@FXML
 	private TextField Scroll;
 	
-	/** The Wrap. */
+	/** The Wrap Textfield */
 	@FXML
 	private TextField Wrap;
 	
-	/** The Image. */
+	/** The Image Textfield */
 	@FXML
 	private TextField Image;
 
-	/** The adding continent. */
+	/** Button for adding continent. */
 	@FXML
 	private Button addingContinent;
 	
-	/** The updating continent. */
+	/** Button for updating continent. */
 	@FXML
 	private Button updatingContinent;
 	
-	/** The new cont name. */
+	/** The new continent name TextField */
 	@FXML
 	private TextField newContName;
 
-	/** The new cont value. */
+	/** The new continent value TextField */
 	@FXML
 	private TextField newContValue;
 
-	/** The deleting continent. */
+	/** Button for deleting continent. */
 	@FXML
 	private Button deletingContinent;
 	
-	/** The same continent name. */
+	/** The same continent name Label */
 	@FXML
 	private Label sameContinentName;
 	
-	/** The new T name. */
+	/** The new Territory name TextField */
 	@FXML
 	private TextField newTName;
 
-	/** The t xaxis. */
+	/** The TextField for Territory X-Axis */
 	@FXML
 	private TextField tXaxis;
 
-	/** The t yaxis. */
+	/** The TextField for Territory Y-Axis */
 	@FXML
 	private TextField tYaxis;
 	
 
-	/** The add territory. */
+	/** Button for add territory. */
 	@FXML
 	private Button addTerritory;
 	
-	/** The joining adj territories. */
+	/** ComboBox for joining adjacent territories. */
 	@FXML
 	private ComboBox<Territories> joiningAdjTerritories;
 
-	/** The cntnt list. */
+	/** The List View for Continent List */
 	@FXML
     private ListView<Continents> cntntList;
 	
-	/** The trrtrs list. */
+	/** The List View for Territory List */
 	@FXML
 	private ListView<Territories> trrtrsList;
 
-	/** The adj trrtrs list. */
+	/** The List View for Adjacent Territories List */
 	@FXML
 	private ListView<Territories> adjTrrtrsList;
 
-	/** The removing adj trrtrs. */
+	/** Buttonn for removing adjacent Territories */
 	@FXML
 	private Button removingAdjTrrtrs;
 
-	/** The update terr. */
+	/** Button for update territory. */
 	@FXML
 	private Button updateTerr;
 	
-	/** The del terr. */
+	/** Button for deleting territory */
 	@FXML
 	private Button delTerr;
 	
-	/** The save map. */
+	/** Button For saving map. */
 	@FXML
 	private Button saveMap;
 	
-	/** The exit button. */
+	/** Exit button. */
 	@FXML
 	private Button exitButton;
 	
-	/** The stage. */
+	/** Object for javaFx stage method */
 	Stage stage = new Stage();
 
 	/** The button. */
@@ -177,8 +176,9 @@ public class MapBuildController implements Initializable,EventHandler{
 		}
 		 MapBuildController mvc= new MapBuildController(map, file);
 		 if(AuthenticatingEnhanedmap.x>0) {
-		 System.out.println("Alert: Something is Wrong");;
-		 }
+			 System.out.println("Alert: Something is Wrong. Restart the gaame.");
+			 System.exit(0);
+			 }
 		 else {
 
         stage.setTitle("Map Selection");
@@ -201,7 +201,10 @@ public class MapBuildController implements Initializable,EventHandler{
 		 }
         }
 
-
+	/**
+	 * Enabling TextField
+	 * @param fields 
+	 */
 
 	public static void enable(Control... controls) {
 		for (Control control : controls) {
@@ -210,9 +213,8 @@ public class MapBuildController implements Initializable,EventHandler{
 	}
 
 	/**
-	 * Erasing TF.
-	 *
-	 * @param fields the fields
+	 * Erasing TextField
+	 * @param fields 
 	 */
 	public static void erasingTF(TextField... fields) {
 		for (TextField field : fields) {
@@ -222,8 +224,7 @@ public class MapBuildController implements Initializable,EventHandler{
     
     /**
      * Adding new continent.
-     *
-     * @param event the event
+     * @param event 
      */
     @FXML
     private void addingNewContinent(ActionEvent event) {
@@ -244,8 +245,7 @@ public class MapBuildController implements Initializable,EventHandler{
 
 	/**
 	 * Updating new continent.
-	 *
-	 * @param event the event
+	 * @param event 
 	 */
 	@FXML
 	private void updatingNewContinent(ActionEvent event) {
@@ -257,8 +257,7 @@ public class MapBuildController implements Initializable,EventHandler{
     
 	/**
 	 * Delete continent.
-	 *
-	 * @param event the event
+	 * @param event 
 	 */
 	@FXML
 	private void deleteContinent(ActionEvent event) {
@@ -278,8 +277,7 @@ public class MapBuildController implements Initializable,EventHandler{
 
 	/**
 	 * Adding new territory.
-	 *
-	 * @param event the event
+	 * @param event 
 	 */
 	@FXML
 	private void addingNewTerritory(ActionEvent event) {
@@ -287,8 +285,7 @@ public class MapBuildController implements Initializable,EventHandler{
 		Territories adjTerritory = joiningAdjTerritories.getSelectionModel().getSelectedItem();
 		Territories territory = null;
 		try {
-			territory = mapMini.addTerritory(map, newTName.getText(), tXaxis.getText(),
-					tYaxis.getText(), adjTerritory, continent);
+			territory = mapMini.addTerritory(map, newTName.getText(), tXaxis.getText(),tYaxis.getText(), adjTerritory, continent);
 		} catch (Exception ex) {
 			System.out.println("Error: Invalid Map");
 			return;
@@ -299,9 +296,8 @@ public class MapBuildController implements Initializable,EventHandler{
 	}
 
 	/**
-	 * Removing adjacent trrtrs.
-	 *
-	 * @param event the event
+	 * Removing adjacent Territories.
+	 * @param event 
 	 */
 	@FXML
 	private void removingAdjacentTrrtrs(ActionEvent event) {
@@ -320,7 +316,6 @@ public class MapBuildController implements Initializable,EventHandler{
 
 	/**
 	 * Delete territories.
-	 *
 	 * @param event the event
 	 */
 	@FXML
@@ -356,8 +351,7 @@ public class MapBuildController implements Initializable,EventHandler{
 	
 	/**
 	 * Update territories.
-	 *
-	 * @param event the event
+	 * @param event 
 	 */
 	@FXML
 	private void updateTerritories(ActionEvent event) {
@@ -369,29 +363,10 @@ public class MapBuildController implements Initializable,EventHandler{
 				adjTerritory);
 		
 	}
-
 	
-	/**
-	 * S u map.
-	 *
-	 * @param map the map
-	 * @return the map
-	 */
-	private Map s_uMap(Map map) {
-        System.out.println("Map Read");
-        map.getMapData().put("author", Author.getText());
-        map.getMapData().put("warn", Warn.getText());
-		map.getMapData().put("scroll", Scroll.getText());
-		map.getMapData().put("srap", Wrap.getText());
-		map.getMapData().put("image", Image.getText());
-
-		return map;
-	}
-
 	
 	/**
 	 * Saving map.
-	 *
 	 * @param event the event
 	 */
 	@FXML
@@ -402,8 +377,6 @@ public class MapBuildController implements Initializable,EventHandler{
 		map.getMapData().put("scroll", Scroll.getText());
 		map.getMapData().put("srap", Wrap.getText());
 		map.getMapData().put("image", Image.getText());
-		//System.out.println("Map Read");
-		//map = s_uMap(map);
 		try {
 			AuthenticatingEnhanedmap.AuthFStep(map);
 			MapSaver fileSave = new MapSaver();
@@ -424,9 +397,8 @@ public class MapBuildController implements Initializable,EventHandler{
 	}
 	
 	/**
-	 * Map edit exit.
-	 *
-	 * @param event the event
+	 * Map editor exit.
+	 * @param event 
 	 */
 	@FXML
 	private void mapEditExit(ActionEvent event) {
@@ -437,11 +409,9 @@ public class MapBuildController implements Initializable,EventHandler{
 
 	/**
 	 * Instantiates a new map build controller.
-	 *
-	 * @param map the map
-	 * @param file the file
+	 * @param map 
+	 * @param file 
 	 */
-
 	public MapBuildController(Map map, File file) {
 		this.map = map;
 		this.file = file;
@@ -535,28 +505,9 @@ public class MapBuildController implements Initializable,EventHandler{
 
 		}
 	
-
-
-	/**
-	 * On clicking continent list.
-	 *
-	 * @param event the event
-	 */
-	private void onClickingContinentList(MouseEvent event) {
-		Continents continent = cntntList.getSelectionModel().getSelectedItem();
-		sameContinentName.setText(continent.getAssignName());
-		newContName.setText(continent.getAssignName());
-		newContName.setDisable(true);
-		newContValue.setText(continent.getCValue());
-		addingContinent.setDisable(true);
-		adjTrrtrsList.getItems().clear();
-		displayTerritory(cntntList.getSelectionModel().getSelectedItem());
-	}
-	
 	/**
 	 * Display territory.
-	 *
-	 * @param continent the continent
+	 * @param continent 
 	 */
 
 	private void displayTerritory(Continents continent) {
@@ -568,36 +519,10 @@ public class MapBuildController implements Initializable,EventHandler{
 		}
 	}
 	
-
-
-	/**
-	 * On clicking territory list.
-	 *
-	 * @param event the event
-	 */
-	private void onClickingTerritoryList(MouseEvent event) {
-		Territories territory = trrtrsList.getSelectionModel().getSelectedItem();
-		newTName.setText(territory.getAssignName());
-		tXaxis.setText(String.valueOf(territory.getPointX()));
-		tYaxis.setText(String.valueOf(territory.getPointY()));
-		newTName.setDisable(true);
-		addTerritory.setDisable(true);
-		displayCorrespondingTrrtrs(territory);
-
-	}
-
 /**
- * Display corresponding trrtrs.
- *
- * @param territory the territory
+ * Display corresponding Territories.
+ * @param territory 
  */
-
-private void displayCorrespondingTrrtrs(Territories territory) {
-
-	private void displayCorrespondingTrrtrs(Territories territory) {
-
-
-
 	private void displayCorrespondingTrrtrs(Territories territory) {
 
 	adjTrrtrsList.getItems().clear();
@@ -624,8 +549,6 @@ private void displayCorrespondingTrrtrs(Territories territory) {
 			}
 	});
 }
-
-
 		/**
 		 * Load map data.
 		 */
@@ -635,8 +558,6 @@ private void displayCorrespondingTrrtrs(Territories territory) {
 			Scroll.setText(map.getMapData().get("image"));
 			Warn.setText(map.getMapData().get("warn"));
 			Wrap.setText(map.getMapData().get("wrap"));
-
-			// Load adjacent erritory
 			loadAdjTerritoryList();
 			for (Continents continent : map.getContinents()) {
 				cntntList.getItems().add(continent);
@@ -644,11 +565,10 @@ private void displayCorrespondingTrrtrs(Territories territory) {
 		}
 
 		/**
-		 * Load adj territory list.
+		 * Loading adjacent territory list.
 		 */
 
 		private void loadAdjTerritoryList() {
-
 			ObservableList<Territories> adjTerritoryList = FXCollections.observableArrayList();
 			for (Continents continent : map.getContinents()) {
 				for (Territories territory : continent.getTrrtrs()) {

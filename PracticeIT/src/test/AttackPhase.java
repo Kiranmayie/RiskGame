@@ -1,10 +1,14 @@
+/**
+ * 
+ */
 package test;
 
-import static org.junit.Assert.*;
 
-import org.junit.Test;
-import java.util.*;
 
+import static org.junit.Assert.fail;
+
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -15,19 +19,26 @@ import com.units.Contestant;
 import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
-public class ContestantTerritories {
 
-	/**
-	 * Test method for {@link com.model.contestantAssignment#contestantArmyAssign(java.util.List)}.
-	 */
-	
+
+
+/**
+ * @author k_bethi
+ *
+ */
+
+public class AttackPhase {
 static PlayersAssignment playersAssignment;
-	
+   /**
+    * @PlayersAssignment reference 	
+    */
+static PlayersAssignment playerGamePhase;
+
 	/**
 	 * The @continent reference
 	 */
 	static Continents continent;
-	
+	static List<Contestant> contestantList;
 	/**
 	 * The @territory1
 	 */
@@ -66,6 +77,10 @@ static PlayersAssignment playersAssignment;
 	 * The @listOfcontestant
 	 */
 	static List<Contestant> listOfcontestant;
+	
+	/**
+	 * Test method for {@link com.model.PlayersAssignment#attackPhase(java.util.List, java.util.List, com.units.Contestant)}.
+	 */
 	@BeforeClass
 	public static void beforeClass() {
 		playersAssignment = new PlayersAssignment();
@@ -94,36 +109,46 @@ static PlayersAssignment playersAssignment;
 		playersAssignment.territoryAssignToContestant(map, listOfcontestant);
 		listOfcontestant.add(contestant);
 	}
+	
 	/**
-	 * Test method for {@link com.model.contestantAssignment#territoryAssignToContestant(com.units.Map, java.util.List)}.
+	 * This method tests if a player has zero armies.
+	 */
+	/*@Test
+	public void checkIfPlayersArmiesExhausted() {
+		contestantList = new ArrayList<>();
+		contestantList.add(new Contestant(0));
+		contestantList.get(0).setBatallion(0);
+		//System.out.println("Hello");
+		Assert.assertEquals(playerGamePhase.checkIfPlayersArmiesExhausted(contestantList), true);
+	}*/
+	
+	@Test
+	public final void testAttackPhaseListOfTerritoriesListOfTerritoriesContestant() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link com.model.PlayersAssignment#fortificationPhase(java.util.List, java.util.List, com.units.Contestant)}.
+	 */
+	/*@Test
+	public final void testFortificationPhase() {
+		territory1.setContestant(contestant);
+		territory1.setBatallion(2);
+		territory2.setContestant(contestant);
+		boolean ifPhaseValid = playerGamePhase.fortificationPhase(listOfTerritories,listOfTerritories,contestant);
+		Assert.assertEquals(true, ifPhaseValid);
+		fail("Not yet implemented"); // TODO
+	}*/
+
+	/**
+	 * Test method for {@link com.model.PlayersAssignment#isFortificationPhaseValid(com.units.Map, com.units.Contestant)}.
 	 */
 	@Test
-	public void testCreateContestant() {
-		List<Contestant> contestants = new ArrayList<>();
-		listOfcontestant = new ArrayList<>();
-		listOfcontestant.add(new Contestant(0));
-		listOfcontestant.add(new Contestant(1));
-		listOfcontestant.add(new Contestant(2));
-		playersAssignment.createContestant(listOfcontestant.size(), contestants);
-		Assert.assertEquals(3, contestants.size());
+	public final void testIsFortificationPhaseValid() {
+		fail("Not yet implemented"); // TODO
 	}
-	@Test
-	public void testTerritoryAssignToContestant() {
-		List<Contestant> contestant = playersAssignment.territoryAssignToContestant(map, listOfcontestant);
-		Assert.assertNotNull(contestant);	 // TODO
-	}
-	
-	
 
-	
-	@Test
-	public void testPlayersArmyAssign() {
-		listOfcontestant = new ArrayList<>();
-		listOfcontestant.add(new Contestant(1));
-		listOfcontestant.add(new Contestant(2));
-		listOfcontestant.add(new Contestant(3));
-		
-		Assert.assertEquals(playersAssignment.THREE_PLAYER_ARMIES, (Integer) contestant.getBatallion());
 
 	}
-}
+
+
