@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import com.controller.StartGameController;
+import com.risk.entity.Player;
 import com.sun.xml.internal.bind.v2.runtime.Name;
 import com.units.Contestant;
 import com.units.Territories;
@@ -26,12 +28,12 @@ import javafx.scene.layout.VBox;
 /**
  * The Class PlayersAssignment.
  */
-public class PlayersAssignment  extends Observable implements Observer, Serializable{
+public class PlayersAssignment  implements  Serializable{
 	/** The current contestant. */
 	Contestant currentContestant;
-	
+	int timer=1;
 	/** The Constant TWO_PLAYER_ARMIES. */
-	public static final Integer TWO_PLAYER_ARMIES = 8;
+	public static final Integer TWO_PLAYER_ARMIES = 23;
 	
 	/** The Constant THREE_PLAYER_ARMIES. */
 	public static final Integer THREE_PLAYER_ARMIES = 35;
@@ -45,6 +47,12 @@ public class PlayersAssignment  extends Observable implements Observer, Serializ
 	
 	/** The Constant SIX_PLAYER_ARMIES. */
 	public static final Integer SIX_PLAYER_ARMIES = 20;
+
+	private static final String INFANTRY = null;
+
+	private static final String CAVALRY = null;
+
+	private static final String ARTILLERY = null;
 	
 	/** The contestants list. */
 	List<Contestant> contestantsList=new ArrayList<>();
@@ -71,7 +79,11 @@ public class PlayersAssignment  extends Observable implements Observer, Serializ
 	private Territories trrtry;
 	
 	/** The selected territory list. */
-	List<Territories> selectedTerritoryList = new ArrayList<>();;
+	List<Territories> selectedTerritoryList = new ArrayList<>();
+	private List<Territories> contestantTrrtrlist;
+	static int m1 = 0;	
+	static int m2 = 0;	
+
 
 
 
@@ -250,10 +262,297 @@ public Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
  * Attack phase.
  * @param attackTrrtsList 
  * @param defendTrrtrsList
+
  */
+
+public void attackPhase(List<Territories> attackTrrtsList, List<Territories> defendTrrtrsList, Contestant currentContestant)  {
+	System.out.println("Select the attacking territory, defending territory and player you want to attack");
+	System.out.println(attackTrrtsList);
+	
+	Scanner sa=new Scanner(System.in);
+	String attackingTerritory=sa.nextLine();
+	String beingAttackedTerritory=sa.nextLine();
+	String Contestant=sa.nextLine();
+	
+	for (Territories territory : attackTrrtsList) {
+		System.out.println(getDefendingTerritory(territory));
+		System.out.println(territory.getBatallion());
+		System.out.println(getDefendingTerritory(territory).size());
+		System.out.println(territory.getAssignName());
+		if (territory.getAssignName().equals(attackingTerritory ) && territory.getBatallion() > 1 && getDefendingTerritory(territory).size() > 0) 
+		{ 
+			  int n=territory.getBatallion();
+		
+				System.out.println("Attacker's Turn");
+				int[] attackerDiceValue=rollDiceAttacker(n);
+				int m=defendingDiceCalculation(getDefendingTerritory(territory), beingAttackedTerritory);
+				System.out.println("Defender's Turn");
+				int[] defenderDiceValue=rollDiceDefender(m);
+				for(int i=0;i<attackerDiceValue.length;i++) {
+					for(int j=0;j<defenderDiceValue.length;j++) {
+						System.out.println("Attacker Dice Values "+"Defender Dice Values "+ "\n" +attackerDiceValue[i]+"                     " +defenderDiceValue[j]);
+					}
+				}
+				System.out.println("Attacker: "+currentContestant.getContestantName()+" Choose your Dice");
+				Scanner d=new Scanner(System.in);
+				int Attackerdice=d.nextInt();
+				System.out.println("Defender: "+Contestant+" Choose your Dice");
+				int DefenderDice=d.nextInt();
+				if(attackerDiceValue[Attackerdice-1]>defenderDiceValue[DefenderDice-1])
+				{	System.out.println("Attacker won "+attackerDiceValue[Attackerdice-1]+" is greater than "+defenderDiceValue[DefenderDice-1]);
+							int count1=attackTerritory(getDefendingTerritory(territory), beingAttackedTerritory,Contestant);
+							System.out.println(count1);
+							System.out.println("Do you wish to continue attacking Yes/No");
+							String Answer=d.next();
+							String Yes = null,No;
+							if(Answer.equals("Yes"))
+									{
+										attackPhase(attackTrrtsList, defendTrrtrsList, currentContestant);
+									}
+							/*else
+							{
+								fortificationPhase();
+							}*/
+							}
+				else if(attackerDiceValue[Attackerdice-1]==defenderDiceValue[DefenderDice-1]||attackerDiceValue[Attackerdice-1]<defenderDiceValue[DefenderDice-1])
+				{
+					System.out.println("Defender won "+defenderDiceValue[DefenderDice-1]+" is greater than "+attackerDiceValue[Attackerdice-1]);		
+					int count2=DefendTerritory(attackTrrtsList, attackingTerritory,Contestant);
+					System.out.println(count2);
+					System.out.println("Do you wish to continue attacking Yes/No");
+					String Answer=d.next();
+					String Yes = null,No;
+					if(Answer.equals("Yes"))
+							{
+								attackPhase(attackTrrtsList, defendTrrtrsList, currentContestant);
+							}
+								}
+						}
+	}
+	
+							
+					}	
+				
+					
+private int DefendTerritory(List<Territories> attackTrrtsList, String attackingTerritory, String contestant) {
+int count=0;
+	
+	for (Territories territory : attackTrrtsList) {
+		
+		if(territory.getAssignName().equals(attackingTerritory))
+		{		
+				int attackerBatallionleft=territory.getBatallion();
+				System.out.println("The Attacker batallion before attack are "+territory.getBatallion() + "for "+territory.getAssignName());
+				attackerBatallionleft=attackerBatallionleft-1;
+				territory.setBatallion(attackerBatallionleft);
+				System.out.println("The Attacker batallion left after attack are "+ territory.getBatallion() + " for the territory " +territory.getAssignName());
+				int currentBatallion=currentContestant.getBatallion();
+				System.out.println("The Attacker before attack has "+currentContestant.getBatallion()+" Batallion left");
+				currentBatallion=currentBatallion-1;
+				for(Contestant defContestant : contestantsList)
+				{
+					if(defContestant.getContestantName().equals(contestant)&&territory.getBatallion()==0)
+					{
+						System.out.println("the Defender has conquored the territory " +territory.getAssignName());
+						count++;
+						territory.setBatallion(m2);
+						defContestant.setCardsInPocket(count);
+						System.out.println(defContestant.getCardsInPocket());
+					}
+				}
+				
+				currentContestant.setBatallion(currentBatallion);
+				System.out.println("The Attacker after attack  has "+currentContestant.getBatallion()+" Batallion left");
+
+		}
+	}
+	return count;
+	
+}
+
+private int[] rollDiceDefender(int m) {
+	
+	int[] DiceResult = null;
+	Scanner sc=new Scanner(System.in);
+	switch(m)
+	{
+	case 2: System.out.println("Roll the dice you can only roll maximum of " +(m-1)+"dice hence you cannot choose");
+	DiceResult=anyNumber(1);
+	
+	break;
+	
+	case 3:System.out.println("Roll the dice you can only roll maximum of " +(m-1)+"dice. So How many you want to choose");
+	m2=sc.nextInt();
+	DiceResult=anyNumber(m2);
+	
+	break;
+	
+	default:System.out.println("Roll the dice you can only roll maximum of 2 dice. So How many you want to choose");
+	m2=sc.nextInt();
+	DiceResult=anyNumber(m2);
+	
+	break;
+	}
+	
+	return DiceResult;
+
+}
+
+private int defendingDiceCalculation(List<Territories> defendTrrtrsList,String beingAttackedTerritory) {
+	// TODO Auto-generated method stub
+	int m=0;
+	for (Territories territory : defendTrrtrsList) {
+		if (territory.getAssignName().equals(beingAttackedTerritory) && territory.getBatallion() > 1) 
+		
+			{   m=territory.getBatallion();
+			
+			}}
+		System.out.println(m);
+	return m;
+}
+
+public int attackTerritory(List<Territories> defendTrrtrsList,String beingAttackedTerritory, String contestant) {
+	int count=0;
+	
+	for (Territories territory : defendTrrtrsList) {
+		
+		if(territory.getAssignName().equals(beingAttackedTerritory))
+		{		
+				int defenderBatallionleft=territory.getBatallion();
+				System.out.println("The Defender batallion before attack are "+territory.getBatallion() + "for "+territory.getAssignName());
+				defenderBatallionleft=defenderBatallionleft-1;
+				territory.setBatallion(defenderBatallionleft);
+				System.out.println("The Defender batallion left after attack are "+ territory.getBatallion() + " for the territory " +territory.getAssignName());
+				int currentBatallion=currentContestant.getBatallion();
+				System.out.println("The Attacker before attack has "+currentContestant.getBatallion()+" Batallion left");
+				currentBatallion=currentBatallion+1;
+				if(territory.getBatallion()==0)
+				{
+					System.out.println("the Attacker has conquored the territory " +territory.getAssignName());
+					count++;
+					territory.setBatallion(m1);
+					currentContestant.setCardsInPocket(count);
+					contestantTrrtrlist=currentContestant.getcontestantTrrtrlist();
+					contestantTrrtrlist.add(territory);
+					currentContestant.setcontestantTrrtrlist(contestantTrrtrlist);;
+					String cardtype=Cards.selectCards();
+					System.out.println("The player has been assigned"+currentContestant.getCardsInPocket()+"of type" +cardtype);
+					if(validTrade(cardtype)) reinforceWithCards(count);
+									}					
+				currentContestant.setBatallion(currentBatallion);
+				System.out.println("The Attacker after attack  has "+currentContestant.getBatallion()+" Batallion left");
+								
+
+		}
+	}
+	return count;
+	
+}
+
+private boolean isAllTerritoriesConquered() {
+	Contestant lost = null;
+	for (Contestant contestant : currentContestant) {
+		if (contestant.getAssignedTerritory().isEmpty()) {
+			lost = player;
+			playerPlaying.getPlayerCardList().addAll(playerLost.getPlayerCardList());
+		}
+	}
+	return playerLost;
+	return false;
+}
+
+private boolean validTrade(String cardtype) {
+	int infantry = 0;
+	int cavalry = 0;
+	int artillery = 0;
+	switch(cardtype)
+	{
+	case "INFANTRY": infantry++;
+	break;
+	case "CAVALRY": cavalry++;
+	break;
+	case "ARTILLERY": artillery++;
+	break;
+	
+	}
+	
+	if ((infantry == 1 && cavalry == 1 && artillery == 1) || infantry == 3 || cavalry == 3 || artillery == 3) {
+		return true;
+	}
+	else return false;
+}
+
+
+
+private void reinforceWithCards(int counter) {
+	if(currentContestant.getCardsInPocket()>=3)
+	{	
+		System.out.println("You have 3 or more cards. please exchange them with armies");
+		int currentBatallion=currentContestant.getBatallion();
+		
+		
+		if(currentContestant.getTimer()>1) {
+		currentBatallion=currentBatallion+5*timer;}
+		else {
+			currentBatallion=currentBatallion+5;
+		}
+		currentContestant.setTimer(timer);
+		currentContestant.setBatallion(currentBatallion);
+		int count=currentContestant.getCardsInPocket();
+		count=count-3;
+		currentContestant.setCardsInPocket(count);;
+	}
+	
+}
+
+private int[] rollDiceAttacker(int n) {
+	
+	int[] DiceResult = null;
+	Scanner sc=new Scanner(System.in);
+	switch(n)
+	{
+	case 2: System.out.println("Roll the dice you can only roll maximum of " +(n-1)+" dice hence you cannot choose");
+	DiceResult=anyNumber(1);
+	
+	break;
+	
+	case 3:System.out.println("Roll the dice you can only roll maximum of " +(n-1)+" dice. So How many you want to choose");
+	m1=sc.nextInt();
+	DiceResult=anyNumber(m1);
+	
+	break;
+	
+	case 4:System.out.println("Roll the dice you can only roll maximum of " +(n-1)+" dice. So How many you want to choose");
+	m1=sc.nextInt();
+	DiceResult=anyNumber(m1);
+	
+	break;
+	}
+	
+	return DiceResult;
+}
+
+private List<Territories> getDefendingTerritory(Territories territory) {
+	// TODO Auto-generated method stub
+	List<Territories> defendingTerritories = territory.getTouchingTrrtrsExpand();
+	return defendingTerritories;
+}
+private int[] anyNumber(int i) {
+	int max = 6; 
+    int min = 1;
+    int range = max - min + 1; 
+	int allresultOfDice[] = new int[i];
+	for(int j=0;j<i;j++) {
+	allresultOfDice[j] = (int) (Math.random()* range) + min; 
+	System.out.println(allresultOfDice[j]);
+	}
+	
+	return allresultOfDice;
+
 public void attackPhase(ListView<Territories> attackTrrtsList, ListView<Territories> defendTrrtrsList)  {
 	currentContestant.getGamePlan().attackPhase(attackTrrtsList, defendTrrtrsList,this );
 // attack\phase
+
 }
 
 
@@ -288,26 +587,7 @@ public void placeBatallion(Contestant currentContestant, List<Territories> selec
 }
 		
 
-/**
- * Checks if is contestant batallionattacked.
- * @param contestantList 
- * @return true, if is contestant batallionattacked
- */
-private boolean isContestantBatallionattacked(List<Contestant> contestantList) {
-	int count = 0;
 
-	for (Contestant contestant : contestantList) {
-		if (contestant.getBatallion() == 0) {
-			count++;
-		}
-	}
-	if (count == contestantList.size()) {
-		return true;
-	} else {
-		return false;
-	}
-	
-}
 
 /**
  * Contestant assignment to territories.
@@ -316,78 +596,30 @@ private boolean isContestantBatallionattacked(List<Contestant> contestantList) {
 private void contestantAssignmentToTerritories(Contestant currentContestant) {
 	if (currentContestant.getBatallion() > 0) {
 		Territories territory = currentContestant.getcontestantTrrtrlist()
-				.get(anyNumber(currentContestant.getcontestantTrrtrlist().size() - 1));
+				.get(anynumber(currentContestant.getcontestantTrrtrlist().size() - 1));
 		territory.setBatallion(territory.getBatallion() + 1);
 		currentContestant.setBatallion(currentContestant.getBatallion() - 1);
 	}
 	
 }
 
-/**
- * Any number.
- * @param i 
- * @return the int
- */
-private int anyNumber(int i) {
-	return (int) (Math.random() * i) + 0;
-	
-}
-
-/**
- * Reinforce phase.
- * @param territoryList 
- * @param territory 
- * @param gameConsole 
- */
-public void reinforcePhase(ObservableList<Territories> territoryList, Territories territory, TextArea gameConsole) {
-	if (currentContestant.getBatallion() <= 0 && contestantsList.size() > 1) {
-		setChanged();
-		notifyObservers("Attack");
-	}
+private int anynumber(int i) {
+	// TODO Auto-generated method stub
+	return (int) ((Math.random() * i)+0) ;
 }
 
 
-
-/**
- * Fortification Phase
- * 
- * @param selectedTerritory
- *            selected Territory object
- * @param adjTerritory
- *            adj Territory object
- * @param gameConsole
- *            gameConsole
- */
-/*public void fortificationPhase(ListView<Territories> selectedTerritory, ListView<Territories> adjTerritory) {
-	boolean isFortificationDone = currentContestant.getStrategy().fortificationPhase(selectedTerritory, adjTerritory, currentContestant);
-
-	if (isFortificationDone && contestantsList.size() > 1) {
-		setChanged();
-		notifyObservers("Reinforcement");
-	}
-
-}*/
-
-/**
- * Check if there are armies to be fortified.
- * 
- * @param map
- *            map object
- * @param playerPlaying
- *            current player playing
- * @return isFortificationAvaialble is fortification of armies available.
- */
-/*public boolean isFortificationPhaseValid(Map map, Contestant pPlay) {
-	boolean isFortificationAvaialble = pPlay.getStrategy().isFortificationPhaseValid(map, pPlay);
+ public boolean isFortificationPhaseValid(Map map, Contestant pPlay) {
+	boolean isFortificationAvaialble = pPlay.getGamePlan().isFortificationPhaseValid(map, pPlay);
 	if (isFortificationAvaialble) {
-		setChanged();
-		notifyObservers("Fortification");
+	//	setChanged();
+	//	notifyObservers("Fortification");
 	} else {
-		setChanged();
-		notifyObservers("noFortificationMove");
+	//	setChanged();
+	//	notifyObservers("noFortificationMove");
 	}
 	return isFortificationAvaialble;
-}*/
+}
 
 /**
  * Check if player has valid attack move
@@ -399,15 +631,15 @@ public void reinforcePhase(ObservableList<Territories> territoryList, Territorie
  * 
  * @return hasAValidMove true if player has valid move else false
  */
-/*public boolean playerHasAValidAttackMove(ListView<Territory> territories, TextArea gameConsole) {
-	boolean hasValidAttackMove = playerPlaying.getStrategy().playerHasAValidAttackMove(territories, gameConsole);
-	if (!hasValidAttackMove) {
-		setChanged();
-		notifyObservers("checkIfFortificationPhaseValid");
+ 	public boolean attackMoveAvailable(ListView<Territories> territories) {
+	boolean attackMove = currentContestant.getGamePlan().attackMoveAvailable(territories);
+	if (!attackMove) {
+//		setChanged();
+	//	notifyObservers("fortificationPhaseIsAvailable");
 	}
 
-	return hasValidAttackMove;
-}*/
+	return attackMove;
+}
 /**
  * Fortify phase.
  * @param selectedTerritory 
@@ -416,8 +648,8 @@ public void reinforcePhase(ObservableList<Territories> territoryList, Territorie
 public void fortifyPhase(ListView<Territories> selectedTerritory, ListView<Territories> adjTerritory) {
 		boolean FortifySuccess = false;
 	if (FortifySuccess && contestantsList.size() > 1) {
-		setChanged();
-		notifyObservers("Reinforce");
+	//	setChanged();
+	//	notifyObservers("Reinforce");
 	}
 
 }
@@ -432,11 +664,11 @@ public boolean FortifyPhaseValid(Map map, Contestant currentContestant) {
 	boolean isFortifyPossible=false;
 	//boolean isFortificationAvaialble = currentContestant.getStrategy().isFortificationPhaseValid(map, playerPlaying);
 	if (isFortifyPossible) {
-		setChanged();
-		notifyObservers("Fortify");
+	//	setChanged();
+	//	notifyObservers("Fortify");
 	} else {
-		setChanged();
-		notifyObservers("Dont fortify");
+	//	setChanged();
+	//	notifyObservers("Dont fortify");
 	}
 	return isFortifyPossible;
 }
@@ -574,10 +806,7 @@ public void loadBatallion(List<Territories> selectedTerritoryList) {
 
 
 
-@Override
-public void update(Observable arg0, Object arg1) {
-	// TODO Auto-generated method stub
-	
-}}
+
+}
 
 

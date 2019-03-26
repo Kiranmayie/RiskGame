@@ -30,7 +30,10 @@ public class Contestant implements Serializable {
 	
 	/** The game plan. */
 	GamePlan gamePlan;
-	//List<Cards> contestantCards;
+	
+	int count;
+
+	private int timer;
 
 	
 	/**
@@ -134,13 +137,13 @@ public class Contestant implements Serializable {
 		return contestant.getContestantId() == contestantId;
 	}
 	
-	/*public PlayerBehaviorStrategy getStrategy() {
-		return strategy;
+	public GamePlan getPlan() {
+		return gamePlan;
 	}
 
-	public void setStrategy(PlayerBehaviorStrategy strategy) {
-		this.strategy = strategy;
-	}*/
+	public void setPlan(GamePlan strategy) {
+		this.gamePlan = gamePlan;
+	}
 
 	/**
 	 * Gets the game plan.
@@ -159,5 +162,24 @@ public class Contestant implements Serializable {
 		this.gamePlan=gamePlan;
 
 	}
+	
+	
+	public int getCardsInPocket() {
+		
+		return count;
 	}
+	public void setCardsInPocket(int count) {
+		// TODO Auto-generated method stub
+		this.count=count;
+	}
+	public void setTimer(int timer) {
+		this.timer=timer+1;
+		
+	}
+	public int getTimer() {
+		
+		return timer;
+	}
+}
+	
 	
