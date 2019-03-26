@@ -30,7 +30,7 @@ public class PhaseView implements Observer {
 		}
 		
 		
-		if(activePhase=="Attacking") {
+		if(activePhase=="Attack") {
 			
 			System.out.println(activePhase+" phase is active for player :- "+ StartUpPhase.contestantName+" and is currently having these "+StartUpPhase.contestantArmiesleft+" armies.");
 			

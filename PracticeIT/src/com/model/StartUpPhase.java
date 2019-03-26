@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.main.MapSStep;
 import com.main.PhaseView;
+import com.main.PlayersDominationView;
 import com.units.Contestant;
 import com.units.Map;
 import com.units.Territories;
@@ -21,6 +23,9 @@ public class StartUpPhase implements Observable{
 	public boolean changed; 
 	public StartUpPhase supLocal;
 	 public PhaseView pv;
+	 public PlayersDominationView pdv;
+	 public static double percentageOccupationEachPlayer=0;
+	public static int numberOfArmies =0;
 	
 	public StartUpPhase() {
 		 
@@ -37,12 +42,15 @@ public class StartUpPhase implements Observable{
 		if(contestants.size()>1) {
 			supLocal = new StartUpPhase();
 			pv=new PhaseView(supLocal);
+			pdv=new PlayersDominationView(supLocal);
 			
-			 System.out.println(supLocal.observers.get(0));
-				System.out.println(supLocal.observers.size());
+			worldDominationSelection(contestants);
+					
+				}
 				
+				else {
 		for(Contestant contestant:contestants) {
-		 //System.out.println(contestant.getcontestantTrrtrlist().size());
+
 		contestant= pa.getReinforceBatallion(enhancedMap,contestant);
 		contestantName=contestant.getContestantName();
 		contestantArmiesleft=contestant.getBatallion();
@@ -57,7 +65,7 @@ public class StartUpPhase implements Observable{
 		 if(selector == 1) {
 
 			 somethingChanged();
-			 System.out.println(supLocal.observers.get(0));
+			// System.out.println(supLocal.observers.get(0));
 			 notifyObservers("Reinforcement");
 		
 			 //pa.territoryAssignToContestant(enhancedMap,contestants); 
@@ -68,7 +76,14 @@ public class StartUpPhase implements Observable{
 		 else if( selector == 2)  {
 			 
 			 somethingChanged();
-			 notifyObservers("ATTACK");
+			 notifyObservers("Attack");
+			 pa.attackPhase(contestant.getContestantTrrtrlist(),contestant.getContestantTrrtrlist(), contestant);
+		 }
+		 
+        else if( selector == 3)  {
+			 
+			 somethingChanged();
+			 notifyObservers("Fortification");
 			 pa.attackPhase(contestant.getContestantTrrtrlist(),contestant.getContestantTrrtrlist(), contestant);
 		 }
 }
@@ -94,8 +109,8 @@ public class StartUpPhase implements Observable{
 	@Override
 	public void notifyObservers(String obj) {
 		if(changed) {
-			System.out.println(supLocal.observers);
-			System.out.println(supLocal.observers.get(0));
+			//System.out.println(supLocal.observers);
+		//	System.out.println(supLocal.observers.get(0));
 		for(Observer obs:supLocal.observers) {
 		
 			obs.update(obj);
@@ -103,10 +118,35 @@ public class StartUpPhase implements Observable{
 		
 	}
 	
+	public void notifyObservers() {
+		if(changed) {
+			pdv.update("World");
+			
+		}
+	}
+	
 	public void somethingChanged() {
 		changed=true;
 	}
 	
+	public void worldDominationSelection(List<Contestant> contestants){
+	Scanner scOne=new Scanner(System.in);
+	 System.out.println("Choose among following and type:- \n"+" World - to view World Domination \n"+"Forward - To move ahead");
+	 String input=scOne.next();
+		//System.out.println(supLocal.observers.size());
+		if(input.equals("World")) {
+			for(Contestant contestant:contestants) {
+				
+				contestantName=contestant.getContestantName();
+				contestantArmiesleft=contestant.getBatallion();
+				double num=contestant.getcontestantTrrtrlist().size();
+				double dem=MapSStep.count;
+				System.out.println(num+"  "+dem);
+				percentageOccupationEachPlayer = (num / dem) * 100;
+				numberOfArmies = contestant.getBatallion();
+				somethingChanged();
+				notifyObservers();
+			}}
 
 }
-	
+	}
