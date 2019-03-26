@@ -22,60 +22,58 @@ import com.units.Territories;
 
 
 
+// TODO: Auto-generated Javadoc
 /**
- * @author k_bethi
+ * The Class AttackPhase.
  *
+ * @author k_bethi
  */
 
 public class AttackPhase {
+
+/** The players assignment. */
 static PlayersAssignment playersAssignment;
+   
    /**
-    * @PlayersAssignment reference 	
+    * The player game phase.
+    *
+    * @PlayersAssignment reference
     */
 static PlayersAssignment playerGamePhase;
 
-	/**
-	 * The @continent reference
-	 */
+	/** The @continent reference. */
 	static Continents continent;
+	
+	/** The contestant list. */
 	static List<Contestant> contestantList;
-	/**
-	 * The @territory1
-	 */
+	
+	/** The @territory1. */
 	static Territories territory1;
 	
-	/**
-	 * The @territory2
-	 */
+	/** The @territory2. */
 	static Territories territory2;
 	
-	/**
-	 * The @map reference
-	 */
+	/** The @map reference. */
 	static Map map;
 	
-	/**
-	 * The @Contestant 
-	 */
+	/** The @Contestant. */
 	static Contestant contestant;
+	
+	/** The territory name 1. */
 	String territoryName1 = "India";
+	
+	/** The territory name 2. */
 	String territoryName2 = "China";
 
 	
 
-	/**
-	 * The @listOfContinents
-	 */
+	/** The @listOfContinents. */
 	static List<Continents> listOfContinents;
 	
-	/**
-	 * The @listOfTerritories
-	 */
+	/** The @listOfTerritories. */
 	static List<Territories> listOfTerritories;
 	
-	/**
-	 * The @listOfcontestant
-	 */
+	/** The @listOfcontestant. */
 	static List<Contestant> listOfcontestant;
 	
 	/**

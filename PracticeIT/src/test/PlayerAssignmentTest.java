@@ -17,6 +17,10 @@ import com.units.Contestant;
 import com.units.Continents;
 import com.units.Territories;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerAssignmentTest.
+ */
 /*
  * Player Assignment Test Class
  * Attack Methods Test
@@ -24,69 +28,60 @@ import com.units.Territories;
  * @version 1.0.0
  */
 public class PlayerAssignmentTest {
+	
 	/**
-	 * @PlayerAssignmentModel
+	 * The player game phase.
+	 *
+	 * @PlayerAssignmentModel 
 	 */
 	static PlayersAssignment playerGamePhase;
+	
+	/** The game. */
 	/*
 	 * @GameDesigmodel
 	 */
 	static GameDesign game;
-	/**
-	 * The @continent
-	 */
+	
+	/** The @continent. */
 	static Continents continent;
 	
-	/**
-	 * The @territory1
-	 */
+	/** The @territory1. */
 	static Territories territory1;
 	
-	/**
-	 * The @territory2
-	 */
+	/** The @territory2. */
 	static Territories territory2;
 	
-	/**
-	 * The @continent
-	 */
+	/** The @continent. */
 	static Contestant contestant;
 	
-	/**
-	 * The @map
-	 */
+	/** The @map. */
 	static Map map;
-	/**
-	 * The @territoryListView
-	 */
+	
+	/** The @territoryListView. */
 	static List<Territories> territoryList;
+	
+	/** The attack territory list. */
 	static List<Territories> attackTerritoryList;
+	
+	/** The defend territory list. */
 	static List<Territories> defendTerritoryList;
 	
+	/** The contestant list. */
 	static List<Contestant> contestantList;
-	/**
-	 * The @continentName
-	 */
+	
+	/** The @continentName. */
 	String continentName = "Asia";
 	
-	/**
-	 * The @controlValue
-	 */
+	/** The @controlValue. */
 	String controlValue = "7";	
 	
-	/**
-	 * The @territoryName1
-	 */
+	/** The @territoryName1. */
 	String territoryName1 = "India";
 	
-	/**
-	 * The @territoryName2
-	 */
+	/** The @territoryName2. */
 	String territoryName2 = "China";	
 	
-	/**
-	 * The @players list
-	 */
+	/** The @players list. */
 	static List<Contestant> players;
 
 	/**
@@ -128,6 +123,11 @@ public class PlayerAssignmentTest {
 		String[] defendTerritoryList = {"New Guinea","Egypt","Greenland" };
 	}
 	
+	/**
+	 * Gets the continents owned by player.
+	 *
+	 * @return the continents owned by player
+	 */
 	@Test
 	public void getContinentsOwnedByPlayer() {
 		List<Continents> returnedContinents = new ArrayList<>();
@@ -138,6 +138,9 @@ public class PlayerAssignmentTest {
 		Assert.assertEquals(1, returnedContinents.size());
 	}	
 	
+	/**
+	 * If contestant lost.
+	 */
 	@Test
 	public void ifContestantLost() {
 		players = new ArrayList<>();
@@ -148,6 +151,9 @@ public class PlayerAssignmentTest {
 	}
 	
 	
+	/**
+	 * If contestant won success.
+	 */
 	@Test
 	public void ifContestantWonSuccess() {
 		List<Contestant> listOfPlayers = new ArrayList<>();
@@ -166,6 +172,9 @@ public class PlayerAssignmentTest {
 		
 	}*/
 	
+	/**
+	 * Check if players armies exhausted.
+	 */
 	@Test
 	public void checkIfPlayersArmiesExhausted() {
 		contestantList = new ArrayList<>();
