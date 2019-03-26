@@ -5,15 +5,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import com.controller.StartGameController;
+import com.main.CardExchangeView;
+import com.main.PhaseView;
 import com.sun.xml.internal.bind.v2.runtime.Name;
 import com.units.Contestant;
 import com.units.Territories;
+
+import Patterns.Observable;
+import Patterns.Observer;
+
 import com.units.Continents;
 import com.units.Map;
 
@@ -27,7 +31,7 @@ import javafx.scene.layout.VBox;
 /**
  * The Class PlayersAssignment.
  */
-public class PlayersAssignment  implements  Serializable{
+public class PlayersAssignment  implements  Serializable,Observable{
 	/** The current contestant. */
 	Contestant currentContestant;
 	int timer=1;
@@ -82,6 +86,12 @@ public class PlayersAssignment  implements  Serializable{
 	private List<Territories> contestantTrrtrlist;
 	static int m1 = 0;	
 	static int m2 = 0;	
+	public ArrayList<Observer> observers = new ArrayList<Observer>();
+	public boolean changed;
+	CardExchangeView cev;
+	public static int CardCount;
+	public static String cardtype;
+	
 
 
 
@@ -442,6 +452,8 @@ private int defendingDiceCalculation(List<Territories> defendTrrtrsList,String b
 
 public int attackTerritory(List<Territories> defendTrrtrsList,String beingAttackedTerritory, String contestant) {
 	int count=0;
+	pa = new PlayersAssignment();
+	cev=new CardExchangeView(pa);
 	
 	for (Territories territory : defendTrrtrsList) {
 		
@@ -463,9 +475,15 @@ public int attackTerritory(List<Territories> defendTrrtrsList,String beingAttack
 					currentContestant.setCardsInPocket(count);
 					contestantTrrtrlist=currentContestant.getcontestantTrrtrlist();
 					contestantTrrtrlist.add(territory);
-					currentContestant.setcontestantTrrtrlist(contestantTrrtrlist);;
-					String cardtype=Cards.selectCards();
+					currentContestant.setcontestantTrrtrlist(contestantTrrtrlist);
+					 cardtype=Cards.selectCards();
+					 CardCount = currentContestant.getCardsInPocket();
 					System.out.println("The player has been assigned"+currentContestant.getCardsInPocket()+"of type" +cardtype);
+					
+					
+					 somethingChanged();
+						 notifyObservers();
+						 
 					if(validTrade(cardtype)) reinforceWithCards(count);
 									}					
 				currentContestant.setBatallion(currentBatallion);
@@ -496,17 +514,6 @@ public boolean checkIfPlayersArmiesExhausted(List<Contestant> players) {
 	}
 }
 
-/*private boolean isAllTerritoriesConquered() {
-	Contestant lost = null;
-	for (Contestant contestant : currentContestant) {
-		if (contestant.getAssignedTerritory().isEmpty()) {
-			lost = player;
-			playerPlaying.getPlayerCardList().addAll(playerLost.getPlayerCardList());
-		}
-	}
-	return playerLost;
-	return false;
-}*/
 private boolean validTrade(String cardtype) {
 	int infantry = 0;
 	int cavalry = 0;
@@ -832,8 +839,44 @@ public void loadBatallion(List<Territories> selectedTerritoryList) {
 	
 }
 
+@Override
+public void removeObserver(Observer o) {
+	int i = observers.indexOf(o);
+	if(i>=0) {
+	observers.remove(i);
+	}
+}
+
+@Override
+public void notifyObservers(String obj) {
+	if(changed) {
+		//System.out.println(supLocal.observers);
+	//	System.out.println(supLocal.observers.get(0));
+	for(Observer obs:pa.observers) {
+	
+		obs.update(obj);
+	}}
+	
+}
+
+public void notifyObservers() {
+	if(changed) {
+		cev.update("Card Given");
+		
+	}
+}
 
 
+public void somethingChanged() {
+	changed=true;
+}
+
+@Override
+public void registerObserver(Observer o) {
+	observers.add(o);
+	//System.out.println(observers.get(0));
+	//System.out.println(observers.size());
+}
 
 }
 
