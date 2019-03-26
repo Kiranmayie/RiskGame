@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import com.controller.StartGameController;
-
+import com.risk.entity.Player;
 import com.sun.xml.internal.bind.v2.runtime.Name;
 import com.units.Contestant;
 import com.units.Territories;
@@ -80,6 +80,7 @@ public class PlayersAssignment  extends Observable implements Observer, Serializ
 	
 	/** The selected territory list. */
 	List<Territories> selectedTerritoryList = new ArrayList<>();
+	private List<Territories> contestantTrrtrlist;
 	static int m1 = 0;	
 	static int m2 = 0;	
 
@@ -430,20 +431,33 @@ public int attackTerritory(List<Territories> defendTrrtrsList,String beingAttack
 					count++;
 					territory.setBatallion(m1);
 					currentContestant.setCardsInPocket(count);
-					
+					contestantTrrtrlist=currentContestant.getcontestantTrrtrlist();
+					contestantTrrtrlist.add(territory);
+					currentContestant.setcontestantTrrtrlist(contestantTrrtrlist);;
 					String cardtype=Cards.selectCards();
 					System.out.println("The player has been assigned"+currentContestant.getCardsInPocket()+"of type" +cardtype);
 					if(validTrade(cardtype)) reinforceWithCards(count);
-									}
-					
+									}					
 				currentContestant.setBatallion(currentBatallion);
 				System.out.println("The Attacker after attack  has "+currentContestant.getBatallion()+" Batallion left");
-				
+								
 
 		}
 	}
 	return count;
 	
+}
+
+private boolean isAllTerritoriesConquered() {
+	Contestant lost = null;
+	for (Contestant contestant : currentContestant) {
+		if (contestant.getAssignedTerritory().isEmpty()) {
+			lost = player;
+			playerPlaying.getPlayerCardList().addAll(playerLost.getPlayerCardList());
+		}
+	}
+	return playerLost;
+	return false;
 }
 
 private boolean validTrade(String cardtype) {

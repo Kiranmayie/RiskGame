@@ -62,7 +62,8 @@ public class StartGame implements EventHandler<ActionEvent>  {
 				selectedTerritoryList=pa.executingCurrentContestant();	
 				//System.out.println(selectedTerritoryList);
 				 pa.loadBatallion(selectedTerritoryList);
-				 StartUpPhase sup=new StartUpPhase();
+				 StartUpPhase sup=new StartUpPhase(pa);
+				 System.out.println(contestants);
 				 sup.StartUp(contestants,enhancedMap,selectedTerritoryList);
 	}
 }

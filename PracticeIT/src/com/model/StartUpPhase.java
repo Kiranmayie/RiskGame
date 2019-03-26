@@ -9,9 +9,18 @@ import com.units.Territories;
 
 public class StartUpPhase {
 	
-	 private PlayersAssignment pa;
+	private PlayersAssignment pa;
+	private Contestant currentContestant;
+	 
+	public StartUpPhase (PlayersAssignment pa) {
+		
+		this.pa=pa;
+	}
+	
+	 
+	
 	 public void StartUp(List<Contestant> contestants, Map enhancedMap, List<Territories> selectedTerritoryList) {
-		 PlayersAssignment pa=new PlayersAssignment();
+		// PlayersAssignment pa=new PlayersAssignment();
 		if(contestants.size()>1) {
 		for(Contestant contestant:contestants) {
 		 //System.out.println(contestant.getcontestantTrrtrlist().size());
@@ -25,6 +34,7 @@ public class StartUpPhase {
 		 if(selector == 1) {
 			 
 			 //pa.territoryAssignToContestant(enhancedMap,contestants); 
+			 
 				selectedTerritoryList=pa.executingCurrentContestant();	
 				//System.out.println(selectedTerritoryList);
 				 pa.loadBatallion(selectedTerritoryList);
