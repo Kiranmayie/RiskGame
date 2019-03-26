@@ -107,8 +107,10 @@ static PlayersAssignment playersAssignment;
 			playersAssignment.territoryAssignToContestant(map, listOfcontestant);
 			territory2.setContestant(contestant);;
 			Contestant returningContestant = PlayersAssignment.getReinforceBatallion(map, contestant);
+
 			Assert.assertEquals(returningContestant.getBatallion(), 11);
 		}
+
 	
 	/**
 	 * This method tests number of armies for 2 continents during each reinforcement

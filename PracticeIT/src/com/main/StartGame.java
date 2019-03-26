@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import com.controller.StartGameController;
 import com.model.PlayersAssignment;
 import com.model.StartUpPhase;
@@ -13,6 +12,7 @@ import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
 
+import Patterns.Observable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 /**
@@ -36,7 +36,10 @@ public class StartGame implements EventHandler<ActionEvent>  {
 	
 	/** The selected territory list. */
 	List<Territories> selectedTerritoryList;
+
+	
 	private StartUpPhase sup;
+
 
 	/* (non-Javadoc)
 	 * @see javafx.event.EventHandler#handle(javafx.event.Event)
@@ -63,7 +66,6 @@ public class StartGame implements EventHandler<ActionEvent>  {
 				//System.out.println(selectedTerritoryList);
 				 pa.loadBatallion(selectedTerritoryList);
 				 StartUpPhase sup=new StartUpPhase(pa);
-				 System.out.println(contestants);
 				 sup.StartUp(contestants,enhancedMap,selectedTerritoryList);
 	}
 }
