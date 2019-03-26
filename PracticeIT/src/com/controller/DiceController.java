@@ -13,8 +13,9 @@ import javafx.fxml.Initializable;
  * @author Kiran Mayie
  * @author Pritpal Kaur
  * @author Amandeep Kaur Khosa
- * @version 1.0.0
+ * @version 2.0.0
  */
+
 public class DiceController implements Initializable {
 
 	@Override

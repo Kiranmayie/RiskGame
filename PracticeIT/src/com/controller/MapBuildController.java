@@ -202,7 +202,7 @@ public class MapBuildController implements Initializable,EventHandler{
         }
 
 	/**
-	 * Enabling TextField
+	 * Enabling  the TextField
 	 * @param fields 
 	 */
 
@@ -213,7 +213,7 @@ public class MapBuildController implements Initializable,EventHandler{
 	}
 
 	/**
-	 * Erasing TextField
+	 * Erasing  the TextField
 	 * @param fields 
 	 */
 	public static void erasingTF(TextField... fields) {
@@ -223,7 +223,7 @@ public class MapBuildController implements Initializable,EventHandler{
 	}
     
     /**
-     * Adding new continent.
+     * Adding  the new continent.
      * @param event 
      */
     @FXML
