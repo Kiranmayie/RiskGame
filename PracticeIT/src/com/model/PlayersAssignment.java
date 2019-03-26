@@ -31,7 +31,7 @@ import javafx.scene.layout.VBox;
 public class PlayersAssignment  extends Observable implements Observer, Serializable{
 	/** The current contestant. */
 	Contestant currentContestant;
-	
+	int timer=1;
 	/** The Constant TWO_PLAYER_ARMIES. */
 	public static final Integer TWO_PLAYER_ARMIES = 8;
 	
@@ -475,7 +475,13 @@ private void reinforceWithCards(int counter) {
 		System.out.println("You have 3 or more cards. please exchange them with armies");
 		int currentBatallion=currentContestant.getBatallion();
 		
-		currentBatallion=currentBatallion+5;
+		
+		if(currentContestant.getTimer()>1) {
+		currentBatallion=currentBatallion+5*timer;}
+		else {
+			currentBatallion=currentBatallion+5;
+		}
+		currentContestant.setTimer(timer);
 		currentContestant.setBatallion(currentBatallion);
 		int count=currentContestant.getCardsInPocket();
 		count=count-3;

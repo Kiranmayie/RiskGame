@@ -33,6 +33,8 @@ public class Contestant implements Serializable {
 	
 	int count;
 
+	private int timer;
+
 	
 	/**
 	 * Instantiates a new contestant.
@@ -162,6 +164,14 @@ public class Contestant implements Serializable {
 	public void setCardsInPocket(int count) {
 		// TODO Auto-generated method stub
 		this.count=count;
+	}
+	public void setTimer(int timer) {
+		this.timer=timer+1;
+		
+	}
+	public int getTimer() {
+		
+		return timer;
 	}
 }
 	
