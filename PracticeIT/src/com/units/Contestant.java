@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import com.model.GamePlan;
+// TODO: Auto-generated Javadoc
 /**
  * The Class Contestant immplements Serializable .
  */
@@ -31,14 +32,17 @@ public class Contestant implements Serializable {
 	/** The game plan. */
 	GamePlan gamePlan;
 	
+	/** The count. */
 	int count;
 
+	/** The timer. */
 	private int timer;
 
 	
 	/**
 	 * Instantiates a new contestant.
-	 * @param contestantId 
+	 *
+	 * @param contestantId the contestant id
 	 */
 	public Contestant(int contestantId){
 		this.contestantId=contestantId;
@@ -55,7 +59,8 @@ public class Contestant implements Serializable {
 	
 	/**
 	 * Sets the contestant id.
-	 * @param contestantId 
+	 *
+	 * @param contestantId the new contestant id
 	 */
 	public void setContestantId(int contestantId){
 		this.contestantId=contestantId;
@@ -70,9 +75,11 @@ public class Contestant implements Serializable {
  	public String getContestantName(){
 		 return contestantName;
 	 }
-	 /**
+	 
+ 	/**
  	 * Sets the contestant name.
- 	 * @param contestantName 
+ 	 *
+ 	 * @param contestantName the new contestant name
  	 */
  	public void setContestantName(String contestantName){
 		 this.contestantName=contestantName;
@@ -108,7 +115,8 @@ public class Contestant implements Serializable {
 	
 	/**
 	 * Sets the contestant trrtrlist.
-	 * @param contestantTrrtrlist 
+	 *
+	 * @param contestantTrrtrlist the new contestant trrtrlist
 	 */
 	public void setcontestantTrrtrlist(List<Territories> contestantTrrtrlist){
 		this.contestantTrrtrlist=contestantTrrtrlist;
@@ -138,10 +146,20 @@ public class Contestant implements Serializable {
 		return contestant.getContestantId() == contestantId;
 	}
 	
+	/**
+	 * Gets the plan.
+	 *
+	 * @return the plan
+	 */
 	public GamePlan getPlan() {
 		return gamePlan;
 	}
 
+	/**
+	 * Sets the plan.
+	 *
+	 * @param strategy the new plan
+	 */
 	public void setPlan(GamePlan strategy) {
 		this.gamePlan = gamePlan;
 	}
@@ -165,18 +183,41 @@ public class Contestant implements Serializable {
 	}
 	
 	
+	/**
+	 * Gets the cards in pocket.
+	 *
+	 * @return the cards in pocket
+	 */
 	public int getCardsInPocket() {
 		
 		return count;
 	}
+	
+	/**
+	 * Sets the cards in pocket.
+	 *
+	 * @param count the new cards in pocket
+	 */
 	public void setCardsInPocket(int count) {
 		// TODO Auto-generated method stub
 		this.count=count;
 	}
+	
+	/**
+	 * Sets the timer.
+	 *
+	 * @param timer the new timer
+	 */
 	public void setTimer(int timer) {
 		this.timer=timer+1;
 		
 	}
+	
+	/**
+	 * Gets the timer.
+	 *
+	 * @return the timer
+	 */
 	public int getTimer() {
 		
 		return timer;

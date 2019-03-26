@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+// TODO: Auto-generated Javadoc
 /**
  * This class is used to initialize all the continents .
  */
@@ -42,7 +43,8 @@ public class Continents implements Serializable {
 
 	/**
 	 * Set territory Map.
-	 * @param trrtrsMp 
+	 *
+	 * @param trrtrsMp the trrtrs mp
 	 */
 	public void seTtrrtrsMp(HashMap<String, Territories> trrtrsMp) {
 		this.trrtrsMp = trrtrsMp;
@@ -58,7 +60,8 @@ public class Continents implements Serializable {
 
 	/**
 	 * Set Name.
-	 * @param assignName 
+	 *
+	 * @param assignName the new assign name
 	 */
 	public void setAssignName(String assignName) {
 		this.assignName = assignName;
@@ -91,7 +94,8 @@ public class Continents implements Serializable {
 
 	/**
 	 * This set method is used to Set territories.
-	 * @param trrtrs 
+	 *
+	 * @param trrtrs the trrtrs
 	 */
 	public void seTtrrtrs(List<Territories> trrtrs) {
 		this.trrtrs = trrtrs;
