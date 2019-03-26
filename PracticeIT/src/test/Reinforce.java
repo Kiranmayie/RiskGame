@@ -18,6 +18,11 @@ import com.units.Map;
 import com.units.Territories;
 public class Reinforce {
 
+	/*
+	 * Player Assignment Model Test class
+	 * @author Sathwik
+	 * @version 1.0.1
+	 */
 	
 static PlayersAssignment playersAssignment;
 	
@@ -101,9 +106,38 @@ static PlayersAssignment playersAssignment;
 			territory1.setContestant(contestant);
 			playersAssignment.territoryAssignToContestant(map, listOfcontestant);
 			territory2.setContestant(contestant);;
-			Contestant returningContestant = playersAssignment.getReinforceBatallion(map, contestant);
+			Contestant returningContestant = PlayersAssignment.getReinforceBatallion(map, contestant);
+
 			Assert.assertEquals(returningContestant.getBatallion(), 11);
 		}
+
+	
+	/**
+	 * This method tests number of armies for 2 continents during each reinforcement
+	 * phase.
+	 */
+	@Test
+	public void calculateReinforcementArmies() {
+		Continents newContinent = new Continents();
+		Territories terr = new Territories();
+		newContinent.setAssignName("Africa");
+		newContinent.setCValue("5");
+		terr.setAssignName("New Territory");
+		terr.setLyingInCntnt(newContinent);
+		terr.getTouchingTrrtrsExpand().add(territory1);
+		territory1.getTouchingTrrtrsExpand().add(terr);
+		newContinent.getTrrtrs().add(terr);
+		map.getContinents().add(newContinent);
+		contestant.setBatallion(35);
+		contestant.getcontestantTrrtrlist().add(territory1);
+		territory1.setContestant(contestant);
+		contestant.getcontestantTrrtrlist().add(territory2);
+		territory2.setContestant(contestant);
+		contestant.getcontestantTrrtrlist().add(terr);
+		terr.setContestant(contestant);
+		Contestant returnedPlayer = PlayersAssignment.getReinforceBatallion(map, contestant);
+		Assert.assertEquals(returnedPlayer.getBatallion(),43 );
+	}
 
 	
 	

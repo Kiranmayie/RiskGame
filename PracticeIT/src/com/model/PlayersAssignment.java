@@ -11,7 +11,6 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import com.controller.StartGameController;
-
 import com.sun.xml.internal.bind.v2.runtime.Name;
 import com.units.Contestant;
 import com.units.Territories;
@@ -152,7 +151,7 @@ public List<Contestant> createContestant(int noOfPlayer, List<Contestant> contes
  */
 
 
-public List<Continents> getContinentsOwnedByPlayer(Map map, Contestant currentContestant) {
+public static List<Continents> getContinentsOwnedByPlayer(Map map, Contestant currentContestant) {
 
 	List<Continents> cntnts = new ArrayList<>();
     //System.out.println( map.getContinents());
@@ -236,7 +235,7 @@ public void setContestantsList(List<Contestant> contestantsList) {
  * @param currentContestant 
  * @return the reinforce batallion
  */
-public Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
+public static Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
 	int presentBatallion = currentContestant.getBatallion();
 	int trrtrSum =  currentContestant.getcontestantTrrtrlist().size();
 	if (trrtrSum < 9) {
@@ -476,9 +475,17 @@ public int attackTerritory(List<Territories> defendTrrtrsList,String beingAttack
 	return count;
 	
 }
-
-
-
+/*private boolean isAllTerritoriesConquered() {
+	Contestant lost = null;
+	for (Contestant contestant : currentContestant) {
+		if (contestant.getAssignedTerritory().isEmpty()) {
+			lost = player;
+			playerPlaying.getPlayerCardList().addAll(playerLost.getPlayerCardList());
+		}
+	}
+	return playerLost;
+	return false;
+}*/
 private boolean validTrade(String cardtype) {
 	int infantry = 0;
 	int cavalry = 0;
