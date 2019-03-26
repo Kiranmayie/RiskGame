@@ -1,4 +1,4 @@
-package com.model;
+/*package com.model;
 
 
 
@@ -62,7 +62,7 @@ public List<String> getPlayResultAfterDiceThrown() {
 * @param playResult
 *            List playResult
 */
-public void updateArmiesAfterAttack(Integer defenderDiceValue, Integer attackerDiceValue, List<String> playResult) {
+/*public void updateArmiesAfterAttack(Integer defenderDiceValue, Integer attackerDiceValue, List<String> playResult) {
 	System.out.println("Attacking territory armies" + attackingTerritory.getArmies());
 	System.out.println("Defending territory armies" + defendingTerritory.getArmies());
 	System.out.println("attackerDiceValue   " + attackerDiceValue);
@@ -93,7 +93,7 @@ public void updateArmiesAfterAttack(Integer defenderDiceValue, Integer attackerD
 /**
 * Cancel Dice Roll
 */
-public void cancelDiceRoll() {
+/*public void cancelDiceRoll() {
 	setChanged();
 	notifyObservers("rollDiceComplete");
 }
@@ -101,7 +101,7 @@ public void cancelDiceRoll() {
 /**
 * Move All Armies
 */
-public void moveAllArmies() {
+/*public void moveAllArmies() {
 	int attckingArmies = getAttackingTerritory().getArmies();
 	getAttackingTerritory().setArmies(1);
 	getDefendingTerritory().setArmies(attckingArmies - 1);
@@ -113,7 +113,7 @@ public void moveAllArmies() {
 /**
 * Skip Move Army
 */
-public void skipMoveArmy() {
+/*public void skipMoveArmy() {
 	int attckingArmies = getAttackingTerritory().getArmies();
 	getAttackingTerritory().setArmies(attckingArmies - 1);
 	getDefendingTerritory().setArmies(1);
@@ -132,7 +132,7 @@ public void skipMoveArmy() {
 * @param moveArmies
 *            movearmies button refrence
 */
-public void moveArmies(int armiesToMove, Label message, Button moveArmies) {
+/*public void moveArmies(int armiesToMove, Label message, Button moveArmies) {
 	int currentArmies = getAttackingTerritory().getArmies();
 	if (currentArmies <= armiesToMove) {
 		message.setVisible(true);
@@ -150,7 +150,7 @@ public void moveArmies(int armiesToMove, Label message, Button moveArmies) {
 
 /**
 * Reassign Territory
-*/
+*//*
 public void reassignTerritory() {
 	List<Territory> defendersTerritories = defendingTerritory.getPlayer().getAssignedTerritory();
 	defendersTerritories.remove(defendingTerritory);
@@ -163,7 +163,7 @@ public void reassignTerritory() {
 /**
 * @return Int randomNumber
 */
-public int randomNumber() {
+/*public int randomNumber() {
 	return (int) (Math.random() * 6) + 1;
 }
 
@@ -171,7 +171,7 @@ public int randomNumber() {
 * Check if more dice role available
 * @return diceRollAvailable
 */
-public boolean moreDiceRollAvailable() {
+/*public boolean moreDiceRollAvailable() {
 	boolean diceRollAvailable = true;
 	if (attackingTerritory.getArmies() < 2 || defendingTerritory.getArmies() <= 0) {
 		diceRollAvailable = false;
@@ -183,7 +183,7 @@ public boolean moreDiceRollAvailable() {
 * Get Attacking Territory
 * @return Territory attacking territory
 */
-public Territory getAttackingTerritory() {
+/*public Territory getAttackingTerritory() {
 	return attackingTerritory;
 }
 
@@ -192,7 +192,7 @@ public Territory getAttackingTerritory() {
 * @param attackingTerritory
 *            the attackingTerritory to set
 */
-public void setAttackingTerritory(Territory attackingTerritory) {
+/*public void setAttackingTerritory(Territory attackingTerritory) {
 	this.attackingTerritory = attackingTerritory;
 }
 
@@ -200,7 +200,7 @@ public void setAttackingTerritory(Territory attackingTerritory) {
 * Get Defending Territory
 * @return the defendingTerritory
 */
-public Territory getDefendingTerritory() {
+/*public Territory getDefendingTerritory() {
 	return defendingTerritory;
 }
 
@@ -209,7 +209,7 @@ public Territory getDefendingTerritory() {
 * @param defendingTerritory
 *            the defendingTerritory to set
 */
-public void setDefendingTerritory(Territory defendingTerritory) {
+/*public void setDefendingTerritory(Territory defendingTerritory) {
 	this.defendingTerritory = defendingTerritory;
 }
 
@@ -217,7 +217,7 @@ public void setDefendingTerritory(Territory defendingTerritory) {
 * Get Attacker Dice Values
 * @return the attackerDiceValues
 */
-public List<Integer> getAttackerDiceValues() {
+/*public List<Integer> getAttackerDiceValues() {
 	return attackerDiceValues;
 }
 
@@ -226,7 +226,7 @@ public List<Integer> getAttackerDiceValues() {
 * @param attackerDiceValues
 *            the attackerDiceValues to set
 */
-public void setAttackerDiceValues(List<Integer> attackerDiceValues) {
+/*public void setAttackerDiceValues(List<Integer> attackerDiceValues) {
 	this.attackerDiceValues = attackerDiceValues;
 }
 
@@ -234,7 +234,7 @@ public void setAttackerDiceValues(List<Integer> attackerDiceValues) {
 * Get Defender Dice Values
 * @return defenderDiceValues
 */
-public List<Integer> getDefenderDiceValues() {
+/*public List<Integer> getDefenderDiceValues() {
 	return defenderDiceValues;
 }
 
@@ -243,7 +243,7 @@ public List<Integer> getDefenderDiceValues() {
 * @param defenderDiceValues
 *            the defenderDiceValues to set
 */
-public void setDefenderDiceValues(List<Integer> defenderDiceValues) {
+/*public void setDefenderDiceValues(List<Integer> defenderDiceValues) {
 	this.defenderDiceValues = defenderDiceValues;
 }
 
@@ -251,7 +251,7 @@ public void setDefenderDiceValues(List<Integer> defenderDiceValues) {
 * Get Number Of Territories Won
 * @return the numOfTerritoriesWon
 */
-public int getNumOfTerritoriesWon() {
+/*public int getNumOfTerritoriesWon() {
 	return numOfTerritoriesWon;
 }
 
@@ -259,8 +259,8 @@ public int getNumOfTerritoriesWon() {
 * Set Number Of Territories Won
 * @param numOfTerritoriesWon the numOfTerritoriesWon to set
 */
-public void setNumOfTerritoriesWon(int numOfTerritoriesWon) {
+/*public void setNumOfTerritoriesWon(int numOfTerritoriesWon) {
 	this.numOfTerritoriesWon = numOfTerritoriesWon;
 }
 
-}
+}*/

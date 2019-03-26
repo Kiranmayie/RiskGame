@@ -67,3 +67,4 @@ public class StartGame implements EventHandler<ActionEvent>  {
 				 sup.StartUp(contestants,enhancedMap,selectedTerritoryList);
 	}
 }
+

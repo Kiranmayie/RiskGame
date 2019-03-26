@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="lib" path="C:/Program Files/Java/jre/lib/jfxswt.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Program Files/Java/jre/lib/ext/jfxrt.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Java/jre1.8.0_201/lib/jfxswt.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Java/jre1.8.0_201/lib/ext/jfxrt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

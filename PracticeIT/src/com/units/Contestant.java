@@ -136,7 +136,14 @@ public class Contestant implements Serializable {
 		Contestant contestant = (Contestant) object;
 		return contestant.getContestantId() == contestantId;
 	}
+	
+	public GamePlan getPlan() {
+		return gamePlan;
+	}
 
+	public void setPlan(GamePlan strategy) {
+		this.gamePlan = gamePlan;
+	}
 
 	/**
 	 * Gets the game plan.
