@@ -24,6 +24,8 @@ public class MapSStep {
 	/** The Territory continent aggregation. */
 	HashMap<String, Integer> trrtrCntntAggregate = new HashMap<>();
 	public static int systemExit=0;
+	public static int TerritoriesCount=1;
+	public static int count=0;
 	
 	/**
 	 * Map file validator.
@@ -209,6 +211,9 @@ public class MapSStep {
 				trrtrs.add(trrtr);
 				}
 			}
+			
+			count=trrtrs.size()+count;
+			
 		 return trrtrs;
 	 }
 }

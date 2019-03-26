@@ -28,12 +28,12 @@ import javafx.scene.layout.VBox;
 /**
  * The Class PlayersAssignment.
  */
-public class PlayersAssignment  extends Observable implements Observer, Serializable{
+public class PlayersAssignment  implements  Serializable{
 	/** The current contestant. */
 	Contestant currentContestant;
 	int timer=1;
 	/** The Constant TWO_PLAYER_ARMIES. */
-	public static final Integer TWO_PLAYER_ARMIES = 8;
+	public static final Integer TWO_PLAYER_ARMIES = 23;
 	
 	/** The Constant THREE_PLAYER_ARMIES. */
 	public static final Integer THREE_PLAYER_ARMIES = 35;
@@ -603,63 +603,15 @@ private int anynumber(int i) {
 	return (int) ((Math.random() * i)+0) ;
 }
 
-/**
- * Any number.
- * @param i 
- * @return the int
- */
 
-
-/**
- * Reinforce phase.
- * @param territoryList 
- * @param territory 
- * @param gameConsole 
- */
-public void reinforcePhase(ObservableList<Territories> territoryList, Territories territory, TextArea gameConsole) {
-	if (currentContestant.getBatallion() <= 0 && contestantsList.size() > 1) {
-		setChanged();
-		notifyObservers("Attack");
-	}
-}
-
-
-
-/**
- * Fortification Phase
- * 
- * @param selectedTerritory
- *            selected Territory object
- * @param adjTerritory
- *            adj Territory object
- * @param gameConsole
- *            gameConsole
- */
- public void fortificationPhase(ListView<Territories> selectedTerritory, ListView<Territories> adjTerritory) {
-	boolean isFortificationDone = currentContestant.getGamePlan().fortificationPhase(selectedTerritory, adjTerritory, currentContestant);
-	if (isFortificationDone && contestantsList.size() > 1) {
-		setChanged();
-		notifyObservers("Reinforcement");
-	}
-
-}
-/**
- * Check if there are armies to be fortified.
- * 
- * @param map
- *            map object
- * @param playerPlaying
- *            current player playing
- * @return isFortificationAvaialble is fortification of armies available.
- */
  public boolean isFortificationPhaseValid(Map map, Contestant pPlay) {
 	boolean isFortificationAvaialble = pPlay.getGamePlan().isFortificationPhaseValid(map, pPlay);
 	if (isFortificationAvaialble) {
-		setChanged();
-		notifyObservers("Fortification");
+	//	setChanged();
+	//	notifyObservers("Fortification");
 	} else {
-		setChanged();
-		notifyObservers("noFortificationMove");
+	//	setChanged();
+	//	notifyObservers("noFortificationMove");
 	}
 	return isFortificationAvaialble;
 }
@@ -677,8 +629,8 @@ public void reinforcePhase(ObservableList<Territories> territoryList, Territorie
  	public boolean attackMoveAvailable(ListView<Territories> territories) {
 	boolean attackMove = currentContestant.getGamePlan().attackMoveAvailable(territories);
 	if (!attackMove) {
-		setChanged();
-		notifyObservers("fortificationPhaseIsAvailable");
+//		setChanged();
+	//	notifyObservers("fortificationPhaseIsAvailable");
 	}
 
 	return attackMove;
@@ -691,8 +643,8 @@ public void reinforcePhase(ObservableList<Territories> territoryList, Territorie
 public void fortifyPhase(ListView<Territories> selectedTerritory, ListView<Territories> adjTerritory) {
 		boolean FortifySuccess = false;
 	if (FortifySuccess && contestantsList.size() > 1) {
-		setChanged();
-		notifyObservers("Reinforce");
+	//	setChanged();
+	//	notifyObservers("Reinforce");
 	}
 
 }
@@ -707,11 +659,11 @@ public boolean FortifyPhaseValid(Map map, Contestant currentContestant) {
 	boolean isFortifyPossible=false;
 	//boolean isFortificationAvaialble = currentContestant.getStrategy().isFortificationPhaseValid(map, playerPlaying);
 	if (isFortifyPossible) {
-		setChanged();
-		notifyObservers("Fortify");
+	//	setChanged();
+	//	notifyObservers("Fortify");
 	} else {
-		setChanged();
-		notifyObservers("Dont fortify");
+	//	setChanged();
+	//	notifyObservers("Dont fortify");
 	}
 	return isFortifyPossible;
 }
@@ -849,10 +801,7 @@ public void loadBatallion(List<Territories> selectedTerritoryList) {
 
 
 
-@Override
-public void update(Observable arg0, Object arg1) {
-	// TODO Auto-generated method stub
-	
-}}
+
+}
 
 
