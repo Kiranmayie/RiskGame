@@ -14,30 +14,68 @@ import com.units.Territories;
 import Patterns.Observable;
 import Patterns.Observer;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StartUpPhase.
+ */
 public class StartUpPhase implements Observable{
 	
+	/** The observers. */
 	public ArrayList<Observer> observers;
+	
+	/** The pa. */
 	public PlayersAssignment pa;
+	
+	/** The contestant name. */
 	public static String contestantName="";
+	
+	/** The contestant armiesleft. */
 	public static int contestantArmiesleft=0;
+	
+	/** The changed. */
 	public boolean changed; 
+	
+	/** The sup local. */
 	public StartUpPhase supLocal;
-	 public PhaseView pv;
-	 public PlayersDominationView pdv;
-	 public static double percentageOccupationEachPlayer=0;
+	 
+ 	/** The pv. */
+ 	public PhaseView pv;
+	 
+ 	/** The pdv. */
+ 	public PlayersDominationView pdv;
+	 
+ 	/** The percentage occupation each player. */
+ 	public static double percentageOccupationEachPlayer=0;
+	
+	/** The number of armies. */
 	public static int numberOfArmies =0;
 	
+	/**
+	 * Instantiates a new start up phase.
+	 */
 	public StartUpPhase() {
 		 
 		observers = new ArrayList<Observer>();
 	 }
 	 
+    /**
+     * Instantiates a new start up phase.
+     *
+     * @param pa the pa
+     */
     public StartUpPhase(PlayersAssignment pa) {
 		 
 		 this.pa = pa;
 	 }
 	 
-	 public void StartUp(List<Contestant> contestants, Map enhancedMap, List<Territories> selectedTerritoryList) {
+	 /**
+ 	 * Start up.
+ 	 *
+ 	 * @param contestants the contestants
+ 	 * @param enhancedMap the enhanced map
+ 	 * @param selectedTerritoryList the selected territory list
+ 	 */
+ 	public void StartUp(List<Contestant> contestants, Map enhancedMap, List<Territories> selectedTerritoryList) {
 		 //PlayersAssignment pa=new PlayersAssignment();
 		if(contestants.size()>1) {
 			supLocal = new StartUpPhase();
@@ -108,6 +146,9 @@ public class StartUpPhase implements Observable{
 }}
 	 }
 	 
+	/* (non-Javadoc)
+	 * @see Patterns.Observable#registerObserver(Patterns.Observer)
+	 */
 	@Override
 	public void registerObserver(Observer o) {
 		observers.add(o);
@@ -115,6 +156,9 @@ public class StartUpPhase implements Observable{
 		System.out.println(observers.size());
 	}
 	
+	/* (non-Javadoc)
+	 * @see Patterns.Observable#removeObserver(Patterns.Observer)
+	 */
 	@Override
 	public void removeObserver(Observer o) {
 		int i = observers.indexOf(o);
@@ -123,6 +167,9 @@ public class StartUpPhase implements Observable{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see Patterns.Observable#notifyObservers(java.lang.String)
+	 */
 	@Override
 	public void notifyObservers(String obj) {
 		if(changed) {
@@ -135,6 +182,9 @@ public class StartUpPhase implements Observable{
 		
 	}
 	
+	/**
+	 * Notify observers.
+	 */
 	public void notifyObservers() {
 		if(changed) {
 			pdv.update("World");
@@ -142,6 +192,9 @@ public class StartUpPhase implements Observable{
 		}
 	}
 	
+	/**
+	 * Something changed.
+	 */
 	public void somethingChanged() {
 		changed=true;
 	}

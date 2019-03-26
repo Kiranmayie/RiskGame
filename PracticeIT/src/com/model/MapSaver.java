@@ -7,14 +7,17 @@ import java.util.List;
 import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
+// TODO: Auto-generated Javadoc
 /**
  * The Class MapSaver is used to save the Map.
  */
 public class MapSaver {
+	
 	/**
 	 * First step.
-	 * @param map 
-	 * @param file
+	 *
+	 * @param map the map
+	 * @param file the file
 	 */
 	public void fStep(Map map, File file) {
 		FileWriter fileSaver = null;
@@ -33,7 +36,8 @@ public class MapSaver {
 
 	/**
 	 * Change format.
-	 * @param map 
+	 *
+	 * @param map the map
 	 * @return the string
 	 */
 	private String changeFormat(Map map) {
@@ -44,8 +48,9 @@ public class MapSaver {
 	
 	/**
 	 * Loading map data.
-	 * @param map 
-	 * @param mapIndex 
+	 *
+	 * @param map the map
+	 * @param mapIndex the map index
 	 * @return the string builder
 	 */
 	private StringBuilder loadingMapData(Map map, StringBuilder mapIndex) {
@@ -61,8 +66,9 @@ public class MapSaver {
 	
 	/**
 	 * Loading Continent data.
-	 * @param map 
-	 * @param mapIndex 
+	 *
+	 * @param map the map
+	 * @param mapIndex the map index
 	 * @return the string builder
 	 */
 	private StringBuilder LoadingCntntData(Map map, StringBuilder mapIndex) {
@@ -79,8 +85,9 @@ public class MapSaver {
 	
 	/**
 	 * Loading Territories data.
-	 * @param map 
-	 * @param mapIndex 
+	 *
+	 * @param map the map
+	 * @param mapIndex the map index
 	 * @return the string builder
 	 */
 	private StringBuilder loadingTrrtrsData(Map map, StringBuilder mapIndex) {
