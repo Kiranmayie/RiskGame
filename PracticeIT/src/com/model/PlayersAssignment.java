@@ -20,7 +20,7 @@ import Patterns.Observer;
 
 import com.units.Continents;
 import com.units.Map;
-
+//
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
