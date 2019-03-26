@@ -36,7 +36,9 @@ public class StartGame implements EventHandler<ActionEvent>  {
 	
 	/** The selected territory list. */
 	List<Territories> selectedTerritoryList;
+
 	
+	private StartUpPhase sup;
 
 
 	/* (non-Javadoc)
@@ -67,3 +69,4 @@ public class StartGame implements EventHandler<ActionEvent>  {
 				 sup.StartUp(contestants,enhancedMap,selectedTerritoryList);
 	}
 }
+
