@@ -5,6 +5,8 @@ package test;
 
 
 
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Assert;
@@ -27,12 +29,16 @@ import com.units.Territories;
 
 public class AttackPhase {
 static PlayersAssignment playersAssignment;
-	
+   /**
+    * @PlayersAssignment reference 	
+    */
+static PlayersAssignment playerGamePhase;
+
 	/**
 	 * The @continent reference
 	 */
 	static Continents continent;
-	
+	static List<Contestant> contestantList;
 	/**
 	 * The @territory1
 	 */
@@ -103,6 +109,19 @@ static PlayersAssignment playersAssignment;
 		playersAssignment.territoryAssignToContestant(map, listOfcontestant);
 		listOfcontestant.add(contestant);
 	}
+	
+	/**
+	 * This method tests if a player has zero armies.
+	 */
+	/*@Test
+	public void checkIfPlayersArmiesExhausted() {
+		contestantList = new ArrayList<>();
+		contestantList.add(new Contestant(0));
+		contestantList.get(0).setBatallion(0);
+		//System.out.println("Hello");
+		Assert.assertEquals(playerGamePhase.checkIfPlayersArmiesExhausted(contestantList), true);
+	}*/
+	
 	@Test
 	public final void testAttackPhaseListOfTerritoriesListOfTerritoriesContestant() {
 		fail("Not yet implemented"); // TODO
@@ -111,10 +130,15 @@ static PlayersAssignment playersAssignment;
 	/**
 	 * Test method for {@link com.model.PlayersAssignment#fortificationPhase(java.util.List, java.util.List, com.units.Contestant)}.
 	 */
-	@Test
+	/*@Test
 	public final void testFortificationPhase() {
+		territory1.setContestant(contestant);
+		territory1.setBatallion(2);
+		territory2.setContestant(contestant);
+		boolean ifPhaseValid = playerGamePhase.fortificationPhase(listOfTerritories,listOfTerritories,contestant);
+		Assert.assertEquals(true, ifPhaseValid);
 		fail("Not yet implemented"); // TODO
-	}
+	}*/
 
 	/**
 	 * Test method for {@link com.model.PlayersAssignment#isFortificationPhaseValid(com.units.Map, com.units.Contestant)}.
@@ -124,26 +148,7 @@ static PlayersAssignment playersAssignment;
 		fail("Not yet implemented"); // TODO
 	}
 
-	/**
-	 * Test method for {@link com.model.PlayersAssignment#isContestantLost(java.util.List)}.
-	 */
-	@Test
-	public final void testIsContestantLost() {
-		fail("Not yet implemented"); // TODO
+
 	}
 
-	/**
-	 * Test method for {@link com.model.PlayersAssignment#isContestantWon(java.util.List)}.
-	 * @return 
-	 */
-	@Test
-	public final void testIsContestantWon() {
-		boolean ContestantWon = false;
-		if (listOfcontestant.size() == 1) {
-			ContestantWon = true;
-		}
-		Assert.assertEquals(isContestantWon(listOfcontestant contestant), true);
-		
-	}
 
-}
