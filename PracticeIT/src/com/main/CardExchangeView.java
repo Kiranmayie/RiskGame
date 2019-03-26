@@ -5,6 +5,7 @@ import com.model.PlayersAssignment;
 import Patterns.Observable;
 import Patterns.Observer;
 
+
 public class CardExchangeView implements Observer {
 
 	public Observable obs;

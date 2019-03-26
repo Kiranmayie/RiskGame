@@ -6,9 +6,23 @@ import java.util.Random;
 import com.units.*;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Cards.
+ */
 public class Cards {
+	
+	/** The Contestant cards. */
 	private List<ContestantCards> ContestantCards;
-	 private static Random rgen = new Random();
+	 
+ 	/** The rgen. */
+ 	private static Random rgen = new Random();
+	
+	/**
+	 * Select cards.
+	 *
+	 * @return the string
+	 */
 	public static String selectCards() {
 	
 		        int s = 1 + rgen.nextInt(3);
