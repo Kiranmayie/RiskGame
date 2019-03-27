@@ -802,7 +802,7 @@ public List<Territories> executingCurrentContestant() {
 	currentContestant = newContestant;
 	setCurrentContestant(currentContestant);
 	setContestantsList(contestantsList);
-	setTerritoryConquered(0);
+	setTerritoryConquered(0); 
 	
 	System.out.println(currentContestant.getContestantName() + "!....started playing.\n");
 	System.out.println(currentContestant.getContestantName() + currentContestant.getBatallion() + " Batallion left.\n");

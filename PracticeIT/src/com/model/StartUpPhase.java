@@ -60,12 +60,13 @@ public class StartUpPhase implements Observable{
 						numberOfArmies = contestant.getBatallion();
 						somethingChanged();
 						notifyObservers();
+						input = "Forward";
 					}}
 
 					
 				
 				
-				else {
+				 if(input.equals("Forward")) {
 		for(Contestant contestant:contestants) {
 
 		contestant= pa.getReinforceBatallion(enhancedMap,contestant);
