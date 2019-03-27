@@ -345,7 +345,7 @@ public void attackPhase(List<Territories> attackTrrtsList, List<Territories> def
 		Territory2=a.next();
 		
 		System.out.println("You have selected to move your armies from "+Territory1 + "to" + Territory2);
-		for(Territories territory:selectedTerritoryList) {
+				for(Territories territory:selectedTerritoryList) {
 			System.out.println(getDefendingTerritory(territory));
 			if(Territory1.equals(selectedTerritoryList) && Territory2.equals(getDefendingTerritory(territory))) {
 				int size=getDefendingTerritory(territory).size()-1;
@@ -628,13 +628,11 @@ public void placeBatallion(Contestant currentContestant, List<Territories> selec
 }
 		
 
-
-
 /**
  * Contestant assignment to territories.
  * @param currentContestant 
  */
-private void contestantAssignmentToTerritories(Contestant currentContestant) {
+public void contestantAssignmentToTerritories(Contestant currentContestant) {
 	if (currentContestant.getBatallion() > 0) {
 		Territories territory = currentContestant.getcontestantTrrtrlist()
 				.get(anynumber(currentContestant.getcontestantTrrtrlist().size() - 1));
@@ -645,56 +643,10 @@ private void contestantAssignmentToTerritories(Contestant currentContestant) {
 }
 
 private int anynumber(int i) {
-	// TODO Auto-generated method stub
 	return (int) ((Math.random() * i)+0) ;
 }
 
 
- public boolean isFortificationPhaseValid(Map map, Contestant pPlay) {
-	boolean isFortificationAvaialble = pPlay.getGamePlan().isFortificationPhaseValid(map, pPlay);
-	if (isFortificationAvaialble) {
-	//	setChanged();
-	//	notifyObservers("Fortification");
-	} else {
-	//	setChanged();
-	//	notifyObservers("noFortificationMove");
-	}
-	return isFortificationAvaialble;
-}
-
-
-/**
- * Fortify phase.
- * @param selectedTerritory 
- * @param adjTerritory 
- */
-public void fortifyPhase(ListView<Territories> selectedTerritory, ListView<Territories> adjTerritory) {
-		boolean FortifySuccess = false;
-	if (FortifySuccess && contestantsList.size() > 1) {
-	//	setChanged();
-	//	notifyObservers("Reinforce");
-	}
-
-}
-
-/**
- * Fortify phase valid.
- * @param map 
- * @param currentContestant 
- * @return true, if successful
- */
-public boolean FortifyPhaseValid(Map map, Contestant currentContestant) {
-	boolean isFortifyPossible=false;
-	//boolean isFortificationAvaialble = currentContestant.getStrategy().isFortificationPhaseValid(map, playerPlaying);
-	if (isFortifyPossible) {
-	//	setChanged();
-	//	notifyObservers("Fortify");
-	} else {
-	//	setChanged();
-	//	notifyObservers("Dont fortify");
-	}
-	return isFortifyPossible;
-}
 
 /**
  * Checks if its contestant lost.
