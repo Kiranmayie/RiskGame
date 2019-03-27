@@ -428,7 +428,7 @@ private int[] rollDiceDefender(int m) {
 }
 
 private int defendingDiceCalculation(List<Territories> defendTrrtrsList,String beingAttackedTerritory) {
-	// TODO Auto-generated method stub
+	
 	int m=0;
 	for (Territories territory : defendTrrtrsList) {
 		if (territory.getAssignName().equals(beingAttackedTerritory) && territory.getBatallion() > 1) 
@@ -579,7 +579,6 @@ private int[] rollDiceAttacker(int n) {
 }
 
 private List<Territories> getDefendingTerritory(Territories territory) {
-	// TODO Auto-generated method stub
 	List<Territories> defendingTerritories = territory.getTouchingTrrtrsExpand();
 	return defendingTerritories;
 }
@@ -595,11 +594,7 @@ private int[] anyNumber(int i) {
 	
 	return allresultOfDice;
 }
-public void attackPhase(ListView<Territories> attackTrrtsList, ListView<Territories> defendTrrtrsList)  {
-	currentContestant.getGamePlan().attackPhase(attackTrrtsList, defendTrrtrsList,this );
-// attack\phase
 
-}
 
 
 /**
