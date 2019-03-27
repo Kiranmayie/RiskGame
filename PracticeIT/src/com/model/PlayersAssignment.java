@@ -20,7 +20,7 @@ import Patterns.Observer;
 
 import com.units.Continents;
 import com.units.Map;
-
+//
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -802,7 +802,7 @@ public List<Territories> executingCurrentContestant() {
 	currentContestant = newContestant;
 	setCurrentContestant(currentContestant);
 	setContestantsList(contestantsList);
-	setTerritoryConquered(0);
+	setTerritoryConquered(0); 
 	
 	System.out.println(currentContestant.getContestantName() + "!....started playing.\n");
 	System.out.println(currentContestant.getContestantName() + currentContestant.getBatallion() + " Batallion left.\n");
