@@ -149,4 +149,13 @@ static AuthenticatingEnhanedmap mapValidator;
 		Assert.assertEquals(territory.getPointY(), Integer.parseInt(yAxis1));
 		Assert.assertEquals(territory.getLyingInCntnt(), continent);
 	}
+	
+	@Test
+	public void assignTerrToContinent() throws Exception {
+		Territories newTerritory = new Territories();
+		newTerritory = mapMini.addTerritory(map, "Canada", "1", "10", null, continent);
+		continent = mapMini.assignTerrToContinent(continent, newTerritory);
+		Assert.assertNotNull(continent);
+		Assert.assertTrue(continent.getTrrtrs().contains(newTerritory));
+	}
 }

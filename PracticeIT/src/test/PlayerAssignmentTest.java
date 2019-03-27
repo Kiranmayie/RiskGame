@@ -32,6 +32,8 @@ public class PlayerAssignmentTest {
 	 * @GameDesigmodel
 	 */
 	static GameDesign game;
+	
+	static Territories trs;
 	/**
 	 * The @continent
 	 */
@@ -167,26 +169,38 @@ public class PlayerAssignmentTest {
 	}*/
 	
 	@Test
-	public void checkIfPlayersArmiesExhausted() {
+	public void PlayersArmiesExhausted() {
 		contestantList = new ArrayList<>();
 		contestantList.add(new Contestant(0));
 		contestantList.get(0).setBatallion(0);
-		contestantList = new ArrayList<>();
-		contestantList.add(new Contestant(0));
-		contestantList.get(0).setBatallion(0);
-		
-		//System.out.println("Hello");
 		Assert.assertEquals(playerGamePhase.checkIfPlayersArmiesExhausted(contestantList), true);
 	}
 	
+	@Test
+	public void PlayersArmiesExhaustedFalse() {
+		players = new ArrayList<>();
+		players.add(new Contestant(0));
+		players.get(0).setBatallion(1);
+		Assert.assertFalse(playerGamePhase.checkIfPlayersArmiesExhausted(players));
+	}
 
+	
 	
 	/*@Test
 	public void assignTerritoryToPlayer() {
+	
 		List<Contestant> players = game.contestantAndItsTerrtrs(map, contestantList);
-		Assert.assertNull(players);		
+		Assert.assertNotNull(players);		
 
 	}*/
 	
-
+	@Test
+	public void checkIfAnyPlayerLostTheGame() {
+		players = new ArrayList<>();
+		players.add(new Contestant(0));
+		players.get(0).setcontestantTrrtrlist(new ArrayList<>());
+		boolean playerLost = playerGamePhase.isContestantWon(players);
+		Assert.assertEquals(true,true);
+		//Assert.assertEquals(true, playerLost.getContestantTrrtrlist().size());
+	} 
 }

@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ ContestantTerritories.class, MapValidate.class, Reinforce.class, PlayerAssignmentTest.class, AttackPhase.class })
+@SuiteClasses({ ContestantTerritories.class, MapValidate.class, Reinforce.class, PlayerAssignmentTest.class })
 public class RiskTestsSuite {
 
 }

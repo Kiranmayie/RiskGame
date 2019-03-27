@@ -3,21 +3,23 @@ package com.units;
 import java.io.Serializable;
 
 
+
+
 /**
  * The Class ContestantCards is used to populate the fields related to contestantcards being hold by particular contestant.
  */
 public class ContestantCards implements Serializable{
 	
 	/** The contestant card type. */
-	
-	
+	 CardType cardType; 
+		
 	/** The trrtry. */
 	private Territories trrtry;
 	
-	/**
-	 * Instantiates a new contestant cards.
-	 * @param contestantCardType the contestant card type
-	 */
+	public ContestantCards(CardType cardType) {
+		this.cardType = cardType;
+	}
+	
 	
 	/**
 	 * Gets the trrtrs.
@@ -36,6 +38,14 @@ public class ContestantCards implements Serializable{
 	public void setTrrtry(Territories trrtry) {
 		this.trrtry = trrtry;
 	}
+	
+	/**
+	 * @return the cardType
+	 */
+	public CardType getCardType() {
+		return cardType;
+	}
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
