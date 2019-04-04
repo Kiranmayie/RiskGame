@@ -14,9 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class StartGameController implements Serializable, Initiates the Game play.
+ * The Class StartGameController initiates a game and let the contestants play the game in round robin fashion.
  */
 public class StartGameController implements Serializable {
 	

@@ -62,6 +62,7 @@ public class Contestant implements Serializable {
 	}
 	
 	
+	
 	 /**
  	 * Gets the contestant name.
  	 * @return the contestant name
