@@ -20,7 +20,8 @@ public class CardExchangeView implements Observer {
 	 
 	@Override
 	public void update(Object arg1) {
-		 System.out.println("The player has been assigned"+PlayersAssignment.CardCount+"of type" +PlayersAssignment.cardtype);
+		 System.out.println("Card Exchange View The player has been assigned "+PlayersAssignment.CardCountAttacker+"of type " +PlayersAssignment.cardtypeAttacker);
+		
 		
 	}
 
