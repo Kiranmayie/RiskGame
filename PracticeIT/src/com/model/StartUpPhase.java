@@ -60,12 +60,13 @@ public class StartUpPhase implements Observable{
 						numberOfArmies = contestant.getBatallion();
 						somethingChanged();
 						notifyObservers();
+						input = "Forward";
 					}}
 
 					
 				
 				
-				else {
+				 if(input.equals("Forward")) {
 		for(Contestant contestant:contestants) {
 
 		contestant= pa.getReinforceBatallion(enhancedMap,contestant);
@@ -101,7 +102,7 @@ public class StartUpPhase implements Observable{
 			 
 			 somethingChanged();
 			 notifyObservers("Fortification");
-			 pa.attackPhase(contestant.getContestantTrrtrlist(),contestant.getContestantTrrtrlist(), contestant);
+			 pa.fortificationPhase(contestant.getContestantTrrtrlist(),contestant.getContestantTrrtrlist(), contestant);
 		 }
 }
 		StartUp(contestants, enhancedMap, selectedTerritoryList);
@@ -146,24 +147,5 @@ public class StartUpPhase implements Observable{
 		changed=true;
 	}
 	
-	/*public void worldDominationSelection(List<Contestant> contestants){
-	Scanner scOne=new Scanner(System.in);
-	 System.out.println("Choose among following and type:- \n"+" World - to view World Domination \n"+"Forward - To move ahead");
-	 String input=scOne.next();
-		//System.out.println(supLocal.observers.size());
-		if(input.equals("World")) {
-			for(Contestant contestant:contestants) {
-				
-				contestantName=contestant.getContestantName();
-				contestantArmiesleft=contestant.getBatallion();
-				double num=contestant.getcontestantTrrtrlist().size();
-				double dem=MapSStep.count;
-				System.out.println(num+"  "+dem);
-				percentageOccupationEachPlayer = (num / dem) * 100;
-				numberOfArmies = contestant.getBatallion();
-				somethingChanged();
-				notifyObservers();
-			}}
 
-}*/
 	}
