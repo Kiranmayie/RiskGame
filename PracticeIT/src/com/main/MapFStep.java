@@ -22,8 +22,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 /**
  * The Class MapFStep implements Eventhandler, Authenticates the map.
+ * The Class MapFStep is the first step towards map loading or creation.
  */
 public class MapFStep implements EventHandler<ActionEvent>{
 

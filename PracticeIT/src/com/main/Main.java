@@ -34,7 +34,7 @@ public class Main extends Application {
 			Scene scn = new Scene(grp, 500, 450);
 			VBox vbox = new VBox();
 			vbox.setAlignment(Pos.BOTTOM_CENTER);
-		    vbox.getChildren().addAll(startPlayingGame(scn),  mapModification(scn), exit(scn));			
+		    vbox.getChildren().addAll(startPlayingGame(scn),  mapModification(scn), tournamentMode(scn), startSavedGame(scn), exit(scn));			
 			BorderPane bp = new BorderPane();
 			bp.setBottom(vbox);
 			bp.setCenter(LoadImage(scn, classLoader));
@@ -102,6 +102,18 @@ public class Main extends Application {
 		Button gameButton = new Button("Start New Game");
 		gameButton.setOnAction(new StartGame());
 		return gameButton;
+	}
+	
+	public static Button tournamentMode(Scene scn) {
+		Button modeButton = new Button("Tournament Mode");
+		modeButton.setOnAction(new TournamentMode());
+		return modeButton;
+	}
+	
+	public static Button startSavedGame(Scene scn) {
+		Button savedButton = new Button("Start Saved Game");
+		savedButton.setOnAction(new StartSavedGame());
+		return savedButton;
 	}
 	/**
 	 * The main method which invokes start method.
