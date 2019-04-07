@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+
 import com.controller.StartGameController;
 import com.main.CardExchangeView;
 import com.main.PhaseView;
@@ -18,6 +19,11 @@ import com.units.Territories;
 
 import Patterns.Observable;
 import Patterns.Observer;
+import Strategy.BenevolentStrategy;
+import Strategy.CheaterStrategy;
+import Strategy.HumanStrategy;
+import Strategy.PlayerBehaviorStrategy;
+import Strategy.RandomStrategy;
 
 import com.units.Continents;
 import com.units.Map;
@@ -148,11 +154,40 @@ public List<Contestant> createContestant(int noOfPlayer, List<Contestant> contes
 		contestants.get(i).setContestantName(name);
 		contestants.get(i).setContestantStrategy(strategyName);
 		System.out.println(contestants.get(i).getContestantName() + " is created with the strategy "+contestants.get(i).getContestantStrategy()+"\n");
+
 	}
 	return contestants;
 }
 
+public String getContestantType() {
+	System.out.println("Select The Contestant Type from the below \n 1.HUMAN \n 2.AGGRESIVE \n 3.BENEVOLENT \n 4.RANDOM \n 5.CHEATER");
+	Scanner sc=new Scanner(System.in);
+	String contestantType=sc.nextLine();
+	
+	return contestantType;
+	
+	
+}
 
+public PlayerBehaviorStrategy getStrategyObject(String strategyType) {
+	PlayerBehaviorStrategy strategy = null;
+	if (strategyType.equals("HUMAN")) {
+		strategy = new HumanStrategy();
+	} else if (strategyType.equals("AGGRESSIVE")) {
+		//strategy = new AggressiveStrategy();
+
+	} else if (strategyType.equals("BENEVOLENT")) {
+		strategy = new BenevolentStrategy();
+
+	} else if (strategyType.equals("RANDOM")) {
+		strategy = new RandomStrategy();
+
+	} else if (strategyType.equals("CHEATER")) {
+		strategy = new CheaterStrategy();
+
+	}
+	return strategy;
+}
 /**
  * Gets the continents owned by player.
  * @param map 
@@ -794,6 +829,7 @@ public boolean isContestantWon(List<Contestant> currentContestant) {
  */
 public List<Contestant> territoryAssignToContestant(Map enhancedmap, List<Contestant> contestants) {
 	System.out.println("Territory Assignment to the Contestants");
+	
 	List<Territories> trrtrs = new ArrayList<>();
 	if (enhancedmap.getContinents() != null) {
 		for (Continents cntnt : enhancedmap.getContinents()) {

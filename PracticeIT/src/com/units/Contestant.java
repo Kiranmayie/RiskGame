@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import com.model.GamePlan;
+
+import Strategy.PlayerBehaviorStrategy;
+
 /**
  * The Class Contestant immplements Serializable .
  */
@@ -38,6 +41,8 @@ public class Contestant implements Serializable {
 	private String contestantStrategy;
 	
 	String contestantTrrtrs;
+
+	private String strategy;
 
 	
 	/**
@@ -185,6 +190,7 @@ public class Contestant implements Serializable {
 		
 		return timer;
 	}
+
 	
 	public void setContestantStrategy(String name) {
 		
@@ -196,13 +202,5 @@ public String getContestantStrategy() {
 		return contestantStrategy;
 	}
 
-/*public void setContestantTrrtrs(String territory){
-	this.contestantTrrtrs=territory;
-}
-
-public String getContestantTrrtrs(){
-	return contestantTrrtrs;
-}*/
-	
 }
 	
