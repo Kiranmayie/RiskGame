@@ -10,9 +10,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.model.Cards;
 import com.model.GameDesign;
 import com.model.PlayersAssignment;
 import com.units.Map;
+import com.units.CardType;
 import com.units.Contestant;
 import com.units.Continents;
 import com.units.Territories;
@@ -59,7 +61,7 @@ public class PlayerAssignmentTest {
 	 */
 	static Map map;
 	/**
-	 * The @territoryListView
+	 * The @territoryList
 	 */
 	static List<Territories> territoryList;
 	static List<Territories> attackTerritoryList;
@@ -84,7 +86,9 @@ public class PlayerAssignmentTest {
 	/**
 	 * The @territoryName2
 	 */
-	String territoryName2 = "China";	
+	String territoryName2 = "China";
+	private List<String> listOfCards;
+	
 	
 	/**
 	 * The @players list
@@ -105,12 +109,14 @@ public class PlayerAssignmentTest {
 	 */
 	@Before
 	public void beforeTest() {
-		//territoryList = new ListView<>();
+		
 		map = new Map();
+		
 		contestant = new Contestant(1);
 		continent = new Continents();
 		territory1 = new Territories();
 		territory2 = new Territories();
+		
 		continent.setAssignName(continentName);
 		continent.setCValue(controlValue);
 		territory1.setAssignName(territoryName1);
@@ -122,12 +128,12 @@ public class PlayerAssignmentTest {
 		territory1.getTouchingTrrtrsExpand().add(territory2);
 		territory2.getTouchingTrrtrsExpand().add(territory1);
 		map.getContinents().add(continent);
-/*		territoryList.getItems().add(territory1);
-		territoryList.getItems().add(territory2);
-*/
+		
+
 		playerGamePhase.setCurrentContestant(contestant);
 		String[] attackTerritoryList = {"Alaska","Alberta","Quebec"};
 		String[] defendTerritoryList = {"New Guinea","Egypt","Greenland" };
+		
 	}
 	
 	@Test
@@ -158,15 +164,7 @@ public class PlayerAssignmentTest {
 		Assert.assertTrue(actualResult);
 	}
 	
-	/*@Test
-	public final void testFortificationPhase() {
-		territory1.setContestant(contestant);
-		territory1.setBatallion(2);
-		territory2.setContestant(contestant);
-		boolean ifPhaseValid = playerGamePhase.fortificationPhase(attackTerritoryList,defendTerritoryList,contestant);
-		Assert.assertEquals(true, ifPhaseValid);
-		
-	}*/
+	
 	
 	@Test
 	public void PlayersArmiesExhausted() {
@@ -203,4 +201,27 @@ public class PlayerAssignmentTest {
 		Assert.assertEquals(true,true);
 		//Assert.assertEquals(true, playerLost.getContestantTrrtrlist().size());
 	} 
+	@Test
+	public void checkTradePossibleForDiffCards() {
+		listOfCards.add("ARTILLERY");
+		listOfCards.add("ARTILLERY");
+		listOfCards.add("ARTILLERY");
+		boolean actualResult = playerGamePhase.validTrade(listOfCards);
+		Assert.assertEquals(true, actualResult);		
+	}
+
+@Test
+public void contestantHasAValidAttackMove() {
+	territory1.setBatallion(5);
+	territory2.setBatallion(3);
+	boolean actualResult = playerGamePhase.contestantHasAValidAttackMove(territory1);
+	Assert.assertTrue(actualResult);
+}
+@Test
+public void tradeCardsForArmy() {
+	players = new ArrayList<>();
+	players.add(new Contestant(0));
+	Contestant currentContestant = playerGamePhase.reinforceWithCards(1);
+	Assert.assertEquals(0, currentContestant.getBatallion());
+}
 }
