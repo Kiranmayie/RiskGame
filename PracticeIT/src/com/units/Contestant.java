@@ -37,6 +37,10 @@ public class Contestant implements Serializable {
 	int count;
 
 	private int timer;
+	
+	private String contestantStrategy;
+	
+	String contestantTrrtrs;
 
 	private String strategy;
 
@@ -186,14 +190,17 @@ public class Contestant implements Serializable {
 		
 		return timer;
 	}
-	public String getStrategy() {
-		return strategy;
-	}
 
-	public void setStrategy(String strategy) {
-		this.strategy = strategy;
+	
+	public void setContestantStrategy(String name) {
+		
+		this.contestantStrategy=name;
+	}
+	
+public String getContestantStrategy() {
+		
+		return contestantStrategy;
 	}
 
 }
-	
 	
