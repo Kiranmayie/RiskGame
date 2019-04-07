@@ -140,12 +140,14 @@ public static void playersArmyAssign(List<Contestant> contestants) {
  */
 public List<Contestant> createContestant(int noOfPlayer, List<Contestant> contestants) {
 	for (int i = 0; i < noOfPlayer; i++) {
-		System.out.println("Enter players name of " + (i+1));
+		System.out.println("Enter players name of " + (i+1)+" and strategy to be considered.");
 		Scanner sc=new Scanner(System.in);
 		contestants.add(new Contestant(i));
 		String name=sc.nextLine();
+		String strategyName=sc.nextLine();
 		contestants.get(i).setContestantName(name);
-		System.out.println(contestants.get(i).getContestantName() + " created!\n");
+		contestants.get(i).setContestantStrategy(strategyName);
+		System.out.println(contestants.get(i).getContestantName() + " is created with the strategy "+contestants.get(i).getContestantStrategy()+"\n");
 	}
 	return contestants;
 }
@@ -683,10 +685,7 @@ public void placeBatallion(Contestant currentContestant, List<Territories> selec
 				
 					}
 				
-	} else {
-		System.out.println("Moving on to attack face and forward...Awaiting implementation strategies.");
-		//getReinforceBatallion();
-		}
+	}
 }
 		
 
@@ -817,7 +816,7 @@ public List<Contestant> territoryAssignToContestant(Map enhancedmap, List<Contes
 					contestant.setBatallion(contestant.getBatallion() - 1);
 					contestant.getcontestantTrrtrlist().add(trrtry);
 					System.out.println(trrtry.getAssignName() + " assigned to " + contestant.getContestantName());
-							
+					
 					break;
 				}
 				continue;
@@ -825,9 +824,8 @@ public List<Contestant> territoryAssignToContestant(Map enhancedmap, List<Contes
 		}
 	}
 	contestantsList.addAll(contestants);
-	//System.out.println(contestantsList);
 	contestantLooper=contestants.iterator();
-	//System.out.println(contestantLooper);
+
 	return contestants;
 }
 
