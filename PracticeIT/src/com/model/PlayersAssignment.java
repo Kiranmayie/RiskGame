@@ -564,6 +564,162 @@ public void registerObserver(Observer o) {
 	//System.out.println(observers.size());
 }
 
+public int[] autoStartDiceRollattacker(int i) {
+	int[]attackerdicevalues=attackerdicevalues(i);
+	
+	return(attackerdicevalues);
+	
+	}
+public int[] autoStartDiceRollDefender(int j) {
+	int[] defenderdicevalues=defenderdicevalues(j);
+	return(defenderdicevalues);
+}
+
+private int[] defenderdicevalues(int j) {
+	int max = 6; 
+    int min = 1;
+    int range = max - min + 1; 
+	int allresultOfDice[] = new int[j];
+	for(int f=0;f<j;f++) {
+	allresultOfDice[f] = (int) (Math.random()* range) + min; 
+	System.out.println(allresultOfDice[f]);
+	}
+	
+	return allresultOfDice;
+}
+
+private int[] attackerdicevalues(int i) {
+	int max = 6; 
+    int min = 1;
+    int range = max - min + 1; 
+	int allresultOfDice[] = new int[i];
+	for(int j=0;j<i;j++) {
+	allresultOfDice[j] = (int) (Math.random()* range) + min; 
+	System.out.println(allresultOfDice[j]);
+	}
+	
+	return allresultOfDice;
+	
+}
+
+public List<Territories> getDefendingTerritory(Territories territory) {
+	List<Territories> defendingTerritories = new ArrayList<Territories>();
+	defendingTerritories.addAll(territory.getTouchingTrrtrsExpand());
+	return defendingTerritories;
+}
+public int attackTerritory(Territories attacking,Territories defending) {
+
+	pa = new PlayersAssignment();
+	cev=new CardExchangeView(pa);
+				
+				int defenderBatallionleft=defending.getBatallion();
+				defenderBatallionleft=defenderBatallionleft-1;
+				defending.setBatallion(defenderBatallionleft);
+				//System.out.println("The Defender batallion left after attack are "+ territory.getBatallion() + " for the territory " +territory.getAssignName());
+				int currentBatallion=currentContestant.getBatallion();
+				//System.out.println("The Attacker before attack has "+currentContestant.getBatallion()+" Batallion left");
+				currentBatallion=currentBatallion+1;
+				CardCountAttacker++;
+				currentContestant.setCardsInPocket(CardCountAttacker);
+				contestantTrrtrlist=currentContestant.getcontestantTrrtrlist();
+				contestantTrrtrlist.add(defending);
+				currentContestant.setcontestantTrrtrlist(contestantTrrtrlist);
+				 cardtypeAttacker.add(Cards.selectCards());
+				 CardCountAttacker = currentContestant.getCardsInPocket();
+				//System.out.println("The player has been assigned "+currentContestant.getCardsInPocket()+" of type " +PlayersAssignment.cardtypeAttacker);
+				
+				
+				 somethingChanged();
+					 notifyObservers();
+					 
+				if(validTrade(cardtypeAttacker)) 
+				{	System.out.println("Reinforce is possible");
+				currentContestant = reinforceWithCards(CardCountAttacker);
+				}		
+				if(defending.getBatallion()==0)
+				{
+					System.out.println("the Attacker has conquored the territory " +defending.getAssignName());
+					m1=attacking.getBatallion()-1;
+					defending.setBatallion(m1);
+					
+					contestantTrrtrlist=currentContestant.getContestantTrrtrlist();
+					contestantTrrtrlist.add(defending);
+					currentContestant.setcontestantTrrtrlist(contestantTrrtrlist);
+					
+					 somethingChanged();
+						 notifyObservers();
+					
+									}					
+				currentContestant.setBatallion(currentBatallion);
+				System.out.println("The Attacker after attack  has "+currentContestant.getBatallion()+" Batallion left");
+								
+
+		
+	return CardCountAttacker;
+	
+}
+public boolean validTrade(List<String> cardtype) {
+	int infantry = 0;
+	int cavalry = 0;
+	int artillery = 0;
+	for(String s:cardtype) {
+	if(s=="INFANTRY") infantry++;
+	else if(s=="CAVALRY")  cavalry++;
+	else if(s=="ARTILLERY") artillery++;
+	}
+	
+	if ((infantry == 1 && cavalry == 1 && artillery == 1) || infantry == 3 || cavalry == 3 || artillery == 3) {
+		return true;
+	}
+	else return false;
+}
+
+
+
+public Contestant reinforceWithCards(int counter) {
+	
+	if(counter==3)
+	{
+	//System.out.println("Do you want to reinforce");
+	int currentBatallion=currentContestant.getBatallion();
+	
+	
+	if(currentContestant.getTimer()>1) {
+	currentBatallion=currentBatallion+5*timer;}
+	else {
+		currentBatallion=currentBatallion+5;
+	}
+	currentContestant.setTimer(timer);
+	currentContestant.setBatallion(currentBatallion);
+	int count=currentContestant.getCardsInPocket();
+	count=count-3;
+	currentContestant.setCardsInPocket(count);;
+	
+}
+	else if(counter>=5)
+	{	
+		System.out.println("You have 5 or more cards. please exchange them with armies");
+		int currentBatallion=currentContestant.getBatallion();
+		
+		
+		if(currentContestant.getTimer()>1) {
+		currentBatallion=currentBatallion+5*timer;}
+		else {
+			currentBatallion=currentBatallion+5;
+		}
+		currentContestant.setTimer(timer);
+		currentContestant.setBatallion(currentBatallion);
+		System.out.println("Your Batallion got increased :) "+currentContestant.getBatallion());
+		int count=currentContestant.getCardsInPocket();
+		count=count-3;
+		currentContestant.setCardsInPocket(count);;
+		System.out.println("Now you have only " +currentContestant.getCardsInPocket()+" left");
+	}
+	return currentContestant;
+}
+
+
+
 }
 
 

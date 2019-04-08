@@ -11,6 +11,8 @@ import com.units.Contestant;
 import com.units.Map;
 import com.units.Territories;
 
+import ConcretePatterns.Human;
+import Patterns.ContestantStrategies;
 import Patterns.Observable;
 import Patterns.Observer;
 
@@ -26,7 +28,8 @@ public class StartUpPhase implements Observable{
 	 public PlayersDominationView pdv;
 	 public static double percentageOccupationEachPlayer=0;
 	public static int numberOfArmies =0;
-	
+	Human human=new Human();
+
 	public StartUpPhase() {
 		 
 		observers = new ArrayList<Observer>();
@@ -69,7 +72,7 @@ public class StartUpPhase implements Observable{
 				 if(input.equals("Forward")) {
 		for(Contestant contestant:contestants) {
 
-		contestant= pa.getReinforceBatallion(enhancedMap,contestant);
+		contestant= Human.getReinforceBatallion(enhancedMap,contestant);
 		contestantName=contestant.getContestantName();
 		contestantArmiesleft=contestant.getBatallion();
 		System.out.println("Reinforcement has begun as per the rules:- "+contestant.getContestantName() + " "+contestant.getBatallion() + " armies left.");
@@ -95,14 +98,14 @@ public class StartUpPhase implements Observable{
 			 
 			 somethingChanged();
 			 notifyObservers("Attack");
-			 pa.attackPhase(contestant.getContestantTrrtrlist(),contestant.getContestantTrrtrlist(), contestant);
+			 human.attackPhase(contestant.getContestantTrrtrlist(),contestant.getContestantTrrtrlist(), contestant);
 		 }
 		 
         else if( selector == 3)  {
 			 
 			 somethingChanged();
 			 notifyObservers("Fortification");
-			 pa.fortificationPhase(contestant.getContestantTrrtrlist(),contestant.getContestantTrrtrlist(), contestant);
+			 human.fortificationPhase(contestant.getContestantTrrtrlist(),contestant.getContestantTrrtrlist(), contestant);
 		 }
 }
 		StartUp(contestants, enhancedMap, selectedTerritoryList);

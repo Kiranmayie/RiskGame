@@ -525,7 +525,7 @@ public static List<Continents> getContinentsOwnedByPlayer(Map map, Contestant cu
 	public void setTerritoryConquered(int trrtrsConquered) {
 		this.trrtrsConquered = trrtrsConquered;
 	}
-	@Override
+	
 	public void removeObserver(Observer o) {
 		int i = observers.indexOf(o);
 		if(i>=0) {
@@ -533,7 +533,7 @@ public static List<Continents> getContinentsOwnedByPlayer(Map map, Contestant cu
 		}
 	}
 
-	@Override
+	
 	public void notifyObservers(String obj) {
 		if(changed) {
 			//System.out.println(supLocal.observers);
@@ -557,11 +557,19 @@ public static List<Continents> getContinentsOwnedByPlayer(Map map, Contestant cu
 		changed=true;
 	}
 
-	@Override
+	
 	public void registerObserver(Observer o) {
 		observers.add(o);
 		//System.out.println(observers.get(0));
 		//System.out.println(observers.size());
+	}
+
+
+	
+	public void reinforcementPhase(List<Territories> territoryList, Territories territory,
+			Contestant currentContestant) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

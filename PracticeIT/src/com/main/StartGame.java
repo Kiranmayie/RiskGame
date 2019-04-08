@@ -109,9 +109,47 @@ public class StartGame implements EventHandler<ActionEvent>  {
 					}
 				}
 				
-				 //pa.loadBatallion(selectedTerritoryList);
-				 StartUpPhase sup=new StartUpPhase(pa);
-				 sup.StartUp(contestants,enhancedMap,selectedTerritoryList);
+				
+				 
+				 for(int i=0;i<contestants.size();i++) {
+						//selectedTerritoryList.removeAll(selectedTerritoryList);
+						//selectedTerritoryList=pa.executingCurrentContestant();	
+						System.out.println(contestants.get(i).getContestantName() + "!....started playing.\n");
+						System.out.println(contestants.get(i).getContestantName() + contestants.get(i).getBatallion() + " Batallion left.\n");
+						if(contestants.get(i).getContestantStrategy().equals("Human") && contestants.get(i).getBatallion()>0) {
+							
+							ContestantStrategies human=new Human();
+							
+							 StartUpPhase sup=new StartUpPhase(pa);
+							 sup.StartUp(contestants,enhancedMap,selectedTerritoryList);
+							human.attackPhase(contestants.get(i).getcontestantTrrtrlist(), contestants.get(i).getcontestantTrrtrlist(), currentContestant);
+						}
+						
+						else if(contestants.get(i).getContestantStrategy().equals("Aggressive") && contestants.get(i).getBatallion()>0) {
+							
+							ContestantStrategies aggressive=new Aggressive();
+							aggressive.attackPhase(contestants.get(i).getcontestantTrrtrlist(), contestants.get(i).getcontestantTrrtrlist(), currentContestant);
+							System.out.println("reached else if");
+						}
+						else if(contestants.get(i).getContestantStrategy().equals("Cheater") && contestants.get(i).getBatallion()>0) {
+							
+							ContestantStrategies cheater=(ContestantStrategies) new Cheater();
+							cheater.loadBatallion(contestants.get(i).getcontestantTrrtrlist(),contestants.get(i),contestants);
+							System.out.println("reached else if");
+						}
+						
+						
+						if(i == contestants.size()-1) {
+							for(Contestant currentContestant:contestants) {
+								System.out.println(i);
+								System.out.println(currentContestant.getBatallion());
+							if(currentContestant.getBatallion()>0) {
+								i=-1;
+								break;
+						}
+							}
+						}
+					}
 	}
 }
 
