@@ -58,6 +58,14 @@ public class MapSStep {
 	 * @return the map
 	 * @throws FileNotFoundException the file not found exception
 	 */
+	public static File savedGameChooser() {
+		FileChooser fChooser = new FileChooser();
+		File file = null;
+		FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Saved Game files (*.ser)", "*.ser");
+		fChooser.getExtensionFilters().add(extensionFilter);
+		file = fChooser.showOpenDialog(null);
+		return file;
+	}
 	public Map conversionOne(File mapReturnedFile) throws FileNotFoundException {
 		StringBuilder sb=new StringBuilder();
 		Scanner sc=new Scanner(new FileReader(mapReturnedFile));
