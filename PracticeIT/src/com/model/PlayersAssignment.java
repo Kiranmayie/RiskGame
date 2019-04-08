@@ -721,5 +721,3 @@ public Contestant reinforceWithCards(int counter) {
 
 
 }
-
-

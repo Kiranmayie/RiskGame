@@ -65,6 +65,8 @@ public class Territories implements Serializable {
 		return touchingTrrtrs;
 	}
 	
+	
+	
 	/**
 	 * Sets the touching Territories.
 	 * @param touchingTrrtrs the new touching trrtrs
