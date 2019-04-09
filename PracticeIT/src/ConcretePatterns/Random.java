@@ -73,7 +73,7 @@ public class Random implements ContestantStrategies {
 			for(int j=0;i<=2;j++) {
 		if(attackerdicevalues[i]>defenderdicevalues[j])
 		{	System.out.println("Attacker won "+attackerdicevalues[i-1]+" is greater than "+defenderdicevalues[j-1]);
-					int count1=pa.attackTerritory(attacking, defending, currentContestant);
+					Contestant count1=pa.attackTerritory(attacking, defending, currentContestant);
 					System.out.println(count1);
 					
 								attackPhase(attackingTerritoriesList, defendingTerritoriesList,currentContestant);

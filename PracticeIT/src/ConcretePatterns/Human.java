@@ -77,7 +77,7 @@ public class Human implements ContestantStrategies {
 	}
 	
 
-	public void attackPhase(List<Territories> attackTrrtsList, List<Territories> defendTrrtrsList, Contestant currentContestant)  {
+	public void attackPhase(List<Territories> attackTrrtsList, List<Territories> defendTrrtrsList, Contestant currentContestant,Map map)  {
 
 		for(Territories trrtr: currentContestant.getContestantTrrtrlist()) {
 			List<Territories> ls = new ArrayList<Territories>();
@@ -144,7 +144,7 @@ public class Human implements ContestantStrategies {
 								String Yes = null,No;
 								if(Answer.equals("Yes"))
 										{
-											attackPhase(attackTrrtsList, defendTrrtrsList, currentContestant);
+											attackPhase(attackTrrtsList, defendTrrtrsList, currentContestant,map);
 										}
 								else
 								{
@@ -161,7 +161,7 @@ public class Human implements ContestantStrategies {
 						String Yes = null,No;
 						if(Answer.equals("Yes"))
 								{
-									attackPhase(attackTrrtsList, defendTrrtrsList, currentContestant);
+									attackPhase(attackTrrtsList, defendTrrtrsList, currentContestant,map);
 								}
 									}
 							}

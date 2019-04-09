@@ -29,6 +29,7 @@ public class StartUpPhase implements Observable{
 	 public static double percentageOccupationEachPlayer=0;
 	public static int numberOfArmies =0;
 	Human human=new Human();
+	private Map map;
 
 	public StartUpPhase() {
 		 
@@ -98,7 +99,7 @@ public class StartUpPhase implements Observable{
 			 
 			 somethingChanged();
 			 notifyObservers("Attack");
-			 human.attackPhase(contestant.getContestantTrrtrlist(),contestant.getContestantTrrtrlist(), contestant);
+			 human.attackPhase(contestant.getContestantTrrtrlist(),contestant.getContestantTrrtrlist(), contestant,map);
 		 }
 		 
         else if( selector == 3)  {

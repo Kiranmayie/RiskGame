@@ -15,6 +15,7 @@ import Patterns.ContestantStrategies;
 public class Cheater implements ContestantStrategies{
 	PlayersAssignment pa=new PlayersAssignment();
 	private List<Territories> attackTerList;
+	private Territories terr;
 	@Override
 	public void loadBatallion(List<Territories> selectedTerritoriesList, Contestant currentContestant,
 			List<Contestant> Contestants) {
@@ -41,7 +42,7 @@ public class Cheater implements ContestantStrategies{
 
 	@Override
 	public void attackPhase(List<Territories> attackTerList, List<Territories> defTerList,
-			Contestant currentContestant) {
+			Contestant currentContestant,Map map) {
 		List<Territories> territoryWon = new ArrayList<Territories>();
 		List<Territories> attackTerList1 = this.attackTerList;
 		Iterator<Territories> terrIterator = attackTerList1.iterator();
@@ -68,8 +69,8 @@ public class Cheater implements ContestantStrategies{
 		}
 		attackTerList.addAll(territoryWon);
 	}
-	public void reinforcementPhase(List<Territories> territoryList, Territories territory, 
-			Contestant currentContestant) {
+	public Territories reinforcementPhase(List<Territories> territoryList, 
+			Contestant currentContestant,Map map) {
 		for (Territories terr : territoryList) {
 			terr.setBatallion(terr.getBatallion() * 2);
 			System.out.println("Batallion have been doubled on territory " + terr.getAssignName() + "\n");
@@ -77,6 +78,7 @@ public class Cheater implements ContestantStrategies{
 		attackTerList.clear();
 		attackTerList.addAll(territoryList);
 		currentContestant.setBatallion(0);
+		return terr;
 	}
 	
 			public boolean fortificationPhase(List<Territories> selectedTerritoriesList, List<Territories> adjTerritoriesList,

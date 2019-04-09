@@ -7,12 +7,14 @@ import java.util.stream.Collectors;
 
 import com.model.PlayersAssignment;
 import com.units.Contestant;
+import com.units.Map;
 import com.units.Territories;
 
 import Patterns.ContestantStrategies;
 
 public class Benevolent implements ContestantStrategies {
 		PlayersAssignment pa=new PlayersAssignment();
+		private Territories territory;
 	@Override
 	public void loadBatallion(List<Territories> selectedTerritoriesList, Contestant currentContestant,
 			List<Contestant> Contestants) {
@@ -39,7 +41,7 @@ public class Benevolent implements ContestantStrategies {
 
 	@Override
 	public void attackPhase(List<Territories> getcontestantTrrtrlist, List<Territories> getcontestantTrrtrlist2,
-			Contestant currentContestant) {
+			Contestant currentContestant,Map map) {
 		// No attack move for this contestant
 		
 	}
@@ -68,12 +70,13 @@ public class Benevolent implements ContestantStrategies {
 
 
 	@Override
-	public void reinforcementPhase(List<Territories> territoryList, Territories territory,
-			Contestant currentContestant) {
+	public Territories reinforcementPhase(List<Territories> territoryList, 
+			Contestant currentContestant,Map map) {
 		List<Territories> sortedList = getMinimumArmyFromTerritories(territoryList);
 		territory = sortedList.get(0);
 		territory.setBatallion(territory.getBatallion() + currentContestant.getBatallion());
 		currentContestant.setBatallion(0);
+		return territory;
 		
 	}
 
