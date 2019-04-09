@@ -3,6 +3,7 @@ package Patterns;
 import java.util.List;
 
 import com.units.Contestant;
+import com.units.Map;
 import com.units.Territories;
 
 public interface ContestantStrategies {
@@ -12,8 +13,8 @@ public interface ContestantStrategies {
 	
 
 	public void attackPhase(List<Territories> getcontestantTrrtrlist, List<Territories> getcontestantTrrtrlist2,
-			Contestant currentContestant);
+			Contestant currentContestant,Map map);
 
-	void reinforcementPhase(List<Territories> territoryList, Territories territory, Contestant currentContestant);
+	Territories reinforcementPhase(List<Territories> territoryList, Contestant currentContestant,Map map);
 
 }

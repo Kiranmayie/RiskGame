@@ -3,6 +3,8 @@ package com.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -142,7 +144,8 @@ public static void playersArmyAssign(List<Contestant> contestants) {
  */
 public List<Contestant> createContestant(int noOfPlayer, List<Contestant> contestants) {
 	for (int i = 0; i < noOfPlayer; i++) {
-		System.out.println("Enter players name of " + (i+1)+" and strategy to be considered.");
+		System.out.println("Select The Contestant Type from the below \n 1.HUMAN \n 2.AGGRESSIVE \n 3.BENEVOLENT \n 4.RANDOM \n 5.CHEATER");
+		System.out.println("Enter Contestants name of " + (i+1)+" and strategy to be considered.");
 		Scanner sc=new Scanner(System.in);
 		contestants.add(new Contestant(i));
 		String name=sc.nextLine();
@@ -155,15 +158,6 @@ public List<Contestant> createContestant(int noOfPlayer, List<Contestant> contes
 	return contestants;
 }
 
-public String getContestantType() {
-	System.out.println("Select The Contestant Type from the below \n 1.HUMAN \n 2.AGGRESIVE \n 3.BENEVOLENT \n 4.RANDOM \n 5.CHEATER");
-	Scanner sc=new Scanner(System.in);
-	String contestantType=sc.nextLine();
-	
-	return contestantType;
-	
-	
-}
 
 
 /**
@@ -564,40 +558,40 @@ public void registerObserver(Observer o) {
 	//System.out.println(observers.size());
 }
 
-public int[] autoStartDiceRollattacker(int i) {
-	int[]attackerdicevalues=attackerdicevalues(i);
+public Integer[] autoStartDiceRollattacker(int i) {
+	Integer[]attackerdicevalues=attackerdicevalues(i);
 	
 	return(attackerdicevalues);
 	
 	}
-public int[] autoStartDiceRollDefender(int j) {
-	int[] defenderdicevalues=defenderdicevalues(j);
+public Integer[] autoStartDiceRollDefender(int j) {
+	Integer[] defenderdicevalues=defenderdicevalues(j);
 	return(defenderdicevalues);
 }
 
-private int[] defenderdicevalues(int j) {
+private Integer[] defenderdicevalues(int j) {
 	int max = 6; 
     int min = 1;
     int range = max - min + 1; 
-	int allresultOfDice[] = new int[j];
+    Integer allresultOfDice[] = new Integer[j];
 	for(int f=0;f<j;f++) {
 	allresultOfDice[f] = (int) (Math.random()* range) + min; 
-	System.out.println(allresultOfDice[f]);
+	System.out.println("Defender Dice values " +allresultOfDice[f]);
 	}
-	
+	Arrays.sort(allresultOfDice, Collections.reverseOrder());
 	return allresultOfDice;
 }
 
-private int[] attackerdicevalues(int i) {
+private Integer[] attackerdicevalues(int i) {
 	int max = 6; 
     int min = 1;
     int range = max - min + 1; 
-	int allresultOfDice[] = new int[i];
+	Integer allresultOfDice[] = new Integer[i];
 	for(int j=0;j<i;j++) {
 	allresultOfDice[j] = (int) (Math.random()* range) + min; 
-	System.out.println(allresultOfDice[j]);
+	System.out.println("Attacker Dice values " +allresultOfDice[j]);
 	}
-	
+	Arrays.sort(allresultOfDice, Collections.reverseOrder());
 	return allresultOfDice;
 	
 }
@@ -607,7 +601,7 @@ public List<Territories> getDefendingTerritory(Territories territory) {
 	defendingTerritories.addAll(territory.getTouchingTrrtrsExpand());
 	return defendingTerritories;
 }
-public int attackTerritory(Territories attacking,Territories defending) {
+public Contestant attackTerritory(Territories attacking,Territories defending,Contestant currentContestant) {
 
 	pa = new PlayersAssignment();
 	cev=new CardExchangeView(pa);
@@ -615,15 +609,19 @@ public int attackTerritory(Territories attacking,Territories defending) {
 				int defenderBatallionleft=defending.getBatallion();
 				defenderBatallionleft=defenderBatallionleft-1;
 				defending.setBatallion(defenderBatallionleft);
+				Contestant defContestant=defending.getContestant();
+				System.out.println(currentContestant.getContestantName());
 				//System.out.println("The Defender batallion left after attack are "+ territory.getBatallion() + " for the territory " +territory.getAssignName());
 				int currentBatallion=currentContestant.getBatallion();
 				//System.out.println("The Attacker before attack has "+currentContestant.getBatallion()+" Batallion left");
-				currentBatallion=currentBatallion+1;
+				//currentBatallion=currentBatallion+1;
+				int defenderBatallion=defContestant.getBatallion();
+				defenderBatallion=defenderBatallion-1;
+				defContestant.setBatallion(defenderBatallion);
+				
 				CardCountAttacker++;
 				currentContestant.setCardsInPocket(CardCountAttacker);
-				contestantTrrtrlist=currentContestant.getcontestantTrrtrlist();
-				contestantTrrtrlist.add(defending);
-				currentContestant.setcontestantTrrtrlist(contestantTrrtrlist);
+				
 				 cardtypeAttacker.add(Cards.selectCards());
 				 CardCountAttacker = currentContestant.getCardsInPocket();
 				//System.out.println("The player has been assigned "+currentContestant.getCardsInPocket()+" of type " +PlayersAssignment.cardtypeAttacker);
@@ -634,30 +632,82 @@ public int attackTerritory(Territories attacking,Territories defending) {
 					 
 				if(validTrade(cardtypeAttacker)) 
 				{	System.out.println("Reinforce is possible");
-				currentContestant = reinforceWithCards(CardCountAttacker);
+				currentContestant = reinforceWithCards(CardCountAttacker,currentContestant);
 				}		
 				if(defending.getBatallion()==0)
 				{
 					System.out.println("the Attacker has conquored the territory " +defending.getAssignName());
 					m1=attacking.getBatallion()-1;
+					attacking.setBatallion(1);
 					defending.setBatallion(m1);
-					
+					System.out.println("Before Conquering");
+					contestantTrrtrlist=currentContestant.getContestantTrrtrlist();
+					System.out.println(contestantTrrtrlist);
+					System.out.println(defending.getContestant().getContestantTrrtrlist());
 					contestantTrrtrlist=currentContestant.getContestantTrrtrlist();
 					contestantTrrtrlist.add(defending);
+					
+					defending.getContestant().getContestantTrrtrlist().remove(defending);
+					defending.setContestant(currentContestant);
 					currentContestant.setcontestantTrrtrlist(contestantTrrtrlist);
+					System.out.println("After Conquering");
+					System.out.println(contestantTrrtrlist);
+					System.out.println(defending.getContestant().getContestantTrrtrlist());
 					
 					 somethingChanged();
 						 notifyObservers();
 					
 									}					
-				currentContestant.setBatallion(currentBatallion);
+				//currentContestant.setBatallion(currentBatallion);
 				System.out.println("The Attacker after attack  has "+currentContestant.getBatallion()+" Batallion left");
 								
 
 		
-	return CardCountAttacker;
+	return currentContestant;
 	
 }
+
+public Contestant DefendTerritory(Territories attacking,Territories defending, Contestant currentContestant) {
+
+	
+	pa = new PlayersAssignment();
+	cev=new CardExchangeView(pa);
+				
+				int attackerBatallionleft=attacking.getBatallion();
+				//System.out.println("The Attacker batallion before attack are "+attacking.getBatallion() + "for "+attacking.getAssignName());
+				attackerBatallionleft=attackerBatallionleft-1;
+				Contestant defContestant=defending.getContestant();
+				attacking.setBatallion(attackerBatallionleft);
+				//System.out.println("The Attacker batallion left after attack are "+ attacking.getBatallion() + " for the territory " +attacking.getAssignName());
+				int currentBatallion=currentContestant.getBatallion();
+				//System.out.println("The Attacker before attack has "+currentContestant.getBatallion()+" Batallion left");
+				currentBatallion=currentBatallion-1;
+				int defenderBatallion=defContestant.getBatallion();
+				defenderBatallion=defenderBatallion+1;
+				defContestant.setBatallion(defenderBatallion);
+				
+						//System.out.println("The Defender has won " );
+						CardCountDefender++;
+					
+						if(attacking.getBatallion()==0)
+						{
+							System.out.println("the Defender has conquored the territory " +defending.getAssignName());
+							m2=defending.getBatallion()-1;
+							attacking.setBatallion(m2);
+							
+							contestantTrrtrlist=currentContestant.getContestantTrrtrlist();
+							contestantTrrtrlist.remove(attacking);
+							defending.getContestant().getContestantTrrtrlist().add(attacking);
+							defending.getContestant().setcontestantTrrtrlist(contestantTrrtrlist);
+							attacking.setContestant(defContestant);
+							 somethingChanged();
+								 notifyObservers();
+							
+											}					
+	return currentContestant;
+	
+}
+
 public boolean validTrade(List<String> cardtype) {
 	int infantry = 0;
 	int cavalry = 0;
@@ -676,7 +726,7 @@ public boolean validTrade(List<String> cardtype) {
 
 
 
-public Contestant reinforceWithCards(int counter) {
+public Contestant reinforceWithCards(int counter,Contestant currentContestant) {
 	
 	if(counter==3)
 	{
@@ -717,6 +767,26 @@ public Contestant reinforceWithCards(int counter) {
 	}
 	return currentContestant;
 }
+public Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
+	int presentBatallion = currentContestant.getBatallion();
+	int trrtrSum =  currentContestant.getcontestantTrrtrlist().size();
+	if (trrtrSum < 9) {
+		presentBatallion = presentBatallion + 3;
+	} else {
+		presentBatallion = presentBatallion + (trrtrSum / 3);
+	}
+
+	List<Continents> continents = getContinentsOwnedByPlayer(map, currentContestant);
+	if (continents.size() > 0) {
+		for (Continents continent : continents) {
+			presentBatallion = presentBatallion + Integer.parseInt(continent.getCValue());
+		}
+	}
+	currentContestant.setBatallion(presentBatallion);
+
+	return currentContestant;
+}
+
 
 
 

@@ -85,13 +85,12 @@ public class Human implements ContestantStrategies {
 			List<Territories> lsNewNew = new ArrayList<Territories>();
 			ls.addAll(getDefendingTerritory(trrtr));
 			lsNew.addAll(getDefendingTerritory(trrtr));
-			//System.out.println(ls);
+			
 			for(int i=0;i<ls.size();i++) {
-				//System.out.println(ls.get(i));
-				//System.out.println(ls.get(i).getContestant().getContestantName());
+				
 				if(ls.get(i).getContestant().getContestantName().equals(currentContestant.getContestantName())) {
 					lsNewNew.add(ls.get(i));
-					//System.out.println(ls);
+					
 				}
 			}
 			for(Territories trr:lsNewNew) {

@@ -11,19 +11,24 @@ import com.main.CardExchangeView;
 import com.model.Cards;
 import com.model.PlayersAssignment;
 import com.units.Contestant;
+import com.units.Map;
 import com.units.Territories;
-
+import com.units.Contestant;
 import Patterns.ContestantStrategies;
 import Patterns.Observer;
 
 public class Aggressive implements ContestantStrategies{
 
-	private Territories territory;
+	public static List<Contestant> contestantsList;
+	List<Territories> lsNew=null;
 	PlayersAssignment pa=new PlayersAssignment();
 	private Contestant  currentContestant;
 	private CardExchangeView cev;
-	private List<Territories> attackingTerritoriesList;
-	private List<Territories> defendingTerritoriesList;
+	private  List<Territories> attackingTerritoriesList;
+	private  List<Territories> defendingTerritoriesList;
+    int count;
+	public Territories territory;
+	private Map map;
 
 	@Override
 	public void loadBatallion(List<Territories> selectedTerritoriesList, Contestant currentContestant,List<Contestant> Contestants) {
@@ -51,21 +56,24 @@ public class Aggressive implements ContestantStrategies{
 
 
 	@Override
-	public void reinforcementPhase(List<Territories> territoryList, Territories territory, Contestant currentContestant) {
-
+	public Territories reinforcementPhase(List<Territories> territoryList, Contestant currentContestant,Map map) {
+		System.out.println(map.getContinents());
+		currentContestant=pa.getReinforceBatallion(map, currentContestant);
 		List<Territories> sortedList = getMaximumAdjacentAndArmy(territoryList);
 		if (!sortedList.isEmpty()) {
 			territory = sortedList.get(0);
 			territory.setBatallion(territory.getBatallion() + currentContestant.getBatallion());
 			currentContestant.setBatallion(0);
+			
 		}
-
+		return territory;
 	}
 
 	public boolean contestantHasAValidAttackMove(List<Territories> territories) {
-
+		List<Territories> defendingTerritories=new ArrayList<Territories>();
 		territory = checkIfTerritoriesNull(territories);
-		List<Territories> defendingTerritories = getDefendingTerritories(territory);
+		for(Territories territory:territories) {
+		defendingTerritories = getDefendingTerritories(territory);}
 		if (defendingTerritories.size() > 0 && territory.getBatallion() > 1) {
 			return true;
 		}
@@ -74,13 +82,15 @@ public class Aggressive implements ContestantStrategies{
 
 	private List<Territories> getDefendingTerritories(Territories territory2) {
 		List<Territories> defendingTerritories = new ArrayList<Territories>();
-		defendingTerritories.addAll(territory.getTouchingTrrtrsExpand());
+		defendingTerritories.addAll(territory2.getTouchingTrrtrsExpand());
+		
 		return defendingTerritories;
 	}
 
+
 	public boolean fortificationPhase(List<Territories> selectedTerritoriesList, List<Territories> adjTerritoriesList,
 			Contestant currentContestant) {
-
+			
 		List<Territories> sortedList = getMaximumAdjacentAndArmy(selectedTerritoriesList);
 		for (Territories territory : sortedList) {
 			if (territory.getBatallion() > 1) {
@@ -102,55 +112,243 @@ public class Aggressive implements ContestantStrategies{
 		return false;
 	}
 
-	private void attack(Territories attacking, Territories defending) {
-		if(attacking.getBatallion()>4&&defending.getBatallion()>3)
-		{int[] attackerdicevalues=pa.autoStartDiceRollattacker(3);
-		int[] defenderdicevalues=pa.autoStartDiceRollDefender(2);
-		for(int i=0;i<=3;i++) {
-			for(int j=0;i<=2;j++) {
+	private void attack(Territories attacking, Territories defending, Contestant currentContestant, Map map) {
+		System.out.println(attacking.getAssignName() + attacking.getBatallion());
+		System.out.println(defending.getAssignName() + defending.getBatallion());
+		if(attacking.getBatallion()>=4 && defending.getBatallion()>=3)
+		{
+		Integer[] attackerdicevalues=pa.autoStartDiceRollattacker(3);
+		Integer[] defenderdicevalues=pa.autoStartDiceRollDefender(2);
+		if(attacking.getBatallion()==0) {
+			fortificationPhase(attackingTerritoriesList, attackingTerritoriesList, currentContestant);
+		}
+		for(int i=0;i<3;i++) {
+			for(int j=0;j<2;j++) {
 		if(attackerdicevalues[i]>defenderdicevalues[j])
-		{	System.out.println("Attacker won "+attackerdicevalues[i-1]+" is greater than "+defenderdicevalues[j-1]);
-					int count1=pa.attackTerritory(attacking, defending);
-					System.out.println(count1);
-					
-								attackPhase(attackingTerritoriesList, defendingTerritoriesList,currentContestant);
+		{	System.out.println("Attacker won "+attackerdicevalues[i]+" is greater than "+defenderdicevalues[j]);
+		currentContestant=pa.attackTerritory(attacking, defending,currentContestant);
+					//System.out.println(count1);
+					attackingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+					defendingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+								attackPhase(attackingTerritoriesList, defendingTerritoriesList,currentContestant,map);
 					
 			}
-		
-		
 		else
-		{	pa.autoStartDiceRollattacker(attacking.getBatallion()-1);
-		pa.autoStartDiceRollDefender(defending.getBatallion()-1);}
+		{
+			System.out.println("Defender won "+attackerdicevalues[i]+" is less than "+defenderdicevalues[j]);
+			currentContestant=pa.DefendTerritory(attacking, defending,currentContestant);
+			attackingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+			defendingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+			
+						attackPhase(attackingTerritoriesList, defendingTerritoriesList,currentContestant,map);
+		}
 		
 			}
 		}
 		}
+		else if(attacking.getBatallion()>=4 && defending.getBatallion()<3)
+		{	
+		Integer[] attackerdicevalues1=pa.autoStartDiceRollattacker(3);
+		Integer[] defenderdicevalues1=pa.autoStartDiceRollDefender(1);
+		if(attacking.getBatallion()==0) {
+			fortificationPhase(attackingTerritoriesList, attackingTerritoriesList, currentContestant);
+		}
+		for(int i=0;i<attacking.getBatallion()-1;i++) {
+			for(int j=0;j<1;j++) {
+		if(attackerdicevalues1[i]>defenderdicevalues1[j])
+		{	System.out.println("Attacker won "+attackerdicevalues1[i]+" is greater than "+defenderdicevalues1[j]);
+					currentContestant=pa.attackTerritory(attacking, defending,currentContestant);
+					//System.out.println(count1);
+					attackingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+					defendingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+								attackPhase(attackingTerritoriesList, defendingTerritoriesList,currentContestant,map);
+					
+			}
+		else
+		{
+			System.out.println("Defender won "+attackerdicevalues1[i]+" is less than "+defenderdicevalues1[j]);
+			currentContestant=pa.DefendTerritory(attacking, defending,currentContestant);
+			attackingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+			defendingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+			
+						attackPhase(attackingTerritoriesList, defendingTerritoriesList,currentContestant,map);
+		}
+		
+			}}
+		}
+		
+		else if(attacking.getBatallion() < 4 && defending.getBatallion()<3)
+		{	
+		Integer[] attackerdicevalues1=pa.autoStartDiceRollattacker(attacking.getBatallion()-1);
+		Integer[] defenderdicevalues1=pa.autoStartDiceRollDefender(1);
+		if(attacking.getBatallion()==0) {
+			fortificationPhase(attackingTerritoriesList, attackingTerritoriesList, currentContestant);
+		}
+		
+		for(int i=0;i<attacking.getBatallion()-1;i++) {
+			for(int j=0;j<1;j++) {
+		if(attackerdicevalues1[i]>defenderdicevalues1[j])
+		{	System.out.println("Attacker won "+attackerdicevalues1[i]+" is greater than "+defenderdicevalues1[j]);
+		currentContestant=pa.attackTerritory(attacking, defending,currentContestant);
+					//System.out.println(count1);
+					attackingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+					defendingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+								attackPhase(attackingTerritoriesList, defendingTerritoriesList,currentContestant,map);
+					
+			}
+		else
+		{
+			System.out.println("Defender won "+attackerdicevalues1[i]+" is less than "+defenderdicevalues1[j]);
+			currentContestant=pa.DefendTerritory(attacking, defending,currentContestant);
+			attackingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+			defendingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+			
+						attackPhase(attackingTerritoriesList, defendingTerritoriesList,currentContestant,map);
+		}
+		
+			}
+			}
 	}
 
-@Override
-	public void attackPhase(List<Territories> attackingTerritoriesList, List<Territories> defendingTerritoriesList,Contestant curretContestant) {
+		else if(attacking.getBatallion() ==3 && defending.getBatallion()==3)
+		{	
+		Integer[] attackerdicevalues1=pa.autoStartDiceRollattacker(2);
+		Integer[] defenderdicevalues1=pa.autoStartDiceRollDefender(2);
+		if(attacking.getBatallion()==0) {
+			fortificationPhase(attackingTerritoriesList, attackingTerritoriesList, currentContestant);
+		}
+		for(int i=0;i<attacking.getBatallion()-1;i++) {
+			for(int j=0;j<1;j++) {
+		if(attackerdicevalues1[i]>defenderdicevalues1[j])
+		{	System.out.println("Attacker won "+attackerdicevalues1[i]+" is greater than "+defenderdicevalues1[j]);
+		currentContestant=pa.attackTerritory(attacking, defending,currentContestant);
+					//System.out.println(count1);
+					attackingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+					defendingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+								attackPhase(attackingTerritoriesList, defendingTerritoriesList,currentContestant,map);
+					
+			}
+		else
+		{
+			System.out.println("Defender won "+attackerdicevalues1[i]+" is less than "+defenderdicevalues1[j]);
+			currentContestant=pa.DefendTerritory(attacking, defending,currentContestant);
+			attackingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+			defendingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+			
+						attackPhase(attackingTerritoriesList, defendingTerritoriesList,currentContestant,map);
+		}
+		
+			}}
+		}
+		
+		else if(attacking.getBatallion() ==3 && defending.getBatallion()>=4)
+		{	
+		Integer[] attackerdicevalues1=pa.autoStartDiceRollattacker(2);
+		Integer[] defenderdicevalues1=pa.autoStartDiceRollDefender(2);
+		 if(attacking.getBatallion()==0) {
+			fortificationPhase(attackingTerritoriesList, attackingTerritoriesList, currentContestant);
+		}
+		
+		for(int i=0;i<attacking.getBatallion()-1;i++) {
+			for(int j=0;j<1;j++) {
+		if(attackerdicevalues1[i]>defenderdicevalues1[j])
+		{	System.out.println("Attacker won "+attackerdicevalues1[i]+" is greater than "+defenderdicevalues1[j]);
+					currentContestant=pa.attackTerritory(attacking, defending,currentContestant);
+					System.out.println(currentContestant.getContestantName());
+					attackingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+					defendingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+								attackPhase(attackingTerritoriesList, defendingTerritoriesList,currentContestant,map);
+					
+			}
+		else
+		{
+			System.out.println("Defender won "+attackerdicevalues1[i]+" is less than "+defenderdicevalues1[j]);
+			currentContestant=pa.DefendTerritory(attacking, defending,currentContestant);
+			attackingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+			defendingTerritoriesList=currentContestant.getcontestantTrrtrlist();
+			
+						attackPhase(attackingTerritoriesList, defendingTerritoriesList,currentContestant,map);
+		}
+		
+			}}
+		}
+		}
+		
 
+
+@Override
+	public void attackPhase(List<Territories> attackingTerritoriesList, List<Territories> defendingTerritoriesList,Contestant currentContestant,Map map) {
+		System.out.println("Attack Phase Started:Aggressive");
+		System.out.println(attackingTerritoriesList);
+		//System.out.println(map.getContinents());
 		territory = checkIfTerritoriesNull(attackingTerritoriesList);
-		List<Territories> defendingTerritories = getDefendingTerritories(territory);
-		Iterator<Territories> defendingTerritoriesIterator = defendingTerritories.iterator();
+			if(territory!=null) {
+			
+		System.out.println(territory.getAssignName());
+		System.out.println(getDefendingTerritories(territory));
+		//if(count == 0) {
+		//for(Territories trrtr: attackingTerritoriesList) {
+			List<Territories> ls = new ArrayList<Territories>();
+			 lsNew = new ArrayList<Territories>();
+			List<Territories> lsNewNew = new ArrayList<Territories>();
+			ls.addAll(getDefendingTerritories(territory));
+			lsNew.addAll(getDefendingTerritories(territory));
+			
+			for(int i=0;i<ls.size();i++) {
+				
+				if(ls.get(i).getContestant().getContestantName().equals(currentContestant.getContestantName())) {
+					lsNewNew.add(ls.get(i));
+					
+				
+			}
+			for(Territories trr:lsNewNew) {
+			lsNew.remove(trr);
+			}
+			
+			System.out.println("Territory "+territory+" can attack the following territories:- ");
+			System.out.println(lsNew);
+			//count=1;
+			}
+		Iterator<Territories> defendingTerritoriesIterator = lsNew.iterator();
 		while (defendingTerritoriesIterator.hasNext()) {
-			if (territory.getBatallion() > 1) {
-				attack(territory, defendingTerritoriesIterator.next());
+			System.out.println(lsNew);
+			if (territory.getBatallion() >1) {
+				System.out.println(territory.getBatallion());
+				attack(territory, defendingTerritoriesIterator.next(),currentContestant,map);
 				break;
 			}
-
+			else
+			{
+				System.out.println(map.getContinents());
+				System.out.println("Reinforcement Phase started");
+				territory=reinforcementPhase(attackingTerritoriesList, currentContestant, map);
+				System.out.println(territory.getAssignName());
+				attackPhase(attackingTerritoriesList, defendingTerritoriesList, currentContestant,map);
+			}
+			
 		}
+			}
+			else 
+			{
+				System.out.println("Won");
+				
+			}
+			
+		
 
 	}
 
 	public Territories checkIfTerritoriesNull(List<Territories> attackingTerritoriesList) {
 		if (territory == null || (territory.getBatallion() <= 1 || getDefendingTerritories(territory).size() == 0)) {
 			List<Territories> sortedList = getMaximumAdjacentAndArmy(attackingTerritoriesList);
+			System.out.println(sortedList);
 			for (Territories t : sortedList) {
 				if (t.getBatallion() > 1) {
 					territory = t;
 					break;
 				}
+				
+				
 			}
 		}
 		return territory;

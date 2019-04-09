@@ -69,31 +69,41 @@ public class StartGame implements EventHandler<ActionEvent>  {
 				pa.territoryAssignToContestant(enhancedMap,contestants); 
 				//selectedTerritoryList=pa.executingCurrentContestant();	
 				//System.out.println(selectedTerritoryList);
-				Human.contestantsList.addAll(contestants);
-				//Aggressive.contestantsList.addAll(contestants);
+				//contestantsList.addAll(contestants);
+
 				for(int i=0;i<contestants.size();i++) {
-					//selectedTerritoryList.removeAll(selectedTerritoryList);
-					//selectedTerritoryList=pa.executingCurrentContestant();	
+						
 					System.out.println(contestants.get(i).getContestantName() + "!....started playing.\n");
 					System.out.println(contestants.get(i).getContestantName() + contestants.get(i).getBatallion() + " Batallion left.\n");
 					if(contestants.get(i).getContestantStrategy().equals("Human") && contestants.get(i).getBatallion()>0) {
 						
 						ContestantStrategies human=new Human();
+						System.out.println("Human");
 						human.loadBatallion(contestants.get(i).getcontestantTrrtrlist(),contestants.get(i),contestants);
-						human.attackPhase(contestants.get(i).getcontestantTrrtrlist(), contestants.get(i).getcontestantTrrtrlist(), currentContestant);
+						human.attackPhase(contestants.get(i).getcontestantTrrtrlist(), contestants.get(i).getcontestantTrrtrlist(), contestants.get(i),enhancedMap);
+						
 					}
 					
-					else if(contestants.get(i).getContestantStrategy().equals("Aggressive") && contestants.get(i).getBatallion()>0) {
+					else if(contestants.get(i).getContestantStrategy().equalsIgnoreCase("Aggressive") ) {
 						
 						ContestantStrategies aggressive=new Aggressive();
+						if(contestants.get(i).getBatallion()>0) {
 						aggressive.loadBatallion(contestants.get(i).getcontestantTrrtrlist(),contestants.get(i),contestants);
-						System.out.println("reached else if");
+						}
+						else if(contestants.get(i).getBatallion()>=0) {
+							System.out.println(contestants.get(i).getContestantName());
+							//System.out.println(contestants.get(i).getcontestantTrrtrlist());
+							System.out.println(enhancedMap.getContinents());
+						aggressive.attackPhase(contestants.get(i).getcontestantTrrtrlist(),contestants.get(i).getContestantTrrtrlist(), contestants.get(i),enhancedMap);
+						System.out.println("Aggresive");
+						
+						}
 					}
 					else if(contestants.get(i).getContestantStrategy().equals("Cheater") && contestants.get(i).getBatallion()>0) {
 						
 						ContestantStrategies cheater=(ContestantStrategies) new Cheater();
 						cheater.loadBatallion(contestants.get(i).getcontestantTrrtrlist(),contestants.get(i),contestants);
-						System.out.println("reached else if");
+						System.out.println("Cheater");
 					}
 					
 					
@@ -101,7 +111,7 @@ public class StartGame implements EventHandler<ActionEvent>  {
 						for(Contestant currentContestant:contestants) {
 							System.out.println(i);
 							System.out.println(currentContestant.getBatallion());
-						if(currentContestant.getBatallion()>0) {
+						if(currentContestant.getContestantTrrtrlist().size() != MapSStep.count) {
 							i=-1;
 							break;
 					}
@@ -109,47 +119,6 @@ public class StartGame implements EventHandler<ActionEvent>  {
 					}
 				}
 				
-				
-				 
-				 for(int i=0;i<contestants.size();i++) {
-						//selectedTerritoryList.removeAll(selectedTerritoryList);
-						//selectedTerritoryList=pa.executingCurrentContestant();	
-						System.out.println(contestants.get(i).getContestantName() + "!....started playing.\n");
-						System.out.println(contestants.get(i).getContestantName() + contestants.get(i).getBatallion() + " Batallion left.\n");
-						if(contestants.get(i).getContestantStrategy().equals("Human") && contestants.get(i).getBatallion()>0) {
-							
-							ContestantStrategies human=new Human();
-							
-							 StartUpPhase sup=new StartUpPhase(pa);
-							 sup.StartUp(contestants,enhancedMap,selectedTerritoryList);
-							human.attackPhase(contestants.get(i).getcontestantTrrtrlist(), contestants.get(i).getcontestantTrrtrlist(), currentContestant);
-						}
-						
-						else if(contestants.get(i).getContestantStrategy().equals("Aggressive") && contestants.get(i).getBatallion()>0) {
-							
-							ContestantStrategies aggressive=new Aggressive();
-							aggressive.attackPhase(contestants.get(i).getcontestantTrrtrlist(), contestants.get(i).getcontestantTrrtrlist(), currentContestant);
-							System.out.println("reached else if");
-						}
-						else if(contestants.get(i).getContestantStrategy().equals("Cheater") && contestants.get(i).getBatallion()>0) {
-							
-							ContestantStrategies cheater=(ContestantStrategies) new Cheater();
-							cheater.loadBatallion(contestants.get(i).getcontestantTrrtrlist(),contestants.get(i),contestants);
-							System.out.println("reached else if");
-						}
-						
-						
-						if(i == contestants.size()-1) {
-							for(Contestant currentContestant:contestants) {
-								System.out.println(i);
-								System.out.println(currentContestant.getBatallion());
-							if(currentContestant.getBatallion()>0) {
-								i=-1;
-								break;
-						}
-							}
-						}
-					}
 	}
 }
 
