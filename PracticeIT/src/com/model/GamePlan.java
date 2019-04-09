@@ -3,6 +3,8 @@ package com.model;
 import com.units.Territories;
 import com.units.Continents;
 import com.units.Map;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 import com.units.Contestant;
@@ -14,7 +16,7 @@ import javafx.scene.control.TextArea;
  * The Class GamePlan is used to build strategy of attacking.
  * @author Sathwik
  */
-public interface GamePlan {
+public interface GamePlan extends Serializable {
 
 	/**
 	 * Attack phase.

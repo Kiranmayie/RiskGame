@@ -12,12 +12,16 @@ import org.junit.Test;
 
 import com.model.Cards;
 import com.model.GameDesign;
+import com.model.GamePlan;
 import com.model.PlayersAssignment;
 import com.units.Map;
 import com.units.CardType;
 import com.units.Contestant;
 import com.units.Continents;
 import com.units.Territories;
+
+import ConcretePatterns.Aggressive;
+import ConcretePatterns.Random;
 
 /*
  * Player Assignment Test Class
@@ -88,7 +92,7 @@ public class PlayerAssignmentTest {
 	 * The @territoryName2
 	 */
 	String territoryName2 = "China";
-	private List<String> listOfCards;
+	private List<String> listOfCards= new ArrayList<String>();
 	
 	
 	/**
@@ -146,16 +150,7 @@ public class PlayerAssignmentTest {
 		Assert.assertEquals("Asia", returnedContinents.get(0).getAssignName());
 		Assert.assertEquals(1, returnedContinents.size());
 	}	
-	@Test
-	public void checkIfAnyPlayerLostTheGame() {
-		players = new ArrayList<>();
-		players.add(new Contestant(0));
-		players.get(0).setcontestantTrrtrlist(new ArrayList<>());
-		boolean playerLost = playerGamePhase.isContestantWon(players);
-		Assert.assertEquals(true,true);
-		//Assert.assertEquals(true, playerLost.getContestantTrrtrlist().size());
-	}
-	
+		
 	@Test
 	public void autoAssignArmiesToTerritoryInSingleGame() {
 		Contestant p = new Contestant(0);
@@ -184,6 +179,15 @@ public class PlayerAssignmentTest {
 		boolean actualResult = playerGamePhase.isContestantWon(listOfPlayers);
 		Assert.assertTrue(actualResult);
 	}
+	/*@Test
+	public void isFortificationPhaseValidTrue() {
+		contestant.setGamePlan((GamePlan) new Aggressive());
+		territory1.setContestant(contestant);
+		territory1.setBatallion(2);
+		territory2.setContestant(contestant);
+		boolean isFortificationPhaseValid = playerGamePhase.isFortificationPhaseValid(map, contestant);
+		Assert.assertEquals(true, isFortificationPhaseValid);
+	}*/
 	
 	
 	@Test
@@ -202,28 +206,25 @@ public class PlayerAssignmentTest {
 		Assert.assertFalse(playerGamePhase.checkIfPlayersArmiesExhausted(players));
 	}
 
-	
-	
-	/*@Test
-	public void assignTerritoryToPlayer() {
-		contestantList = new ArrayList<>();
-		contestantList.add(new Contestant(0));
-		contestantList.get(0).setBatallion(5);
-		List<Contestant> players = game.contestantAndItsTerrtrs(map, contestantList);
-		Assert.assertNotNull(players);		
-
-	}*/
-	
-
 	@Test
-	public void checkIfAnyPlayerLostTheGame() {
-		players = new ArrayList<>();
-		players.add(new Contestant(0));
-		players.get(0).setcontestantTrrtrlist(new ArrayList<>());
-		boolean playerLost = playerGamePhase.isContestantWon(players);
-		Assert.assertEquals(true,true);
-		//Assert.assertEquals(true, playerLost.getContestantTrrtrlist().size());
-	} 
+	public void checkIfPlayerWonTheGameForSuccess() {
+		List<Contestant> listOfPlayers = new ArrayList<>();
+		listOfPlayers.add(new Contestant(1));
+		boolean actualResult = playerGamePhase.isContestantWon(listOfPlayers);
+		Assert.assertTrue(actualResult);
+	}
+	
+	@Test
+	public void checkIfPlayerWonTheGameForFailure() {
+		List<Contestant> listOfPlayers = new ArrayList<>();
+		listOfPlayers.add(new Contestant(1));
+		listOfPlayers.add(new Contestant(2));
+		boolean actualResult = playerGamePhase.isContestantWon(listOfPlayers);
+		Assert.assertFalse(actualResult);
+	}
+	
+	
+
 	@Test
 	public void checkTradePossibleForDiffCards() {
 		listOfCards.add("ARTILLERY");
@@ -232,20 +233,67 @@ public class PlayerAssignmentTest {
 		boolean actualResult = playerGamePhase.validTrade(listOfCards);
 		Assert.assertEquals(true, actualResult);		
 	}
+	
+	@Test
+	public void checkTradePossibleForSimilarCards() {		
+		listOfCards.add("CAVALRY");
+		listOfCards.add("CAVALRY");
+		listOfCards.add("CAVALRY");
+		boolean actualResult = playerGamePhase.validTrade(listOfCards);
+		Assert.assertEquals(true, actualResult);
+		listOfCards.clear();	
+		listOfCards.add("INFANTRY");
+		listOfCards.add("INFANTRY");
+		listOfCards.add("INFANTRY");
+		boolean actualResult1 = playerGamePhase.validTrade(listOfCards);
+		Assert.assertEquals(true, actualResult1);	
+		listOfCards.clear();	
+		listOfCards.add("ARTILLERY");
+		listOfCards.add("ARTILLERY");
+		listOfCards.add("ARTILLERY");
+		boolean actualResult2 = playerGamePhase.validTrade(listOfCards);
+		Assert.assertEquals(true, actualResult2);
+	}
 
-@Test
-public void contestantHasAValidAttackMove() {
-	territory1.setBatallion(5);
-	territory2.setBatallion(3);
-	boolean actualResult = playerGamePhase.contestantHasAValidAttackMove(territory1);
-	Assert.assertTrue(actualResult);
-}
-@Test
-public void tradeCardsForArmy() {
-	players = new ArrayList<>();
-	players.add(new Contestant(0));
-	Contestant currentContestant = playerGamePhase.reinforceWithCards(1);
-	Assert.assertEquals(0, currentContestant.getBatallion());
-
-}
+	@Test
+	public void checkTradePossibleForNNumberOfCardsFailure() {
+		listOfCards.add("CAVALRY");
+		listOfCards.add("INFANTRY");
+		listOfCards.add("ARTILLERY");
+		listOfCards.add(listOfCards.get(0));
+		listOfCards.add(listOfCards.get(1));
+		listOfCards.add(listOfCards.get(2));
+		boolean actualResult = playerGamePhase.validTrade(listOfCards);
+		Assert.assertEquals(false, actualResult);
+	}
+	@Test
+	public void checkTradePossibleForNNumberOfCardsSuccess() {
+		listOfCards.add("CAVALRY");
+		listOfCards.add("INFANTRY");
+		listOfCards.add("ARTILLERY");
+		boolean actualResult = playerGamePhase.validTrade(listOfCards);
+		Assert.assertEquals(true, actualResult);
+	}
+	@Test
+	public void contestantHasAValidAttackMove() {
+		territory1.setBatallion(5);
+		territory2.setBatallion(3);
+		boolean actualResult = playerGamePhase.contestantHasAValidAttackMove(territory1);
+		Assert.assertTrue(actualResult);
+	}
+	@Test
+	public void checkIfAnyPlayerLostTheGame() {
+		players = new ArrayList<>();
+		players.add(new Contestant(0));
+		players.get(0).setcontestantTrrtrlist(new ArrayList<>());
+		Contestant playerLost = playerGamePhase.isContestantLost(players);
+		Assert.assertEquals(0, playerLost.getContestantTrrtrlist().size());
+	}
+	@Test
+	public void tradeCardsForArmy() {
+		players = new ArrayList<>();
+		players.add(new Contestant(0));
+		Contestant currentContestant = playerGamePhase.reinforceWithCards(1);
+		Assert.assertEquals(0, currentContestant.getBatallion());
+	}
 }

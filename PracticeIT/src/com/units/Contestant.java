@@ -151,7 +151,7 @@ public class Contestant implements Serializable {
 		return gamePlan;
 	}
 
-	public void setPlan(GamePlan strategy) {
+	public void setGaPlan(GamePlan strategy) {
 		this.gamePlan = gamePlan;
 	}
 

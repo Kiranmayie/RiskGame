@@ -108,6 +108,18 @@ static PlayersAssignment playersAssignment;
 		Assert.assertEquals(3, contestants.size());
 	}
 	@Test
+	public void testPlayersArmyAssign4() {
+		contestant.setBatallion(20);
+		listOfcontestant = new ArrayList<>();
+		listOfcontestant.add(new Contestant(1));
+		listOfcontestant.add(new Contestant(2));
+		listOfcontestant.add(new Contestant(3));
+		listOfcontestant.add(new Contestant(4));
+		listOfcontestant.add(new Contestant(5));
+		Assert.assertEquals(playersAssignment.SIX_PLAYER_ARMIES, (Integer) contestant.getBatallion());
+		
+	}
+	@Test
 	public void testTerritoryAssignToContestant() {
 		List<Contestant> contestant = playersAssignment.territoryAssignToContestant(map, listOfcontestant);
 		Assert.assertNotNull(contestant);	 // TODO
@@ -117,13 +129,36 @@ static PlayersAssignment playersAssignment;
 
 	
 	@Test
-	public void testPlayersArmyAssign() {
+	public void testPlayersArmyAssign1() {
+		contestant.setBatallion(35);
 		listOfcontestant = new ArrayList<>();
 		listOfcontestant.add(new Contestant(1));
 		listOfcontestant.add(new Contestant(2));
 		listOfcontestant.add(new Contestant(3));
-		
 		Assert.assertEquals(playersAssignment.THREE_PLAYER_ARMIES, (Integer) contestant.getBatallion());
+	}
 
+	@Test
+	public void testPlayersArmyAssign2() {
+		contestant.setBatallion(30);
+		listOfcontestant = new ArrayList<>();
+		listOfcontestant.add(new Contestant(1));
+		listOfcontestant.add(new Contestant(2));
+		listOfcontestant.add(new Contestant(3));
+		listOfcontestant.add(new Contestant(4));
+		Assert.assertEquals(playersAssignment.FOUR_PLAYER_ARMIES, (Integer) contestant.getBatallion());
+		
+	}
+	@Test
+	public void testPlayersArmyAssign3() {
+		contestant.setBatallion(25);
+		listOfcontestant = new ArrayList<>();
+		listOfcontestant.add(new Contestant(1));
+		listOfcontestant.add(new Contestant(2));
+		listOfcontestant.add(new Contestant(3));
+		listOfcontestant.add(new Contestant(4));
+		listOfcontestant.add(new Contestant(5));
+		Assert.assertEquals(playersAssignment.FIVE_PLAYER_ARMIES, (Integer) contestant.getBatallion());
+		
 	}
 }

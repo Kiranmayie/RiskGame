@@ -90,7 +90,7 @@ public class PlayersAssignment  implements  Serializable,Observable{
 	static int m1 = 0;	
 	static int m2 = 0;	
 	public ArrayList<Observer> observers = new ArrayList<Observer>();
-	public boolean changed;
+	public static boolean changed;
 	CardExchangeView cev;
 	public static int CardCountAttacker;
 	public static int CardCountDefender;
@@ -102,7 +102,7 @@ public class PlayersAssignment  implements  Serializable,Observable{
  * @param contestants 
  * @return true, if successful
  */
-public static void playersArmyAssign(List<Contestant> contestants) {
+public static boolean playersArmyAssign(List<Contestant> contestants) {
 	//boolean state = false;
 	int currentArmSz = 0;
 	int numberPlayers = contestants.size();
@@ -131,6 +131,7 @@ public static void playersArmyAssign(List<Contestant> contestants) {
 		System.out.println(contestant.getContestantName() + " assigned: " + currentArmSz + "\n");
 		//state = true;
 	}
+	return changed;
 	
 }
 
@@ -317,7 +318,7 @@ public void placeBatallion(Contestant currentContestant, List<Territories> selec
  * Contestant assignment to territories.
  * @param currentContestant 
  */
-private void contestantAssignmentToTerritories(Contestant currentContestant) {
+public void contestantAssignmentToTerritories(Contestant currentContestant) {
 	if (currentContestant.getBatallion() > 0) {
 		Territories territory = currentContestant.getcontestantTrrtrlist()
 				.get(anynumber(currentContestant.getcontestantTrrtrlist().size() - 1));
@@ -575,7 +576,7 @@ public int[] autoStartDiceRollDefender(int j) {
 	return(defenderdicevalues);
 }
 
-private int[] defenderdicevalues(int j) {
+public int[] defenderdicevalues(int j) {
 	int max = 6; 
     int min = 1;
     int range = max - min + 1; 
@@ -588,7 +589,7 @@ private int[] defenderdicevalues(int j) {
 	return allresultOfDice;
 }
 
-private int[] attackerdicevalues(int i) {
+public int[] attackerdicevalues(int i) {
 	int max = 6; 
     int min = 1;
     int range = max - min + 1; 

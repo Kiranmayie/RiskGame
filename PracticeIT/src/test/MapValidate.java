@@ -41,9 +41,9 @@ static AuthenticatingEnhanedmap mapValidator;
 	String controlValue1 = "2";
 	String territoryName = "India";
 	String xAxis1 = "1";
-	String xAxis2 = "2";
+	int xAxis2 = 2;
 	String yAxis1 = "1";
-	String yAxis2 = "2";
+	int yAxis2 = 2;
 	static HashMap<String, String> mapValue;
 
 	public static MapSStep mrm;
@@ -148,6 +148,16 @@ static AuthenticatingEnhanedmap mapValidator;
 		Assert.assertEquals(territory.getPointX(), Integer.parseInt(xAxis1));
 		Assert.assertEquals(territory.getPointY(), Integer.parseInt(yAxis1));
 		Assert.assertEquals(territory.getLyingInCntnt(), continent);
+	}
+	
+	@Test
+	public void updateTerritory() {
+		territory = mapMini.updateTerritories(territory, xAxis2, yAxis2, null);
+		Assert.assertNotNull(territory);
+		Assert.assertEquals(territory.getPointX(), xAxis2);
+		Assert.assertEquals(territory.getPointY(), yAxis2);
+		Assert.assertNotEquals(territory.getPointY(), Integer.parseInt(xAxis1));
+		Assert.assertNotEquals(territory.getPointY(), Integer.parseInt(yAxis1));
 	}
 	
 	@Test

@@ -16,6 +16,7 @@ import com.units.Contestant;
 import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
+import ConcretePatterns.Human;
 public class Reinforce {
 
 	/*
@@ -30,7 +31,7 @@ static PlayersAssignment playersAssignment;
 	 * The @continent reference
 	 */
 	static Continents continent;
-	
+
 	/**
 	 * The @territory1
 	 */
@@ -106,11 +107,21 @@ static PlayersAssignment playersAssignment;
 			territory1.setContestant(contestant);
 			playersAssignment.territoryAssignToContestant(map, listOfcontestant);
 			territory2.setContestant(contestant);;
-			Contestant returningContestant = PlayersAssignment.getReinforceBatallion(map, contestant);
+			Contestant returningContestant = Human.getReinforceBatallion(map, contestant);
 
 			Assert.assertEquals(returningContestant.getBatallion(), 11);
 		}
 
+	@Test
+	public void calculateReinforcementArmiesCaseOne() {
+		contestant.setBatallion(35);
+		contestant.getcontestantTrrtrlist().add(territory1);
+		territory1.setContestant(contestant);
+		contestant.getcontestantTrrtrlist().add(territory2);
+		territory2.setContestant(contestant);
+		Contestant returnedPlayer = Human.getReinforceBatallion(map, contestant);
+		Assert.assertEquals(returnedPlayer.getBatallion(), 38);
+	}
 	
 	/**
 	 * This method tests number of armies for 2 continents during each reinforcement
@@ -135,7 +146,7 @@ static PlayersAssignment playersAssignment;
 		territory2.setContestant(contestant);
 		contestant.getcontestantTrrtrlist().add(terr);
 		terr.setContestant(contestant);
-		Contestant returnedPlayer = PlayersAssignment.getReinforceBatallion(map, contestant);
+		Contestant returnedPlayer = Human.getReinforceBatallion(map, contestant);
 		Assert.assertEquals(returnedPlayer.getBatallion(),43 );
 	}
 
