@@ -12,10 +12,24 @@ import com.units.Territories;
 
 import Patterns.ContestantStrategies;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Cheater.
+ */
 public class Cheater implements ContestantStrategies{
+	
+	/** The pa. */
 	PlayersAssignment pa=new PlayersAssignment();
+	
+	/** The attack ter list. */
 	private List<Territories> attackTerList;
+	
+	/** The terr. */
 	private Territories terr;
+	
+	/* (non-Javadoc)
+	 * @see Patterns.ContestantStrategies#loadBatallion(java.util.List, com.units.Contestant, java.util.List)
+	 */
 	@Override
 	public void loadBatallion(List<Territories> selectedTerritoriesList, Contestant currentContestant,
 			List<Contestant> Contestants) {
@@ -40,6 +54,9 @@ public class Cheater implements ContestantStrategies{
 	}
 
 
+	/* (non-Javadoc)
+	 * @see Patterns.ContestantStrategies#attackPhase(java.util.List, java.util.List, com.units.Contestant, com.units.Map)
+	 */
 	@Override
 	public void attackPhase(List<Territories> attackTerList, List<Territories> defTerList,
 			Contestant currentContestant,Map map) {
@@ -69,6 +86,10 @@ public class Cheater implements ContestantStrategies{
 		}
 		attackTerList.addAll(territoryWon);
 	}
+	
+	/* (non-Javadoc)
+	 * @see Patterns.ContestantStrategies#reinforcementPhase(java.util.List, com.units.Contestant, com.units.Map)
+	 */
 	public Territories reinforcementPhase(List<Territories> territoryList, 
 			Contestant currentContestant,Map map) {
 		for (Territories terr : territoryList) {
@@ -81,6 +102,14 @@ public class Cheater implements ContestantStrategies{
 		return terr;
 	}
 	
+			/**
+			 * Fortification phase.
+			 *
+			 * @param selectedTerritoriesList the selected territories list
+			 * @param adjTerritoriesList the adj territories list
+			 * @param contestantPlaying the contestant playing
+			 * @return true, if successful
+			 */
 			public boolean fortificationPhase(List<Territories> selectedTerritoriesList, List<Territories> adjTerritoriesList,
 					 Contestant contestantPlaying) {
 
@@ -102,6 +131,13 @@ public class Cheater implements ContestantStrategies{
 			}
 
 			
+			/**
+			 * Checks if is fortification phase valid.
+			 *
+			 * @param map the map
+			 * @param contestantPlaying the contestant playing
+			 * @return true, if is fortification phase valid
+			 */
 			public boolean isFortificationPhaseValid(Map map, Contestant contestantPlaying) {
 				boolean isFortificationAvaialble = false;
 				outer: for (Territories territory : attackTerList) {
@@ -121,6 +157,12 @@ public class Cheater implements ContestantStrategies{
 			}
 
 			
+			/**
+			 * Contestant has A valid attack move.
+			 *
+			 * @param territories the territories
+			 * @return true, if successful
+			 */
 			public boolean contestantHasAValidAttackMove(List<Territories> territories) {
 				boolean hasAValidMove = false;
 				if (attackTerList == null || attackTerList.isEmpty()) {

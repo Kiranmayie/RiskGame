@@ -12,9 +12,21 @@ import com.units.Territories;
 
 import Patterns.ContestantStrategies;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Benevolent.
+ */
 public class Benevolent implements ContestantStrategies {
+		
+		/** The pa. */
 		PlayersAssignment pa=new PlayersAssignment();
+		
+		/** The territory. */
 		private Territories territory;
+	
+	/* (non-Javadoc)
+	 * @see Patterns.ContestantStrategies#loadBatallion(java.util.List, com.units.Contestant, java.util.List)
+	 */
 	@Override
 	public void loadBatallion(List<Territories> selectedTerritoriesList, Contestant currentContestant,
 			List<Contestant> Contestants) {
@@ -39,12 +51,24 @@ public class Benevolent implements ContestantStrategies {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see Patterns.ContestantStrategies#attackPhase(java.util.List, java.util.List, com.units.Contestant, com.units.Map)
+	 */
 	@Override
 	public void attackPhase(List<Territories> getcontestantTrrtrlist, List<Territories> getcontestantTrrtrlist2,
 			Contestant currentContestant,Map map) {
 		// No attack move for this contestant
 		
 	}
+	
+	/**
+	 * Fortification phase.
+	 *
+	 * @param selectedTerritoriesList the selected territories list
+	 * @param adjTerritories the adj territories
+	 * @param currentContestant the current contestant
+	 * @return true, if successful
+	 */
 	public boolean fortificationPhase(List<Territories> selectedTerritoriesList, List<Territories> adjTerritories,
 			 Contestant currentContestant) {
 		// TODO Auto-generated method stub
@@ -69,6 +93,9 @@ public class Benevolent implements ContestantStrategies {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see Patterns.ContestantStrategies#reinforcementPhase(java.util.List, com.units.Contestant, com.units.Map)
+	 */
 	@Override
 	public Territories reinforcementPhase(List<Territories> territoryList, 
 			Contestant currentContestant,Map map) {
@@ -80,17 +107,35 @@ public class Benevolent implements ContestantStrategies {
 		
 	}
 
+	/**
+	 * Contestant has A valid attack move.
+	 *
+	 * @param territories the territories
+	 * @return true, if successful
+	 */
 	public boolean contestantHasAValidAttackMove(List<Territories> territories) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 	
+	/**
+	 * Gets the territories owned by current contestant.
+	 *
+	 * @param territory the territory
+	 * @return the territories owned by current contestant
+	 */
 	public List<Territories> getTerritoriesOwnedByCurrentContestant(Territories territory) {
 		List<Territories> listWithValidAdjacentTerriroty = territory.getTouchingTrrtrsExpand().stream()
 				.filter(t -> (territory.getContestant().equals(t.getContestant()))).collect(Collectors.toList());
 		return listWithValidAdjacentTerriroty;
 	}
 
+	/**
+	 * Gets the minimum army from territories.
+	 *
+	 * @param list the list
+	 * @return the minimum army from territories
+	 */
 	public List<Territories> getMinimumArmyFromTerritories(List<Territories> list) {
 		Collections.sort(list, new Comparator<Territories>() {
 			@Override

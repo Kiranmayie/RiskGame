@@ -4,6 +4,7 @@ package com.units;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+// TODO: Auto-generated Javadoc
 /**
  * This class is used to implement Serializable and Store, read the Territories.
  */
@@ -81,9 +82,11 @@ public class Territories implements Serializable {
 	public String getAssignName() {
 		return assignName;
 	}
+	
 	/**
 	 * Sets the assign name.
-	 * @param assignName 
+	 *
+	 * @param assignName the new assign name
 	 */
 	public void setAssignName(String assignName) {
 		this.assignName = assignName;
@@ -99,7 +102,8 @@ public class Territories implements Serializable {
 	
 	/**
 	 * Sets the point X.
-	 * @param pointX 
+	 *
+	 * @param pointX the new point X
 	 */
 	public void setPointX(int pointX) {
 		this.pointX = pointX;
@@ -115,7 +119,8 @@ public class Territories implements Serializable {
 	
 	/**
 	 * Sets the point Y.
-	 * @param pointY 
+	 *
+	 * @param pointY the new point Y
 	 */
 	public void setPointY(int pointY) {
 		this.pointY = pointY;
@@ -131,7 +136,8 @@ public class Territories implements Serializable {
 	
 	/**
 	 * Sets the touching Territories expand.
-	 * @param touchingTrrtrsExpand 
+	 *
+	 * @param touchingTrrtrsExpand the new touching trrtrs expand
 	 */
 	public void setTouchingTrrtrsExpand(List<Territories> touchingTrrtrsExpand) {
 		this.touchingTrrtrsExpand = touchingTrrtrsExpand;
@@ -147,7 +153,8 @@ public class Territories implements Serializable {
 
 	/**
 	 * Sets the lying in cntnt.
-	 * @param lyingInCntnt 
+	 *
+	 * @param lyingInCntnt the new lying in cntnt
 	 */
 	public void setLyingInCntnt(Continents lyingInCntnt) {
 		this.lyingInCntnt = lyingInCntnt;

@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class ContestantCards is used to populate the fields related to contestantcards being hold by particular contestant.
  */
@@ -16,6 +17,11 @@ public class ContestantCards implements Serializable{
 	/** The trrtry. */
 	private Territories trrtry;
 	
+	/**
+	 * Instantiates a new contestant cards.
+	 *
+	 * @param cardType the card type
+	 */
 	public ContestantCards(CardType cardType) {
 		this.cardType = cardType;
 	}
@@ -40,6 +46,8 @@ public class ContestantCards implements Serializable{
 	}
 	
 	/**
+	 * Gets the card type.
+	 *
 	 * @return the cardType
 	 */
 	public CardType getCardType() {

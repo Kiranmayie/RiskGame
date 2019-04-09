@@ -13,6 +13,7 @@ import com.units.Map;
 import com.units.Territories;
 import javafx.stage.FileChooser;
 import com.model.AuthenticatingEnhanedmap;
+// TODO: Auto-generated Javadoc
 /**
  * The Class MapSStep is the second step towards map selection and leading to further validation.
  */
@@ -23,8 +24,14 @@ public class MapSStep {
 	
 	/** The Territory continent aggregation. */
 	HashMap<String, Integer> trrtrCntntAggregate = new HashMap<>();
+	
+	/** The system exit. */
 	public static int systemExit=0;
+	
+	/** The Territories count. */
 	public static int TerritoriesCount=1;
+	
+	/** The count. */
 	public static int count=0;
 	
 	/**
@@ -41,7 +48,8 @@ public class MapSStep {
 	
 	/**
 	 * Reading map file.
-	 * @param mapReturnedFile 
+	 *
+	 * @param mapReturnedFile the map returned file
 	 * @return the map
 	 * @throws FileNotFoundException the file not found exception
 	 */
@@ -54,9 +62,8 @@ public class MapSStep {
 	
 	/**
 	 * Conversion one.
-	 * @param mapReturnedFile 
+	 *
 	 * @return the map
-	 * @throws FileNotFoundException the file not found exception
 	 */
 	public static File savedGameChooser() {
 		FileChooser fChooser = new FileChooser();
@@ -66,6 +73,14 @@ public class MapSStep {
 		file = fChooser.showOpenDialog(null);
 		return file;
 	}
+	
+	/**
+	 * Conversion one.
+	 *
+	 * @param mapReturnedFile the map returned file
+	 * @return the map
+	 * @throws FileNotFoundException the file not found exception
+	 */
 	public Map conversionOne(File mapReturnedFile) throws FileNotFoundException {
 		StringBuilder sb=new StringBuilder();
 		Scanner sc=new Scanner(new FileReader(mapReturnedFile));
@@ -87,7 +102,8 @@ public class MapSStep {
 	
 	/**
 	 * Conversion two.
-	 * @param scNew 
+	 *
+	 * @param scNew the sc new
 	 * @return the map
 	 */
 	public Map conversionTwo(Scanner scNew) {
@@ -116,7 +132,8 @@ public class MapSStep {
 
 	/**
 	 * Conversion three.
-	 * @param scNew 
+	 *
+	 * @param scNew the sc new
 	 * @return the list
 	 */
 	public List<Continents> conversionThree(Scanner scNew) {
@@ -177,8 +194,9 @@ public class MapSStep {
 	
 	 /**
  	 * Conversion four.
- 	 * @param td 
- 	 * @param cntnts 
+ 	 *
+ 	 * @param td the td
+ 	 * @param cntnts the cntnts
  	 * @return the list
  	 */
  	List<Territories> conversionFour(String td, List<Continents> cntnts){

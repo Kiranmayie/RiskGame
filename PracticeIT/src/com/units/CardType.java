@@ -1,5 +1,15 @@
 package com.units;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Enum CardType.
+ */
 public enum CardType {
-	INFANTRY, CAVALRY, ARTILLERY
+	
+	/** The infantry. */
+	INFANTRY, 
+ /** The cavalry. */
+ CAVALRY, 
+ /** The artillery. */
+ ARTILLERY
 }

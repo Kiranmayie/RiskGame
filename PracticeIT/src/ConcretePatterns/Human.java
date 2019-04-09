@@ -15,33 +15,76 @@ import com.units.Territories;
 import Patterns.ContestantStrategies;
 import Patterns.Observer;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Human.
+ */
 public class Human implements ContestantStrategies {
+	
+	/** The selected territory list. */
 	List<Territories> selectedTerritoryList = new ArrayList<>();
+	
+	/** The contestant trrtrlist. */
 	private List<Territories> contestantTrrtrlist;
+	
+	/** The m 1. */
 	static int m1 = 0;	
+	
+	/** The m 2. */
 	static int m2 = 0;	
+	
+	/** The observers. */
 	public ArrayList<Observer> observers = new ArrayList<Observer>();
+	
+	/** The changed. */
 	public boolean changed;
+	
+	/** The cev. */
 	CardExchangeView cev;
+	
+	/** The Card count attacker. */
 	public static int CardCountAttacker;
+	
+	/** The Card count defender. */
 	public static int CardCountDefender;
+	
+	/** The cardtype attacker. */
 	public static List<String> cardtypeAttacker=new ArrayList<String> ();
+	
+	/** The cardtype defender. */
 	public static List<String> cardtypeDefender=new ArrayList<String> ();
 	
+	/** The contestant looper. */
 	private Iterator<Contestant> contestantLooper;
+	
+	/** The contestants list. */
 	public static List<Contestant> contestantsList=new ArrayList<Contestant>();
+	
+	/** The current contestant. */
 	Contestant currentContestant; 
+	
+	/** The trrtrs conquered. */
 	//List<Territories> selectedTerritoryList = new ArrayList<>();
 	private int trrtrsConquered;
+	
+	/** The timer. */
 	private int timer;
+	
+	/** The pa. */
 	private PlayersAssignment pa;
 	
+	/**
+	 * Instantiates a new human.
+	 */
 	public Human() {
 		
 		this.contestantLooper=contestantsList.iterator();
 		}
 		
 	
+	/* (non-Javadoc)
+	 * @see Patterns.ContestantStrategies#loadBatallion(java.util.List, com.units.Contestant, java.util.List)
+	 */
 	public void loadBatallion(List<Territories> selectedTerritoryList,Contestant currentContestant,List<Contestant> Contestants){
 		
 		  System.out.println("Placing Batallion against each player");
@@ -53,6 +96,13 @@ public class Human implements ContestantStrategies {
 		
 	
 	
+	/**
+	 * Place batallion.
+	 *
+	 * @param currentContestant the current contestant
+	 * @param selectedTerritoryList the selected territory list
+	 * @param contestants the contestants
+	 */
 	public void placeBatallion(Contestant currentContestant, List<Territories> selectedTerritoryList, List<Contestant> contestants)
 	{
 		int contestantArmies = currentContestant.getBatallion();
@@ -77,6 +127,9 @@ public class Human implements ContestantStrategies {
 	}
 	
 
+	/* (non-Javadoc)
+	 * @see Patterns.ContestantStrategies#attackPhase(java.util.List, java.util.List, com.units.Contestant, com.units.Map)
+	 */
 	public void attackPhase(List<Territories> attackTrrtsList, List<Territories> defendTrrtrsList, Contestant currentContestant,Map map)  {
 
 		for(Territories trrtr: currentContestant.getContestantTrrtrlist()) {
@@ -170,6 +223,12 @@ public class Human implements ContestantStrategies {
 								
 						}	
 	
+	/**
+	 * Valid trade.
+	 *
+	 * @param cardtype the cardtype
+	 * @return true, if successful
+	 */
 	public boolean validTrade(List<String> cardtype) {
 		int infantry = 0;
 		int cavalry = 0;
@@ -188,6 +247,12 @@ public class Human implements ContestantStrategies {
 
 
 
+	/**
+	 * Reinforce with cards.
+	 *
+	 * @param counter the counter
+	 * @return the contestant
+	 */
 	public Contestant reinforceWithCards(int counter) {
 		
 		if(counter==3)
@@ -231,6 +296,12 @@ public class Human implements ContestantStrategies {
 	}
 
 
+	/**
+	 * Roll dice attacker.
+	 *
+	 * @param n the n
+	 * @return the int[]
+	 */
 	private int[] rollDiceAttacker(int n) {
 		
 		int[] DiceResult = null;
@@ -258,12 +329,26 @@ public class Human implements ContestantStrategies {
 		return DiceResult;
 	}
 
+	/**
+	 * Gets the defending territory.
+	 *
+	 * @param territory the territory
+	 * @return the defending territory
+	 */
 	private List<Territories> getDefendingTerritory(Territories territory) {
 		List<Territories> defendingTerritories = new ArrayList<Territories>();
 		defendingTerritories.addAll(territory.getTouchingTrrtrsExpand());
 		return defendingTerritories;
 	}
 
+/**
+ * Defend territory.
+ *
+ * @param attackTrrtsList the attack trrts list
+ * @param attackingTerritory the attacking territory
+ * @param contestant the contestant
+ * @return the int
+ */
 private int DefendTerritory(List<Territories> attackTrrtsList, String attackingTerritory, String contestant) {
 
 	
@@ -301,6 +386,12 @@ private int DefendTerritory(List<Territories> attackTrrtsList, String attackingT
 	
 }
 
+/**
+ * Roll dice defender.
+ *
+ * @param m the m
+ * @return the int[]
+ */
 private int[] rollDiceDefender(int m) {
 	
 	int[] DiceResult = null;
@@ -329,6 +420,14 @@ private int[] rollDiceDefender(int m) {
 
 }
 
+/**
+ * Fortification phase.
+ *
+ * @param selectedTerritoryList the selected territory list
+ * @param adjancentTerritory the adjancent territory
+ * @param currentContestant the current contestant
+ * @return true, if successful
+ */
 public boolean fortificationPhase(List<Territories> selectedTerritoryList, List<Territories> adjancentTerritory, Contestant currentContestant) {
 	Scanner a = new Scanner(System.in);
 	String Territory1 = " ";
@@ -363,6 +462,13 @@ public boolean fortificationPhase(List<Territories> selectedTerritoryList, List<
 	}
 	
 	
+/**
+ * Defending dice calculation.
+ *
+ * @param defendTrrtrsList the defend trrtrs list
+ * @param beingAttackedTerritory the being attacked territory
+ * @return the int
+ */
 private int defendingDiceCalculation(List<Territories> defendTrrtrsList,String beingAttackedTerritory) {
 	
 	int m=0;
@@ -376,6 +482,14 @@ private int defendingDiceCalculation(List<Territories> defendTrrtrsList,String b
 	return m;
 }
 
+/**
+ * Attack territory.
+ *
+ * @param defendTrrtrsList the defend trrtrs list
+ * @param beingAttackedTerritory the being attacked territory
+ * @param contestant the contestant
+ * @return the int
+ */
 public int attackTerritory(List<Territories> defendTrrtrsList,String beingAttackedTerritory, String contestant) {
 
 	pa = new PlayersAssignment();
@@ -430,6 +544,12 @@ public int attackTerritory(List<Territories> defendTrrtrsList,String beingAttack
 	
 }
 
+/**
+ * Any number.
+ *
+ * @param i the i
+ * @return the int[]
+ */
 private int[] anyNumber(int i) {
 	int max = 6; 
     int min = 1;
@@ -445,8 +565,9 @@ private int[] anyNumber(int i) {
 
 /**
  * Gets the reinforce batallion.
- * @param map 
- * @param currentContestant 
+ *
+ * @param map the map
+ * @param currentContestant the current contestant
  * @return the reinforce batallion
  */
 public static Contestant getReinforceBatallion(Map map, Contestant currentContestant) {
@@ -468,6 +589,14 @@ public static Contestant getReinforceBatallion(Map map, Contestant currentContes
 
 	return currentContestant;
 }
+
+/**
+ * Gets the continents owned by player.
+ *
+ * @param map the map
+ * @param currentContestant the current contestant
+ * @return the continents owned by player
+ */
 public static List<Continents> getContinentsOwnedByPlayer(Map map, Contestant currentContestant) {
 
 	List<Continents> cntnts = new ArrayList<>();
@@ -489,42 +618,65 @@ public static List<Continents> getContinentsOwnedByPlayer(Map map, Contestant cu
 }
 	
 	
+	/**
+	 * Gets the current contestant.
+	 *
+	 * @return the current contestant
+	 */
 	public Contestant getCurrentContestant() {
 		return currentContestant;
 	}
 
 	/**
 	 * Sets the current contestant.
-	 * @param currentContestant 
+	 *
+	 * @param currentContestant the new current contestant
 	 */
 	public void setCurrentContestant(Contestant currentContestant) {
 		this.currentContestant = currentContestant;
 	}
 	
+	/**
+	 * Gets the contestants list.
+	 *
+	 * @return the contestants list
+	 */
 	public List<Contestant> getContestantsList() {
 		return contestantsList;
 	}
 
 	/**
 	 * Sets the contestants list.
-	 * @param contestantsList 
+	 *
+	 * @param contestantsList the new contestants list
 	 */
 	public void setContestantsList(List<Contestant> contestantsList) {
 		this.contestantsList=contestantsList;
 	}
 	
+	/**
+	 * Gets the territory won.
+	 *
+	 * @return the territory won
+	 */
 	public int getTerritoryWon() {
 		return trrtrsConquered;
 	}
 
 	/**
 	 * Sets the territory conquered.
-	 * @param trrtrsConquered 
+	 *
+	 * @param trrtrsConquered the new territory conquered
 	 */
 	public void setTerritoryConquered(int trrtrsConquered) {
 		this.trrtrsConquered = trrtrsConquered;
 	}
 	
+	/**
+	 * Removes the observer.
+	 *
+	 * @param o the o
+	 */
 	public void removeObserver(Observer o) {
 		int i = observers.indexOf(o);
 		if(i>=0) {
@@ -533,6 +685,11 @@ public static List<Continents> getContinentsOwnedByPlayer(Map map, Contestant cu
 	}
 
 	
+	/**
+	 * Notify observers.
+	 *
+	 * @param obj the obj
+	 */
 	public void notifyObservers(String obj) {
 		if(changed) {
 			//System.out.println(supLocal.observers);
@@ -544,6 +701,9 @@ public static List<Continents> getContinentsOwnedByPlayer(Map map, Contestant cu
 		
 	}
 
+	/**
+	 * Notify observers.
+	 */
 	public void notifyObservers() {
 		if(changed) {
 			cev.update("Card Given");
@@ -552,11 +712,19 @@ public static List<Continents> getContinentsOwnedByPlayer(Map map, Contestant cu
 	}
 
 
+	/**
+	 * Something changed.
+	 */
 	public void somethingChanged() {
 		changed=true;
 	}
 
 	
+	/**
+	 * Register observer.
+	 *
+	 * @param o the o
+	 */
 	public void registerObserver(Observer o) {
 		observers.add(o);
 		//System.out.println(observers.get(0));
@@ -564,9 +732,13 @@ public static List<Continents> getContinentsOwnedByPlayer(Map map, Contestant cu
 	}
 
 
-	
-	public void reinforcementPhase(List<Territories> territoryList, Territories territory,
-			Contestant currentContestant) {
+	/* (non-Javadoc)
+	 * @see Patterns.ContestantStrategies#reinforcementPhase(java.util.List, com.units.Contestant, com.units.Map)
+	 */
+	@Override
+	public Territories reinforcementPhase(List<Territories> territoryList, 
+			Contestant currentContestant,Map map) {
+				return null;
 		// TODO Auto-generated method stub
 		
 	}

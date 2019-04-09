@@ -15,6 +15,11 @@ import com.units.Contestant;
 import com.units.Continents;
 import com.units.Map;
 import com.units.Territories;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class ContestantTerritories.
+ */
 public class ContestantTerritories {
 
 	/**
@@ -23,49 +28,41 @@ public class ContestantTerritories {
 	
 static PlayersAssignment playersAssignment;
 	
-	/**
-	 * The @continent reference
-	 */
+	/** The @continent reference. */
 	static Continents continent;
 	
-	/**
-	 * The @territory1
-	 */
+	/** The @territory1. */
 	static Territories territory1;
 	
-	/**
-	 * The @territory2
-	 */
+	/** The @territory2. */
 	static Territories territory2;
 	
-	/**
-	 * The @map reference
-	 */
+	/** The @map reference. */
 	static Map map;
 	
-	/**
-	 * The @Contestant 
-	 */
+	/** The @Contestant. */
 	static Contestant contestant;
+	
+	/** The territory name 1. */
 	String territoryName1 = "India";
+	
+	/** The territory name 2. */
 	String territoryName2 = "China";
 
 	
 
-	/**
-	 * The @listOfContinents
-	 */
+	/** The @listOfContinents. */
 	static List<Continents> listOfContinents;
 	
-	/**
-	 * The @listOfTerritories
-	 */
+	/** The @listOfTerritories. */
 	static List<Territories> listOfTerritories;
 	
-	/**
-	 * The @listOfcontestant
-	 */
+	/** The @listOfcontestant. */
 	static List<Contestant> listOfcontestant;
+	
+	/**
+	 * Before class.
+	 */
 	@BeforeClass
 	public static void beforeClass() {
 		playersAssignment = new PlayersAssignment();
@@ -107,6 +104,10 @@ static PlayersAssignment playersAssignment;
 		playersAssignment.createContestant(listOfcontestant.size(), contestants);
 		Assert.assertEquals(3, contestants.size());
 	}
+	
+	/**
+	 * Test territory assign to contestant.
+	 */
 	@Test
 	public void testTerritoryAssignToContestant() {
 		List<Contestant> contestant = playersAssignment.territoryAssignToContestant(map, listOfcontestant);
@@ -116,6 +117,9 @@ static PlayersAssignment playersAssignment;
 	
 
 	
+	/**
+	 * Test players army assign.
+	 */
 	@Test
 	public void testPlayersArmyAssign() {
 		listOfcontestant = new ArrayList<>();

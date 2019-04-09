@@ -15,8 +15,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StartSavedGame.
+ */
 public class StartSavedGame implements EventHandler<ActionEvent> {
 
+	/* (non-Javadoc)
+	 * @see javafx.event.EventHandler#handle(javafx.event.Event)
+	 */
 	@Override
 	public void handle(ActionEvent event) {
 		// TODO Auto-generated method stub
@@ -39,6 +46,12 @@ public class StartSavedGame implements EventHandler<ActionEvent> {
 		mapSelectorStage.setScene(scene);
 		mapSelectorStage.show();
 	}
+	
+	/**
+	 * File chooser.
+	 *
+	 * @return the start game controller
+	 */
 	public StartGameController fileChooser() {
 		File file = MapSStep.savedGameChooser();
 		StartGameController gpc = loadSavedFile(file);
@@ -47,6 +60,12 @@ public class StartSavedGame implements EventHandler<ActionEvent> {
 
 
 	
+	/**
+	 * Load saved file.
+	 *
+	 * @param file the file
+	 * @return the start game controller
+	 */
 	public StartGameController loadSavedFile(File file) {
 		StartGameController controller = null;
 		try {

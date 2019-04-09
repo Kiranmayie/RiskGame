@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+// TODO: Auto-generated Javadoc
 /**
  * This main class inherits Application class.
  * @ref {@link www.github.com}
@@ -49,8 +50,9 @@ public class Main extends Application {
 	
 	/**
 	 * Load image.
-	 * @param scn 
-	 * @param classLoader 
+	 *
+	 * @param scn the scn
+	 * @param classLoader the class loader
 	 * @return the image view
 	 */
 	public static ImageView LoadImage(Scene scn, ClassLoader classLoader) {
@@ -68,9 +70,11 @@ public class Main extends Application {
 		imageView.setPreserveRatio(true);
 		return imageView;
 	}
+	
 	/**
 	 * Exit.
-	 * @param scn 
+	 *
+	 * @param scn the scn
 	 * @return the extbutton.
 	 */
 	public static Button exit(Scene scn) {
@@ -83,7 +87,8 @@ public class Main extends Application {
 	
 	/**
 	 * Map modification.
-	 * @param scn 
+	 *
+	 * @param scn the scn
 	 * @return the button
 	 */
 	public static Button mapModification(Scene scn) {
@@ -95,7 +100,8 @@ public class Main extends Application {
 
 	/**
 	 * Start playing game.
-	 * @param scn 
+	 *
+	 * @param scn the scn
 	 * @return the button
 	 */
 	public static Button startPlayingGame(Scene scn) {
@@ -104,12 +110,24 @@ public class Main extends Application {
 		return gameButton;
 	}
 	
+	/**
+	 * Tournament mode.
+	 *
+	 * @param scn the scn
+	 * @return the button
+	 */
 	public static Button tournamentMode(Scene scn) {
 		Button modeButton = new Button("Tournament Mode");
 		modeButton.setOnAction(new TournamentMode());
 		return modeButton;
 	}
 	
+	/**
+	 * Start saved game.
+	 *
+	 * @param scn the scn
+	 * @return the button
+	 */
 	public static Button startSavedGame(Scene scn) {
 		Button savedButton = new Button("Start Saved Game");
 		savedButton.setOnAction(new StartSavedGame());

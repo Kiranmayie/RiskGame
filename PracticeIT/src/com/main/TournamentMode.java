@@ -11,6 +11,10 @@ import com.units.Territories;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TournamentMode.
+ */
 public class TournamentMode implements EventHandler<ActionEvent> {
 	/** The enhanced map. */
 	public static Map enhancedMap;
@@ -30,6 +34,9 @@ public class TournamentMode implements EventHandler<ActionEvent> {
 	/** The selected territory list. */
 	List<Territories> selectedTerritoryList;
 
+	/* (non-Javadoc)
+	 * @see javafx.event.EventHandler#handle(javafx.event.Event)
+	 */
 	@Override
 	public void handle(ActionEvent event) {
 		

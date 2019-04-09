@@ -17,8 +17,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+// TODO: Auto-generated Javadoc
 /**
- * The Class newMapCreation implements EventHandler in Creating New Map
+ * The Class newMapCreation implements EventHandler in Creating New Map.
  */
 public class newMapCreation implements EventHandler<ActionEvent> {
 	/* (non-Javadoc)

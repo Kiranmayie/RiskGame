@@ -36,37 +36,38 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 //import javafx.scene.text.Text;
 import javafx.stage.Stage;
+// TODO: Auto-generated Javadoc
 /**
  * This class is about populating territories and continents from the world map. 
  */
 public class MapBuildController implements Initializable,EventHandler{
 	
-    /** The Map object */
+    /**  The Map object. */
     private Map map;
          
-	/** The Map Miniature object */
+	/**  The Map Miniature object. */
 	private MapMiniature mapMini;
 
-	/** The file object */
+	/**  The file object. */
 	private File file;
 	
-	/** The Author Textfield */
+	/**  The Author Textfield. */
 	@FXML
 	private TextField Author;
 
-	/** The Warn Textfield */
+	/**  The Warn Textfield. */
 	@FXML
 	private TextField Warn;
 
-	/** The Scroll Textfield */
+	/**  The Scroll Textfield. */
 	@FXML
 	private TextField Scroll;
 	
-	/** The Wrap Textfield */
+	/**  The Wrap Textfield. */
 	@FXML
 	private TextField Wrap;
 	
-	/** The Image Textfield */
+	/**  The Image Textfield. */
 	@FXML
 	private TextField Image;
 
@@ -78,11 +79,11 @@ public class MapBuildController implements Initializable,EventHandler{
 	@FXML
 	private Button updatingContinent;
 	
-	/** The new continent name TextField */
+	/**  The new continent name TextField. */
 	@FXML
 	private TextField newContName;
 
-	/** The new continent value TextField */
+	/**  The new continent value TextField. */
 	@FXML
 	private TextField newContValue;
 
@@ -90,19 +91,19 @@ public class MapBuildController implements Initializable,EventHandler{
 	@FXML
 	private Button deletingContinent;
 	
-	/** The same continent name Label */
+	/**  The same continent name Label. */
 	@FXML
 	private Label sameContinentName;
 	
-	/** The new Territory name TextField */
+	/**  The new Territory name TextField. */
 	@FXML
 	private TextField newTName;
 
-	/** The TextField for Territory X-Axis */
+	/**  The TextField for Territory X-Axis. */
 	@FXML
 	private TextField tXaxis;
 
-	/** The TextField for Territory Y-Axis */
+	/**  The TextField for Territory Y-Axis. */
 	@FXML
 	private TextField tYaxis;
 	
@@ -115,19 +116,19 @@ public class MapBuildController implements Initializable,EventHandler{
 	@FXML
 	private ComboBox<Territories> joiningAdjTerritories;
 
-	/** The List View for Continent List */
+	/**  The List View for Continent List. */
 	@FXML
     private ListView<Continents> cntntList;
 	
-	/** The List View for Territory List */
+	/**  The List View for Territory List. */
 	@FXML
 	private ListView<Territories> trrtrsList;
 
-	/** The List View for Adjacent Territories List */
+	/**  The List View for Adjacent Territories List. */
 	@FXML
 	private ListView<Territories> adjTrrtrsList;
 
-	/** Buttonn for removing adjacent Territories */
+	/**  Buttonn for removing adjacent Territories. */
 	@FXML
 	private Button removingAdjTrrtrs;
 
@@ -135,7 +136,7 @@ public class MapBuildController implements Initializable,EventHandler{
 	@FXML
 	private Button updateTerr;
 	
-	/** Button for deleting territory */
+	/**  Button for deleting territory. */
 	@FXML
 	private Button delTerr;
 	
@@ -147,7 +148,7 @@ public class MapBuildController implements Initializable,EventHandler{
 	@FXML
 	private Button exitButton;
 	
-	/** Object for javaFx stage method */
+	/**  Object for javaFx stage method. */
 	Stage stage = new Stage();
 
 	/** The button. */
@@ -202,8 +203,9 @@ public class MapBuildController implements Initializable,EventHandler{
         }
 
 	/**
-	 * Enabling TextField
-	 * @param fields 
+	 * Enabling TextField.
+	 *
+	 * @param controls the controls
 	 */
 
 	public static void enable(Control... controls) {
@@ -213,8 +215,9 @@ public class MapBuildController implements Initializable,EventHandler{
 	}
 
 	/**
-	 * Erasing TextField
-	 * @param fields 
+	 * Erasing TextField.
+	 *
+	 * @param fields the fields
 	 */
 	public static void erasingTF(TextField... fields) {
 		for (TextField field : fields) {
@@ -224,7 +227,8 @@ public class MapBuildController implements Initializable,EventHandler{
     
     /**
      * Adding new continent.
-     * @param event 
+     *
+     * @param event the event
      */
     @FXML
     private void addingNewContinent(ActionEvent event) {
@@ -245,7 +249,8 @@ public class MapBuildController implements Initializable,EventHandler{
 
 	/**
 	 * Updating new continent.
-	 * @param event 
+	 *
+	 * @param event the event
 	 */
 	@FXML
 	private void updatingNewContinent(ActionEvent event) {
@@ -257,7 +262,8 @@ public class MapBuildController implements Initializable,EventHandler{
     
 	/**
 	 * Delete continent.
-	 * @param event 
+	 *
+	 * @param event the event
 	 */
 	@FXML
 	private void deleteContinent(ActionEvent event) {
@@ -277,7 +283,8 @@ public class MapBuildController implements Initializable,EventHandler{
 
 	/**
 	 * Adding new territory.
-	 * @param event 
+	 *
+	 * @param event the event
 	 */
 	@FXML
 	private void addingNewTerritory(ActionEvent event) {
@@ -297,7 +304,8 @@ public class MapBuildController implements Initializable,EventHandler{
 
 	/**
 	 * Removing adjacent Territories.
-	 * @param event 
+	 *
+	 * @param event the event
 	 */
 	@FXML
 	private void removingAdjacentTrrtrs(ActionEvent event) {
@@ -351,7 +359,8 @@ public class MapBuildController implements Initializable,EventHandler{
 	
 	/**
 	 * Update territories.
-	 * @param event 
+	 *
+	 * @param event the event
 	 */
 	@FXML
 	private void updateTerritories(ActionEvent event) {
@@ -398,7 +407,8 @@ public class MapBuildController implements Initializable,EventHandler{
 	
 	/**
 	 * Map editor exit.
-	 * @param event 
+	 *
+	 * @param event the event
 	 */
 	@FXML
 	private void mapEditExit(ActionEvent event) {
@@ -409,8 +419,9 @@ public class MapBuildController implements Initializable,EventHandler{
 
 	/**
 	 * Instantiates a new map build controller.
-	 * @param map 
-	 * @param file 
+	 *
+	 * @param map the map
+	 * @param file the file
 	 */
 	public MapBuildController(Map map, File file) {
 		this.map = map;
@@ -507,7 +518,8 @@ public class MapBuildController implements Initializable,EventHandler{
 	
 	/**
 	 * Display territory.
-	 * @param continent 
+	 *
+	 * @param continent the continent
 	 */
 
 	private void displayTerritory(Continents continent) {
@@ -521,7 +533,8 @@ public class MapBuildController implements Initializable,EventHandler{
 	
 /**
  * Display corresponding Territories.
- * @param territory 
+ *
+ * @param territory the territory
  */
 	private void displayCorrespondingTrrtrs(Territories territory) {
 

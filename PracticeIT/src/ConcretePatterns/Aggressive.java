@@ -17,19 +17,45 @@ import com.units.Contestant;
 import Patterns.ContestantStrategies;
 import Patterns.Observer;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Aggressive.
+ */
 public class Aggressive implements ContestantStrategies{
 
+	/** The contestants list. */
 	public static List<Contestant> contestantsList;
+	
+	/** The ls new. */
 	List<Territories> lsNew=null;
+	
+	/** The pa. */
 	PlayersAssignment pa=new PlayersAssignment();
+	
+	/** The current contestant. */
 	private Contestant  currentContestant;
+	
+	/** The cev. */
 	private CardExchangeView cev;
+	
+	/** The attacking territories list. */
 	private  List<Territories> attackingTerritoriesList;
+	
+	/** The defending territories list. */
 	private  List<Territories> defendingTerritoriesList;
+    
+    /** The count. */
     int count;
+	
+	/** The territory. */
 	public Territories territory;
+	
+	/** The map. */
 	private Map map;
 
+	/* (non-Javadoc)
+	 * @see Patterns.ContestantStrategies#loadBatallion(java.util.List, com.units.Contestant, java.util.List)
+	 */
 	@Override
 	public void loadBatallion(List<Territories> selectedTerritoriesList, Contestant currentContestant,List<Contestant> Contestants) {
 	
@@ -55,6 +81,9 @@ public class Aggressive implements ContestantStrategies{
 }
 
 
+	/* (non-Javadoc)
+	 * @see Patterns.ContestantStrategies#reinforcementPhase(java.util.List, com.units.Contestant, com.units.Map)
+	 */
 	@Override
 	public Territories reinforcementPhase(List<Territories> territoryList, Contestant currentContestant,Map map) {
 		System.out.println(map.getContinents());
@@ -69,6 +98,12 @@ public class Aggressive implements ContestantStrategies{
 		return territory;
 	}
 
+	/**
+	 * Contestant has A valid attack move.
+	 *
+	 * @param territories the territories
+	 * @return true, if successful
+	 */
 	public boolean contestantHasAValidAttackMove(List<Territories> territories) {
 		List<Territories> defendingTerritories=new ArrayList<Territories>();
 		territory = checkIfTerritoriesNull(territories);
@@ -80,6 +115,12 @@ public class Aggressive implements ContestantStrategies{
 		return false;
 	}
 
+	/**
+	 * Gets the defending territories.
+	 *
+	 * @param territory2 the territory 2
+	 * @return the defending territories
+	 */
 	private List<Territories> getDefendingTerritories(Territories territory2) {
 		List<Territories> defendingTerritories = new ArrayList<Territories>();
 		defendingTerritories.addAll(territory2.getTouchingTrrtrsExpand());
@@ -88,6 +129,14 @@ public class Aggressive implements ContestantStrategies{
 	}
 
 
+	/**
+	 * Fortification phase.
+	 *
+	 * @param selectedTerritoriesList the selected territories list
+	 * @param adjTerritoriesList the adj territories list
+	 * @param currentContestant the current contestant
+	 * @return true, if successful
+	 */
 	public boolean fortificationPhase(List<Territories> selectedTerritoriesList, List<Territories> adjTerritoriesList,
 			Contestant currentContestant) {
 			
@@ -112,6 +161,14 @@ public class Aggressive implements ContestantStrategies{
 		return false;
 	}
 
+	/**
+	 * Attack.
+	 *
+	 * @param attacking the attacking
+	 * @param defending the defending
+	 * @param currentContestant the current contestant
+	 * @param map the map
+	 */
 	private void attack(Territories attacking, Territories defending, Contestant currentContestant, Map map) {
 		System.out.println(attacking.getAssignName() + attacking.getBatallion());
 		System.out.println(defending.getAssignName() + defending.getBatallion());
@@ -276,6 +333,9 @@ public class Aggressive implements ContestantStrategies{
 		
 
 
+/* (non-Javadoc)
+ * @see Patterns.ContestantStrategies#attackPhase(java.util.List, java.util.List, com.units.Contestant, com.units.Map)
+ */
 @Override
 	public void attackPhase(List<Territories> attackingTerritoriesList, List<Territories> defendingTerritoriesList,Contestant currentContestant,Map map) {
 		System.out.println("Attack Phase Started:Aggressive");
@@ -338,6 +398,12 @@ public class Aggressive implements ContestantStrategies{
 
 	}
 
+	/**
+	 * Check if territories null.
+	 *
+	 * @param attackingTerritoriesList the attacking territories list
+	 * @return the territories
+	 */
 	public Territories checkIfTerritoriesNull(List<Territories> attackingTerritoriesList) {
 		if (territory == null || (territory.getBatallion() <= 1 || getDefendingTerritories(territory).size() == 0)) {
 			List<Territories> sortedList = getMaximumAdjacentAndArmy(attackingTerritoriesList);
@@ -355,12 +421,24 @@ public class Aggressive implements ContestantStrategies{
 
 	}
 
+	/**
+	 * Gets the territories owned by current contestant.
+	 *
+	 * @param territory the territory
+	 * @return the territories owned by current contestant
+	 */
 	public List<Territories> getTerritoriesOwnedByCurrentContestant(Territories territory) {
 		List<Territories> listWithValidAdjacentTerriroty = territory.getTouchingTrrtrsExpand().stream().
 				filter(t -> (territory.getContestant().equals(t.getContestant()))).collect(Collectors.toList());
 		return listWithValidAdjacentTerriroty;
 	}
 
+	/**
+	 * Gets the maximum adjacent and army.
+	 *
+	 * @param list the list
+	 * @return the maximum adjacent and army
+	 */
 	public List<Territories> getMaximumAdjacentAndArmy(List<Territories> list) {
 		Collections.sort(list, new Comparator<Territories>() {
 			@Override

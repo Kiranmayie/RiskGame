@@ -14,18 +14,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class StartGameController initiates a game and let the contestants play the game in round robin fashion.
  */
 public class StartGameController implements Serializable {
 	
-	/** The map object */
+	/**  The map object. */
 	private Map map;
 	
-	/** The Player object */
+	/**  The Player object. */
 	private Object Player;
 	
-	/** The number of players object */
+	/**  The number of players object. */
 	private Object numberOfPlayers;
 	
 	/** The number contestants. */
@@ -71,8 +72,9 @@ public class StartGameController implements Serializable {
 	
 	/**
 	 * Creates the player.
-	 * @param numberOfPlayers 
-	 * @param players 
+	 *
+	 * @param numberOfPlayers the number of players
+	 * @param players the players
 	 * @return the list
 	 */
 	public static List<Contestant> createPlayer(int numberOfPlayers, List<Contestant> players) {

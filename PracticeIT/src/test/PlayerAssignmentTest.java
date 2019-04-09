@@ -19,6 +19,10 @@ import com.units.Contestant;
 import com.units.Continents;
 import com.units.Territories;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerAssignmentTest.
+ */
 /*
  * Player Assignment Test Class
  * Attack Methods Test
@@ -26,73 +30,67 @@ import com.units.Territories;
  * @version 1.0.0
  */
 public class PlayerAssignmentTest {
+	
 	/**
-	 * @PlayerAssignmentModel
+	 * The player game phase.
+	 *
+	 * @PlayerAssignmentModel 
 	 */
 	static PlayersAssignment playerGamePhase;
+	
+	/** The game. */
 	/*
 	 * @GameDesigmodel
 	 */
 	static GameDesign game;
 	
+	/** The trs. */
 	static Territories trs;
-	/**
-	 * The @continent
-	 */
+	
+	/** The @continent. */
 	static Continents continent;
 	
-	/**
-	 * The @territory1
-	 */
+	/** The @territory1. */
 	static Territories territory1;
 	
-	/**
-	 * The @territory2
-	 */
+	/** The @territory2. */
 	static Territories territory2;
 	
-	/**
-	 * The @continent
-	 */
+	/** The @continent. */
 	static Contestant contestant;
 	
-	/**
-	 * The @map
-	 */
+	/** The @map. */
 	static Map map;
-	/**
-	 * The @territoryList
-	 */
+	
+	/** The @territoryList. */
 	static List<Territories> territoryList;
+	
+	/** The attack territory list. */
 	static List<Territories> attackTerritoryList;
+	
+	/** The defend territory list. */
 	static List<Territories> defendTerritoryList;
 	
+	/** The contestant list. */
 	static List<Contestant> contestantList;
-	/**
-	 * The @continentName
-	 */
+	
+	/** The @continentName. */
 	String continentName = "Asia";
 	
-	/**
-	 * The @controlValue
-	 */
+	/** The @controlValue. */
 	String controlValue = "7";	
 	
-	/**
-	 * The @territoryName1
-	 */
+	/** The @territoryName1. */
 	String territoryName1 = "India";
 	
-	/**
-	 * The @territoryName2
-	 */
+	/** The @territoryName2. */
 	String territoryName2 = "China";
+	
+	/** The list of cards. */
 	private List<String> listOfCards;
 	
 	
-	/**
-	 * The @players list
-	 */
+	/** The @players list. */
 	static List<Contestant> players;
 
 	/**
@@ -116,7 +114,6 @@ public class PlayerAssignmentTest {
 		continent = new Continents();
 		territory1 = new Territories();
 		territory2 = new Territories();
-		
 		continent.setAssignName(continentName);
 		continent.setCValue(controlValue);
 		territory1.setAssignName(territoryName1);
@@ -136,6 +133,11 @@ public class PlayerAssignmentTest {
 		
 	}
 	
+	/**
+	 * Gets the continents owned by player.
+	 *
+	 * @return the continents owned by player
+	 */
 	@Test
 	public void getContinentsOwnedByPlayer() {
 		List<Continents> returnedContinents = new ArrayList<>();
@@ -146,6 +148,9 @@ public class PlayerAssignmentTest {
 		Assert.assertEquals(1, returnedContinents.size());
 	}	
 	
+	/**
+	 * If contestant lost.
+	 */
 	@Test
 	public void ifContestantLost() {
 		players = new ArrayList<>();
@@ -156,6 +161,9 @@ public class PlayerAssignmentTest {
 	}
 	
 	
+	/**
+	 * If contestant won success.
+	 */
 	@Test
 	public void ifContestantWonSuccess() {
 		List<Contestant> listOfPlayers = new ArrayList<>();
@@ -166,6 +174,9 @@ public class PlayerAssignmentTest {
 	
 	
 	
+	/**
+	 * Players armies exhausted.
+	 */
 	@Test
 	public void PlayersArmiesExhausted() {
 		contestantList = new ArrayList<>();
@@ -174,6 +185,9 @@ public class PlayerAssignmentTest {
 		Assert.assertEquals(playerGamePhase.checkIfPlayersArmiesExhausted(contestantList), true);
 	}
 	
+	/**
+	 * Players armies exhausted false.
+	 */
 	@Test
 	public void PlayersArmiesExhaustedFalse() {
 		players = new ArrayList<>();
@@ -192,6 +206,9 @@ public class PlayerAssignmentTest {
 
 	}*/
 	
+	/**
+	 * Check if any player lost the game.
+	 */
 	@Test
 	public void checkIfAnyPlayerLostTheGame() {
 		players = new ArrayList<>();
@@ -201,6 +218,10 @@ public class PlayerAssignmentTest {
 		Assert.assertEquals(true,true);
 		//Assert.assertEquals(true, playerLost.getContestantTrrtrlist().size());
 	} 
+	
+	/**
+	 * Check trade possible for diff cards.
+	 */
 	@Test
 	public void checkTradePossibleForDiffCards() {
 		listOfCards.add("ARTILLERY");
@@ -210,6 +231,9 @@ public class PlayerAssignmentTest {
 		Assert.assertEquals(true, actualResult);		
 	}
 
+/**
+ * Contestant has A valid attack move.
+ */
 @Test
 public void contestantHasAValidAttackMove() {
 	territory1.setBatallion(5);
@@ -217,11 +241,15 @@ public void contestantHasAValidAttackMove() {
 	boolean actualResult = playerGamePhase.contestantHasAValidAttackMove(territory1);
 	Assert.assertTrue(actualResult);
 }
+
+/**
+ * Trade cards for army.
+ */
 @Test
 public void tradeCardsForArmy() {
 	players = new ArrayList<>();
 	players.add(new Contestant(0));
-	Contestant currentContestant = playerGamePhase.reinforceWithCards(1);
+	Contestant currentContestant = playerGamePhase.reinforceWithCards(1, contestant);
 	Assert.assertEquals(0, currentContestant.getBatallion());
 }
 }

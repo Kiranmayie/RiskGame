@@ -9,19 +9,37 @@ import java.util.stream.Collectors;
 
 import com.model.PlayersAssignment;
 import com.units.Contestant;
+import com.units.Map;
 import com.units.Territories;
 
 import Patterns.ContestantStrategies;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author kiran
+ * The Class Random.
  *
+ * @author kiran
  */
 public class Random implements ContestantStrategies {
+		
+		/** The pa. */
 		PlayersAssignment pa=new PlayersAssignment();
+		
+		/** The attacking territories list. */
 		private List<Territories> attackingTerritoriesList;
+		
+		/** The defending territories list. */
 		private List<Territories> defendingTerritoriesList;
+		
+		/** The current contestant. */
 		private Contestant currentContestant;
+		
+		/** The map. */
+		private Map map;
+	
+	/* (non-Javadoc)
+	 * @see Patterns.ContestantStrategies#loadBatallion(java.util.List, com.units.Contestant, java.util.List)
+	 */
 	@Override
 	public void loadBatallion(List<Territories> selectedTerritoriesList, Contestant currentContestant,
 			List<Contestant> Contestants) {
@@ -45,9 +63,12 @@ public class Random implements ContestantStrategies {
 		}		
 	}
 
+	/* (non-Javadoc)
+	 * @see Patterns.ContestantStrategies#attackPhase(java.util.List, java.util.List, com.units.Contestant, com.units.Map)
+	 */
 	@Override
 	public void attackPhase(List<Territories> getcontestantTrrtrlist, List<Territories> getcontestantTrrtrlist2,
-			Contestant currentContestant) {
+			Contestant currentContestant,Map map) {
 
 		List<Territories> attackTerList = currentContestant.getcontestantTrrtrlist();
 		Iterator<Territories> terrIterator = attackTerList.iterator();
@@ -65,6 +86,12 @@ public class Random implements ContestantStrategies {
 		
 	}
 
+	/**
+	 * Attack.
+	 *
+	 * @param attacking the attacking
+	 * @param defending the defending
+	 */
 	private void attack(Territories attacking, Territories defending) {
 		if(attacking.getBatallion()>4&&defending.getBatallion()>3)
 		{Integer[] attackerdicevalues=pa.autoStartDiceRollattacker(3);
@@ -76,7 +103,7 @@ public class Random implements ContestantStrategies {
 					Contestant count1=pa.attackTerritory(attacking, defending, currentContestant);
 					System.out.println(count1);
 					
-								attackPhase(attackingTerritoriesList, defendingTerritoriesList,currentContestant);
+								attackPhase(attackingTerritoriesList, defendingTerritoriesList,currentContestant,map);
 					
 			}
 		
@@ -91,9 +118,12 @@ public class Random implements ContestantStrategies {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see Patterns.ContestantStrategies#reinforcementPhase(java.util.List, com.units.Contestant, com.units.Map)
+	 */
 	@Override
-	public void reinforcementPhase(List<Territories> territoryList, Territories territory,
-			Contestant currentContestant) {
+	public Territories reinforcementPhase(List<Territories> territoryList,
+			Contestant currentContestant,Map map) {
 		int count = territoryList.size();
 		Territories randomTerritories = territoryList.get(randomNumber(count - 1));
 		int Batallion = currentContestant.getBatallion();
@@ -103,11 +133,27 @@ public class Random implements ContestantStrategies {
 			currentContestant.setBatallion(currentContestant.getBatallion() - Batallion);
 			System.out.println(Batallion + ": assigned to territory " + randomTerritories.getAssignName() + "\n");
 		}
+		return randomTerritories;
 	}
+	
+	/**
+	 * Random number.
+	 *
+	 * @param count the count
+	 * @return the int
+	 */
 	public int randomNumber(int count) {
 		return (int) (Math.random() * count) + 0;
 	}
 
+	/**
+	 * Fortification phase.
+	 *
+	 * @param selectedTerritoriesList the selected territories list
+	 * @param adjTerritoriesList the adj territories list
+	 * @param currentContestant the current contestant
+	 * @return true, if successful
+	 */
 	public boolean fortificationPhase(List<Territories> selectedTerritoriesList, List<Territories> adjTerritoriesList,
 			 Contestant currentContestant) {
 		boolean isFortificationDone = false;

@@ -7,17 +7,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import com.units.Continents;
+// TODO: Auto-generated Javadoc
 /**
  * The Class AuthenticatingEnhanedmap which authenticates the Map is Valid or Invalid.
  */
 public class AuthenticatingEnhanedmap {
 
-/** The Static Integer Variable X */
+/**  The Static Integer Variable X. */
 	public static int x;
 
 	/**
 	 * Authentication First step.
-	 * @param enhancedMap 
+	 *
+	 * @param enhancedMap the enhanced map
 	 */
 	public static void AuthFStep(Map enhancedMap) {
 		if (enhancedMap != null) {
@@ -80,10 +82,12 @@ public class AuthenticatingEnhanedmap {
 			//System.exit(0);
 		}
 	}
+
 /**
  * Continents connected to another Continent.
- * @param cntn
- * @param enhancedMap 
+ *
+ * @param cntnt the cntnt
+ * @param enhancedMap the enhanced map
  * @return true, if successful
  */
 public static boolean cntntConnectedToAnotherCntnt(Continents cntnt, Map enhancedMap) {
@@ -108,7 +112,8 @@ public static boolean cntntConnectedToAnotherCntnt(Continents cntnt, Map enhance
 
 /**
  * Checks if is Territories inter connected.
- * @param trrtr 
+ *
+ * @param trrtr the trrtr
  * @return true, if Territories are inter connected
  */
 public static boolean isTrrtrInterConnected(Territories trrtr) {
@@ -130,8 +135,9 @@ public static boolean isTrrtrInterConnected(Territories trrtr) {
 
 /**
  * Check connection.
- * @param trrtr 
- * @param hs 
+ *
+ * @param trrtr the trrtr
+ * @param hs the hs
  */
 public static void checkConnection(Territories trrtr, HashSet<Territories> hs) {
 	boolean isUnConnectedTrrtr = false;
